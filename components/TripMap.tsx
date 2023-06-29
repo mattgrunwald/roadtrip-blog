@@ -1,6 +1,6 @@
 'use client'
 import { Marker as MapMarker } from '@/.contentlayer/generated'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import {
   ComposableMap,
   Geographies,
@@ -13,16 +13,22 @@ import usGeo from 'geo/us-albers.json'
 import placeholderSrc from 'geo/placeholder.svg'
 import placeholderSrcDark from 'geo/placeholder-dark.svg'
 import Image from 'next/image'
-import { sleep } from '@/util/helpers'
 import { useRouter } from 'next/navigation'
 import { MarkerWithDay } from '@/util/types'
 
 const circleColor = '#f87171'
 
-export default function TripMap(params: {
-  markers: MapMarker[]
+export type TripMapParams = {
   allMarkers: MarkerWithDay[]
-}) {
+  showAlways?: boolean
+  markers?: MapMarker[]
+}
+
+export default function TripMap({
+  allMarkers,
+  showAlways = false,
+  markers,
+}: TripMapParams) {
   const router = useRouter()
 
   const routeToDay = (day: number) => {
@@ -34,17 +40,15 @@ export default function TripMap(params: {
   const [stateColor, setStateColor] = useState('')
 
   const [hideMap, setHideMap] = useState(true)
-  const [showAllMarkers, setShowAllMarkers] = useState(false)
+  const [showAllMarkers, setShowAllMarkers] = useState(showAlways)
 
   const showAll = () => setShowAllMarkers(true)
-  const hideAll = () => setShowAllMarkers(false)
+  const hideAll = () => showAlways || setShowAllMarkers(false)
+
+  const allMarkerOpacity = showAlways ? '100%' : '50%'
 
   useEffect(() => {
-    const showMapPreview = async () => {
-      await sleep(0)
-      setHideMap(false)
-    }
-    showMapPreview()
+    setHideMap(false)
   }, [hideMap])
 
   useEffect(() => {
@@ -59,6 +63,7 @@ export default function TripMap(params: {
         projection="geoAlbers"
         onMouseOver={showAll}
         onMouseOut={hideAll}
+        className={hideMap ? 'hidden' : ''}
       >
         <Geographies geography={usGeo} className={hideMap ? 'hidden' : ''}>
           {({ geographies }) =>
@@ -72,31 +77,21 @@ export default function TripMap(params: {
             ))
           }
         </Geographies>
-        {params.markers.map(({ name, coordinates, markerOffset }) => (
-          <Marker
-            onClick={() => console.log(coordinates)}
-            key={name || coordinates[0]}
-            coordinates={coordinates as [number, number]}
-          >
-            <circle r={5} fill={circleColor} strokeWidth={2} />
-            <text
-              textAnchor="middle"
-              y={markerOffset}
-              style={{ fontFamily: 'system-ui', fill: fontColor }}
-            >
-              {name || ''}
-            </text>
-          </Marker>
-        ))}
         {showAllMarkers &&
-          params.allMarkers.map(({ coordinates, markerOffset, day }) => (
+          allMarkers.map(({ coordinates, markerOffset, day }) => (
             <Marker
               key={coordinates[0]}
               coordinates={coordinates as [number, number]}
-              className="hover:cursor-pointer"
+              className={`hover:cursor-pointer ${hideMap ? 'hidden' : ''}`}
               onClick={() => routeToDay(day)}
             >
-              <circle r={5} fill={circleColor} strokeWidth={2} opacity="75%" />
+              <circle
+                r={5}
+                fill={circleColor}
+                strokeWidth={2}
+                opacity={allMarkerOpacity}
+                className={hideMap ? 'hidden' : ''}
+              />
               <text
                 textAnchor="middle"
                 y={markerOffset}
@@ -104,6 +99,27 @@ export default function TripMap(params: {
               ></text>
             </Marker>
           ))}
+        {markers?.map(({ name, coordinates, markerOffset }) => (
+          <Marker
+            key={name || coordinates[0]}
+            coordinates={coordinates as [number, number]}
+          >
+            <circle
+              r={5}
+              fill={circleColor}
+              strokeWidth={2}
+              className={hideMap ? 'hidden' : ''}
+            />
+            <text
+              textAnchor="middle"
+              y={markerOffset}
+              className={`font-semibold ${hideMap && 'hidden'}`}
+              style={{ fontFamily: 'system-ui', fill: fontColor, zIndex: -1 }}
+            >
+              {name || ''}
+            </text>
+          </Marker>
+        ))}
       </ComposableMap>
     </>
   )
@@ -111,5 +127,9 @@ export default function TripMap(params: {
 
 function Placeholder({ dark }: { dark: boolean }) {
   const src = dark ? placeholderSrcDark : placeholderSrc
-  return <Image src={src} alt="Map of the USA" />
+  return (
+    <div className="xxl:hidden">
+      <Image src={src} alt="Map of the USA" />
+    </div>
+  )
 }
