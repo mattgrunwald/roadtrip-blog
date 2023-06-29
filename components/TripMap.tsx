@@ -1,17 +1,15 @@
 'use client'
-import { Marker as MapMarker } from "@/.contentlayer/generated";
-import React, { useEffect, useState } from "react";
+import { Marker as MapMarker } from '@/.contentlayer/generated'
+import React, { useEffect, useState } from 'react'
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
-} from "react-simple-maps";
+} from 'react-simple-maps'
 import { useTheme } from 'next-themes'
 
-const geoUrl =
-  "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/united-states/us-albers.json";
-
+import usGeo from 'geo/us-albers.json'
 
 export default function TripMap(params: { markers: MapMarker[] }) {
   const { theme } = useTheme()
@@ -24,7 +22,7 @@ export default function TripMap(params: { markers: MapMarker[] }) {
   }, [theme])
   return (
     <ComposableMap projection="geoAlbers">
-      <Geographies geography={geoUrl}>
+      <Geographies geography={usGeo}>
         {({ geographies }) =>
           geographies.map((geo) => (
             <Geography
@@ -37,18 +35,20 @@ export default function TripMap(params: { markers: MapMarker[] }) {
         }
       </Geographies>
       {params.markers.map(({ name, coordinates, markerOffset }) => (
-        <Marker key={name || coordinates[0]} coordinates={coordinates as [number, number]}>
+        <Marker
+          key={name || coordinates[0]}
+          coordinates={coordinates as [number, number]}
+        >
           <circle r={5} fill="#F00" stroke="#fff" strokeWidth={2} />
           <text
             textAnchor="middle"
             y={markerOffset}
-            style={{ fontFamily: "system-ui", fill: fontColor }}
-          // className={theme === 'dark' ? 'bg-red-600' : 'bg-blue-600'}
+            style={{ fontFamily: 'system-ui', fill: fontColor }}
           >
             {name || ''}
           </text>
         </Marker>
       ))}
     </ComposableMap>
-  );
+  )
 }

@@ -1,13 +1,13 @@
-import Link from "next/link"
-import "./globals.css"
-import { Inter } from "next/font/google"
-import { ThemeProvider } from "../components/ThemeProvider"
-import { ModeToggle } from "../components/ModeToggle"
+import Link from 'next/link'
+import './globals.css'
+import { Inter } from 'next/font/google'
+import { ThemeProvider } from '../components/ThemeProvider'
+import { ModeToggle } from '../components/ModeToggle'
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "Roadtrip 2023",
+  title: 'Roadtrip 2023',
   description: "Matt and Rainey's roadtrip blog",
 }
 
@@ -40,6 +40,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </div>
         </ThemeProvider>
       </body>
-    </html >
+    </html>
   )
 }
