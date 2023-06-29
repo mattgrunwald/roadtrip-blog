@@ -1,6 +1,6 @@
 'use client'
 import { Marker as MapMarker } from "@/.contentlayer/generated";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -15,10 +15,13 @@ const geoUrl =
 
 export default function TripMap(params: { markers: MapMarker[] }) {
   const { theme } = useTheme()
+  const [fontColor, setFontColor] = useState('')
+  const [stateColor, setStateColor] = useState('')
 
-  const stateColor = theme === 'light' ? '#e5e7eb' : '#374151'
-  const fontColor = theme === 'dark' ? '#e5e7eb' : '#374151'
-
+  useEffect(() => {
+    setStateColor(theme === 'light' ? '#e5e7eb' : '#374151')
+    setFontColor(theme === 'dark' ? '#e5e7eb' : '#374151')
+  }, [theme])
   return (
     <ComposableMap projection="geoAlbers">
       <Geographies geography={geoUrl}>
@@ -40,6 +43,7 @@ export default function TripMap(params: { markers: MapMarker[] }) {
             textAnchor="middle"
             y={markerOffset}
             style={{ fontFamily: "system-ui", fill: fontColor }}
+          // className={theme === 'dark' ? 'bg-red-600' : 'bg-blue-600'}
           >
             {name || ''}
           </text>
