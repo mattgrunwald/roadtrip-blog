@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write . --config ./.prettierrc --ignore-path ./.prettierignore"
+    "format": "prettier --write . --config ./.prettierrc --ignore-path ./.prettierignore",
+    "format:check": "prettier --check . --config ./.prettierrc --ignore-path ./.prettierignore",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.9",
@@ -32,6 +34,7 @@
   "devDependencies": {
     "@types/react-simple-maps": "^3.0.0",
     "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8"
   }
 }
