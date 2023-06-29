@@ -34,7 +34,7 @@ export default function Page() {
     <div className="grid lg:grid-cols-9 sm:grid-cols-1 gap-8">
       <div className="md:col-span-3 sm:col-span-1 md:order-first">
         <Gallery urls={urls} />
-        <TripMap markers={markers} allMarkers={allMarkers} />
+        <TripMap showAlways allMarkers={allMarkers} />
       </div>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">
         <div className="prose dark:prose-invert">
