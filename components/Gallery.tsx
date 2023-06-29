@@ -11,8 +11,12 @@ function CarouselImage({
   onMouseOver,
   onMouseOut,
   onClick,
+  isCurrent,
+  first
 }: {
   src: string
+  isCurrent: boolean
+  first: boolean
   onMouseOver: (e: any) => void
   onMouseOut: (e: any) => void
   onClick: () => void
@@ -20,7 +24,7 @@ function CarouselImage({
   return (
     <Image
       src={src}
-      style={{ objectFit: 'contain', height: '100%', width: '100%' }}
+      style={{ objectFit: 'contain', height: '100%', width: '100%', display: isCurrent ? '' : 'none' }}
       height={384}
       width={475}
       onMouseOver={onMouseOver}
@@ -28,6 +32,7 @@ function CarouselImage({
       onClick={onClick}
       alt="I'm still working on accessiblity for this site"
       quality={70}
+      priority={first}
     />
   )
 }
@@ -47,17 +52,22 @@ export default function Gallery({ urls }: GalleryProps) {
   const showNav = () => setNav(true)
   const hideNav = () => setNav(false)
 
+  const count = urls.length === 0 ? 0 : current + 1
   return (
     <div className="relative w-full">
+      <span className="opacity-50 text-xs">{`${count} of ${urls.length}`}</span>
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-        {hasImages && (
+        {hasImages && urls.map((url, index) => (
           <CarouselImage
+            key={url}
             src={`/images/${urls[current]}`}
             onMouseOut={hideNav}
             onMouseOver={showNav}
             onClick={nextImage}
+            isCurrent={current === index}
+            first={index === 0}
           />
-        )}
+        ))}
       </div>
       {hasImages && nav && urls.length > 1 && (
         <button
