@@ -18,7 +18,10 @@ import { useRouter } from 'next/navigation'
 
 const circleColor = '#f87171'
 
-export default function TripMap(params: { markers: MapMarker[], allMarkers: MarkerWithDay[] }) {
+export default function TripMap(params: {
+  markers: MapMarker[]
+  allMarkers: MarkerWithDay[]
+}) {
   const router = useRouter()
 
   const routeToDay = (day: number) => {
@@ -41,9 +44,7 @@ export default function TripMap(params: { markers: MapMarker[], allMarkers: Mark
       setHideMap(false)
     }
     showMapPreview()
-  },
-    [hideMap]
-  )
+  }, [hideMap])
 
   useEffect(() => {
     setStateColor(theme === 'light' ? '#e5e7eb' : '#374151')
@@ -53,7 +54,11 @@ export default function TripMap(params: { markers: MapMarker[], allMarkers: Mark
   return (
     <>
       {hideMap && <Placeholder dark={theme === 'dark'} />}
-      <ComposableMap projection="geoAlbers" onMouseOver={showAll} onMouseOut={hideAll}>
+      <ComposableMap
+        projection="geoAlbers"
+        onMouseOver={showAll}
+        onMouseOut={hideAll}
+      >
         <Geographies geography={usGeo} className={hideMap ? 'hidden' : ''}>
           {({ geographies }) =>
             geographies.map((geo) => (
@@ -82,31 +87,28 @@ export default function TripMap(params: { markers: MapMarker[], allMarkers: Mark
             </text>
           </Marker>
         ))}
-        {showAllMarkers && params.allMarkers.map(({ coordinates, markerOffset, day }) => (
-          <Marker
-            key={coordinates[0]}
-            coordinates={coordinates as [number, number]}
-            className="hover:cursor-pointer"
-            onClick={() => routeToDay(day)}
-          >
-            <circle r={5} fill={circleColor} strokeWidth={2} opacity='75%' />
-            <text
-              textAnchor="middle"
-              y={markerOffset}
-              style={{ fill: fontColor }}
+        {showAllMarkers &&
+          params.allMarkers.map(({ coordinates, markerOffset, day }) => (
+            <Marker
+              key={coordinates[0]}
+              coordinates={coordinates as [number, number]}
+              className="hover:cursor-pointer"
+              onClick={() => routeToDay(day)}
             >
-            </text>
-          </Marker>
-        ))}
+              <circle r={5} fill={circleColor} strokeWidth={2} opacity="75%" />
+              <text
+                textAnchor="middle"
+                y={markerOffset}
+                style={{ fill: fontColor }}
+              ></text>
+            </Marker>
+          ))}
       </ComposableMap>
     </>
   )
-
 }
 
 function Placeholder({ dark }: { dark: boolean }) {
   const src = dark ? placeholderSrcDark : placeholderSrc
-  return (
-    <Image src={src} alt="Map of the USA" />
-  )
+  return <Image src={src} alt="Map of the USA" />
 }
