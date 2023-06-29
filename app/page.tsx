@@ -1,6 +1,7 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
+import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
@@ -14,6 +15,8 @@ export async function generateStaticParams() {
 const notFoundPost = allPosts.find(
   (post) => post._raw.flattenedPath === 'notfound',
 )
+
+const allMarkers = getAllMarkers(allPosts)
 
 export default function Page() {
   const post =
@@ -31,7 +34,7 @@ export default function Page() {
     <div className="grid lg:grid-cols-9 sm:grid-cols-1 gap-8">
       <div className="md:col-span-3 sm:col-span-1 md:order-first">
         <Gallery urls={urls} />
-        <TripMap markers={markers} />
+        <TripMap markers={markers} allMarkers={allMarkers} />
       </div>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">
         <div className="prose dark:prose-invert">
