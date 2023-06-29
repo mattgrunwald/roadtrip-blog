@@ -7,12 +7,18 @@ import {
   Geography,
   Marker,
 } from "react-simple-maps";
+import { useTheme } from 'next-themes'
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/united-states/us-albers.json";
 
 
-export default function TripMap(params: { day: string, markers: MapMarker[] }) {
+export default function TripMap(params: { markers: MapMarker[] }) {
+  const { theme } = useTheme()
+
+  const stateColor = theme === 'light' ? '#e5e7eb' : '#374151'
+  const fontColor = theme === 'dark' ? '#e5e7eb' : '#374151'
+
   return (
     <ComposableMap projection="geoAlbers">
       <Geographies geography={geoUrl}>
@@ -21,8 +27,8 @@ export default function TripMap(params: { day: string, markers: MapMarker[] }) {
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill="#DDD"
-              stroke="#FFF"
+              fill={stateColor}
+              stroke="#bbb"
             />
           ))
         }
@@ -33,7 +39,7 @@ export default function TripMap(params: { day: string, markers: MapMarker[] }) {
           <text
             textAnchor="middle"
             y={markerOffset}
-            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
+            style={{ fontFamily: "system-ui", fill: fontColor }}
           >
             {name || ''}
           </text>
