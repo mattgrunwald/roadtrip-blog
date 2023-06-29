@@ -4,14 +4,14 @@ import Link from 'next/link'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
-    day: post._raw.flattenedPath,
+    day: post._raw.flattenedPath.replaceAll('posts\/', ''),
   }))
 }
 
-const notFoundPost = allPosts.find(post => post._raw.flattenedPath === 'notfound')
+const notFoundPost = allPosts.find(post => post._raw.flattenedPath === 'posts/notfound')
 
 export default function Page({ params }: { params: { day: string } }) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === `posts/${params.day}`) || notFoundPost
+  const post = allPosts.find((post) => post._raw.flattenedPath === `posts/${params.day.replaceAll('posts%2F', '')}`) || notFoundPost
 
   const previousDay = Number(params.day) - 1
   const nextDay = Number(params.day) + 1
