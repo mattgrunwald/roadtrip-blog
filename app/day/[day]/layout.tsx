@@ -1,6 +1,7 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
+import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 
 export async function generateStaticParams() {
@@ -12,6 +13,8 @@ export async function generateStaticParams() {
 const notFoundPost = allPosts.find(
   (post) => post._raw.flattenedPath === 'posts/notfound',
 )
+
+const allMarkers = getAllMarkers(allPosts)
 
 export default function Layout({
   children,
@@ -40,7 +43,7 @@ export default function Layout({
       </div>
       <div className="md:col-span-3 sm:col-span-1 md:order-first">
         <Gallery urls={urls} />
-        <TripMap markers={markers} />
+        <TripMap markers={markers} allMarkers={allMarkers} />
       </div>
       <div className="md:col-span-2 sm:col-span-1 sm:ml-16 md:ml-0 mb-6">
         <TripCalendar start={start} end={end} day={Number(params.day)} />
