@@ -22,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`antialiased max-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className=" mx-auto py-4 px-4 h-screen">
+          <div className=" mx-auto py-4 px-8 h-screen">
             <header>
               <div className="flex items-center justify-between">
                 <b>Roadtrek Trip 2023</b>

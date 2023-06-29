@@ -37,7 +37,7 @@ export default function Page() {
           <Link href={'/day/1'}>Jump In</Link>
         </div>
       </div>
-      <div className="md:col-span-2 sm:col-span-1 sm:ml-16 md:ml-0">
+      <div className="md:col-span-2 sm:col-span-1 sm:ml-16 md:ml-0 mb-6">
         <TripCalendar start={start} end={end} day={0} />
       </div>
     </div>
