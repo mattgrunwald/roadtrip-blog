@@ -12,7 +12,7 @@ function CarouselImage({
   onMouseOut,
   onClick,
   isCurrent,
-  first
+  first,
 }: {
   src: string
   isCurrent: boolean
@@ -24,7 +24,12 @@ function CarouselImage({
   return (
     <Image
       src={src}
-      style={{ objectFit: 'contain', height: '100%', width: '100%', display: isCurrent ? '' : 'none' }}
+      style={{
+        objectFit: 'contain',
+        height: '100%',
+        width: '100%',
+        display: isCurrent ? '' : 'none',
+      }}
       height={384}
       width={475}
       onMouseOver={onMouseOver}
@@ -57,17 +62,18 @@ export default function Gallery({ urls }: GalleryProps) {
     <div className="relative w-full">
       <span className="opacity-50 text-xs">{`${count} of ${urls.length}`}</span>
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-        {hasImages && urls.map((url, index) => (
-          <CarouselImage
-            key={url}
-            src={`/images/${urls[current]}`}
-            onMouseOut={hideNav}
-            onMouseOver={showNav}
-            onClick={nextImage}
-            isCurrent={current === index}
-            first={index === 0}
-          />
-        ))}
+        {hasImages &&
+          urls.map((url, index) => (
+            <CarouselImage
+              key={url}
+              src={`/images/${urls[current]}`}
+              onMouseOut={hideNav}
+              onMouseOver={showNav}
+              onClick={nextImage}
+              isCurrent={current === index}
+              first={index === 0}
+            />
+          ))}
       </div>
       {hasImages && nav && urls.length > 1 && (
         <button
