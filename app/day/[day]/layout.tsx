@@ -24,21 +24,6 @@ export default function Layout({
 
   const start = new Date('2023-05-27')
   const end = new Date('2023-06-26')
-  // const coordinates: any = {}
-  // allPosts.forEach(post => {
-  //   if (post.markers && post.markers.length > 0) {
-  //     post.markers.forEach(marker => {
-  //       const name = marker.name || 'butt'
-  //       coordinates[name] = marker.coordinates
-  //     })
-  //   }
-  // })
-  // console.log(Object.values(coordinates).map(coordinates => {
-  //   return {
-  //     markerOffset: 0,
-  //     coordinates
-  //   } as Marker
-  // }));
 
   const markers = post?.markers || []
   const urls = post?.carouselImages || []
