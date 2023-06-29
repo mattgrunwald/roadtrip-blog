@@ -2,7 +2,6 @@ import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 
-
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     day: post._raw.flattenedPath,
@@ -16,11 +15,10 @@ export default function Page({ params }: { params: { day: string } }) {
 
   const previousDay = Number(params.day) - 1
   const nextDay = Number(params.day) + 1
-  // Parse the MDX file via the useMDXComponent hook.
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <div className="py-6 prose dark:prose-invert">
+    <div className="prose dark:prose-invert">
       <div className="flex flex-row justify-between">
         <div className="w-14">
           {previousDay >= 1 && <Link href={`/day/${previousDay}`}>Day {previousDay}</Link>}
