@@ -52,7 +52,6 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
       <div className="text-center">
         <b>May</b>
       </div>
-      {/* <hr className="my-1" /> */}
       <Calendar
         onChange={onChange}
         value={start}
@@ -67,7 +66,6 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
       <div className="text-center">
         <b>June</b>
       </div>
-      {/* <hr className="my-1" /> */}
       <Calendar
         onChange={onChange}
         value={end}
