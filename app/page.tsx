@@ -1,9 +1,9 @@
-import Gallery from "@/components/Gallery"
-import TripCalendar from "@/components/TripCalendar"
-import TripMap from "@/components/TripMap"
+import Gallery from '@/components/Gallery'
+import TripCalendar from '@/components/TripCalendar'
+import TripMap from '@/components/TripMap'
 import { allPosts } from 'contentlayer/generated'
-import { useMDXComponent } from "next-contentlayer/hooks"
-import Link from "next/link"
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -11,10 +11,14 @@ export async function generateStaticParams() {
   }))
 }
 
-const notFoundPost = allPosts.find(post => post._raw.flattenedPath === 'notfound')
+const notFoundPost = allPosts.find(
+  (post) => post._raw.flattenedPath === 'notfound',
+)
 
 export default function Page() {
-  const post = allPosts.find((post) => post._raw.flattenedPath === 'posts/home') || notFoundPost
+  const post =
+    allPosts.find((post) => post._raw.flattenedPath === 'posts/home') ||
+    notFoundPost
 
   const start = new Date('2023-05-27')
   const end = new Date('2023-06-26')
@@ -31,7 +35,7 @@ export default function Page() {
       </div>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">
         <div className="prose dark:prose-invert">
-          <div className="my-2">
+          <div className="pb-2 mt-9">
             <MDXContent />
           </div>
           <Link href={'/day/1'}>Jump In</Link>

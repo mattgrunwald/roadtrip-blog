@@ -1,15 +1,17 @@
-import Gallery from "@/components/Gallery"
-import TripCalendar from "@/components/TripCalendar"
-import TripMap from "@/components/TripMap"
+import Gallery from '@/components/Gallery'
+import TripCalendar from '@/components/TripCalendar'
+import TripMap from '@/components/TripMap'
 import { allPosts } from 'contentlayer/generated'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
-    day: post._raw.flattenedPath.replaceAll('posts\/', ''),
+    day: post._raw.flattenedPath.replaceAll('posts/', ''),
   }))
 }
 
-const notFoundPost = allPosts.find(post => post._raw.flattenedPath === 'posts/notfound')
+const notFoundPost = allPosts.find(
+  (post) => post._raw.flattenedPath === 'posts/notfound',
+)
 
 export default function Layout({
   children,
@@ -20,7 +22,12 @@ export default function Layout({
     day: string
   }
 }) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === `posts/${params.day.replaceAll('posts%2F', '')}`) || notFoundPost
+  const post =
+    allPosts.find(
+      (post) =>
+        post._raw.flattenedPath ===
+        `posts/${params.day.replaceAll('posts%2F', '')}`,
+    ) || notFoundPost
   const start = new Date('2023-05-27')
   const end = new Date('2023-06-26')
 

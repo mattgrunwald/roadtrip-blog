@@ -26,6 +26,6 @@ body {
     rgb(var(--background-start-rgb));
 } */
 
-button:disabled>abbr {
+button:disabled > abbr {
   color: gray;
 }
