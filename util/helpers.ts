@@ -1,8 +1,6 @@
-import { Marker, Post } from '@/.contentlayer/generated'
+import { Post } from '@/.contentlayer/generated'
+import { MarkerWithDay } from './types'
 
-export type MarkerWithDay = Marker & {
-  day: number
-}
 export function getAllMarkers(posts: Post[]) {
   const markers: Record<string, MarkerWithDay> = {}
   for (const post of posts) {
@@ -22,3 +20,5 @@ export function getAllMarkers(posts: Post[]) {
 }
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+export const mod = (n: number, m: number) => ((n % m) + m) % m

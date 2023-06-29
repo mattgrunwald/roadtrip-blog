@@ -13,8 +13,9 @@ import usGeo from 'geo/us-albers.json'
 import placeholderSrc from 'geo/placeholder.svg'
 import placeholderSrcDark from 'geo/placeholder-dark.svg'
 import Image from 'next/image'
-import { MarkerWithDay, sleep } from '@/util/helpers'
+import { sleep } from '@/util/helpers'
 import { useRouter } from 'next/navigation'
+import { MarkerWithDay } from '@/util/types'
 
 const circleColor = '#f87171'
 
