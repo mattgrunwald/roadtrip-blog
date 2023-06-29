@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Image from 'next/image'
 
 export type GalleryProps = {
   urls: string[]
@@ -8,12 +9,16 @@ export type GalleryProps = {
 
 function CarouselImage({ src, onMouseOver, onMouseOut, onClick }: { src: string, onMouseOver: (e: any) => void, onMouseOut: (e: any) => void, onClick: () => void }) {
   return (
-    <img
+    <Image
       src={src}
       style={{ objectFit: "contain", height: '100%', width: '100%' }}
+      height={384}
+      width={475}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={onClick}
+      alt="I'm still working on accessiblity for this site"
+      quality={70}
     />
   )
 }
