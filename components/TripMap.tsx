@@ -34,7 +34,7 @@ export default function TripMap(params: { markers: MapMarker[] }) {
         }
       </Geographies>
       {params.markers.map(({ name, coordinates, markerOffset }) => (
-        <Marker key={name} coordinates={coordinates as [number, number]}>
+        <Marker key={name || coordinates[0]} coordinates={coordinates as [number, number]}>
           <circle r={5} fill="#F00" stroke="#fff" strokeWidth={2} />
           <text
             textAnchor="middle"

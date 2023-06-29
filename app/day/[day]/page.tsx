@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 const notFoundPost = allPosts.find(post => post._raw.flattenedPath === 'notfound')
 
 export default function Page({ params }: { params: { day: string } }) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.day) || notFoundPost
+  const post = allPosts.find((post) => post._raw.flattenedPath === `posts/${params.day}`) || notFoundPost
 
   const previousDay = Number(params.day) - 1
   const nextDay = Number(params.day) + 1
@@ -19,7 +19,7 @@ export default function Page({ params }: { params: { day: string } }) {
 
   return (
     <div className="prose dark:prose-invert">
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-row justify-between pb-2">
         <div className="w-14">
           {previousDay >= 1 && <Link href={`/day/${previousDay}`}>Day {previousDay}</Link>}
         </div>

@@ -20,7 +20,7 @@ export default function Layout({
     day: string
   }
 }) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.day) || notFoundPost
+  const post = allPosts.find((post) => post._raw.flattenedPath === `posts/${params.day}`) || notFoundPost
 
   const start = new Date('2023-05-27')
   const end = new Date('2023-06-26')
