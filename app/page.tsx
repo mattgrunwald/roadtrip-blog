@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 const notFoundPost = allPosts.find(post => post._raw.flattenedPath === 'notfound')
 
 export default function Page() {
-  const post = allPosts.find((post) => post._raw.flattenedPath === 'home') || notFoundPost
+  const post = allPosts.find((post) => post._raw.flattenedPath === 'posts/home') || notFoundPost
 
   const start = new Date('2023-05-27')
   const end = new Date('2023-06-26')
