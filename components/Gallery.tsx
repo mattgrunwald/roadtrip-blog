@@ -6,13 +6,14 @@ export type GalleryProps = {
 
 }
 
-function CarouselImage({ src, onMouseOver, onMouseOut }: { src: string, onMouseOver: (e: any) => void, onMouseOut: (e: any) => void }) {
+function CarouselImage({ src, onMouseOver, onMouseOut, onClick }: { src: string, onMouseOver: (e: any) => void, onMouseOut: (e: any) => void, onClick: () => void }) {
   return (
     <img
       src={src}
       style={{ objectFit: "contain", height: '100%', width: '100%' }}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
+      onClick={onClick}
     />
   )
 }
@@ -36,7 +37,7 @@ export default function Gallery({ urls }: GalleryProps) {
   return (
     <div className="relative w-full">
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-        {hasImages && <CarouselImage src={`/images/${urls[current]}`} onMouseOut={hideNav} onMouseOver={showNav} />}
+        {hasImages && <CarouselImage src={`/images/${urls[current]}`} onMouseOut={hideNav} onMouseOver={showNav} onClick={nextImage} />}
       </div>
       {hasImages && nav && urls.length > 1 &&
         <button onMouseOver={showNav} onMouseOut={hideNav} onClick={prevImage} type="button" className="absolute top-0 left-0  flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>

@@ -28,15 +28,15 @@ export default function Layout({
   const markers = post?.markers || []
   const urls = post?.carouselImages || []
   return (
-    <div className="grid grid-cols-9 gap-8">
-      <div className="col-span-3">
+    <div className="grid md:grid-cols-9 sm:grid-cols-1 gap-8">
+      <div className="md:col-span-3 sm:col-span-1 md:order-first">
         <Gallery urls={urls} />
         <TripMap markers={markers} />
       </div>
-      <div className="col-span-4">
+      <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:justify-center">
         {children}
       </div>
-      <div className="col-span-2">
+      <div className="md:col-span-2 sm:col-span-1 sm:ml-16 md:ml-0">
         <TripCalendar start={start} end={end} day={Number(params.day)} />
       </div>
     </div>
