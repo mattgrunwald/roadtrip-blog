@@ -3,6 +3,7 @@ import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
+import Container from '@/util/containers'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -37,17 +38,17 @@ export default function Layout({
   const markers = post?.markers || []
   const urls = post?.carouselImages || []
   return (
-    <div className="sm:max-2xl:grid md:grid-cols-9 sm:grid-cols-1 gap-8 2xl:flex 2xl:justify-around 2xl:px-48 xl:px-4">
+    <Container.Post>
       <div className="md:col-span-4 sm:col-span-1 sm:max-md:order-first sm:max-md:flex sm:justify-center">
         {children}
       </div>
-      <div className="md:col-span-3 sm:col-span-1 md:order-first 2xl:w-5/12">
+      <Container.Visual>
         <Gallery urls={urls} />
         <TripMap markers={markers} allMarkers={allMarkers} />
-      </div>
-      <div className="md:col-span-2 sm:col-span-1 sm:ml-16 md:ml-0 mb-6 2xl:max-w-xs">
+      </Container.Visual>
+      <Container.Calendar>
         <TripCalendar start={start} end={end} day={Number(params.day)} />
-      </div>
-    </div>
+      </Container.Calendar>
+    </Container.Post>
   )
 }

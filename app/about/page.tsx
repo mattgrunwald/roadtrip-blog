@@ -1,5 +1,6 @@
 import { allDefaultPages } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
+import Container from 'util/containers'
 
 export default function Page() {
   const post = allDefaultPages.find(
@@ -9,9 +10,9 @@ export default function Page() {
 
   return (
     <div className="max-w-2xl mx-auto py-10 px-4">
-      <div className="prose dark:prose-invert">
+      <Container.Text>
         <MDXContent />
-      </div>
+      </Container.Text>
     </div>
   )
 }

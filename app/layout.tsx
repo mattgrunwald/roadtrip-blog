@@ -15,6 +15,21 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+const Header = () => (
+  <header>
+    <div className="flex items-center justify-between">
+      <b>Roadtrek Trip 2023</b>
+      <div className="flex items-center justify-around">
+        <nav className="ml-auto mr-4 text-sm font-medium space-x-6">
+          <Link href="/">Home</Link>
+          <Link href="/about">About</Link>
+        </nav>
+        <ModeToggle />
+      </div>
+    </div>
+  </header>
+)
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
@@ -23,18 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className=" mx-auto py-4 px-8 h-screen">
-            <header>
-              <div className="flex items-center justify-between">
-                <b>Roadtrek Trip 2023</b>
-                <div className="flex items-center justify-around">
-                  <nav className="ml-auto mr-4 text-sm font-medium space-x-6">
-                    <Link href="/">Home</Link>
-                    <Link href="/about">About</Link>
-                  </nav>
-                  <ModeToggle />
-                </div>
-              </div>
-            </header>
+            <Header />
             <hr className="my-4" />
             <main>{children}</main>
           </div>
