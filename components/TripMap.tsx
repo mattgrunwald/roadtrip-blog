@@ -134,7 +134,7 @@ export default function TripMap({
 function Placeholder({ dark }: { dark: boolean }) {
   const src = dark ? placeholderSrcDark : placeholderSrc
   return (
-    <div className="2xl:hidden">
+    <div className="3xl:hidden">
       <Image src={src} alt="Map of the USA" />
     </div>
   )
