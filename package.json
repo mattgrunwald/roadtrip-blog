@@ -40,7 +40,7 @@
     "prettier": "^2.8.8"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write . --config ./.prettierrc --ignore-path ./.prettierignore",
-    "*.{ts,tsx,js,jsx}": "next lint"
+    "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write --config ./.prettierrc --ignore-path ./.prettierignore",
+    "*.{ts,tsx,js,jsx}": "eslint"
   }
 }
