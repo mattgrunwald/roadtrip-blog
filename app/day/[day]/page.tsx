@@ -1,6 +1,7 @@
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
+import Container from 'util/containers'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -25,7 +26,7 @@ export default function Page({ params }: { params: { day: string } }) {
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <div className="prose dark:prose-invert">
+    <Container.Text>
       <div className="flex flex-row justify-between pb-2">
         <div className="w-14">
           {previousDay >= 1 && (
@@ -37,6 +38,6 @@ export default function Page({ params }: { params: { day: string } }) {
         </div>
       </div>
       <MDXContent />
-    </div>
+    </Container.Text>
   )
 }

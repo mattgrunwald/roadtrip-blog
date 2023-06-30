@@ -5,6 +5,7 @@ import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
+import Container from 'util/containers'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -31,22 +32,22 @@ export default function Page() {
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <div className="grid lg:grid-cols-9 sm:grid-cols-1 gap-8">
-      <div className="md:col-span-3 sm:col-span-1 md:order-first">
+    <Container.Post>
+      <Container.Visual>
         <Gallery urls={urls} />
         <TripMap showAlways allMarkers={allMarkers} />
-      </div>
+      </Container.Visual>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">
-        <div className="prose dark:prose-invert">
+        <Container.Text>
           <div className="pb-2 mt-9">
             <MDXContent />
           </div>
           <Link href={'/day/1'}>Jump In</Link>
-        </div>
+        </Container.Text>
       </div>
-      <div className="md:col-span-2 sm:col-span-1 sm:ml-16 md:ml-0 mb-6">
+      <Container.Calendar>
         <TripCalendar start={start} end={end} day={0} />
-      </div>
-    </div>
+      </Container.Calendar>
+    </Container.Post>
   )
 }
