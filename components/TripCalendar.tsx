@@ -11,6 +11,7 @@ export type TripCalendarProps = {
   end: Date
   day: number
 }
+
 export default function TripCalendar({ start, end, day }: TripCalendarProps) {
   const router = useRouter()
 
