@@ -56,6 +56,53 @@ export default function TripMap({
     setFontColor(theme === 'dark' ? '#e5e7eb' : '#374151')
   }, [theme])
 
+  const NamedMarkers = () =>
+    showAllMarkers &&
+    allMarkers.map(({ coordinates, markerOffset, day }) => (
+      <Marker
+        key={coordinates[0]}
+        coordinates={coordinates as [number, number]}
+        className={`hover:cursor-pointer ${hideMap ? 'hidden' : ''}`}
+        onClick={() => routeToDay(day)}
+      >
+        <circle
+          r={5}
+          fill={circleColor}
+          strokeWidth={2}
+          opacity={allMarkerOpacity}
+          className={hideMap ? 'hidden' : ''}
+        />
+        <text
+          textAnchor="middle"
+          y={markerOffset}
+          style={{ fill: fontColor }}
+        ></text>
+      </Marker>
+    ))
+
+  const UnnamedMarkers = () =>
+    markers?.map(({ name, coordinates, markerOffset }) => (
+      <Marker
+        key={name || coordinates[0]}
+        coordinates={coordinates as [number, number]}
+      >
+        <circle
+          r={5}
+          fill={circleColor}
+          strokeWidth={2}
+          className={hideMap ? 'hidden' : ''}
+        />
+        <text
+          textAnchor="middle"
+          y={markerOffset}
+          className={`font-semibold ${hideMap && 'hidden'}`}
+          style={{ fontFamily: 'system-ui', fill: fontColor, zIndex: -1 }}
+        >
+          {name || ''}
+        </text>
+      </Marker>
+    ))
+
   return (
     <>
       {hideMap && <Placeholder dark={theme === 'dark'} />}
@@ -77,49 +124,8 @@ export default function TripMap({
             ))
           }
         </Geographies>
-        {showAllMarkers &&
-          allMarkers.map(({ coordinates, markerOffset, day }) => (
-            <Marker
-              key={coordinates[0]}
-              coordinates={coordinates as [number, number]}
-              className={`hover:cursor-pointer ${hideMap ? 'hidden' : ''}`}
-              onClick={() => routeToDay(day)}
-            >
-              <circle
-                r={5}
-                fill={circleColor}
-                strokeWidth={2}
-                opacity={allMarkerOpacity}
-                className={hideMap ? 'hidden' : ''}
-              />
-              <text
-                textAnchor="middle"
-                y={markerOffset}
-                style={{ fill: fontColor }}
-              ></text>
-            </Marker>
-          ))}
-        {markers?.map(({ name, coordinates, markerOffset }) => (
-          <Marker
-            key={name || coordinates[0]}
-            coordinates={coordinates as [number, number]}
-          >
-            <circle
-              r={5}
-              fill={circleColor}
-              strokeWidth={2}
-              className={hideMap ? 'hidden' : ''}
-            />
-            <text
-              textAnchor="middle"
-              y={markerOffset}
-              className={`font-semibold ${hideMap && 'hidden'}`}
-              style={{ fontFamily: 'system-ui', fill: fontColor, zIndex: -1 }}
-            >
-              {name || ''}
-            </text>
-          </Marker>
-        ))}
+        <NamedMarkers />
+        <UnnamedMarkers />
       </ComposableMap>
     </>
   )
