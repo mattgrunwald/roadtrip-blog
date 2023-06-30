@@ -23,7 +23,7 @@ export default function Gallery({ urls }: GalleryProps) {
   return (
     <div className="relative w-full">
       <span className="opacity-50 text-xs">{`${count} of ${urls.length}`}</span>
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+      <div className="relative overflow-hidden rounded-lg h-96">
         {hasImages &&
           urls.map((url, index) => (
             <GalleryImage
@@ -50,7 +50,7 @@ export default function Gallery({ urls }: GalleryProps) {
           right
           onMouseOver={showNav}
           onMouseOut={hideNav}
-          onClick={prevImage}
+          onClick={nextImage}
         />
       )}
     </div>
