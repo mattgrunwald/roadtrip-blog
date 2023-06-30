@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { GalleryImage } from './GalleryImage'
 import { CarouselButton } from './CarouselButton'
 import { mod } from '@/util/helpers'
@@ -13,8 +13,14 @@ export default function Gallery({ urls }: GalleryProps) {
   const [nav, setNav] = useState(false)
   const hasImages = urls.length !== 0
 
-  const nextImage = () => setCurrent(mod(current + 1, urls.length))
-  const prevImage = () => setCurrent(mod(current - 1, urls.length))
+  const nextImage = useCallback(
+    () => setCurrent(mod(current + 1, urls.length)),
+    [current, urls],
+  )
+  const prevImage = useCallback(
+    () => setCurrent(mod(current - 1, urls.length)),
+    [current, urls],
+  )
 
   const showNav = () => setNav(true)
   const hideNav = () => setNav(false)

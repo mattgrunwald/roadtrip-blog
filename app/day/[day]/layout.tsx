@@ -1,9 +1,12 @@
 import Gallery from '@/components/Gallery'
+import Gallery2 from '@/components/Gallery2'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import Container from '@/util/containers'
+import { useMemo } from 'react'
+import { endDate, startDate } from '@/util/consts'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -26,17 +29,18 @@ export default function Layout({
     day: string
   }
 }) {
-  const post =
-    allPosts.find(
-      (post) =>
-        post._raw.flattenedPath ===
-        `posts/${params.day.replaceAll('posts%2F', '')}`,
-    ) || notFoundPost
-  const start = new Date('2023-05-27')
-  const end = new Date('2023-06-26')
+  const post = useMemo(
+    () =>
+      allPosts.find(
+        (post) =>
+          post._raw.flattenedPath ===
+          `posts/${params.day.replaceAll('posts%2F', '')}`,
+      ) || notFoundPost,
+    [params.day],
+  )
 
-  const markers = post?.markers || []
-  const urls = post?.carouselImages || []
+  const markers = useMemo(() => post?.markers || [], [post])
+  const urls = useMemo(() => post?.carouselImages || [], [post])
   return (
     <Container.Post>
       <div className="md:col-span-4 sm:col-span-1 sm:max-md:order-first sm:max-md:flex sm:justify-center">
@@ -44,10 +48,15 @@ export default function Layout({
       </div>
       <Container.Visual>
         <Gallery urls={urls} />
+        {/* <Gallery2 /> */}
         <TripMap markers={markers} allMarkers={allMarkers} />
       </Container.Visual>
       <Container.Calendar>
-        <TripCalendar start={start} end={end} day={Number(params.day)} />
+        <TripCalendar
+          start={startDate}
+          end={endDate}
+          day={Number(params.day)}
+        />
       </Container.Calendar>
     </Container.Post>
   )

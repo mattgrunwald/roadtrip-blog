@@ -1,6 +1,6 @@
 'use client'
 import { Marker as MapMarker } from '@/.contentlayer/generated'
-import React, { useEffect, useState, useLayoutEffect } from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import {
   ComposableMap,
   Geographies,
@@ -31,9 +31,10 @@ export default function TripMap({
 }: TripMapParams) {
   const router = useRouter()
 
-  const routeToDay = (day: number) => {
-    router.push(`/day/${day}`)
-  }
+  const routeToDay = useCallback(
+    (day: number) => router.push(`/day/${day}`),
+    [router],
+  )
 
   const { theme } = useTheme()
   const [fontColor, setFontColor] = useState('')
@@ -43,9 +44,15 @@ export default function TripMap({
   const [showAllMarkers, setShowAllMarkers] = useState(showAlways)
 
   const showAll = () => setShowAllMarkers(true)
-  const hideAll = () => showAlways || setShowAllMarkers(false)
+  const hideAll = useCallback(
+    () => showAlways || setShowAllMarkers(false),
+    [showAlways],
+  )
 
-  const allMarkerOpacity = showAlways ? '100%' : '50%'
+  const allMarkerOpacity = useMemo(
+    () => (showAlways ? '100%' : '50%'),
+    [showAlways],
+  )
 
   useEffect(() => {
     setHideMap(false)

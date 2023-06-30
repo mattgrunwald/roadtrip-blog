@@ -1,10 +1,12 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
+import { endDate, startDate } from '@/util/consts'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
+import { useMemo } from 'react'
 import Container from 'util/containers'
 
 export async function generateStaticParams() {
@@ -24,11 +26,7 @@ export default function Page() {
     allPosts.find((post) => post._raw.flattenedPath === 'posts/home') ||
     notFoundPost
 
-  const start = new Date('2023-05-27')
-  const end = new Date('2023-06-26')
-
-  const markers = post?.markers || []
-  const urls = post?.carouselImages || []
+  const urls = useMemo(() => post?.carouselImages || [], [post?.carouselImages])
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
@@ -46,7 +44,7 @@ export default function Page() {
         </Container.Text>
       </div>
       <Container.Calendar>
-        <TripCalendar start={start} end={end} day={0} />
+        <TripCalendar start={startDate} end={endDate} day={0} />
       </Container.Calendar>
     </Container.Post>
   )

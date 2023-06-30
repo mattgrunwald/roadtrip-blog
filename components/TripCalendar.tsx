@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Calendar from 'react-calendar'
 import { TileDisabledFunc, Value } from 'react-calendar/dist/cjs/shared/types'
@@ -26,28 +26,36 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
     router.push(`/day/${day}`)
   }
 
-  const tileDisabledMay: TileDisabledFunc = ({ date }) => {
-    return date.getDate() <= start.getDate()
-  }
+  const tileDisabledMay: TileDisabledFunc = useCallback(
+    ({ date }) => date.getDate() <= start.getDate(),
+    [start],
+  )
 
-  const tileDisabledJune: TileDisabledFunc = ({ date }) => {
-    return date.getDate() > end.getDate()
-  }
+  const tileDisabledJune: TileDisabledFunc = useCallback(
+    ({ date }) => date.getDate() > end.getDate(),
+    [end],
+  )
 
-  const currentDayDate = new Date(start)
-  currentDayDate.setDate(currentDayDate.getDate() + day)
+  const currentDayDate = useMemo(() => {
+    const d = new Date(start)
+    d.setDate(d.getDate() + day)
+    return d
+  }, [start, day])
 
-  function tileClassName({ date }: { date: Date }) {
-    if (day === 0) {
-      return ''
-    }
-    if (
-      date.getDate() === currentDayDate.getDate() &&
-      date.getMonth() === currentDayDate.getMonth()
-    ) {
-      return 'bg-red-400'
-    }
-  }
+  const tileClassName = useCallback(
+    ({ date }: { date: Date }) => {
+      if (day === 0) {
+        return ''
+      }
+      if (
+        date.getDate() === currentDayDate.getDate() &&
+        date.getMonth() === currentDayDate.getMonth()
+      ) {
+        return 'bg-red-400'
+      }
+    },
+    [currentDayDate, day],
+  )
   return (
     <>
       <div className="text-center">
