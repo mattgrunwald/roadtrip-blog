@@ -4,9 +4,10 @@ export type GalleryImageProps = {
   src: string
   isCurrent: boolean
   first: boolean
+  modal?: boolean
   onMouseOver: () => void
   onMouseOut: () => void
-  onClick: () => void
+  onClick: (e: any) => void
 }
 
 export const GalleryImage = ({
@@ -16,6 +17,7 @@ export const GalleryImage = ({
   onClick,
   isCurrent,
   first,
+  modal = false,
 }: GalleryImageProps) => {
   return (
     <Image
@@ -25,9 +27,11 @@ export const GalleryImage = ({
         height: '100%',
         width: '100%',
         display: isCurrent ? '' : 'none',
+        cursor: modal ? 'arrow' : 'pointer',
       }}
-      height={384}
-      width={475}
+      height={modal ? undefined : 384}
+      width={modal ? undefined : 475}
+      fill={modal}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={onClick}
