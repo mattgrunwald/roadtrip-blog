@@ -1,5 +1,4 @@
 import Gallery from '@/components/Gallery'
-import Gallery2 from '@/components/Gallery2'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import { getAllMarkers } from '@/util/helpers'
@@ -48,7 +47,6 @@ export default function Layout({
       </div>
       <Container.Visual>
         <Gallery urls={urls} />
-        {/* <Gallery2 /> */}
         <TripMap markers={markers} allMarkers={allMarkers} />
       </Container.Visual>
       <Container.Calendar>
