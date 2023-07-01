@@ -63,7 +63,7 @@ export default function TripMap({
     setFontColor(theme === 'dark' ? '#e5e7eb' : '#374151')
   }, [theme])
 
-  const NamedMarkers = () =>
+  const UnnamedMarkers = () =>
     showAllMarkers &&
     allMarkers.map(({ coordinates, markerOffset, day }) => (
       <Marker
@@ -87,7 +87,7 @@ export default function TripMap({
       </Marker>
     ))
 
-  const UnnamedMarkers = () =>
+  const NamedMarkers = () =>
     markers?.map(({ name, coordinates, markerOffset }) => (
       <Marker
         key={name || coordinates[0]}
@@ -131,8 +131,8 @@ export default function TripMap({
             ))
           }
         </Geographies>
-        <NamedMarkers />
         <UnnamedMarkers />
+        <NamedMarkers />
       </ComposableMap>
     </>
   )
