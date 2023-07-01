@@ -18,14 +18,14 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:col-span-2 xs:col-span-1 md:ml-0 mb-6 flex flex-col items-center">
+    <div className="md:col-span-2 xs:col-span-1 md:ml-0 mb-8 flex flex-col items-center">
       <div className="max-w-xs">{children}</div>
     </div>
   )
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
-  return <div className="prose dark:prose-invert">{children}</div>
+  return <div className="prose dark:prose-invert mb-4">{children}</div>
 }
 
 const exports = { Post, Visual, Calendar, Text }
