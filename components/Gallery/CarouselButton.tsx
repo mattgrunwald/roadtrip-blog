@@ -18,12 +18,12 @@ export const CarouselButton = ({
   onMouseOut,
   onClick,
 }: CarouselButtonProps) => {
-  const rightStyle = `absolute top-0 right-0 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none ${
-    modal ? 'z-10' : 'z-0'
-  }`
-  const leftStyle = `absolute top-0 left-0  flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none ${
-    modal ? 'z-10' : 'z-0'
-  }`
+  const rightStyle = `absolute top-0 right-0 flex items-center justify-center ${
+    modal ? 'h-5/6' : 'h-full'
+  } px-4 cursor-pointer group focus:outline-none z-10 max-md:hidden`
+  const leftStyle = `absolute top-0 left-0  flex items-center justify-center ${
+    modal ? 'h-5/6' : 'h-full'
+  } px-4 cursor-pointer group focus:outline-none z-10 max-md:hidden`
 
   const [styling, paths] = left
     ? [leftStyle, leftData]

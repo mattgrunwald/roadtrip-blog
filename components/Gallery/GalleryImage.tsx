@@ -20,24 +20,26 @@ export const GalleryImage = ({
   modal = false,
 }: GalleryImageProps) => {
   return (
-    <Image
-      src={src}
-      style={{
-        objectFit: 'contain',
-        height: '100%',
-        width: '100%',
-        display: isCurrent ? '' : 'none',
-        cursor: modal ? 'arrow' : 'pointer',
-      }}
-      height={modal ? undefined : 384}
-      width={modal ? undefined : 475}
-      fill={modal}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-      onClick={onClick}
-      alt="I'm still working on accessiblity for this site"
-      quality={70}
-      priority={first}
-    />
+    <div>
+      <Image
+        src={src}
+        style={{
+          objectFit: 'contain',
+          height: '100%',
+          width: '100%',
+          display: isCurrent ? '' : 'none',
+          cursor: modal ? 'arrow' : 'pointer',
+        }}
+        height={modal ? undefined : 384}
+        width={modal ? undefined : 475}
+        fill={modal}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+        onClick={onClick}
+        alt="I'm still working on accessiblity for this site"
+        quality={70}
+        priority={first}
+      />
+    </div>
   )
 }
