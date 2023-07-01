@@ -69,11 +69,13 @@ export default function Gallery({
 
   useEffect(() => {
     if (modal) {
+      console.log('ADDED')
       document.body.addEventListener('keydown', handleKeyDown)
     }
 
     return () => {
       if (modal) {
+        console.log('REMOVED')
         document.body.removeEventListener('keydown', handleKeyDown)
       }
     }
@@ -82,16 +84,16 @@ export default function Gallery({
   const handlers = useSwipeable({
     onSwiped: (eventData: SwipeEventData) => {
       switch (eventData.dir) {
-        case 'Left':
+        case LEFT:
           nextImage()
           break
-        case 'Right':
+        case RIGHT:
           prevImage()
           break
-        case 'Up':
+        case UP:
           onClose()
           break
-        case 'Down':
+        case DOWN:
           onClose()
           break
       }
@@ -101,10 +103,7 @@ export default function Gallery({
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''} `}>
-        <div className="flex flex-row justify-between">
-          <div className="opacity-50 text-xs">{`${count} of ${urls.length}`}</div>
-          {/* <div className={`cursor-pointer opacity-20 z-20 dark:prose-invert ${modal ? 'md:hidden' : ''}`} onClick={onClose}>{modal ? 'X' : ''}</div> */}
-        </div>
+        <div className="opacity-50 text-xs">{`${count} of ${urls.length}`}</div>
         <div
           className={`overflow-hidden rounded-lg ${
             modal ? '' : 'relative h-96'

@@ -30,9 +30,7 @@ export const GalleryImage = ({
           display: isCurrent ? '' : 'none',
           cursor: modal ? 'arrow' : 'pointer',
         }}
-        height={modal ? undefined : 384}
-        width={modal ? undefined : 475}
-        fill={modal}
+        fill
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
         onClick={onClick}
