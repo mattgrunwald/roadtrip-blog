@@ -2,37 +2,27 @@ import { mod } from '@/util/helpers'
 import { useState, useCallback, useMemo, useEffect } from 'react'
 import { CarouselButton } from './CarouselButton'
 import { GalleryImage } from './GalleryImage'
+import {
+  useSwipeable,
+  SwipeEventData,
+  LEFT,
+  RIGHT,
+  UP,
+  DOWN,
+} from 'react-swipeable'
 
 export type GalleryProps = {
   urls: string[]
   onDialogOpen?: (current: number) => void
+  onClose?: () => void
   startIndex?: number
   modal?: boolean
 }
 
-export const closeIcon = (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="dark:text-white sm:w-10 sm:h-10 text-gray-800"
-  >
-    <g id="Menu / Close_SM">
-      <path
-        id="Vector"
-        d="M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </g>
-  </svg>
-)
-
 export default function Gallery({
   urls,
   onDialogOpen = () => {},
+  onClose = () => {},
   startIndex = 0,
   modal = false,
 }: GalleryProps) {
@@ -56,7 +46,7 @@ export default function Gallery({
   )
 
   const showNav = () => setNav(true)
-  const hideNav = () => setNav(true)
+  const hideNav = () => setNav(false)
 
   const count = useMemo(
     () => (urls.length === 0 ? 0 : current + 1),
@@ -89,17 +79,37 @@ export default function Gallery({
     }
   })
 
+  const handlers = useSwipeable({
+    onSwiped: (eventData: SwipeEventData) => {
+      switch (eventData.dir) {
+        case 'Left':
+          nextImage()
+          break
+        case 'Right':
+          prevImage()
+          break
+        case 'Up':
+          onClose()
+          break
+        case 'Down':
+          onClose()
+          break
+      }
+    },
+  })
+
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''} `}>
-        {/* <div className="flexs flex-rows"> */}
-        <span className="opacity-50 text-xs">{`${count} of ${urls.length}`}</span>
-        {/* <span className="cursor-pointer opacity-20 z-20 dark:prose-invert">{modal ? closeIcon : ''}</span> */}
-        {/* </div> */}
+        <div className="flex flex-row justify-between">
+          <div className="opacity-50 text-xs">{`${count} of ${urls.length}`}</div>
+          {/* <div className={`cursor-pointer opacity-20 z-20 dark:prose-invert ${modal ? 'md:hidden' : ''}`} onClick={onClose}>{modal ? 'X' : ''}</div> */}
+        </div>
         <div
           className={`overflow-hidden rounded-lg ${
             modal ? '' : 'relative h-96'
           }`}
+          {...handlers}
         >
           {hasImages &&
             urls.map((url, index) => (
@@ -108,10 +118,11 @@ export default function Gallery({
                 src={`/images/${urls[current]}`}
                 onMouseOut={hideNav}
                 onMouseOver={showNav}
-                // onClick={nextImage}
                 onClick={(e) => {
                   e.stopPropagation()
-                  onDialogOpen(current)
+                  if (!modal) {
+                    onDialogOpen(current)
+                  }
                 }}
                 isCurrent={current === index}
                 first={index === 0}
