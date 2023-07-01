@@ -6,7 +6,7 @@ import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import Container from 'util/containers'
 
 export async function generateStaticParams() {
