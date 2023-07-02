@@ -3,6 +3,7 @@ import React, { useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Calendar from 'react-calendar'
 import { TileDisabledFunc, Value } from 'react-calendar/dist/cjs/shared/types'
+import { ACCENT_BACKGROUND_CLASS } from '@/util/consts'
 
 const MILLIS_IN_DAY = 1000 * 60 * 60 * 24
 
@@ -51,7 +52,7 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
         date.getDate() === currentDayDate.getDate() &&
         date.getMonth() === currentDayDate.getMonth()
       ) {
-        return 'bg-red-400'
+        return `${ACCENT_BACKGROUND_CLASS} rounded-lg`
       }
     },
     [currentDayDate, day],
