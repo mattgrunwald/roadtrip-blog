@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { name: string } }) {
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <div className="max-w-2xl mx-auto py-10 px-4">
+    <div className="max-w-2xl mx-auto py-4 px-4">
       <Container.Text>
         <MDXContent components={{ Icons, Image }} />
       </Container.Text>
