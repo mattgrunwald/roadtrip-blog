@@ -69,13 +69,11 @@ export default function Gallery({
 
   useEffect(() => {
     if (modal) {
-      console.log('ADDED')
       document.body.addEventListener('keydown', handleKeyDown)
     }
 
     return () => {
       if (modal) {
-        console.log('REMOVED')
         document.body.removeEventListener('keydown', handleKeyDown)
       }
     }
@@ -103,7 +101,7 @@ export default function Gallery({
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''} `}>
-        <div className="opacity-50 text-xs">{`${count} of ${urls.length}`}</div>
+        <div className="opacity-50 text-xs max-md:mb-4">{`${count} of ${urls.length}`}</div>
         <div
           className={`overflow-hidden rounded-lg ${
             modal ? '' : 'relative h-96'
