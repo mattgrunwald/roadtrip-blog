@@ -9,12 +9,12 @@ export default function Header() {
       <div className="flex items-center justify-between">
         <b>Roadtrek Trip 2023</b>
         <div className="flex items-center justify-around">
-          <nav className="ml-auto mr-6 text-sm font-medium space-x-6 pr">
+          <nav className="ml-auto max-md:mr-4 md:mr-6 text-sm font-medium space-x-6 pr">
             <Link href="/" className={`hover:${ACCENT_TEXT_CLASS}`}>
               Home
             </Link>
           </nav>
-          <span className="mr-6 text-sm font-medium">
+          <span className="max-md:mr-4 md:mr-6 mr-6 text-sm font-medium">
             <AboutDropdown name="About">
               <Link href="/about/van" className={`hover:${ACCENT_TEXT_CLASS}`}>
                 The Van
