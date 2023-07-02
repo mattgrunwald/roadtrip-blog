@@ -6,10 +6,147 @@ name: van
 
 ## Background
 
-About Roadtreks
+The Dodge Roadtrek 190 Versatile is a Class B camper van sitting on the chassis of a Dodge B3500. It includes a full size bed that converts in to a dining area, four seats that convert into two beds, a three way electric/propane powered refrigerator, a microwave, and a propane cooktop. It also has a 30 gallon fresh water tank, an indoor and outdoor shower, an indoor toilet, and **lots** of storage space.
 
 ## Electrical
 
-### Solar
+### Old System
 
-### Shore Power
+The existing electrical system left a lot to be desired:
+
+- **No inverter**. Instead, a _converter_ would turn shore or generator power into DC to charge the house battery and power the DC panel. This our AC devices could not be used without running the generator or being connected to shore power.
+- **Lead acid house battery**. Couldn't be discharged fully, didn't hold much of a charge to begin with, heavy, and there was only one.
+- **Derelict generator**. The woman we bought the van from had never used the generator in all her time of living in it, and wasn't sure if it was even save to use. That meant we very well could have had a self-destruct botton sitting innocently on our control panel. Not great.
+
+<Image
+  src="/images/about/1998wiring.jpg"
+  alt="1998 Roadtrek DC wiring guide"
+  height={600}
+  width={600}
+/>
+
+<Image
+  src="/images/about/roadtrekdc.jpg"
+  alt="1998 Roadtrek DC wiring guide"
+  height={600}
+  width={600}
+/>
+
+Roadtrek was bought in the early 2000s and it's hard to find the exact schematics for your model year sometimes. Luckily the online Roadtrek community is very helpful and the schematics don't change much year to year.
+
+### New System
+
+Using the below image as a guide, I gave the van an electrical overhaul.
+
+<Image
+  src="/images/about/campervan.jpg"
+  alt="Camper van wiring guide"
+  height={600}
+  width={600}
+/>
+
+It looks more complicated than it is.
+
+- All positive and negative wires should be connected at a common point (bus)
+- A charge controller should sit between every source of electricity and the battery bank
+- Fuses should be used to protect the wiring against overcurrent
+- The system should be grounded on the chassis of your vehicle.
+
+#### Batteries
+
+Two 100Ah LiPO4 batteries can be discharged fully, are lightweight, and can provide up to 200A of current. These batteries also connec to to the Renogy app to be easily monitored.
+
+#### Inverter-Charger
+
+Along with being an inverter, this device also acts as a battery charger when hooked up to shore power. It also contains an Automatic Transfer Switch (ATS) to immediately switch to using shore power when it becomes available.
+
+This device also connects to the Renogy app to monitor your solar panel and alternator output.
+
+#### DC/DC Charger
+
+This 2-in-1 device provides DC power from both solar panels and the van's alternator. It can provide 50A at a time, which means it can fully charge our batter bank in 4 hours.
+
+#### Solar
+
+Three 100W solar panels can power all our devices and charge our batteries. Putting the panels in parallel allows for greater current, so we can charge our batteries even on overcast days or in the morning/evening.
+
+#### Wiring
+
+Wiring is often overlooked when discussing electrical upgrades, but the wrong wire can be be a disaster.
+
+It's important to remember that...
+
+- Wattage is **Volts × Amps**
+- Wire is typically limited by the current. A lot of wire is rated for several hundred volts, but can only take just a few amps.
+
+The chart below shows how different wire gauges are rated for current (lower gauge is thicker wire)
+
+Our inverter-charger was rated for 2000 watts, and our DC panel had a 50A fuse. Using napking math, that means we needed to be ready for 2000W + 12V × 50A = **2600W** of power going through the wires from our batteries, which is 2600W ÷ 12V = **200A** of power. Using the chart above, we needed _at least_ 2/0 gauge wire for that scenario.
+
+Thicker gauge wire is hard to bend! We were working in a confined space, so welding wire was what we used. Welding wire uses thin strands of copper to give it maximum flexibility.
+
+##### Considerations when choosing wire size
+
+- Length of the wire. Longer wires need to be a heavier gauge to reduce resistance.
+- Location. Wire in hotter areas like engine bays needs to be thicker.
+- AC or DC. AC is highter voltage and lower current for the equivalent wattage using DC.
+
+<Image
+  src="/images/about/wirecableguide.png"
+  alt="Camper van wiring guide"
+  height={600}
+  width={600}
+/>
+
+## Internet
+
+It comes as no surprise that the van didn't come stock with network connectivity. My wife and I planned on working from the road, so reliable internet was a must!
+
+There are a lot of options for mobile internet. They're all expensive, but some are more worth the money than others.
+
+### Starlink
+
+This seems like the obvious modern choice on the road, but it comes with its own limitations.
+
+**Pros**
+
+- **High speed**. You can get up to 100Mbps
+- **High availability**. Doesn't depend on local cellular towers, so you can connect in remote areas.
+- **High/no data cap**.
+
+**Cons**
+
+- **Can't use while in motion**. You can buy a dish that can be used in motion, but it's four times as expensive. No thanks.
+- **AC power**. Starlink's official equipment only runs on AC power even though the dish itself needs 40V DC. That means if you're using battery/solar you have to use your inverter to create AC only to convert it back into DC to power the dish. This is ineffecient! There are third party solutions you can buy to power your dish, but YMMV.
+- **Proprietary connector**. It would be **very** nice to be able to buy third (or even first) party connectors to bridge the gap between your Starlink dish cable and the router itself without having to go through an open door or window. Again, there are third party solutions for this, but YMMV.
+
+### Cellular Internet
+
+As it turns out, you don't need 100Mbps internet to get work done, or even participate in Zoom calls. Cellular internet can be a more power efficient and mobile way to stay connected.
+
+#### Cellular boosters
+
+These work up to an extent, but don't account that your van is a giant Faraday cage. You can only benefit so much from this kind of device
+
+#### Peplink LTE Dual Modems + Router
+
+We opted for overkill in this department and bought a Peplink MAX Transit Duo Pro, which boasts two cellular modems. It provides onboard functionality to find the best signal from multiple **concurrent** sources (two different LTE signals + Starlink). Peplink also offers a VPN to blend these connections into one seamless connection.
+
+To be honest, this is a bit overkill. It may be necessry for truckers and wilderness first responders, but no necessarily for staying in campgrounds and rest stops.
+
+That said, having this is **awesome**. The device runs on DC and uses less than 2A maximum, so our electrical system was barely affected by it. LTE is far more available than 5G, and the speeds are more than enough to stream video and get work done.
+
+We paired our overkill modem with an overkill antenna: the Parsec Husky. It did not disappoint.
+
+**Pros**
+
+- Low power consumption
+- Use in motion
+- High availability
+
+**Cons**
+
+- Expensive hardware
+- Data caps
+
+In the end you have to consider how important constant connectivity is, how much data you plan to use, and how much money you want to spend on hardware.
