@@ -1,6 +1,6 @@
 import Link from 'next/link'
+import { AboutDropdown } from './AboutDropdown'
 import { ModeToggle } from '../ModeToggle'
-import { AboutPopover } from './AboutPopover'
 import { ACCENT_TEXT_CLASS } from '@/util/consts'
 
 export default function Header() {
@@ -15,15 +15,14 @@ export default function Header() {
             </Link>
           </nav>
           <span className="mr-6 text-sm font-medium">
-            <AboutPopover name="About">
+            <AboutDropdown name="About">
               <Link href="/about/van" className={`hover:${ACCENT_TEXT_CLASS}`}>
                 The Van
               </Link>
-              <hr className="h-0.5" />
               <Link href="/about/site" className={`hover:${ACCENT_TEXT_CLASS}`}>
                 This Site
               </Link>
-            </AboutPopover>
+            </AboutDropdown>
           </span>
           <ModeToggle />
         </div>
