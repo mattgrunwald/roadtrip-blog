@@ -31,14 +31,14 @@ export default function Gallery({
   const hasImages = urls.length !== 0
 
   const nextImage = useCallback(
-    (e?: any) => {
+    (e?: React.MouseEvent) => {
       e?.stopPropagation()
       setCurrent(mod(current + 1, urls.length))
     },
     [current, urls],
   )
   const prevImage = useCallback(
-    (e?: any) => {
+    (e?: React.MouseEvent) => {
       e?.stopPropagation()
       setCurrent(mod(current - 1, urls.length))
     },
@@ -100,7 +100,7 @@ export default function Gallery({
 
   return (
     <>
-      <div className={`relative w-full ${modal ? 'h-full' : ''} `}>
+      <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
         <div className="opacity-50 text-xs max-md:mb-4">{`${count} of ${urls.length}`}</div>
         <div
           className={`overflow-hidden rounded-lg ${
