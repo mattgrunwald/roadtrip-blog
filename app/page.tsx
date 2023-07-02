@@ -1,7 +1,7 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
-import { endDate, startDate } from '@/util/consts'
+import { START_DATE, END_DATE } from '@/util/consts'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
@@ -44,7 +44,7 @@ export default function Page() {
         </Container.Text>
       </div>
       <Container.Calendar>
-        <TripCalendar start={startDate} end={endDate} day={0} />
+        <TripCalendar start={START_DATE} end={END_DATE} day={0} />
       </Container.Calendar>
     </Container.Post>
   )
