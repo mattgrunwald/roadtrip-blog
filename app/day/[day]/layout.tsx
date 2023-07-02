@@ -5,7 +5,7 @@ import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import Container from '@/util/containers'
 import { useMemo } from 'react'
-import { endDate, startDate } from '@/util/consts'
+import { START_DATE, END_DATE } from '@/util/consts'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -51,8 +51,8 @@ export default function Layout({
       </Container.Visual>
       <Container.Calendar>
         <TripCalendar
-          start={startDate}
-          end={endDate}
+          start={START_DATE}
+          end={END_DATE}
           day={Number(params.day)}
         />
       </Container.Calendar>
