@@ -37,8 +37,6 @@ export default function TripMap({
   )
 
   const { theme } = useTheme()
-  const [fontColor, setFontColor] = useState('')
-  const [stateColor, setStateColor] = useState('')
 
   const [hideMap, setHideMap] = useState(true)
   const [showAllMarkers, setShowAllMarkers] = useState(showAlways)
@@ -57,11 +55,6 @@ export default function TripMap({
   useEffect(() => {
     setHideMap(false)
   }, [hideMap])
-
-  useEffect(() => {
-    setStateColor(theme === 'light' ? '#e5e7eb' : '#374151')
-    setFontColor(theme === 'dark' ? '#e5e7eb' : '#374151')
-  }, [theme])
 
   const UnnamedMarkers = () =>
     showAllMarkers &&
@@ -97,8 +90,10 @@ export default function TripMap({
         <text
           textAnchor="middle"
           y={markerOffset}
-          className={`font-semibold ${hideMap && 'hidden'}`}
-          style={{ fontFamily: 'system-ui', fill: fontColor, zIndex: -1 }}
+          className={`font-semibold ${
+            hideMap && 'hidden'
+          } dark:fill-gray-200 fill-gray-700`}
+          style={{ fontFamily: 'system-ui', zIndex: -1 }}
         >
           {name || ''}
         </text>
@@ -120,7 +115,7 @@ export default function TripMap({
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={stateColor}
+                className="dark:fill-gray-700 fill-gray-200"
                 stroke="#bbb"
               />
             ))
