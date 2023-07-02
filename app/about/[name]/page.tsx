@@ -2,6 +2,7 @@ import { AboutPage, allAboutPages } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Container from 'util/containers'
 import Icons from '@/components/Icons'
+import { AboutDropdown } from '@/components/Header/AboutDropdown'
 export async function generateStaticParams() {
   return allAboutPages.map((page) => ({
     name: page._raw.flattenedPath.replaceAll('about/', ''),
