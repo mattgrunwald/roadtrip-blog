@@ -65,7 +65,7 @@ export default function TripMap({
 
   const UnnamedMarkers = () =>
     showAllMarkers &&
-    allMarkers.map(({ coordinates, markerOffset, day }) => (
+    allMarkers.map(({ coordinates, day }) => (
       <Marker
         key={coordinates[0]}
         coordinates={coordinates as [number, number]}
@@ -79,11 +79,6 @@ export default function TripMap({
           opacity={allMarkerOpacity}
           className={hideMap ? 'hidden' : ''}
         />
-        <text
-          textAnchor="middle"
-          y={markerOffset}
-          style={{ fill: fontColor }}
-        ></text>
       </Marker>
     ))
 
@@ -115,8 +110,8 @@ export default function TripMap({
       {hideMap && <Placeholder dark={theme === 'dark'} />}
       <ComposableMap
         projection="geoAlbers"
-        onMouseOver={showAll}
-        onMouseOut={hideAll}
+        onMouseEnter={showAll}
+        onMouseLeave={hideAll}
         className={hideMap ? 'hidden' : ''}
       >
         <Geographies geography={usGeo} className={hideMap ? 'hidden' : ''}>
