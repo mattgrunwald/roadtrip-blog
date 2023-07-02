@@ -1,4 +1,4 @@
-const className = 'inline mx-2 h-5 w-5'
+const className = 'inline ml-2 mr-1 h-5 w-5'
 
 const Github = () => (
   <svg className={className} viewBox="0 0 1024 1024" fill="#f87171">
