@@ -10,6 +10,7 @@ export function ModeToggle() {
     () => setTheme(theme === 'light' ? 'dark' : 'light'),
     [setTheme, theme],
   )
+
   return (
     <button
       onClick={changeTheme}
