@@ -35,7 +35,7 @@ export const GalleryImage = ({
         onMouseOut={onMouseOut}
         onClick={onClick}
         alt="I'm still working on accessiblity for this site"
-        quality={70}
+        quality={5}
         priority={first}
       />
     </div>
