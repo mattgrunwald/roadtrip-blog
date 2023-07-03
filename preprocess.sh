@@ -1,13 +1,18 @@
-#! /usr/env/bash
+#! /usr/bin/env bash
 
+cd public/images/day || exit
 
-for day in ./public/images/day/*; do 
-  for file in ./public/images/day/$day/*.jpg; do 
+for day in ./*; do 
+(
+  cd "$day" || exit
+  for file in *.jpg; do 
     # reduce image size
-    convert -strip -interlace Plane -gaussian-blur 0.05 -quality 50% "$file" "./public/images/day/$day/$file"
+    printf "\r\033[Kreducing image size for %s" "$day/$file"
+    convert -delete 1--1 -strip -interlace JPEG -gaussian-blur 0.05 -quality 50% -layers flatten "$file" "$file"
     
     # generate preview
-    convert -resize 10x10 "$file" "./public/images/day/$day/preview/$file"
+    printf "\r\033[Kgenerating preview for %s" "$day/$file"
+    convert -resize 10x10 "$file" "preview/$file"
   done
+)
 done
-
