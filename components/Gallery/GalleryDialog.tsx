@@ -39,7 +39,7 @@ export function GalleryDialog({
       <div className="fixed inset-0 flex items-center justify-center p-4 md:h-fill md:w-fill backdrop-blur z-20">
         <div
           onClick={onClose}
-          className="absolute top-0 right-0 flex items-start justify-start h-1/6 px-4 opacity-50 cursor-pointer dark:prose-invert max-md:hidden"
+          className="absolute top-0 right-0 flex items-start justify-start h-1/6 px-4 opacity-50 cursor-pointer dark:prose-invert max-md:hidden z-30"
         >
           {closeIcon}
         </div>
