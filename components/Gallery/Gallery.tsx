@@ -10,9 +10,10 @@ import {
   UP,
   DOWN,
 } from 'react-swipeable'
+import { GalleryImageSource } from '@/util/contentlayer-helpers'
 
 export type GalleryProps = {
-  urls: string[]
+  sources: GalleryImageSource[]
   onDialogOpen?: (current: number) => void
   onClose?: () => void
   startIndex?: number
@@ -20,7 +21,7 @@ export type GalleryProps = {
 }
 
 export default function Gallery({
-  urls,
+  sources,
   onDialogOpen = () => {},
   onClose = () => {},
   startIndex = 0,
@@ -28,29 +29,29 @@ export default function Gallery({
 }: GalleryProps) {
   const [current, setCurrent] = useState(startIndex)
   const [nav, setNav] = useState(false)
-  const hasImages = urls.length !== 0
+  const hasImages = sources.length !== 0
 
   const nextImage = useCallback(
     (e?: React.MouseEvent) => {
       e?.stopPropagation()
-      setCurrent(mod(current + 1, urls.length))
+      setCurrent(mod(current + 1, sources.length))
     },
-    [current, urls],
+    [current, sources],
   )
   const prevImage = useCallback(
     (e?: React.MouseEvent) => {
       e?.stopPropagation()
-      setCurrent(mod(current - 1, urls.length))
+      setCurrent(mod(current - 1, sources.length))
     },
-    [current, urls],
+    [current, sources],
   )
 
   const showNav = () => setNav(true)
   const hideNav = () => setNav(false)
 
   const count = useMemo(
-    () => (urls.length === 0 ? 0 : current + 1),
-    [urls, current],
+    () => (sources.length === 0 ? 0 : current + 1),
+    [sources, current],
   )
 
   const handleKeyDown = useCallback(
@@ -101,7 +102,7 @@ export default function Gallery({
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
-        <div className="opacity-50 text-xs max-md:mb-4">{`${count} of ${urls.length}`}</div>
+        <div className="opacity-50 text-xs max-md:mb-4">{`${count} of ${sources.length}`}</div>
         <div
           className={`overflow-hidden rounded-lg ${
             modal ? '' : 'relative h-96'
@@ -109,10 +110,11 @@ export default function Gallery({
           {...handlers}
         >
           {hasImages &&
-            urls.map((url, index) => (
+            sources.map((source, index) => (
               <GalleryImage
-                key={url}
-                src={`/images/${urls[current]}`}
+                key={source.src}
+                src={sources[current].src}
+                blurSrc={sources[current].preview}
                 onMouseOut={hideNav}
                 onMouseOver={showNav}
                 onClick={(e) => {
@@ -127,7 +129,7 @@ export default function Gallery({
               />
             ))}
         </div>
-        {hasImages && nav && urls.length > 1 && (
+        {hasImages && nav && sources.length > 1 && (
           <CarouselButton
             left
             modal={modal}
@@ -136,7 +138,7 @@ export default function Gallery({
             onClick={prevImage}
           />
         )}
-        {hasImages && nav && urls.length > 1 && (
+        {hasImages && nav && sources.length > 1 && (
           <CarouselButton
             right
             modal={modal}

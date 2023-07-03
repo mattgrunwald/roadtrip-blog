@@ -3,6 +3,7 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
+import { convertImages, convertImages2 } from './util/contentlayer-helpers'
 
 const Marker = defineNestedType(() => ({
   name: 'Marker',
@@ -10,6 +11,14 @@ const Marker = defineNestedType(() => ({
     markerOffset: { type: 'number', required: true },
     name: { type: 'string', required: false },
     coordinates: { type: 'list', of: { type: 'number' }, required: true },
+  },
+}))
+
+const GalleryImageSource = defineNestedType(() => ({
+  name: 'GalleryImageSource',
+  fields: {
+    src: { type: 'string', required: true },
+    preview: { type: 'string', required: true },
   },
 }))
 
@@ -21,11 +30,24 @@ export const Post = defineDocumentType(() => ({
     day: { type: 'number', required: true },
     date: { type: 'date', required: true },
     markers: { type: 'list', of: Marker, required: false },
-    carouselImages: { type: 'list', of: { type: 'string' }, required: false },
+    // # carouselImages: { type: 'list', of: { type: 'string' }, required: false },
   },
-  // computedFields: {
-  //   url: { type: 'string', resolve: (post) => `/posts/${post._raw.flattenedPath}` },
-  // },
+  computedFields: {
+    // previews: {
+    //   type: 'list',
+    //   of: 'string',
+    //   resolve: (post) =>
+    //     // when computed this is not in fact an array of strings.
+    //     convertImages((post.carouselImages as any)?._array || []),
+    // },
+    galleryImages: {
+      type: 'list',
+      of: GalleryImageSource,
+      resolve: (post) =>
+        // when computed this is not in fact an array of strings.
+        convertImages2(post.day),
+    },
+  },
 }))
 
 export const AboutPage = defineDocumentType(() => ({
