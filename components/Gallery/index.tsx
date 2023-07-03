@@ -2,12 +2,13 @@
 import { useState } from 'react'
 import { GalleryDialog } from './GalleryDialog'
 import PageGallery from './Gallery'
+import { GalleryImageSource } from '@/util/contentlayer-helpers'
 
 type GalleryProps = {
-  urls: string[]
+  sources: GalleryImageSource[]
 }
 
-export default function Gallery({ urls }: GalleryProps) {
+export default function Gallery({ sources }: GalleryProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
 
@@ -21,9 +22,9 @@ export default function Gallery({ urls }: GalleryProps) {
   }
   return (
     <>
-      <PageGallery urls={urls} onDialogOpen={onOpenDialog} />
+      <PageGallery sources={sources} onDialogOpen={onOpenDialog} />
       <GalleryDialog
-        urls={urls}
+        sources={sources}
         isOpen={isOpen}
         onClose={onClose}
         startIndex={modalStarter}

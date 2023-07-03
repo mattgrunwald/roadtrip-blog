@@ -26,13 +26,13 @@ export default function Page() {
     allPosts.find((post) => post._raw.flattenedPath === 'posts/home') ||
     notFoundPost
 
-  const urls = useMemo(() => post?.carouselImages || [], [post?.carouselImages])
+  const sources = useMemo(() => post?.galleryImages || [], [post])
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
     <Container.Post>
       <Container.Visual>
-        <Gallery urls={urls} />
+        <Gallery sources={sources} />
         <TripMap showAlways allMarkers={allMarkers} />
       </Container.Visual>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">

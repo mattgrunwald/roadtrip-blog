@@ -1,8 +1,9 @@
 import { Dialog } from '@headlessui/react'
 import PageGallery from './Gallery'
+import { GalleryImageSource } from '@/util/contentlayer-helpers'
 
 export type DialogProps = {
-  urls: string[]
+  sources: GalleryImageSource[]
   isOpen: boolean
   startIndex: number
   onClose: () => void
@@ -31,7 +32,7 @@ const closeIcon = (
 export function GalleryDialog({
   isOpen,
   onClose,
-  urls,
+  sources,
   startIndex,
 }: DialogProps) {
   return (
@@ -45,7 +46,7 @@ export function GalleryDialog({
         </div>
         <Dialog.Panel className="w-full md:h-full xs:h-96 rounded ">
           <PageGallery
-            urls={urls}
+            sources={sources}
             startIndex={startIndex}
             onClose={onClose}
             modal
