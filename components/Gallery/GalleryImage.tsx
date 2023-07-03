@@ -28,7 +28,7 @@ export const GalleryImage = ({
         objectFit: 'contain',
         height: '100%',
         width: '100%',
-        display: isCurrent ? '' : 'none',
+        visibility: isCurrent ? 'visible' : 'hidden',
         cursor: modal ? 'arrow' : 'pointer',
       }}
       fill
@@ -36,7 +36,7 @@ export const GalleryImage = ({
       onMouseOut={onMouseOut}
       onClick={onClick}
       alt="I'm still working on accessiblity for this site"
-      quality={50}
+      quality={modal ? 50 : 1}
       priority={first}
       placeholder="blur"
       blurDataURL={blurSrc}
