@@ -10,9 +10,7 @@ import {
 import { useTheme } from 'next-themes'
 
 import usGeo from 'geo/us-albers.json'
-import placeholderSrc from 'geo/placeholder.svg'
-import placeholderSrcDark from 'geo/placeholder-dark.svg'
-import Image from 'next/image'
+import { Placeholder } from 'geo/placeholder'
 import { useRouter } from 'next/navigation'
 import { MarkerWithDay } from '@/util/types'
 
@@ -37,6 +35,11 @@ export default function TripMap({
   )
 
   const { theme } = useTheme()
+
+  const fill = useMemo(
+    () => (theme === 'light' ? '#e5e7eb' : '#374151'),
+    [theme],
+  )
 
   const [hideMap, setHideMap] = useState(true)
   const [showAllMarkers, setShowAllMarkers] = useState(showAlways)
@@ -102,7 +105,7 @@ export default function TripMap({
 
   return (
     <>
-      {hideMap && <Placeholder dark={theme === 'dark'} />}
+      {hideMap && <Placeholder stroke={'#bbb'} fill={fill} />}
       <ComposableMap
         projection="geoAlbers"
         onMouseEnter={showAll}
@@ -125,14 +128,5 @@ export default function TripMap({
         <NamedMarkers />
       </ComposableMap>
     </>
-  )
-}
-
-function Placeholder({ dark }: { dark: boolean }) {
-  const src = dark ? placeholderSrcDark : placeholderSrc
-  return (
-    <div className="3xl:hidden">
-      <Image src={src} alt="Map of the USA" />
-    </div>
   )
 }

@@ -3,4 +3,4 @@
 **/node_modules
 .next
 .contentlayer
-geo
+geo/*.json
