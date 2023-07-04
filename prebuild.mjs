@@ -2,12 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import sharp from 'sharp'
 
-function log(message) {
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write(message);
-}
-
 async function generatePreview(imgPath) {
   try {
     const extensionName = path.extname(imgPath)
@@ -25,7 +19,7 @@ async function generatePreviews() {
   const previews = {}
   const days = fs.readdirSync(`public/images/day`)
   for (const day of days) {
-    log(`generating preview for day ${day}...`)
+    console.log(`generating preview for day ${day}...`)
     const dayPath = `public/images/day/${day}`
     const fileNames = fs
       .readdirSync(dayPath)
@@ -36,7 +30,6 @@ async function generatePreviews() {
       previews[`${day}/${name}`] = data
     }
   }
-  console.log('')
 
   fs.writeFileSync('previews.json', JSON.stringify(previews))
 }
