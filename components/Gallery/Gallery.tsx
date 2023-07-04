@@ -1,6 +1,6 @@
 import { mod } from '@/util/helpers'
 import { useState, useCallback, useMemo, useEffect } from 'react'
-import { CarouselButton } from './CarouselButton'
+import { GalleryButton } from './GalleryButton'
 import { GalleryImage } from './GalleryImage'
 import {
   useSwipeable,
@@ -130,7 +130,7 @@ export default function Gallery({
             ))}
         </div>
         {hasImages && nav && sources.length > 1 && (
-          <CarouselButton
+          <GalleryButton
             left
             modal={modal}
             onMouseOver={showNav}
@@ -139,7 +139,7 @@ export default function Gallery({
           />
         )}
         {hasImages && nav && sources.length > 1 && (
-          <CarouselButton
+          <GalleryButton
             right
             modal={modal}
             onMouseOver={showNav}

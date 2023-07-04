@@ -1,4 +1,4 @@
-type CarouselButtonProps = {
+type GalleryButtonProps = {
   left?: boolean
   right?: boolean
   modal?: boolean
@@ -10,14 +10,14 @@ type CarouselButtonProps = {
 const rightData = 'M9 5l7 7-7 7'
 const leftData = 'M15 19l-7-7 7-7'
 
-export const CarouselButton = ({
+export const GalleryButton = ({
   left = false,
   right = false,
   modal = false,
   onMouseOver,
   onMouseOut,
   onClick,
-}: CarouselButtonProps) => {
+}: GalleryButtonProps) => {
   const rightStyle = `absolute top-0 right-0 flex items-center justify-center ${
     modal ? 'h-5/6' : 'h-full'
   } px-4 cursor-pointer group focus:outline-none z-10 max-md:hidden`

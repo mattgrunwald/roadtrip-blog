@@ -20,27 +20,26 @@ export const GalleryImage = ({
   isCurrent,
   first,
   modal = false,
-}: GalleryImageProps) => (
-  <div>
+}: GalleryImageProps) => {
+  const sizes = `(max-width: 1792px) ${modal ? '100vw' : '600px'}`
+  return (
     <Image
       src={src}
       style={{
         objectFit: 'contain',
-        height: '100%',
-        width: '100%',
-        visibility: isCurrent ? 'visible' : 'hidden',
+        visibility: isCurrent ? 'visible' : 'collapse',
         cursor: modal ? 'arrow' : 'pointer',
       }}
       fill
+      sizes={sizes}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
       onClick={onClick}
       alt="I'm still working on accessiblity for this site"
-      quality={modal ? 50 : 1}
+      quality={65}
       priority={first}
       placeholder="blur"
       blurDataURL={blurSrc}
-      loading="eager"
     />
-  </div>
-)
+  )
+}
