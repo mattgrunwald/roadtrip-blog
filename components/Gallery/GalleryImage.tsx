@@ -5,6 +5,7 @@ export type GalleryImageProps = {
   blurSrc: string
   isCurrent: boolean
   first: boolean
+  isCloseToCurrent: boolean
   modal?: boolean
   onMouseOver: () => void
   onMouseOut: () => void
@@ -18,6 +19,7 @@ export const GalleryImage = ({
   onMouseOut,
   onClick,
   isCurrent,
+  isCloseToCurrent,
   first,
   modal = false,
 }: GalleryImageProps) => {
@@ -27,7 +29,8 @@ export const GalleryImage = ({
       src={src}
       style={{
         objectFit: 'contain',
-        visibility: isCurrent ? 'visible' : 'collapse',
+        display: isCurrent || isCloseToCurrent ? '' : 'none',
+        visibility: isCurrent ? 'visible' : 'hidden',
         cursor: modal ? 'arrow' : 'pointer',
       }}
       fill
