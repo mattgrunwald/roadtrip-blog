@@ -72,6 +72,7 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
         showNeighboringMonth={false}
         showNavigation={false}
         tileClassName={tileClassName}
+        className="mb-4"
       />
       <div className="text-center">
         <b>June</b>
