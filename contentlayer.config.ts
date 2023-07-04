@@ -3,7 +3,7 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
-import { convertImages, convertImages2 } from './util/contentlayer-helpers'
+import { convertImages } from './util/contentlayer-helpers'
 
 const Marker = defineNestedType(() => ({
   name: 'Marker',
@@ -33,19 +33,12 @@ export const Post = defineDocumentType(() => ({
     // # carouselImages: { type: 'list', of: { type: 'string' }, required: false },
   },
   computedFields: {
-    // previews: {
-    //   type: 'list',
-    //   of: 'string',
-    //   resolve: (post) =>
-    //     // when computed this is not in fact an array of strings.
-    //     convertImages((post.carouselImages as any)?._array || []),
-    // },
     galleryImages: {
       type: 'list',
       of: GalleryImageSource,
       resolve: (post) =>
         // when computed this is not in fact an array of strings.
-        convertImages2(post.day),
+        convertImages(post.day),
     },
   },
 }))
