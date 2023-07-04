@@ -31,19 +31,29 @@ export default function Gallery({
   const [nav, setNav] = useState(false)
   const hasImages = sources.length !== 0
 
+  const nextIndex = useMemo(
+    () => mod(current + 1, sources.length),
+    [current, sources],
+  )
+
+  const prevIndex = useMemo(
+    () => mod(current - 1, sources.length),
+    [current, sources],
+  )
+
   const nextImage = useCallback(
     (e?: React.MouseEvent) => {
       e?.stopPropagation()
-      setCurrent(mod(current + 1, sources.length))
+      setCurrent(nextIndex)
     },
-    [current, sources],
+    [nextIndex],
   )
   const prevImage = useCallback(
     (e?: React.MouseEvent) => {
       e?.stopPropagation()
-      setCurrent(mod(current - 1, sources.length))
+      setCurrent(prevIndex)
     },
-    [current, sources],
+    [prevIndex],
   )
 
   const showNav = () => setNav(true)
@@ -66,6 +76,11 @@ export default function Gallery({
       }
     },
     [prevImage, nextImage],
+  )
+
+  const imageOnDeck = useCallback(
+    (index: number) => index === nextIndex || index === prevIndex,
+    [nextIndex, prevIndex],
   )
 
   useEffect(() => {
@@ -113,8 +128,8 @@ export default function Gallery({
             sources.map((source, index) => (
               <GalleryImage
                 key={source.src}
-                src={sources[current].src}
-                blurSrc={sources[current].preview}
+                src={source.src}
+                blurSrc={source.preview}
                 onMouseOut={hideNav}
                 onMouseOver={showNav}
                 onClick={(e) => {
@@ -124,6 +139,7 @@ export default function Gallery({
                   }
                 }}
                 isCurrent={current === index}
+                isCloseToCurrent={imageOnDeck(index)}
                 first={index === 0}
                 modal={modal}
               />
