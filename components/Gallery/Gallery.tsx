@@ -31,15 +31,14 @@ export default function Gallery({
   const [nav, setNav] = useState(false)
   const hasImages = sources.length !== 0
 
-  const nextIndex = useMemo(
-    () => mod(current + 1, sources.length),
-    [current, sources],
+  const calcIndex = useCallback(
+    (index: number) => mod(index, sources.length),
+    [sources],
   )
 
-  const prevIndex = useMemo(
-    () => mod(current - 1, sources.length),
-    [current, sources],
-  )
+  const nextIndex = useMemo(() => calcIndex(current + 1), [current, calcIndex])
+
+  const prevIndex = useMemo(() => calcIndex(current - 1), [current, calcIndex])
 
   const nextImage = useCallback(
     (e?: React.MouseEvent) => {
@@ -79,8 +78,12 @@ export default function Gallery({
   )
 
   const imageOnDeck = useCallback(
-    (index: number) => index === nextIndex || index === prevIndex,
-    [nextIndex, prevIndex],
+    (index: number) =>
+      index === nextIndex ||
+      index === prevIndex ||
+      index === calcIndex(nextIndex + 1) ||
+      index === calcIndex(prevIndex - 1),
+    [nextIndex, prevIndex, calcIndex],
   )
 
   useEffect(() => {
