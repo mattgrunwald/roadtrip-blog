@@ -1,12 +1,11 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
-import { START_DATE, END_DATE } from '@/util/consts'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import Container from 'util/containers'
 
 export async function generateStaticParams() {
@@ -46,7 +45,7 @@ export default function Page() {
         </Container.Text>
       </div>
       <Container.Calendar>
-        <TripCalendar start={START_DATE} end={END_DATE} day={0} />
+        <TripCalendar day={0} />
       </Container.Calendar>
     </Container.Post>
   )
