@@ -13,6 +13,12 @@ export type TripCalendarProps = {
   day: number
 }
 
+const Month = ({ children }: React.PropsWithChildren) => (
+  <div className="text-center mb-2">
+    <b>{children}</b>
+  </div>
+)
+
 export default function TripCalendar({ start, end, day }: TripCalendarProps) {
   const router = useRouter()
 
@@ -59,9 +65,7 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
   )
   return (
     <>
-      <div className="text-center">
-        <b>May</b>
-      </div>
+      <Month>May</Month>
       <Calendar
         onChange={onChange}
         value={start}
@@ -74,9 +78,7 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
         tileClassName={tileClassName}
         className="mb-4"
       />
-      <div className="text-center">
-        <b>June</b>
-      </div>
+      <Month>June</Month>
       <Calendar
         onChange={onChange}
         value={end}

@@ -117,7 +117,7 @@ export default function Gallery({
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
-        <div className="opacity-50 text-xs max-md:mb-4">{`${count} of ${sources.length}`}</div>
+        <div className="opacity-50 text-xs max-md:mb-4 2xl:mb-4">{`${count} of ${sources.length}`}</div>
         <div
           className={`overflow-hidden rounded-lg ${
             modal ? '' : 'relative h-96'
