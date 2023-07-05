@@ -40,7 +40,9 @@ export default function Page() {
           <div className="pb-2 mt-9">
             <MDXContent />
           </div>
-          <Link href={'/day/1'}>Jump In</Link>
+          <Link href={'/day/1'}>
+            <b>Jump In</b>
+          </Link>
         </Container.Text>
       </div>
       <Container.Calendar>
