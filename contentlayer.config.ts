@@ -30,7 +30,6 @@ export const Post = defineDocumentType(() => ({
     day: { type: 'number', required: true },
     date: { type: 'date', required: true },
     markers: { type: 'list', of: Marker, required: false },
-    // # carouselImages: { type: 'list', of: { type: 'string' }, required: false },
   },
   computedFields: {
     galleryImages: {
