@@ -1,15 +1,11 @@
 'use client'
-import React, { useCallback, useMemo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Calendar from 'react-calendar'
-import { TileDisabledFunc, Value } from 'react-calendar/dist/cjs/shared/types'
+import { TileDisabledFunc } from 'react-calendar/dist/cjs/shared/types'
 import { ACCENT_BACKGROUND_CLASS } from '@/util/consts'
 
-const MILLIS_IN_DAY = 1000 * 60 * 60 * 24
-
 export type TripCalendarProps = {
-  start: Date
-  end: Date
   day: number
 }
 
@@ -19,56 +15,50 @@ const Month = ({ children }: React.PropsWithChildren) => (
   </div>
 )
 
-export default function TripCalendar({ start, end, day }: TripCalendarProps) {
+const tileDisabledMay: TileDisabledFunc = ({ date }) => date.getDate() < 27
+const tileDisabledJune: TileDisabledFunc = ({ date }) => date.getDate() > 25
+
+export default function TripCalendar({ day }: TripCalendarProps) {
   const router = useRouter()
 
-  const onChange = (
-    value: Value,
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    const date = value as Date
-    const day = Math.floor(
-      (date.getTime() - start.getTime()) / MILLIS_IN_DAY + 1,
-    )
-    router.push(`/day/${day}`)
+  const onChange = (date: Date, month: 'may' | 'june') => {
+    let day = date.getDate()
+    switch (month) {
+      case 'may':
+        router.push(`/day/${day - 26}`)
+        break
+      case 'june':
+        router.push(`/day/${day + 5}`)
+        break
+    }
   }
 
-  const tileDisabledMay: TileDisabledFunc = useCallback(
-    ({ date }) => date.getDate() <= start.getDate(),
-    [start],
-  )
+  const [currentDayDate, setCurrentDayDate] = useState(new Date())
 
-  const tileDisabledJune: TileDisabledFunc = useCallback(
-    ({ date }) => date.getDate() > end.getDate(),
-    [end],
-  )
+  const tileClassName = ({ date }: { date: Date }) => {
+    if (day === 0) {
+      return ''
+    }
+    if (
+      date.getDate() === currentDayDate.getDate() &&
+      date.getMonth() === currentDayDate.getMonth()
+    ) {
+      return `${ACCENT_BACKGROUND_CLASS} rounded-lg`
+    }
+  }
 
-  const currentDayDate = useMemo(() => {
-    const d = new Date(start)
+  useEffect(() => {
+    const d = new Date('2023-05-27')
     d.setDate(d.getDate() + day)
-    return d
-  }, [start, day])
+    setCurrentDayDate(d)
+  }, [day])
 
-  const tileClassName = useCallback(
-    ({ date }: { date: Date }) => {
-      if (day === 0) {
-        return ''
-      }
-      if (
-        date.getDate() === currentDayDate.getDate() &&
-        date.getMonth() === currentDayDate.getMonth()
-      ) {
-        return `${ACCENT_BACKGROUND_CLASS} rounded-lg`
-      }
-    },
-    [currentDayDate, day],
-  )
   return (
     <>
       <Month>May</Month>
       <Calendar
-        onChange={onChange}
-        value={start}
+        onChange={(value) => onChange(value as Date, 'may')}
+        value={new Date('2023-05-27')}
         tileDisabled={tileDisabledMay}
         minDate={new Date('2023-05-01')}
         minDetail="month"
@@ -80,8 +70,8 @@ export default function TripCalendar({ start, end, day }: TripCalendarProps) {
       />
       <Month>June</Month>
       <Calendar
-        onChange={onChange}
-        value={end}
+        onChange={(value) => onChange(value as Date, 'june')}
+        value={new Date('2023-06-25')}
         tileDisabled={tileDisabledJune}
         minDate={new Date('2023-06-01')}
         minDetail="month"
