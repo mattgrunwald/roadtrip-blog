@@ -8,15 +8,7 @@ import Link from 'next/link'
 import { useMemo } from 'react'
 import Container from 'util/containers'
 
-export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    day: post._raw.flattenedPath,
-  }))
-}
-
-const notFoundPost = allPosts.find(
-  (post) => post._raw.flattenedPath === 'notfound',
-)
+const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
 const allMarkers = getAllMarkers(allPosts)
 

@@ -10,18 +10,13 @@ export async function generateStaticParams() {
   }))
 }
 
-const notFoundPost = allPosts.find(
-  (post) => post._raw.flattenedPath === 'posts/notfound',
-)
+const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
 export default function Page({ params }: { params: { day: string } }) {
   const post = useMemo(
     () =>
-      allPosts.find(
-        (post) =>
-          post._raw.flattenedPath ===
-          `posts/${params.day.replaceAll('posts%2F', '')}`,
-      ) || notFoundPost,
+      allPosts.find((post) => post.path === `posts/${params.day}`) ||
+      notFoundPost,
     [params.day],
   )
 

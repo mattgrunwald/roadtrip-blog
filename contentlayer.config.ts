@@ -39,6 +39,10 @@ export const Post = defineDocumentType(() => ({
         // when computed this is not in fact an array of strings.
         convertImages(post.day),
     },
+    path: {
+      type: 'string',
+      resolve: (post) => post._raw.flattenedPath,
+    },
   },
 }))
 
@@ -48,6 +52,12 @@ export const AboutPage = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     name: { type: 'string', required: true },
+  },
+  computedFields: {
+    path: {
+      type: 'string',
+      resolve: (page) => page._raw.flattenedPath,
+    },
   },
 }))
 
