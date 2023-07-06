@@ -5,6 +5,7 @@ import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import Container from '@/util/containers'
 import { useMemo } from 'react'
+import { GalleryImageSource } from '@/util/contentlayer-helpers'
 
 const notFoundPost = allPosts.find(
   (post) => post._raw.flattenedPath === 'posts/notfound',
@@ -29,7 +30,10 @@ export default function Layout({
   )
 
   const markers = useMemo(() => post?.markers || [], [post])
-  const sources = useMemo(() => post?.galleryImages || [], [post])
+  const sources: GalleryImageSource[] = useMemo(
+    () => post?.galleryImages || [],
+    [post],
+  )
 
   return (
     <Container.Post>

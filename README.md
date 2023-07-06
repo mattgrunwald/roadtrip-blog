@@ -12,4 +12,4 @@ All pages in this site are [MDX](https://mdxjs.com/) files processed by Contentl
 
 ## Preprocessing
 
-Contentlayer allows you to compute fields based on your MDX data, but this seems to require the computation to be synchronous. Generating placeholder images uses [sharp](https://github.com/lovell/sharp) which cannot run synchronously. A workaround is to generate these base64-encoded images as a prebuild step, save them in a JSON file, and have Contentlayer read from that file. This doesn't work well with hot reloading, but it works well enough.
+Contentlayer allows you to compute fields based on your MDX data, but this seems to require the computation to be synchronous. Generating placeholder images uses [sharp](https://github.com/lovell/sharp) which cannot run synchronously. A workaround is to make the type of this field 'json' and add your own type to the field in your code.

@@ -1,6 +1,7 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
+import { GalleryImageSource } from '@/util/contentlayer-helpers'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
@@ -17,7 +18,10 @@ export default function Page() {
     allPosts.find((post) => post._raw.flattenedPath === 'posts/home') ||
     notFoundPost
 
-  const sources = useMemo(() => post?.galleryImages || [], [post])
+  const sources: GalleryImageSource[] = useMemo(
+    () => post?.galleryImages || [],
+    [post],
+  )
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (

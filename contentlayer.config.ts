@@ -33,11 +33,9 @@ export const Post = defineDocumentType(() => ({
   },
   computedFields: {
     galleryImages: {
-      type: 'list',
+      type: 'json',
       of: GalleryImageSource,
-      resolve: (post) =>
-        // when computed this is not in fact an array of strings.
-        convertImages(post.day),
+      resolve: async (doc) => await convertImages(doc.day),
     },
     path: {
       type: 'string',
