@@ -1,7 +1,6 @@
 'use client'
 import { Menu } from '@headlessui/react'
 import React from 'react'
-import { useTheme } from 'next-themes'
 import { ACCENT_TEXT_CLASS } from '@/util/consts'
 
 export function AboutDropdown({
@@ -11,8 +10,6 @@ export function AboutDropdown({
   name: string
   children: React.ReactNode
 }) {
-  const { theme } = useTheme()
-
   return (
     <Menu>
       <Menu.Button className={`hover:${ACCENT_TEXT_CLASS}`}>{name}</Menu.Button>
