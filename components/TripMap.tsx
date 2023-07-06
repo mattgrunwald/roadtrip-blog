@@ -1,5 +1,5 @@
 'use client'
-import { Marker as MapMarker } from '@/.contentlayer/generated'
+import { Marker as GeneratedMarker } from '@/.contentlayer/generated'
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import {
   ComposableMap,
@@ -13,18 +13,44 @@ import usGeo from 'geo/us-albers.json'
 import { Placeholder } from 'geo/placeholder'
 import { useRouter } from 'next/navigation'
 import { MarkerWithDay } from '@/util/types'
+import { ACCENT_COLOR } from '@/util/consts'
 
-const circleColor = '#f87171'
+type MapMarkerProps = {
+  coordinates: [number, number]
+  opacity?: string
+  name?: string
+  offset?: number
+  onClick?: () => void
+}
+const MapMarker = ({
+  coordinates,
+  opacity = '100%',
+  name = '',
+  offset = 0,
+  onClick = () => {},
+}: MapMarkerProps) => (
+  <Marker coordinates={coordinates} onClick={onClick}>
+    <circle r={5} fill={ACCENT_COLOR} strokeWidth={2} opacity={opacity} />
+    <text
+      textAnchor="middle"
+      y={offset}
+      className={`font-semibold dark:fill-gray-200 fill-gray-700`}
+      style={{ fontFamily: 'system-ui', zIndex: -1 }}
+    >
+      {name || ''}
+    </text>
+  </Marker>
+)
 
 export type TripMapParams = {
   allMarkers: MarkerWithDay[]
-  showAlways?: boolean
-  markers?: MapMarker[]
+  showAllMarkersAlways?: boolean
+  markers?: GeneratedMarker[]
 }
 
 export default function TripMap({
   allMarkers,
-  showAlways = false,
+  showAllMarkersAlways = false,
   markers,
 }: TripMapParams) {
   const router = useRouter()
@@ -42,19 +68,21 @@ export default function TripMap({
   )
 
   const [hideMap, setHideMap] = useState(true)
-  const [showAllMarkers, setShowAllMarkers] = useState(showAlways)
+  const [showAllMarkers, setShowAllMarkers] = useState(showAllMarkersAlways)
 
   const showAll = () => setShowAllMarkers(true)
   const hideAll = useCallback(
-    () => showAlways || setShowAllMarkers(false),
-    [showAlways],
+    () => showAllMarkersAlways || setShowAllMarkers(false),
+    [showAllMarkersAlways],
   )
 
   const allMarkerOpacity = useMemo(
-    () => (showAlways ? '100%' : '50%'),
-    [showAlways],
+    () => (showAllMarkersAlways ? '100%' : '50%'),
+    [showAllMarkersAlways],
   )
 
+  // Showing a placeholder map then immediately re-rendering without prevents
+  // the whole map from 'blinking' when navigating to a new page
   useEffect(() => {
     setHideMap(false)
   }, [hideMap])
@@ -62,45 +90,22 @@ export default function TripMap({
   const UnnamedMarkers = () =>
     showAllMarkers &&
     allMarkers.map(({ coordinates, day }) => (
-      <Marker
+      <MapMarker
         key={coordinates[0]}
         coordinates={coordinates as [number, number]}
-        className={`hover:cursor-pointer ${hideMap ? 'hidden' : ''}`}
+        opacity={allMarkerOpacity}
         onClick={() => routeToDay(day)}
-      >
-        <circle
-          r={5}
-          fill={circleColor}
-          strokeWidth={2}
-          opacity={allMarkerOpacity}
-          className={hideMap ? 'hidden' : ''}
-        />
-      </Marker>
+      />
     ))
 
   const NamedMarkers = () =>
     markers?.map(({ name, coordinates, markerOffset }) => (
-      <Marker
+      <MapMarker
         key={name || coordinates[0]}
         coordinates={coordinates as [number, number]}
-      >
-        <circle
-          r={5}
-          fill={circleColor}
-          strokeWidth={2}
-          className={hideMap ? 'hidden' : ''}
-        />
-        <text
-          textAnchor="middle"
-          y={markerOffset}
-          className={`font-semibold ${
-            hideMap && 'hidden'
-          } dark:fill-gray-200 fill-gray-700`}
-          style={{ fontFamily: 'system-ui', zIndex: -1 }}
-        >
-          {name || ''}
-        </text>
-      </Marker>
+        name={name}
+        offset={markerOffset}
+      />
     ))
 
   return (
@@ -112,7 +117,7 @@ export default function TripMap({
         onMouseLeave={hideAll}
         className={hideMap ? 'hidden' : ''}
       >
-        <Geographies geography={usGeo} className={hideMap ? 'hidden' : ''}>
+        <Geographies geography={usGeo}>
           {({ geographies }) =>
             geographies.map((geo) => (
               <Geography

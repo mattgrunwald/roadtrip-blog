@@ -32,7 +32,7 @@ export default function Page() {
     <Container.Post>
       <Container.Visual>
         <Gallery sources={sources} />
-        <TripMap showAlways allMarkers={allMarkers} />
+        <TripMap showAllMarkersAlways allMarkers={allMarkers} />
       </Container.Visual>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">
         <Container.Text>
