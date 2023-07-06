@@ -47,6 +47,8 @@ export default function TripCalendar({ day }: TripCalendarProps) {
     }
   }
 
+  // Forces calendar to recalculate the current day date on the client side.
+  // For some reason calculating the dates client side caused weird bugs in production
   useEffect(() => {
     const d = new Date('2023-05-27')
     d.setDate(d.getDate() + day)
