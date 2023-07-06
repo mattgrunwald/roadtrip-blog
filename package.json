@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node ./prebuild.mjs && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write . --config ./.prettierrc --ignore-path ./.prettierignore",
     "format:check": "prettier --check . --config ./.prettierrc --ignore-path ./.prettierignore",
-    "prepare": "husky install",
-    "prebuild": "node ./prebuild.mjs"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",

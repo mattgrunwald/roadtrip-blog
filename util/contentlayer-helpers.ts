@@ -1,16 +1,30 @@
 import fs from 'fs'
-const previews: Record<string, string> = require('../previews.json')
+import path from 'path'
+import sharp from 'sharp'
 
-export function convertImages(day: number | string) {
-  const fileNames = fs
-    .readdirSync(`public/images/day/${day}`)
-    .filter((file) => file !== 'preview')
+async function generatePreview(imgPath: string) {
+  try {
+    const extensionName = path.extname(imgPath)
+    const raw = fs.readFileSync(imgPath)
+    const buffer = await sharp(raw).resize(10, 10).toBuffer()
+    const base64Image = buffer.toString('base64')
 
-  return fileNames.map((name: string) => {
+    return `data:image/${extensionName.split('.').pop()};base64,${base64Image}`
+  } catch (err) {
+    throw err
+  }
+}
+
+export async function convertImages(day: number | string) {
+  const fileNames = fs.readdirSync(`public/images/day/${day}`)
+
+  const res = []
+  for (const name of fileNames) {
     const src = `/images/day/${day}/${name}`
-    const preview = previews[`${day}/${name}`] || ''
-    return { src, preview }
-  })
+    const preview = await generatePreview(`public/${src}`)
+    res.push({ src, preview })
+  }
+  return res
 }
 
 export type GalleryImageSource = {
