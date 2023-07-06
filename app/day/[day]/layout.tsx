@@ -6,12 +6,6 @@ import { allPosts } from 'contentlayer/generated'
 import Container from '@/util/containers'
 import { useMemo } from 'react'
 
-export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    day: post._raw.flattenedPath.replaceAll('posts/', ''),
-  }))
-}
-
 const notFoundPost = allPosts.find(
   (post) => post._raw.flattenedPath === 'posts/notfound',
 )
@@ -29,11 +23,8 @@ export default function Layout({
 }) {
   const post = useMemo(
     () =>
-      allPosts.find(
-        (post) =>
-          post._raw.flattenedPath ===
-          `posts/${params.day.replaceAll('posts%2F', '')}`,
-      ) || notFoundPost,
+      allPosts.find((post) => post.path === `posts/${params.day}`) ||
+      notFoundPost,
     [params.day],
   )
 
