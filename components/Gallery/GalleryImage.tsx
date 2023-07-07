@@ -27,12 +27,12 @@ export const GalleryImage = ({
   return (
     <Image
       src={src}
-      style={{
-        objectFit: 'contain',
-        display: isCurrent || isCloseToCurrent ? '' : 'none',
-        visibility: isCurrent ? 'visible' : 'hidden',
-        cursor: modal ? 'arrow' : 'pointer',
-      }}
+      className={`object-contain ${
+        isCurrent || isCloseToCurrent ? 'block' : 'hidden'
+      } 
+        ${isCurrent ? 'visible' : 'invisible'}
+        ${modal ? 'cursor-auto' : 'cursor-pointer'}
+      `}
       fill
       sizes={sizes}
       onMouseOver={onMouseOver}
