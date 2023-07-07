@@ -20,9 +20,11 @@ export default function Page({ params }: { params: { name: string } }) {
 
   return (
     <>
-      <Container.TableOfContentsPopover>
-        <TableOfContents post={post!} popover />
-      </Container.TableOfContentsPopover>
+      {post?.toc && (
+        <Container.TableOfContentsPopover>
+          <TableOfContents post={post!} popover />
+        </Container.TableOfContentsPopover>
+      )}
       {post?.toc && (
         <Container.TableOfContents>
           <TableOfContents post={post!} />
