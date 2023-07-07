@@ -13,12 +13,14 @@ export function AboutDropdown({
   return (
     <Menu>
       <Menu.Button className={`hover:${ACCENT_TEXT_CLASS}`}>{name}</Menu.Button>
-      <Menu.Items className="absolute mt-2">
-        <div className="grid grid-cols-1 px-2 py-2 space-y-2 rounded-lg dark:bg-gray-700 bg-gray-200">
-          {React.Children.map(children, (child) => (
-            <Menu.Item>{child}</Menu.Item>
-          ))}
-        </div>
+      <Menu.Items className="absolute mt-2 rounded-md dark:bg-gray-700 bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        {React.Children.map(children, (child) => (
+          <Menu.Item>
+            <div className="m-2 hover:underline hover:text-red-400">
+              {child}
+            </div>
+          </Menu.Item>
+        ))}
       </Menu.Items>
     </Menu>
   )

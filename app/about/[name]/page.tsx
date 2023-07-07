@@ -20,14 +20,19 @@ export default function Page({ params }: { params: { name: string } }) {
 
   return (
     <>
+      <Container.TableOfContentsPopover>
+        <TableOfContents post={post!} popover />
+      </Container.TableOfContentsPopover>
       {post?.toc && (
         <Container.TableOfContents>
           <TableOfContents post={post!} />
         </Container.TableOfContents>
       )}
-      <Container.Text>
-        <MDXContent components={{ Icons, Image }} />
-      </Container.Text>
+      <div className="md:col-start-2">
+        <Container.Text>
+          <MDXContent components={{ Icons, Image }} />
+        </Container.Text>
+      </div>
     </>
   )
 }
