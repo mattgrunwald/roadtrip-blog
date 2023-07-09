@@ -18,19 +18,21 @@ export default function Page({ params }: { params: { name: string } }) {
 
   const MDXContent = useMDXComponent(post?.body.code || '')
 
+  const headings = post?.headings || []
+
   return (
     <>
       {post?.toc && (
         <Container.TableOfContentsPopover>
-          <TableOfContents post={post!} popover />
+          <TableOfContents headings={headings} popover />
         </Container.TableOfContentsPopover>
       )}
       {post?.toc && (
         <Container.TableOfContents>
-          <TableOfContents post={post!} />
+          <TableOfContents headings={headings} />
         </Container.TableOfContents>
       )}
-      <div className="md:col-start-2">
+      <div className="md:col-start-2 mt-4">
         <Container.Text>
           <MDXContent components={{ Icons, Image }} />
         </Container.Text>

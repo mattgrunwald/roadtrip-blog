@@ -4,40 +4,39 @@ import React, { Fragment } from 'react'
 import { AboutPage } from '@/.contentlayer/generated'
 import { Menu, Transition } from '@headlessui/react'
 import Icons from './Icons'
+import { AboutPageHeading } from '@/util/contentlayer-helpers'
 
 export default function TableOfContents({
-  post,
+  headings,
   popover = false,
 }: {
-  post: AboutPage
+  headings: AboutPageHeading[]
   popover?: boolean
 }) {
   const Variant = popover ? TocPopover : Toc
-  const headings = post?.headings.map(
-    (heading: { text: string; level: number; slug: string }) => {
-      return (
-        <span
-          key={`#${heading.slug}`}
-          className={`block hover:underline hover:text-red-400 ${
-            heading.level === 1
-              ? '!text-2xl font-bold'
-              : heading.level === 2
-              ? 'pl-4 !text-xl font-bold'
-              : heading.level === 3
-              ? 'pl-8 !text-lg font-semibold'
-              : heading.level === 4
-              ? 'pl-12 !text-base'
-              : heading.level === 5
-              ? 'pl-16 !text-sm'
-              : ''
-          }`}
-        >
-          <a href={`#${heading.slug}`}>{heading.text}</a>
-        </span>
-      )
-    },
-  )
-  return <Variant title="On this page">{headings}</Variant>
+  const pageHeadings = headings.map((heading) => {
+    return (
+      <span
+        key={`#${heading.slug}`}
+        className={`block hover:underline hover:text-red-400 ${
+          heading.level === 1
+            ? '!text-2xl font-bold'
+            : heading.level === 2
+            ? 'pl-4 !text-xl font-bold'
+            : heading.level === 3
+            ? 'pl-8 !text-lg font-semibold'
+            : heading.level === 4
+            ? 'pl-12 !text-base'
+            : heading.level === 5
+            ? 'pl-16 !text-sm'
+            : ''
+        }`}
+      >
+        <a href={`#${heading.slug}`}>{heading.text}</a>
+      </span>
+    )
+  })
+  return <Variant title="On this page">{pageHeadings}</Variant>
 }
 
 function Toc({
