@@ -8,6 +8,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import Container from 'util/containers'
+import { Image } from '@/util/Image'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
@@ -15,7 +16,7 @@ const allMarkers = getAllMarkers(allPosts)
 
 export default function Page() {
   const post =
-    allPosts.find((post) => post.path === 'posts/home') || notFoundPost
+    allPosts.find((post) => post.path === 'posts/epilogue') || notFoundPost
 
   const sources: GalleryImageSource[] = useMemo(
     () => post?.galleryImages || [],
@@ -31,12 +32,12 @@ export default function Page() {
       </Container.Visual>
       <div className="md:col-span-4 sm:col-span-1 sm:order-first sm:max-md:flex sm:max-md:justify-center">
         <Container.Text>
-          <div className="pb-2 mt-9">
-            <MDXContent />
+          <div className="flex flex-row justify-between pb-2">
+            <div className="w-18">
+              <Link href={'/day/30'}>Day 30</Link>
+            </div>
           </div>
-          <Link href={'/day/1'}>
-            <b>Jump In</b>
-          </Link>
+          <MDXContent components={{ Image }} />
         </Container.Text>
       </div>
       <Container.Calendar>

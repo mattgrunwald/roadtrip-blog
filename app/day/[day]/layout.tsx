@@ -7,9 +7,7 @@ import Container from '@/util/containers'
 import { useMemo } from 'react'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
 
-const notFoundPost = allPosts.find(
-  (post) => post._raw.flattenedPath === 'posts/notfound',
-)
+const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
 const allMarkers = getAllMarkers(allPosts)
 

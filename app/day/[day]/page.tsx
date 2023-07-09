@@ -6,7 +6,7 @@ import Container from 'util/containers'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
-    day: post._raw.flattenedPath.replaceAll('posts/', ''),
+    day: post.path.replaceAll('posts/', ''),
   }))
 }
 
@@ -28,14 +28,14 @@ export default function Page({ params }: { params: { day: string } }) {
   return (
     <Container.Text>
       <div className="flex flex-row justify-between pb-2">
-        <div className="w-14">
+        <div>
           {previousDay >= 1 && (
             <Link href={`/day/${previousDay}`}>Day {previousDay}</Link>
           )}
         </div>
-        <div className="w-14">
+        <div>
           {nextDay <= 30 && <Link href={`/day/${nextDay}`}>Day {nextDay}</Link>}
-          {day === 30 && <Link href={'/day/epilogue'}>Epilogue</Link>}
+          {day === 30 && <Link href={'/epilogue'}>Epilogue</Link>}
         </div>
       </div>
       <MDXContent />
