@@ -3,9 +3,8 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
+import { convertImages, generateHeadings } from './util/contentlayer-helpers'
 import rehypeSlug from 'rehype-slug'
-import GithubSlugger from 'github-slugger'
-import { convertImages } from './util/contentlayer-helpers'
 
 const Marker = defineNestedType(() => ({
   name: 'Marker',
@@ -62,22 +61,7 @@ export const AboutPage = defineDocumentType(() => ({
 
     headings: {
       type: 'json',
-      resolve: async (doc) => {
-        const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g
-        const slugger = new GithubSlugger()
-        const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
-          ({ groups }) => {
-            const flag = groups?.flag
-            const content = groups?.content
-            return {
-              level: flag?.length,
-              text: content,
-              slug: content ? slugger.slug(content) : undefined,
-            }
-          },
-        )
-        return headings
-      },
+      resolve: async (doc) => await generateHeadings(doc),
     },
   },
 }))
