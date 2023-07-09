@@ -19,9 +19,10 @@ export default function Page({ params }: { params: { day: string } }) {
       notFoundPost,
     [params.day],
   )
+  const day = useMemo(() => Number(params.day), [params.day])
 
-  const previousDay = useMemo(() => Number(params.day) - 1, [params.day])
-  const nextDay = useMemo(() => Number(params.day) + 1, [params.day])
+  const previousDay = useMemo(() => day - 1, [day])
+  const nextDay = useMemo(() => day + 1, [day])
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
@@ -34,6 +35,7 @@ export default function Page({ params }: { params: { day: string } }) {
         </div>
         <div className="w-14">
           {nextDay <= 30 && <Link href={`/day/${nextDay}`}>Day {nextDay}</Link>}
+          {day === 30 && <Link href={'/day/epilogue'}>Epilogue</Link>}
         </div>
       </div>
       <MDXContent />
