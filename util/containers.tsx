@@ -32,22 +32,21 @@ const Text = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const TableOfContents = ({
-  children,
-}: {
-  children: React.ReactNode
-  className?: string
-}) => {
+const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-16 h-max space-y-2">
+    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-20 h-max space-y-2">
       {children}
     </div>
   )
 }
 
-const TableOfContentsPopover = ({ children }: React.PropsWithChildren) => (
-  <div className="md:hidden h-4 my-2">{children}</div>
-)
+const TableOfContentsPopover = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
+  return <div className="md:hidden fixed right-4">{children}</div>
+}
 
 const exports = {
   Post,

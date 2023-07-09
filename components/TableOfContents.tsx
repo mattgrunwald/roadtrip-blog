@@ -1,8 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { AboutPage } from '@/.contentlayer/generated'
-import { Menu } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
+import Icons from './Icons'
 
 export default function TableOfContents({
   post,
@@ -15,9 +16,9 @@ export default function TableOfContents({
   const headings = post?.headings.map(
     (heading: { text: string; level: number; slug: string }) => {
       return (
-        <div
+        <span
           key={`#${heading.slug}`}
-          className={`m-2 hover:underline hover:text-red-400 ${
+          className={`block hover:underline hover:text-red-400 ${
             heading.level === 1
               ? '!text-2xl font-bold'
               : heading.level === 2
@@ -32,7 +33,7 @@ export default function TableOfContents({
           }`}
         >
           <a href={`#${heading.slug}`}>{heading.text}</a>
-        </div>
+        </span>
       )
     },
   )
@@ -48,7 +49,7 @@ function Toc({
 }) {
   return (
     <div className=" w-64">
-      <div className="text-xs uppercase opacity-50">{title}</div>
+      <div className="text-xs uppercase mb-2 opacity-50">{title}</div>
       <div className="text-sm opacity-75">{children}</div>
     </div>
   )
@@ -63,14 +64,31 @@ export function TocPopover({
 }) {
   return (
     <Menu>
-      <Menu.Button className="text-xs uppercase opacity-50">
-        {title}
-      </Menu.Button>
-      <Menu.Items className="absolute left-8 mt-2 max-w-64 rounded-md dark:bg-gray-700 bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-        {React.Children.map(children, (child) => (
-          <Menu.Item>{child}</Menu.Item>
-        ))}
-      </Menu.Items>
+      {({ open }) => (
+        <>
+          <Menu.Button className="fixed right-4 text-xs uppercase dark:bg-gray-700 bg-gray-200 p-2 rounded-lg">
+            {title}
+            {open ? <Icons.ChevronUp /> : <Icons.ChevronDown />}
+          </Menu.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="mt-10 max-w-64 rounded-md dark:bg-gray-700 bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="p-3">
+                {React.Children.map(children, (child) => (
+                  <Menu.Item>{child}</Menu.Item>
+                ))}
+              </div>
+            </Menu.Items>
+          </Transition>
+        </>
+      )}
     </Menu>
   )
 }
