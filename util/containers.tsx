@@ -26,7 +26,7 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
 
 const Text = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="prose dark:prose-invert mb-4 [&>*]:scroll-m-20 2xl:w-[650px]">
+    <div className="prose dark:prose-invert mb-4 [&>*]:scroll-m-20 xl:w-[650px]">
       {children}
     </div>
   )
@@ -34,7 +34,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
 
 const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
+    <div className="max-md:hidden sticky col-start-1 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
       {children}
     </div>
   )
