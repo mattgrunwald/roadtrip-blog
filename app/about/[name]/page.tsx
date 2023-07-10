@@ -32,7 +32,7 @@ export default function Page({ params }: { params: { name: string } }) {
           <TableOfContents headings={headings} />
         </Container.TableOfContents>
       )}
-      <div className="md:col-start-2 mt-4">
+      <div className="md:col-start-2 mt-4 flex justify-center">
         <Container.Text>
           <MDXContent components={{ Icons, Image }} />
         </Container.Text>

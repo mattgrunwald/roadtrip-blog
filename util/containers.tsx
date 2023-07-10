@@ -34,7 +34,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
 
 const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-20 h-max space-y-2 3xl:flex 3xl:justify-end">
+    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
       {children}
     </div>
   )
