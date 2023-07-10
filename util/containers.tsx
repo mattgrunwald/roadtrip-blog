@@ -10,7 +10,7 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="sm:col-span-1 md:order-first md:sticky md:top-16 md:max-h-[90vh] 2xl:w-[800px]">
+    <div className="sm:col-span-1 md:order-first md:sticky md:top-16 md:max-h-[90vh] 2xl:w-[700px]">
       {children}
     </div>
   )
