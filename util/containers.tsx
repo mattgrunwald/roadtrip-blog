@@ -18,13 +18,17 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:ml-0 flex flex-col items-center max-md:mt-6 max-md:mb-10 md:sticky md:top-16 md:h-[90vh] 2xl:w-[350px]">
+    <div className="md:ml-0 flex flex-col items-center max-md:mt-6 max-md:mb-10 md:sticky md:top-16 md:h-[90vh] max-w-[300px]">
       <div className="max-w-xs">{children}</div>
     </div>
   )
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
+  return <div className="prose dark:prose-invert mb-4">{children}</div>
+}
+
+const AboutText = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="prose dark:prose-invert mb-4 [&>*]:scroll-m-20 xl:w-[650px]">
       {children}
@@ -53,6 +57,7 @@ const exports = {
   Visual,
   Calendar,
   Text,
+  AboutText,
   TableOfContents,
   TableOfContentsPopover,
 }

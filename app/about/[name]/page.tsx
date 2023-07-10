@@ -33,9 +33,9 @@ export default function Page({ params }: { params: { name: string } }) {
         </Container.TableOfContents>
       )}
       <div className="md:col-start-2 mt-4 flex justify-center">
-        <Container.Text>
+        <Container.AboutText>
           <MDXContent components={{ Icons, Image }} />
-        </Container.Text>
+        </Container.AboutText>
       </div>
     </>
   )
