@@ -3,10 +3,11 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import Container from 'util/containers'
+import { Image } from '@/util/Image'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
-    day: post._raw.flattenedPath.replaceAll('posts/', ''),
+    day: post.path.replaceAll('posts/', ''),
   }))
 }
 
@@ -19,24 +20,26 @@ export default function Page({ params }: { params: { day: string } }) {
       notFoundPost,
     [params.day],
   )
+  const day = useMemo(() => Number(params.day), [params.day])
 
-  const previousDay = useMemo(() => Number(params.day) - 1, [params.day])
-  const nextDay = useMemo(() => Number(params.day) + 1, [params.day])
+  const previousDay = useMemo(() => day - 1, [day])
+  const nextDay = useMemo(() => day + 1, [day])
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
     <Container.Text>
       <div className="flex flex-row justify-between pb-2">
-        <div className="w-14">
+        <div>
           {previousDay >= 1 && (
             <Link href={`/day/${previousDay}`}>Day {previousDay}</Link>
           )}
         </div>
-        <div className="w-14">
+        <div>
           {nextDay <= 30 && <Link href={`/day/${nextDay}`}>Day {nextDay}</Link>}
+          {day === 30 && <Link href={'/epilogue'}>Epilogue</Link>}
         </div>
       </div>
-      <MDXContent />
+      <MDXContent components={{ Image }} />
     </Container.Text>
   )
 }
