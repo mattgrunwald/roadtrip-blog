@@ -3,6 +3,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { useMemo } from 'react'
 import Container from 'util/containers'
+import { Image } from '@/util/Image'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -38,7 +39,7 @@ export default function Page({ params }: { params: { day: string } }) {
           {day === 30 && <Link href={'/epilogue'}>Epilogue</Link>}
         </div>
       </div>
-      <MDXContent />
+      <MDXContent components={{ Image }} />
     </Container.Text>
   )
 }
