@@ -20,10 +20,10 @@ export const GalleryButton = ({
 }: GalleryButtonProps) => {
   const rightStyle = `absolute top-0 right-0 flex items-center justify-center ${
     modal ? 'h-5/6' : 'h-full'
-  } px-4 cursor-pointer group focus:outline-none z-10 max-md:hidden`
+  } px-4 cursor-pointer group focus:outline-none z-10 max-sm:hidden`
   const leftStyle = `absolute top-0 left-0  flex items-center justify-center ${
     modal ? 'h-5/6' : 'h-full'
-  } px-4 cursor-pointer group focus:outline-none z-10 max-md:hidden`
+  } px-4 cursor-pointer group focus:outline-none z-10 max-sm:hidden`
 
   const [styling, paths] = left
     ? [leftStyle, leftData]
