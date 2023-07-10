@@ -3,7 +3,8 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
-import { convertImages } from './util/contentlayer-helpers'
+import { convertImages, generateHeadings } from './util/contentlayer-helpers'
+import rehypeSlug from 'rehype-slug'
 
 const Marker = defineNestedType(() => ({
   name: 'Marker',
@@ -50,11 +51,17 @@ export const AboutPage = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     name: { type: 'string', required: true },
+    toc: { type: 'boolean', required: true, default: false },
   },
   computedFields: {
     path: {
       type: 'string',
       resolve: (page) => page._raw.flattenedPath,
+    },
+
+    headings: {
+      type: 'json',
+      resolve: async (doc) => await generateHeadings(doc),
     },
   },
 }))
@@ -62,4 +69,7 @@ export const AboutPage = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Post, AboutPage],
+  mdx: {
+    rehypePlugins: [rehypeSlug],
+  },
 })
