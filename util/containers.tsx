@@ -10,7 +10,7 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:col-span-3 sm:col-span-1 md:order-first 3xl:w-5/12">
+    <div className="md:col-span-3 sm:col-span-1 md:order-first 3xl:w-5/12 md:sticky md:top-16 md:max-h-[90vh]">
       {children}
     </div>
   )
@@ -18,15 +18,42 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:col-span-2 xs:col-span-1 md:ml-0 flex flex-col items-center max-md:my-6">
+    <div className="md:col-span-2 xs:col-span-1 md:ml-0 flex flex-col items-center max-md:mt-6 max-md:mb-10 md:sticky md:top-16 md:h-[90vh]">
       <div className="max-w-xs">{children}</div>
     </div>
   )
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
-  return <div className="prose dark:prose-invert mb-4">{children}</div>
+  return (
+    <div className="prose dark:prose-invert mb-4 [&>*]:scroll-m-20">
+      {children}
+    </div>
+  )
 }
 
-const exports = { Post, Visual, Calendar, Text }
+const TableOfContents = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
+      {children}
+    </div>
+  )
+}
+
+const TableOfContentsPopover = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
+  return <div className="md:hidden fixed right-4">{children}</div>
+}
+
+const exports = {
+  Post,
+  Visual,
+  Calendar,
+  Text,
+  TableOfContents,
+  TableOfContentsPopover,
+}
 export default exports
