@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-center gap-x-8 gap-y-5">
+    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 2xl:gap-x-16 gap-y-5">
       {children}
     </div>
   )
@@ -10,7 +10,7 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="sm:col-span-1 md:order-first md:sticky md:top-16 md:max-h-[90vh] 2xl:w-[700px]">
+    <div className="sm:col-span-1 md:order-first md:sticky md:top-16 md:max-h-[90vh] 2xl:w-[600px]">
       {children}
     </div>
   )
