@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 2xl:gap-x-16 gap-y-5">
+    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-5">
       {children}
     </div>
   )
