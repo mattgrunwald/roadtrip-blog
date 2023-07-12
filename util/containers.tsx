@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-5">
+    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-4 max-md:mb-8">
       {children}
     </div>
   )
@@ -18,19 +18,19 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:ml-0 flex flex-col items-center max-md:mt-6 max-md:mb-10 md:sticky md:top-16 md:h-[90vh] max-w-[300px]">
+    <div className="md:ml-0 flex flex-col items-center md:sticky md:top-16 md:h-[90vh] md:max-w-[320px]">
       <div className="max-w-xs">{children}</div>
     </div>
   )
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
-  return <div className="prose dark:prose-invert mb-4">{children}</div>
+  return <div className="prose dark:prose-invert md:mb-8">{children}</div>
 }
 
 const AboutText = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="prose dark:prose-invert mb-4 [&>*]:scroll-m-20 xl:w-[650px]">
+    <div className="prose dark:prose-invert mb-8 [&>*]:scroll-m-20 xl:w-[650px]">
       {children}
     </div>
   )
