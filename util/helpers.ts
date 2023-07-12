@@ -19,6 +19,4 @@ export function getAllMarkers(posts: Post[]) {
   return Object.values(markers)
 }
 
-export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
-
 export const mod = (n: number, m: number) => ((n % m) + m) % m

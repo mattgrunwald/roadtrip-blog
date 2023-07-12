@@ -122,9 +122,9 @@ export default function Gallery({
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
         <div className="opacity-50 text-xs max-md:mb-4 2xl:mb-4">{`${count} of ${sources.length}`}</div>
         <div
-          className={`overflow-hidden rounded-lg ${
-            modal ? '' : 'relative h-96'
-          }`}
+          className={`${
+            modal ? '' : 'relative xs:h-96 md:min-h-[40vh]'
+          } xl:max-2xl:max-h-[45vh]`}
           {...handlers}
         >
           {hasImages &&
