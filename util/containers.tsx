@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="sm:max-3xl:grid md:grid-cols-9 sm:grid-cols-1 gap-8 3xl:flex 3xl:justify-around 3xl:px-48">
+    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-4 max-md:mb-8">
       {children}
     </div>
   )
@@ -10,7 +10,7 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:col-span-3 sm:col-span-1 md:order-first 3xl:w-5/12 md:sticky md:top-16 md:max-h-[90vh]">
+    <div className="sm:col-span-1 md:order-first md:sticky md:top-16 md:max-h-[90vh] 2xl:w-[600px]">
       {children}
     </div>
   )
@@ -18,15 +18,19 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:col-span-2 xs:col-span-1 md:ml-0 flex flex-col items-center max-md:mt-6 max-md:mb-10 md:sticky md:top-16 md:h-[90vh]">
+    <div className="md:ml-0 flex flex-col items-center md:sticky md:top-16 md:h-[90vh] md:max-w-[320px]">
       <div className="max-w-xs">{children}</div>
     </div>
   )
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
+  return <div className="prose dark:prose-invert md:mb-8">{children}</div>
+}
+
+const AboutText = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="prose dark:prose-invert mb-4 [&>*]:scroll-m-20">
+    <div className="prose dark:prose-invert mb-8 [&>*]:scroll-m-20 xl:w-[650px]">
       {children}
     </div>
   )
@@ -34,7 +38,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
 
 const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-md:hidden sticky col-start-1 gap-x-10  xl:row-span-6 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
+    <div className="max-md:hidden sticky col-start-1 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
       {children}
     </div>
   )
@@ -53,6 +57,7 @@ const exports = {
   Visual,
   Calendar,
   Text,
+  AboutText,
   TableOfContents,
   TableOfContentsPopover,
 }

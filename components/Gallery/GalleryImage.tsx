@@ -23,7 +23,11 @@ export const GalleryImage = ({
   first,
   modal = false,
 }: GalleryImageProps) => {
-  const sizes = `(max-width: 1792px) ${modal ? '100vw' : '600px'}`
+  const sizes = `(min-width: 1536px) ${
+    modal ? '100vw' : '700px,'
+  }, (max-width: 1280px) ${modal ? '100vw' : '500px,'}, (max-width:640px) ${
+    modal ? '100vw' : '400px'
+  }`
   return (
     <Image
       src={src}
