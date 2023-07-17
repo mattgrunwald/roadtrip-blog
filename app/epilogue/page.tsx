@@ -30,7 +30,7 @@ export default function Page() {
         <Gallery sources={sources} />
         <TripMap showAllMarkersAlways allMarkers={allMarkers} />
       </Container.Visual>
-      <div className="sm:col-span-1 sm:max-md:flex sm:max-md:justify-center">
+      <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">
         <Container.Text>
           <div className="flex flex-row justify-between pb-2">
             <div className="w-18">

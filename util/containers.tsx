@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="grid max-md:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-4 max-md:mb-8">
+    <div className="grid max-lg:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-4 max-lg:mb-8">
       {children}
     </div>
   )
@@ -10,7 +10,7 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="sm:col-span-1 md:order-first md:sticky md:top-16 md:max-h-[90vh] 2xl:w-[600px]">
+    <div className="sm:col-span-1 lg:order-first lg:sticky lg:top-16 lg:max-h-[90vh] 2xl:w-[600px]">
       {children}
     </div>
   )
@@ -18,14 +18,14 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="md:ml-0 flex flex-col items-center md:sticky md:top-16 md:h-[90vh] md:max-w-[320px]">
+    <div className="lg:ml-0 flex flex-col items-center lg:sticky lg:top-16 lg:h-[90vh] lg:max-w-[320px]">
       <div className="max-w-xs">{children}</div>
     </div>
   )
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
-  return <div className="prose dark:prose-invert md:mb-8">{children}</div>
+  return <div className="prose dark:prose-invert lg:mb-8">{children}</div>
 }
 
 const AboutText = ({ children }: { children: React.ReactNode }) => {
@@ -38,7 +38,7 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
 
 const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-md:hidden sticky col-start-1 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
+    <div className="max-lg:hidden sticky col-start-1 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
       {children}
     </div>
   )
@@ -49,7 +49,7 @@ const TableOfContentsPopover = ({
 }: {
   children: React.ReactNode
 }) => {
-  return <div className="md:hidden fixed right-4">{children}</div>
+  return <div className="lg:hidden fixed right-4">{children}</div>
 }
 
 const exports = {

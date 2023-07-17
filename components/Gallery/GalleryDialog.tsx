@@ -37,14 +37,14 @@ export function GalleryDialog({
 }: DialogProps) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <div className="fixed inset-0 flex items-center justify-center p-4 md:h-fill md:w-fill backdrop-blur z-20">
+      <div className="fixed inset-0 flex items-center justify-center p-4 lg:h-fill lg:w-fill backdrop-blur z-20">
         <div
           onClick={onClose}
           className="absolute top-0 right-0 flex items-start justify-start h-1/6 px-4 opacity-50 cursor-pointer dark:prose-invert max-md:hidden z-30"
         >
           {closeIcon}
         </div>
-        <Dialog.Panel className="w-full md:h-full h-[70vh] rounded ">
+        <Dialog.Panel className="w-full lg:h-full h-[70vh] rounded ">
           <PageGallery
             sources={sources}
             startIndex={startIndex}
