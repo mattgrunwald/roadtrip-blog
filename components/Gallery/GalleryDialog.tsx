@@ -44,7 +44,7 @@ export function GalleryDialog({
         >
           {closeIcon}
         </div>
-        <Dialog.Panel className="w-full lg:h-full h-[70vh] rounded ">
+        <Dialog.Panel className="w-full lg:h-full h-[max(70vh,350px)] rounded ">
           <PageGallery
             sources={sources}
             startIndex={startIndex}
