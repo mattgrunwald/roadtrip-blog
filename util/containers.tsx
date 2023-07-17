@@ -18,8 +18,10 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="lg:ml-0 flex flex-col items-center lg:sticky lg:top-16 lg:h-[90vh] lg:max-w-[320px]">
-      <div className="max-w-xs">{children}</div>
+    <div className="lg:ml-0 lg:sticky lg:top-16 lg:h-[90vh] md:w-full lg:max-w-[320px]">
+      <div className="lg:max-w-xs flex max-md:flex-col lg:flex-col items-center justify-evenly">
+        {children}
+      </div>
     </div>
   )
 }

@@ -9,9 +9,15 @@ export type TripCalendarProps = {
   day: number
 }
 
-const Month = ({ children }: React.PropsWithChildren) => (
-  <div className="text-center mb-2">
-    <b>{children}</b>
+const Month = ({
+  name,
+  children,
+}: React.PropsWithChildren & { name: string }) => (
+  <div className="max-w-xs">
+    <div className="text-center mb-2">
+      <b>{name}</b>
+    </div>
+    {children}
   </div>
 )
 
@@ -57,31 +63,33 @@ export default function TripCalendar({ day }: TripCalendarProps) {
 
   return (
     <>
-      <Month>May</Month>
-      <Calendar
-        onChange={(value) => onChange(value as Date, 'may')}
-        value={new Date('2023-05-27')}
-        tileDisabled={tileDisabledMay}
-        minDate={new Date('2023-05-01')}
-        minDetail="month"
-        maxDetail="month"
-        showNeighboringMonth={false}
-        showNavigation={false}
-        tileClassName={tileClassName}
-        className="mb-4"
-      />
-      <Month>June</Month>
-      <Calendar
-        onChange={(value) => onChange(value as Date, 'june')}
-        value={new Date('2023-06-25')}
-        tileDisabled={tileDisabledJune}
-        minDate={new Date('2023-06-01')}
-        minDetail="month"
-        maxDetail="month"
-        showNeighboringMonth={false}
-        showNavigation={false}
-        tileClassName={tileClassName}
-      />
+      <Month name="May">
+        <Calendar
+          onChange={(value) => onChange(value as Date, 'may')}
+          value={new Date('2023-05-27')}
+          tileDisabled={tileDisabledMay}
+          minDate={new Date('2023-05-01')}
+          minDetail="month"
+          maxDetail="month"
+          showNeighboringMonth={false}
+          showNavigation={false}
+          tileClassName={tileClassName}
+          className="max-md:mb-4"
+        />
+      </Month>
+      <Month name="June">
+        <Calendar
+          onChange={(value) => onChange(value as Date, 'june')}
+          value={new Date('2023-06-25')}
+          tileDisabled={tileDisabledJune}
+          minDate={new Date('2023-06-01')}
+          minDetail="month"
+          maxDetail="month"
+          showNeighboringMonth={false}
+          showNavigation={false}
+          tileClassName={tileClassName}
+        />
+      </Month>
     </>
   )
 }
