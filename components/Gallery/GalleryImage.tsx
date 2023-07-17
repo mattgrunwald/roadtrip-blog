@@ -7,8 +7,8 @@ export type GalleryImageProps = {
   first: boolean
   isCloseToCurrent: boolean
   modal?: boolean
-  onMouseOver: () => void
-  onMouseOut: () => void
+  onMouseOver?: () => void
+  onMouseOut?: () => void
   onClick: (e: any) => void
 }
 
