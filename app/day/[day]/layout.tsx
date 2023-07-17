@@ -35,7 +35,7 @@ export default function Layout({
 
   return (
     <Container.Post>
-      <div className="sm:col-span-1 sm:max-md:order-first sm:max-md:flex sm:justify-center">
+      <div className="sm:col-span-1 sm:max-lg:order-first sm:max-lg:flex sm:justify-center">
         {children}
       </div>
       <Container.Visual>
