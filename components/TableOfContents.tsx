@@ -18,7 +18,7 @@ export default function TableOfContents({
     return (
       <span
         key={`#${heading.slug}`}
-        className={`block hover:underline hover:text-red-400 ${
+        className={`block hover:underline hover:text-red-400 mb-1 last-of-type:mb-0 ${
           heading.level === 1
             ? '!text-2xl font-bold'
             : heading.level === 2
