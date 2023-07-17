@@ -35,7 +35,7 @@ export const GalleryImage = ({
         isCurrent || isCloseToCurrent ? 'block' : 'hidden'
       } 
         ${isCurrent ? 'visible' : 'invisible'}
-        ${modal ? 'cursor-auto' : 'cursor-pointer'}
+        ${modal ? 'cursor-auto' : 'cursor-zoom-in'}
       `}
       fill
       sizes={sizes}
