@@ -1,4 +1,4 @@
-import Gallery from '@/components/Gallery'
+import Gallery from '@/components/Gallery/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
@@ -26,7 +26,7 @@ export default function Page() {
   return (
     <Container.Post>
       <Container.Visual>
-        <Gallery sources={sources} />
+        <Gallery sources={sources} prefix="home" />
         <TripMap showAllMarkersAlways allMarkers={allMarkers} />
       </Container.Visual>
       <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">

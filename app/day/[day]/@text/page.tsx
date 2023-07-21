@@ -20,23 +20,22 @@ export default function Page({ params }: { params: { day: string } }) {
       notFoundPost,
     [params.day],
   )
-  const day = useMemo(() => Number(params.day), [params.day])
+  const day = useMemo(() => post?.day || 0, [post])
 
   const previousDay = useMemo(() => day - 1, [day])
   const nextDay = useMemo(() => day + 1, [day])
   const MDXContent = useMDXComponent(post?.body.code || '')
-
   return (
     <Container.Text>
       <div className="flex flex-row justify-between pb-2">
         <div>
-          {previousDay >= 1 && (
+          {previousDay >= 1 && previousDay <= 31 && (
             <Link href={`/day/${previousDay}`}>Day {previousDay}</Link>
           )}
         </div>
         <div>
           {nextDay <= 30 && <Link href={`/day/${nextDay}`}>Day {nextDay}</Link>}
-          {day === 30 && <Link href={'/epilogue'}>Epilogue</Link>}
+          {nextDay === 31 && <Link href={'/day/epilogue'}>Epilogue</Link>}
         </div>
       </div>
       <MDXContent components={{ Image }} />

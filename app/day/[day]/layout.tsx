@@ -1,4 +1,3 @@
-import Gallery from '@/components/Gallery'
 import PageGallery from '@/components/Gallery/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
@@ -17,10 +16,10 @@ export default function Layout({
   gallery,
   text,
 }: {
-  children: React.ReactNode
   params: {
     day: string
   }
+  children: React.ReactNode
   gallery: React.ReactNode
   text: React.ReactNode
 }) {
@@ -46,7 +45,11 @@ export default function Layout({
         <Container.Visual>
           {/* <Gallery sources={sources} /> */}
           <PageGallery sources={sources} prefix={`${params.day}`} />
-          <TripMap markers={markers} allMarkers={allMarkers} />
+          <TripMap
+            markers={markers}
+            showAllMarkersAlways={params.day === 'epilogue'}
+            allMarkers={allMarkers}
+          />
         </Container.Visual>
         <Container.Calendar>
           <TripCalendar day={Number(params.day)} />

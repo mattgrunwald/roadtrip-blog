@@ -30,7 +30,7 @@ const closeIcon = (
   </svg>
 )
 
-export function GalleryDialog({ sources, startIndex }: DialogProps) {
+export default function GalleryDialog({ sources, startIndex }: DialogProps) {
   const router = useRouter()
   return (
     <Dialog open onClose={() => {}}>
@@ -41,8 +41,8 @@ export function GalleryDialog({ sources, startIndex }: DialogProps) {
         >
           {closeIcon}
         </div>
-        <Dialog.Panel className="w-full lg:h-full h-[max(70vh,350px)] rounded ">
-          <PageGallery sources={sources} modal />
+        <Dialog.Panel className="w-full lg:h-full h-[max(70vh,350px)]">
+          <PageGallery sources={sources} modal startIndex={startIndex} />
         </Dialog.Panel>
       </div>
     </Dialog>

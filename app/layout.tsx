@@ -12,18 +12,20 @@ export const metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode
+  gallery: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, gallery }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
         className={`antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className=" mx-auto px-8">
+          <div className=" mx-auto px-6">
             <Header />
             <main>{children}</main>
+            {gallery}
           </div>
         </ThemeProvider>
       </body>

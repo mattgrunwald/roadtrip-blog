@@ -13,21 +13,22 @@ import {
   DOWN,
 } from 'react-swipeable'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export type GalleryProps = {
   sources: GalleryImageSource[]
+  startIndex?: number
   modal?: boolean
   prefix?: string
 }
 
 export default function Gallery({
   sources,
+  startIndex = 0,
   modal = false,
   prefix = '',
 }: GalleryProps) {
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(startIndex)
   const [nav, setNav] = useState(false)
   const hasImages = sources.length !== 0
   const router = useRouter()
@@ -40,7 +41,6 @@ export default function Gallery({
   )
 
   const nextIndex = useMemo(() => calcIndex(current + 1), [current, calcIndex])
-
   const prevIndex = useMemo(() => calcIndex(current - 1), [current, calcIndex])
 
   const nextImage = useCallback(
@@ -117,7 +117,9 @@ export default function Gallery({
           router.back()
           break
         case DOWN:
-          router.back()
+          if (modal) {
+            router.back()
+          }
           break
       }
     },
@@ -133,16 +135,18 @@ export default function Gallery({
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
         <div className="opacity-50 text-xs max-lg:mb-4 2xl:mb-4">{`${count} of ${sources.length}`}</div>
         <div
-          className={`${
+          className={`
+            xl:max-2xl:max-h-[45vh]
+          ${
             modal
               ? ''
               : 'relative max-md:h-96 md:h-[max(40vh,350px)] lg:min-h-[40vh]'
-          } xl:max-2xl:max-h-[45vh]`}
+          } `}
           {...handlers}
         >
           {hasImages &&
             sources.map((source, index) => {
-              const href = modal ? '' : `${prefix}/fullscreen/${index}`
+              const href = modal ? '' : `/photo/${prefix}/${index}`
               return (
                 <GalleryImage
                   key={index}
