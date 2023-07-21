@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { useMemo } from 'react'
 
 export type GalleryImageProps = {
   src: string
@@ -6,10 +8,10 @@ export type GalleryImageProps = {
   isCurrent: boolean
   first: boolean
   isCloseToCurrent: boolean
+  href: string
   modal?: boolean
   onMouseOver: () => void
   onMouseOut: () => void
-  onClick: (e: any) => void
 }
 
 export const GalleryImage = ({
@@ -17,10 +19,10 @@ export const GalleryImage = ({
   blurSrc,
   onMouseOver,
   onMouseOut,
-  onClick,
   isCurrent,
   isCloseToCurrent,
   first,
+  href,
   modal = false,
 }: GalleryImageProps) => {
   const sizes = `(min-width: 1536px) ${
@@ -28,25 +30,27 @@ export const GalleryImage = ({
   }, (max-width: 1280px) ${modal ? '100vw' : '500px,'}, (max-width:640px) ${
     modal ? '100vw' : '400px'
   }, (max-width: 400px) ${modal ? '100vw' : '350px,'}`
+
   return (
-    <Image
-      src={src}
-      className={`object-contain ${
-        isCurrent || isCloseToCurrent ? 'block' : 'hidden'
-      } 
+    <Link href={href}>
+      <Image
+        src={src}
+        className={`object-contain ${
+          isCurrent || isCloseToCurrent ? 'block' : 'hidden'
+        } 
         ${isCurrent ? 'visible' : 'invisible'}
         ${modal ? 'cursor-auto' : 'cursor-zoom-in'}
       `}
-      fill
-      sizes={sizes}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
-      onClick={onClick}
-      alt="I'm still working on accessiblity for this site"
-      quality={65}
-      priority={first}
-      placeholder="blur"
-      blurDataURL={blurSrc}
-    />
+        fill
+        sizes={sizes}
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+        alt="I'm still working on accessiblity for this site"
+        quality={65}
+        priority={first}
+        placeholder="blur"
+        blurDataURL={blurSrc}
+      />
+    </Link>
   )
 }

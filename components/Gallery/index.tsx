@@ -22,13 +22,13 @@ export default function Gallery({ sources }: GalleryProps) {
   }
   return (
     <>
-      <PageGallery sources={sources} onDialogOpen={onOpenDialog} />
-      <GalleryDialog
+      <PageGallery sources={sources} />
+      {/* <GalleryDialog
         sources={sources}
         isOpen={isOpen}
         onClose={onClose}
         startIndex={modalStarter}
-      />
+      /> */}
     </>
   )
 }

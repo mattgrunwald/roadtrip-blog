@@ -1,12 +1,13 @@
+'use client'
+
 import { Dialog } from '@headlessui/react'
 import PageGallery from './Gallery'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import { useRouter } from 'next/navigation'
 
 export type DialogProps = {
   sources: GalleryImageSource[]
-  isOpen: boolean
   startIndex: number
-  onClose: () => void
 }
 
 const closeIcon = (
@@ -29,28 +30,19 @@ const closeIcon = (
   </svg>
 )
 
-export function GalleryDialog({
-  isOpen,
-  onClose,
-  sources,
-  startIndex,
-}: DialogProps) {
+export function GalleryDialog({ sources, startIndex }: DialogProps) {
+  const router = useRouter()
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog open onClose={() => {}}>
       <div className="fixed inset-0 flex items-center justify-center p-4 lg:h-fill lg:w-fill backdrop-blur z-20">
         <div
-          onClick={onClose}
+          onClick={() => router.back()}
           className="absolute top-0 right-0 flex items-start justify-start h-1/6 px-4 opacity-50 cursor-pointer dark:prose-invert max-md:hidden z-30"
         >
           {closeIcon}
         </div>
         <Dialog.Panel className="w-full lg:h-full h-[max(70vh,350px)] rounded ">
-          <PageGallery
-            sources={sources}
-            startIndex={startIndex}
-            onClose={onClose}
-            modal
-          />
+          <PageGallery sources={sources} modal />
         </Dialog.Panel>
       </div>
     </Dialog>

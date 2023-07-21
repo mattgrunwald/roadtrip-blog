@@ -1,4 +1,5 @@
 import Gallery from '@/components/Gallery'
+import PageGallery from '@/components/Gallery/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import { getAllMarkers } from '@/util/helpers'
@@ -12,13 +13,16 @@ const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 const allMarkers = getAllMarkers(allPosts)
 
 export default function Layout({
-  children,
   params,
+  gallery,
+  text,
 }: {
   children: React.ReactNode
   params: {
     day: string
   }
+  gallery: React.ReactNode
+  text: React.ReactNode
 }) {
   const post = useMemo(
     () =>
@@ -34,17 +38,21 @@ export default function Layout({
   )
 
   return (
-    <Container.Post>
-      <div className="sm:col-span-1 sm:max-lg:order-first sm:max-lg:flex sm:justify-center">
-        {children}
-      </div>
-      <Container.Visual>
-        <Gallery sources={sources} />
-        <TripMap markers={markers} allMarkers={allMarkers} />
-      </Container.Visual>
-      <Container.Calendar>
-        <TripCalendar day={Number(params.day)} />
-      </Container.Calendar>
-    </Container.Post>
+    <>
+      <Container.Post>
+        <div className="sm:col-span-1 sm:max-lg:order-first sm:max-lg:flex sm:justify-center">
+          {text}
+        </div>
+        <Container.Visual>
+          {/* <Gallery sources={sources} /> */}
+          <PageGallery sources={sources} prefix={`${params.day}`} />
+          <TripMap markers={markers} allMarkers={allMarkers} />
+        </Container.Visual>
+        <Container.Calendar>
+          <TripCalendar day={Number(params.day)} />
+        </Container.Calendar>
+      </Container.Post>
+      {gallery}
+    </>
   )
 }

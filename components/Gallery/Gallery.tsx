@@ -1,3 +1,5 @@
+'use client'
+
 import { mod } from '@/util/helpers'
 import { useState, useCallback, useMemo, useEffect } from 'react'
 import { GalleryButton } from './GalleryButton'
@@ -11,25 +13,26 @@ import {
   DOWN,
 } from 'react-swipeable'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export type GalleryProps = {
   sources: GalleryImageSource[]
-  onDialogOpen?: (current: number) => void
-  onClose?: () => void
-  startIndex?: number
   modal?: boolean
+  prefix?: string
 }
 
 export default function Gallery({
   sources,
-  onDialogOpen = () => {},
-  onClose = () => {},
-  startIndex = 0,
   modal = false,
+  prefix = '',
 }: GalleryProps) {
-  const [current, setCurrent] = useState(startIndex)
+  const [current, setCurrent] = useState(0)
   const [nav, setNav] = useState(false)
   const hasImages = sources.length !== 0
+  const router = useRouter()
+
+  const close = useCallback(() => router.back(), [router])
 
   const calcIndex = useCallback(
     (index: number) => mod(index, sources.length),
@@ -72,9 +75,12 @@ export default function Gallery({
         case 'ArrowRight':
           nextImage()
           break
+        case 'Escape':
+          close()
+          break
       }
     },
-    [prevImage, nextImage],
+    [prevImage, nextImage, close],
   )
 
   const imageOnDeck = useCallback(
@@ -108,14 +114,19 @@ export default function Gallery({
           prevImage()
           break
         case UP:
-          onClose()
+          router.back()
           break
         case DOWN:
-          onClose()
+          router.back()
           break
       }
     },
   })
+
+  const shouldShowNav = useMemo(
+    () => (hasImages && nav && sources.length > 1) || modal,
+    [hasImages, nav, sources.length, modal],
+  )
 
   return (
     <>
@@ -130,27 +141,25 @@ export default function Gallery({
           {...handlers}
         >
           {hasImages &&
-            sources.map((source, index) => (
-              <GalleryImage
-                key={source.src}
-                src={source.src}
-                blurSrc={source.preview}
-                onMouseOut={hideNav}
-                onMouseOver={showNav}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  if (!modal) {
-                    onDialogOpen(current)
-                  }
-                }}
-                isCurrent={current === index}
-                isCloseToCurrent={imageOnDeck(index)}
-                first={index === 0}
-                modal={modal}
-              />
-            ))}
+            sources.map((source, index) => {
+              const href = modal ? '' : `${prefix}/fullscreen/${index}`
+              return (
+                <GalleryImage
+                  key={index}
+                  src={source.src}
+                  blurSrc={source.preview}
+                  onMouseOut={hideNav}
+                  onMouseOver={showNav}
+                  isCurrent={current === index}
+                  isCloseToCurrent={imageOnDeck(index)}
+                  first={index === 0}
+                  href={href}
+                  modal={modal}
+                />
+              )
+            })}
         </div>
-        {hasImages && nav && sources.length > 1 && (
+        {shouldShowNav && (
           <GalleryButton
             left
             modal={modal}
@@ -159,7 +168,7 @@ export default function Gallery({
             onClick={prevImage}
           />
         )}
-        {hasImages && nav && sources.length > 1 && (
+        {shouldShowNav && (
           <GalleryButton
             right
             modal={modal}
