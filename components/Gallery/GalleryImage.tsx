@@ -7,16 +7,12 @@ export type GalleryImageProps = {
   first: boolean
   isCloseToCurrent: boolean
   modal?: boolean
-  onMouseOver: () => void
-  onMouseOut: () => void
   onClick: (e: any) => void
 }
 
 export const GalleryImage = ({
   src,
   blurSrc,
-  onMouseOver,
-  onMouseOut,
   onClick,
   isCurrent,
   isCloseToCurrent,
@@ -39,8 +35,6 @@ export const GalleryImage = ({
       `}
       fill
       sizes={sizes}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
       onClick={onClick}
       alt="I'm still working on accessiblity for this site"
       quality={65}
