@@ -1,7 +1,6 @@
 type GalleryButtonProps = {
   left?: boolean
   right?: boolean
-  modal?: boolean
   onClick: (e: any) => void
 }
 
@@ -11,19 +10,9 @@ const leftData = 'M15 19l-7-7 7-7'
 export const GalleryButton = ({
   left = false,
   right = false,
-  modal = false,
   onClick,
 }: GalleryButtonProps) => {
-  const rightStyle = `absolute top-0 right-0 flex items-center justify-center ${
-    modal ? 'h-5/6' : 'h-full'
-  } px-4 cursor-pointer group focus:outline-none z-0 max-sm:hidden`
-  const leftStyle = `absolute top-0 left-0  flex items-center justify-center ${
-    modal ? 'h-5/6' : 'h-full'
-  } px-4 cursor-pointer group focus:outline-none z-0 max-sm:hidden`
-
-  const [styling, paths] = left
-    ? [leftStyle, leftData]
-    : [rightStyle, rightData]
+  const paths = left ? leftData : rightData
 
   return (
     <button
@@ -58,7 +47,7 @@ export const GalleryButton = ({
       >
         <svg
           aria-hidden="true"
-          className="w-5 h-5 text-white sm:w-6 sm:h-6"
+          className="w-5 h-5 text-white dark:opacity-50 sm:w-6 sm:h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -71,7 +60,7 @@ export const GalleryButton = ({
             d={paths}
           ></path>
         </svg>
-        <span className="sr-only">Previous</span>
+        <span className="sr-only">{left ? 'Previous' : 'Next'}</span>
       </span>
     </button>
   )

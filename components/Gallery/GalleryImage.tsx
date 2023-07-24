@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { MouseEventHandler, useMemo } from 'react'
 
 export type GalleryImageProps = {
   src: string
@@ -7,7 +8,7 @@ export type GalleryImageProps = {
   first: boolean
   isCloseToCurrent: boolean
   modal?: boolean
-  onClick: (e: any) => void
+  onClick: MouseEventHandler
 }
 
 export const GalleryImage = ({
@@ -19,24 +20,27 @@ export const GalleryImage = ({
   first,
   modal = false,
 }: GalleryImageProps) => {
-  const sizes = `(min-width: 1536px) ${
-    modal ? '100vw' : '700px,'
-  }, (max-width: 1280px) ${modal ? '100vw' : '500px,'}, (max-width:640px) ${
-    modal ? '100vw' : '400px'
-  }, (max-width: 400px) ${modal ? '100vw' : '350px,'}`
+  const sizes = useMemo(
+    () => `
+    (min-width: 1536px) ${modal ? '100vw' : '700px,'},
+    (max-width: 1280px) ${modal ? '100vw' : '500px,'}, 
+    (max-width:640px)   ${modal ? '100vw' : '400px'}, 
+    (max-width: 400px)  ${modal ? '100vw' : '350px,'}
+    `,
+    [modal],
+  )
   return (
     <Image
       src={src}
-      className={`object-contain ${
-        isCurrent || isCloseToCurrent ? 'block' : 'hidden'
-      } 
-        ${isCurrent ? 'visible' : 'invisible'}
-        ${modal ? 'cursor-auto' : 'cursor-zoom-in'}
+      className={`
+      object-contain 
+      ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'} 
+      ${isCurrent ? 'visible' : 'invisible'}
       `}
       fill
       sizes={sizes}
       onClick={onClick}
-      alt="I'm still working on accessiblity for this site"
+      alt=""
       quality={65}
       priority={first}
       placeholder="blur"

@@ -1,6 +1,6 @@
 import { MouseEventHandler, useMemo } from 'react'
 
-export default function IconBxFullscreen({
+export default function FullscreenButton({
   onClick,
   modal = false,
 }: {
