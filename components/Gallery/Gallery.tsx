@@ -1,5 +1,11 @@
 import { mod } from '@/util/helpers'
-import { useState, useCallback, useMemo, useEffect } from 'react'
+import {
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+  MouseEventHandler,
+} from 'react'
 import { GalleryButton } from './GalleryButton'
 import { GalleryImage } from './GalleryImage'
 import {
@@ -11,6 +17,7 @@ import {
   DOWN,
 } from 'react-swipeable'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import FullscreenButton from './FullscreenButton'
 
 export type GalleryProps = {
   sources: GalleryImageSource[]
@@ -28,7 +35,6 @@ export default function Gallery({
   modal = false,
 }: GalleryProps) {
   const [current, setCurrent] = useState(startIndex)
-  const [nav, setNav] = useState(false)
   const hasImages = sources.length !== 0
 
   const calcIndex = useCallback(
@@ -54,9 +60,6 @@ export default function Gallery({
     },
     [prevIndex],
   )
-
-  const showNav = () => setNav(true)
-  const hideNav = () => setNav(false)
 
   const count = useMemo(
     () => (sources.length === 0 ? 0 : current + 1),
@@ -117,6 +120,28 @@ export default function Gallery({
     },
   })
 
+  const onImageClick: MouseEventHandler = useCallback(
+    (e) => {
+      e.stopPropagation()
+      if (!modal) {
+        onDialogOpen(current)
+      }
+    },
+    [current, modal, onDialogOpen],
+  )
+
+  const onClick: MouseEventHandler = useCallback(
+    (e) => {
+      e.stopPropagation()
+      if (!modal) {
+        onDialogOpen(current)
+      } else {
+        onClose()
+      }
+    },
+    [current, modal, onClose, onDialogOpen],
+  )
+
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
@@ -135,14 +160,7 @@ export default function Gallery({
                 key={source.src}
                 src={source.src}
                 blurSrc={source.preview}
-                onMouseOut={hideNav}
-                onMouseOver={showNav}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  if (!modal) {
-                    onDialogOpen(current)
-                  }
-                }}
+                onClick={onImageClick}
                 isCurrent={current === index}
                 isCloseToCurrent={imageOnDeck(index)}
                 first={index === 0}
@@ -150,24 +168,13 @@ export default function Gallery({
               />
             ))}
         </div>
-        {hasImages && nav && sources.length > 1 && (
-          <GalleryButton
-            left
-            modal={modal}
-            onMouseOver={showNav}
-            onMouseOut={hideNav}
-            onClick={prevImage}
-          />
+        {hasImages && sources.length > 1 && (
+          <GalleryButton left onClick={prevImage} />
         )}
-        {hasImages && nav && sources.length > 1 && (
-          <GalleryButton
-            right
-            modal={modal}
-            onMouseOver={showNav}
-            onMouseOut={hideNav}
-            onClick={nextImage}
-          />
+        {hasImages && sources.length > 1 && (
+          <GalleryButton right onClick={nextImage} />
         )}
+        {hasImages && <FullscreenButton onClick={onClick} modal={modal} />}
       </div>
     </>
   )
