@@ -1,16 +1,15 @@
 'use client'
 
 import React, { Fragment } from 'react'
-import { AboutPage } from '@/.contentlayer/generated'
 import { Menu, Transition } from '@headlessui/react'
 import Icons from './Icons'
-import { AboutPageHeading } from '@/util/contentlayer-helpers'
+import { Heading } from '@/util/contentlayer-helpers'
 
 export default function TableOfContents({
   headings,
   popover = false,
 }: {
-  headings: AboutPageHeading[]
+  headings: Heading[]
   popover?: boolean
 }) {
   const Variant = popover ? TocPopover : Toc

@@ -34,7 +34,7 @@ export type GalleryImageSource = {
   preview: string
 }
 
-export type AboutPageHeading = {
+export type Heading = {
   level?: number
   text?: string
   slug?: string

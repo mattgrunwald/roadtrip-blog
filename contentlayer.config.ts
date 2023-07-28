@@ -34,7 +34,7 @@ export const Post = defineDocumentType(() => ({
   },
   computedFields: {
     galleryImages: {
-      type: 'json',
+      type: 'list',
       of: GalleryImageSource,
       resolve: async (doc) => await convertImages(doc.day),
     },
@@ -42,6 +42,15 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       resolve: (post) => post._raw.flattenedPath,
     },
+  },
+}))
+
+const Heading = defineNestedType(() => ({
+  name: 'Heading',
+  fields: {
+    level: { type: 'number', required: false },
+    text: { type: 'string', required: false },
+    slugf: { type: 'string', required: false },
   },
 }))
 
@@ -60,7 +69,8 @@ export const AboutPage = defineDocumentType(() => ({
     },
 
     headings: {
-      type: 'json',
+      type: 'list',
+      of: Heading,
       resolve: async (doc) => await generateHeadings(doc),
     },
   },
