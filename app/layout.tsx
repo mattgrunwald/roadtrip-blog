@@ -21,7 +21,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className=" mx-auto px-8">
+          <div className=" mx-auto px-4 lg:px-8">
             <Header />
             <main>{children}</main>
           </div>
