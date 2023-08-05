@@ -32,7 +32,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
 
 const AboutText = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="prose dark:prose-invert mb-8 [&>*]:scroll-m-20 xl:w-[650px]">
+    <div className="prose dark:prose-invert mb-8 [&>*]:scroll-m-20 xl:w-[650px] max-lg:w-full">
       {children}
     </div>
   )
