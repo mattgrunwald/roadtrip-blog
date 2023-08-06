@@ -42,7 +42,7 @@ export default function TripCalendar({ day }: TripCalendarProps) {
   const [currentDayDate, setCurrentDayDate] = useState(new Date())
 
   const tileClassName = ({ date }: { date: Date }) => {
-    let className = 'mt-0.5'
+    let className = 'my-[0.0625rem]'
     if (
       day !== 0 &&
       date.getDate() === currentDayDate.getDate() &&
