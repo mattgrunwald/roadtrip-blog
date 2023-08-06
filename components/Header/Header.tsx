@@ -6,7 +6,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 pt-4 z-10 bg-white dark:bg-slate-950">
       <div className="flex items-center justify-between">
-        <b>Roadtrek Trip 2023</b>
+        <Link href="/">
+          <b>Roadtrek Trip 2023</b>
+        </Link>
         <div className="flex items-center justify-around">
           <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6 pr">
             <Link href="/" className="hover:text-red-400">
