@@ -42,17 +42,16 @@ export default function TripCalendar({ day }: TripCalendarProps) {
   const [currentDayDate, setCurrentDayDate] = useState(new Date())
 
   const tileClassName = ({ date }: { date: Date }) => {
-    if (day === 0) {
-      return ''
-    }
+    let className = 'mt-0.5'
     if (
+      day !== 0 &&
       date.getDate() === currentDayDate.getDate() &&
       date.getMonth() === currentDayDate.getMonth()
     ) {
-      return `${ACCENT_BACKGROUND_CLASS} rounded-lg`
+      className = `${className} ${ACCENT_BACKGROUND_CLASS} rounded-lg`
     }
 
-    return ''
+    return className
   }
 
   // Forces calendar to recalculate the current day date on the client side.
