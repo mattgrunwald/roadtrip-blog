@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Calendar from 'react-calendar'
+import Calendar, { CalendarProps } from 'react-calendar'
 import { TileDisabledFunc } from 'react-calendar/dist/cjs/shared/types'
 import { ACCENT_BACKGROUND_CLASS } from '@/util/consts'
 
@@ -51,6 +51,8 @@ export default function TripCalendar({ day }: TripCalendarProps) {
     ) {
       return `${ACCENT_BACKGROUND_CLASS} rounded-lg`
     }
+
+    return ''
   }
 
   // Forces calendar to recalculate the current day date on the client side.
@@ -61,6 +63,15 @@ export default function TripCalendar({ day }: TripCalendarProps) {
     setCurrentDayDate(d)
   }, [day])
 
+  const sharedProps: CalendarProps = {
+    calendarType: 'gregory',
+    minDetail: 'month',
+    maxDetail: 'month',
+    showNeighboringMonth: false,
+    showNavigation: false,
+    tileClassName,
+  }
+
   return (
     <>
       <Month name="May">
@@ -69,12 +80,8 @@ export default function TripCalendar({ day }: TripCalendarProps) {
           value={new Date('2023-05-27')}
           tileDisabled={tileDisabledMay}
           minDate={new Date('2023-05-01')}
-          minDetail="month"
-          maxDetail="month"
-          showNeighboringMonth={false}
-          showNavigation={false}
-          tileClassName={tileClassName}
-          className="max-md:mb-4"
+          className="mb-4"
+          {...sharedProps}
         />
       </Month>
       <Month name="June">
@@ -83,11 +90,7 @@ export default function TripCalendar({ day }: TripCalendarProps) {
           value={new Date('2023-06-25')}
           tileDisabled={tileDisabledJune}
           minDate={new Date('2023-06-01')}
-          minDetail="month"
-          maxDetail="month"
-          showNeighboringMonth={false}
-          showNavigation={false}
-          tileClassName={tileClassName}
+          {...sharedProps}
         />
       </Month>
     </>
