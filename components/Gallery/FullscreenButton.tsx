@@ -52,7 +52,7 @@ export default function FullscreenButton({
           viewBox="0 0 24 24"
           fill={fill}
           xmlns="http://www.w3.org/2000/svg"
-          className={` text-white dark:opacity-50 ${
+          className={`text-gray-400/50 dark:text-white/50 ${
             modal ? 'sm:w-10 sm:h-10' : 'max-md:hidden md:w-6 md:h-6'
           }`}
         >
