@@ -1,15 +1,24 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export function ModeToggle() {
+  const [mounted, setMounted] = useState(false)
   const { setTheme, theme } = useTheme()
 
   const changeTheme = useCallback(
     () => setTheme(theme === 'light' ? 'dark' : 'light'),
     [setTheme, theme],
   )
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="border rounded-md w-6 h-6" />
+  }
 
   return (
     <button
