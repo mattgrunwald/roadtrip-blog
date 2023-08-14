@@ -21,12 +21,10 @@ export const GalleryImage = ({
   modal = false,
 }: GalleryImageProps) => {
   const sizes = useMemo(
-    () => `
-    (min-width: 1536px) ${modal ? '100vw' : '700px,'},
-    (max-width: 1280px) ${modal ? '100vw' : '500px,'}, 
-    (max-width:640px)   ${modal ? '100vw' : '400px'}, 
-    (max-width: 400px)  ${modal ? '100vw' : '350px,'}
-    `,
+    () =>
+      modal
+        ? '100vh'
+        : '(max-width: 400px) 350px, (max-width:640px) 400px, (max-width: 1535px) 500px, 700px',
     [modal],
   )
   return (
