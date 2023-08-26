@@ -4,7 +4,7 @@ import { ModeToggle } from '../ModeToggle'
 
 export default function Header() {
   return (
-    <header className="sticky top-0 pt-4 z-10 bg-white dark:bg-slate-950">
+    <header className="sticky top-0 pt-4 z-10 bg-slate-50 dark:bg-slate-950">
       <div className="flex items-center justify-between">
         <Link href="/">
           <b>Roadtrek Trip 2023</b>
