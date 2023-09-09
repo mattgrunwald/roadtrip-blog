@@ -17,7 +17,7 @@ export default function Header() {
           </nav>
           <span className="max-lg:mr-4 lg:mr-6 mr-6 text-sm font-medium">
             <AboutDropdown name="About">
-              <Link href="/about/van" className="hover:text-red-400">
+              <Link href="/about/van#the-van" className="hover:text-red-400">
                 The Van
               </Link>
               <Link href="/about/site" className="hover:text-red-400">
