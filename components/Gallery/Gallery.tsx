@@ -145,13 +145,17 @@ export default function Gallery({
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
-        <div className="opacity-50 text-xs max-lg:mb-4 2xl:mb-4">{`${count} of ${sources.length}`}</div>
+        <div className="opacity-50 text-xs mb-2">{`${count} of ${sources.length}`}</div>
         <div
-          className={`${
+          className={
             modal
               ? ''
-              : 'relative max-md:h-96 md:h-[max(40vh,350px)] lg:min-h-[40vh]'
-          } xl:max-2xl:max-h-[45vh]`}
+              : `relative 
+                 max-md:h-96 
+                 md:h-[max(40vh,350px)] 
+                 lg:min-h-[40vh] 
+                 xl:max-2xl:max-h-[45vh]`
+          }
           {...handlers}
         >
           {hasImages &&
