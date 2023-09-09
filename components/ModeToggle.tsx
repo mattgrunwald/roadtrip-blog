@@ -26,7 +26,7 @@ export function ModeToggle() {
       className="border rounded-md w-6 h-6 flex items-center justify-center"
     >
       <span className="sr-only">Toggle mode</span>
-      {theme !== 'dark' ? (
+      {theme === 'light' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
