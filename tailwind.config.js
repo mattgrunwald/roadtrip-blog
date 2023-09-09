@@ -6,6 +6,12 @@ module.exports = {
     './content/**/*.{md,mdx}',
     './util/**/*.{ts,tsx}',
   ],
+  safelist: [
+    {
+      pattern: /^(bg-|text-)\w+-400/,
+      variants: ['hover', 'active'],
+    },
+  ],
   darkMode: ['class'],
   theme: {
     extend: {},

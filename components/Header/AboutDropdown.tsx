@@ -24,7 +24,7 @@ export function AboutDropdown({
       >
         <Menu.Items className="absolute mt-2 rounded-md dark:bg-gray-700 bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           {React.Children.map(children, (child) => (
-            <div className="m-2 hover:underline hover:text-red-400">
+            <div className={`m-2 hover:underline hover:${ACCENT_TEXT_CLASS}`}>
               <Menu.Item>{child}</Menu.Item>
             </div>
           ))}
