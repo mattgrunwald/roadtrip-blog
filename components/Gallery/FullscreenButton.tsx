@@ -34,7 +34,7 @@ export default function FullscreenButton({
         focus:outline-none 
         md:right-[1%]
         right-0
-        ${modal ? 'top-[-1%]' : 'bottom-[1%]'}
+        ${modal ? 'top-[-1%]' : 'bottom-[1%] 2xl:bottom-[5%]'}
         `}
     >
       <span
