@@ -5,11 +5,11 @@ import { useCallback, useEffect, useState } from 'react'
 
 export function ModeToggle() {
   const [mounted, setMounted] = useState(false)
-  const { setTheme, theme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
 
   const changeTheme = useCallback(
-    () => setTheme(theme === 'light' ? 'dark' : 'light'),
-    [setTheme, theme],
+    () => setTheme(resolvedTheme === 'light' ? 'dark' : 'light'),
+    [setTheme, resolvedTheme],
   )
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export function ModeToggle() {
       className="border rounded-md w-6 h-6 flex items-center justify-center border-current"
     >
       <span className="sr-only">Toggle mode</span>
-      {theme === 'light' ? (
+      {resolvedTheme === 'light' ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
