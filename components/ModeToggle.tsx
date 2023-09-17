@@ -23,7 +23,7 @@ export function ModeToggle() {
   return (
     <button
       onClick={changeTheme}
-      className="border rounded-md w-6 h-6 flex items-center justify-center"
+      className="border rounded-md w-6 h-6 flex items-center justify-center border-current"
     >
       <span className="sr-only">Toggle mode</span>
       {theme === 'light' ? (
