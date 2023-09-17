@@ -65,12 +65,21 @@ export default function TripMap({
     [router],
   )
 
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
-  const fill = useMemo(
-    () => (theme === 'light' ? '#e5e7eb' : '#374151'),
-    [theme],
-  )
+  const fill = useMemo(() => {
+    console.log(resolvedTheme)
+    switch (resolvedTheme) {
+      case 'light':
+        return '#e5e7eb'
+      case 'dark':
+        return '#374151'
+      default:
+        return ''
+    }
+  }, [resolvedTheme])
+
+  const opacity = useMemo(() => (resolvedTheme ? 1 : 0), [resolvedTheme])
 
   const [hideMap, setHideMap] = useState(true)
   const [showAllMarkers, setShowAllMarkers] = useState(showAllMarkersAlways)
@@ -112,11 +121,12 @@ export default function TripMap({
         offset={markerOffset}
       />
     ))
-
   return (
     <div className="md:max-lg:flex md:max-lg:justify-center md:max-lg:align-middle">
       <div className="md:max-lg:w-[600px]">
-        {hideMap && <Placeholder stroke={'#bbb'} fill={fill} />}
+        {hideMap && (
+          <Placeholder stroke={'#bbb'} fill={fill} opacity={opacity} />
+        )}
         <ComposableMap
           projection="geoAlbers"
           onMouseEnter={showAll}
