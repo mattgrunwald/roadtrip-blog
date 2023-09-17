@@ -32,7 +32,7 @@ export default function Header() {
           <ModeToggle />
         </div>
       </div>
-      <hr className="my-4" />
+      <hr className="my-4 dark:border-slate-50/20 " />
     </header>
   )
 }
