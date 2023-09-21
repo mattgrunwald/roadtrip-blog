@@ -1,51 +1,14 @@
 'use client'
 import { Marker as GeneratedMarker } from '@/.contentlayer/generated'
-import React, { useEffect, useState, useCallback, useMemo } from 'react'
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from 'react-simple-maps'
 import { useTheme } from 'next-themes'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
+import { MapMarker } from './MapMarker'
 
-import usGeo from 'geo/us-albers.json'
-import { Placeholder } from 'geo/placeholder'
-import { useRouter } from 'next/navigation'
 import { MarkerWithDay } from '@/util/types'
-import { ACCENT_COLOR } from '@/util/consts'
-
-type MapMarkerProps = {
-  coordinates: [number, number]
-  opacity?: string
-  name?: string
-  offset?: number
-  onClick?: () => void
-}
-const MapMarker = ({
-  coordinates,
-  opacity = '100%',
-  name = '',
-  offset = 0,
-  onClick = () => {},
-}: MapMarkerProps) => (
-  <Marker coordinates={coordinates} onClick={onClick}>
-    <circle
-      r={5}
-      className={name === '' ? 'hover:cursor-pointer' : ''}
-      fill={ACCENT_COLOR}
-      strokeWidth={2}
-      opacity={opacity}
-    />
-    <text
-      textAnchor="middle"
-      y={offset}
-      className={`font-semibold dark:fill-gray-200 fill-gray-700 -z-10`}
-    >
-      {name || ''}
-    </text>
-  </Marker>
-)
+import { Placeholder } from 'geo/placeholder'
+import usGeo from 'geo/us-albers.json'
+import { useRouter } from 'next/navigation'
 
 export type TripMapParams = {
   allMarkers: MarkerWithDay[]
