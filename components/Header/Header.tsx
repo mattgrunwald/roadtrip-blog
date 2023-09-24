@@ -6,7 +6,7 @@ import { ACCENT_TEXT_CLASS } from '@/util/consts'
 export default function Header() {
   return (
     <header className="sticky top-0 pt-4 z-10 bg-slate-50 dark:bg-slate-950">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mx-auto px-4 lg:px-8">
         <Link href="/">
           <b>Roadtrek Trip 2023</b>
         </Link>
