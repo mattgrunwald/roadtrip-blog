@@ -69,6 +69,7 @@ export default function TripCalendar({ day }: TripCalendarProps) {
     showNeighboringMonth: false,
     showNavigation: false,
     tileClassName,
+    className: 'mb-4',
   }
 
   return (
@@ -79,7 +80,6 @@ export default function TripCalendar({ day }: TripCalendarProps) {
           value={new Date('2023-05-27')}
           tileDisabled={tileDisabledMay}
           minDate={new Date('2023-05-01')}
-          className="mb-4"
           {...sharedProps}
         />
       </Month>
