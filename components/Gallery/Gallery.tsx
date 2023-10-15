@@ -150,13 +150,15 @@ export default function Gallery({
           className={
             modal
               ? ''
-              : `relative 
-                 max-md:h-96 
-                 md:h-[max(40vh,350px)] 
-                 lg:min-h-[40vh] 
-                 xl:max-2xl:max-h-[45vh]
-                 shadow-lg
-                 dark:shadow-slate-900`
+              : `
+                relative 
+                max-md:h-96 
+                md:h-[max(40vh,350px)] 
+                lg:min-h-[40vh] 
+                xl:max-2xl:max-h-[45vh]
+                dark:md:bg-gray-900 
+                md:bg-gray-100
+                `
           }
           {...handlers}
         >
