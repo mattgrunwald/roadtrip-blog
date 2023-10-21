@@ -16,24 +16,27 @@ export default function TableOfContents({
   const Variant = popover ? TocPopover : Toc
   const pageHeadings = headings.map((heading) => {
     return (
-      <span
-        key={`#${heading.slug}`}
-        className={`block hover:underline hover:${ACCENT_TEXT_CLASS} mb-1 last-of-type:mb-0 ${
-          heading.level === 1
-            ? '!text-2xl font-bold'
-            : heading.level === 2
-            ? 'pl-4 !text-xl font-bold'
-            : heading.level === 3
-            ? 'pl-8 !text-lg font-semibold'
-            : heading.level === 4
-            ? 'pl-12 !text-base'
-            : heading.level === 5
-            ? 'pl-16 !text-sm'
-            : ''
-        }`}
-      >
-        <a href={`#${heading.slug}`}>{heading.text}</a>
-      </span>
+      <div key={`#${heading.slug}`} className="mb-1 last-of-type:mb-0">
+        <a href={`#${heading.slug}`}>
+          <span
+            className={`block hover:underline hover:${ACCENT_TEXT_CLASS} ${
+              heading.level === 1
+                ? '!text-2xl font-bold'
+                : heading.level === 2
+                ? 'pl-4 !text-xl font-bold'
+                : heading.level === 3
+                ? 'pl-8 !text-lg font-semibold'
+                : heading.level === 4
+                ? 'pl-12 !text-base'
+                : heading.level === 5
+                ? 'pl-16 !text-sm'
+                : ''
+            }`}
+          >
+            {heading.text}
+          </span>
+        </a>
+      </div>
     )
   })
   return <Variant title="On this page">{pageHeadings}</Variant>
