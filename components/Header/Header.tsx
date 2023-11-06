@@ -6,12 +6,12 @@ import { ACCENT_TEXT_CLASS } from '@/util/consts'
 export default function Header() {
   return (
     <header className="sticky top-0 pt-4 z-10 bg-slate-50 dark:bg-slate-950">
-      <div className="flex items-center justify-between mx-auto px-4 lg:px-8">
+      <div className="flex items-center justify-between mx-auto max-lg:px-4 max-3xl:px-8 3xl:max-w-[calc(600px+650px+320px+12rem)]">
         <Link href="/">
           <b>Roadtrek Trip 2023</b>
         </Link>
         <div className="flex items-center justify-around">
-          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6 pr">
+          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
             <Link href="/" className={`hover:${ACCENT_TEXT_CLASS}`}>
               Home
             </Link>
