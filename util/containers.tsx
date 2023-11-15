@@ -2,7 +2,13 @@ import { PropsWithChildren } from 'react'
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="grid max-lg:grid-cols-1 max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between 3xl:justify-center gap-x-8 3xl:gap-x-24 gap-y-4 max-lg:mb-8">
+    <div
+      className={`
+      grid gap-x-8 gap-y-4
+      max-lg:grid-cols-1 max-lg:mb-8
+      max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between
+      3xl:justify-center 3xl:gap-x-24`}
+    >
       {children}
     </div>
   )
@@ -10,7 +16,14 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="sm:col-span-1 lg:order-first lg:sticky lg:top-16 lg:max-h-[90vh] 2xl:w-[600px]">
+    <div
+      className={`
+      sm:col-span-1
+      lg:order-first lg:sticky lg:top-16 lg:max-h-[90vh]
+      2xl:w-[600px]
+      lg:flex lg:flex-col lg:justify-between
+    `}
+    >
       {children}
     </div>
   )
@@ -18,8 +31,19 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
 
 const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="lg:ml-0 lg:sticky lg:top-16 lg:h-[90vh] md:w-full lg:max-w-[320px]">
-      <div className="lg:max-w-xs flex max-md:flex-col lg:flex-col items-center justify-evenly">
+    <div
+      className={`
+      md:w-full
+      lg:ml-0 lg:sticky lg:top-16 lg:h-[90vh] lg:max-w-[320px]
+    `}
+    >
+      <div
+        className={`
+        flex flex-col items-center justify-evenly
+        md:max-md:flex-row
+        lg:max-w-xs
+      `}
+      >
         {children}
       </div>
     </div>
