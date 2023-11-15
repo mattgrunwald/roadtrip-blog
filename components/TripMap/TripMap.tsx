@@ -84,8 +84,8 @@ export default function TripMap({
       />
     ))
   return (
-    <div className="md:max-lg:flex md:max-lg:justify-center md:max-lg:align-middle">
-      <div className="md:max-lg:w-[600px]">
+    <div className="md:flex md:justify-center md:items-center lg:h-full">
+      <div className="w-full md:max-w-[600px] md:max-h-[450px]">
         {hideMap && (
           <Placeholder stroke={'#bbb'} fill={fill} opacity={opacity} />
         )}
