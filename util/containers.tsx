@@ -40,7 +40,7 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
       <div
         className={`
         flex flex-col items-center justify-evenly
-        md:max-md:flex-row
+        sm:max-lg:flex-row
         lg:max-w-xs
       `}
       >
