@@ -18,6 +18,7 @@ import {
 } from 'react-swipeable'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
 import FullscreenButton from './FullscreenButton'
+import Counter from './Counter'
 
 export type GalleryProps = {
   sources: GalleryImageSource[]
@@ -145,18 +146,20 @@ export default function Gallery({
   return (
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
-        <div className="opacity-50 text-xs mb-2">{`${count} of ${sources.length}`}</div>
+        {modal && (
+          <div className="opacity-50 text-xs mb-2">{`${count} of ${sources.length}`}</div>
+        )}
         <div
           className={
             modal
               ? ''
               : `
-                relative 
-                max-md:h-96 
-                md:h-[max(40vh,350px)] 
-                lg:min-h-[40vh] 
+                relative
+                max-md:h-96
+                md:h-[max(40vh,350px)]
+                lg:min-h-[40vh]
                 xl:max-2xl:max-h-[45vh]
-                dark:md:bg-gray-900 
+                dark:md:bg-gray-900
                 md:bg-gray-100
                 `
           }
@@ -177,10 +180,11 @@ export default function Gallery({
             ))}
         </div>
         {hasImages && sources.length > 1 && (
-          <GalleryButton left onClick={prevImage} />
-        )}
-        {hasImages && sources.length > 1 && (
-          <GalleryButton right onClick={nextImage} />
+          <>
+            <GalleryButton left onClick={prevImage} />
+            <GalleryButton right onClick={nextImage} />
+            {!modal && <Counter count={count} total={sources.length} />}
+          </>
         )}
         {hasImages && <FullscreenButton onClick={onClick} modal={modal} />}
       </div>
