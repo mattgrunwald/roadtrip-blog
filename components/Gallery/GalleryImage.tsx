@@ -24,15 +24,15 @@ export const GalleryImage = ({
     () =>
       modal
         ? '(max-width: 400px) 400px, (max-width:640px) 500px, 100vh'
-        : '(max-width: 400px) 350px, (max-width:640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 600px',
+        : '(max-width: 400px) 350px, (max-width:640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 580px',
     [modal],
   )
   return (
     <Image
       src={src}
       className={`
-      object-contain 
-      ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'} 
+      object-contain
+      ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
       ${isCurrent ? 'visible' : 'invisible'}
       `}
       fill
