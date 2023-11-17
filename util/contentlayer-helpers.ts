@@ -4,20 +4,14 @@ import sharp from 'sharp'
 import GithubSlugger from 'github-slugger'
 import { AboutPage } from '@/.contentlayer/generated'
 
-async function generatePreview(imgPath: string) {
-  try {
-    const extensionName = path.extname(imgPath)
-    const raw = fs.readFileSync(imgPath)
-    const buffer = await sharp(raw).resize(10, 10).toBuffer()
-    const base64Image = buffer.toString('base64')
-
-    return `data:image/${extensionName.split('.').pop()};base64,${base64Image}`
-  } catch (err) {
-    throw err
-  }
+export type GalleryImageSource = {
+  src: string
+  preview: string
 }
 
-export async function convertImages(day: number | string) {
+export async function convertImages(
+  day: number | string,
+): Promise<GalleryImageSource[]> {
   const fileNames = fs.readdirSync(`public/images/day/${day}`)
 
   const res = []
@@ -29,9 +23,17 @@ export async function convertImages(day: number | string) {
   return res
 }
 
-export type GalleryImageSource = {
-  src: string
-  preview: string
+async function generatePreview(imgPath: string) {
+  try {
+    const extensionName = path.extname(imgPath)
+    const raw = fs.readFileSync(imgPath)
+    const buffer = await sharp(raw).resize(10, 10).toBuffer()
+    const base64Image = buffer.toString('base64')
+
+    return `data:image/${extensionName.split('.').pop()};base64,${base64Image}`
+  } catch (err) {
+    throw err
+  }
 }
 
 export type Heading = {
