@@ -16,6 +16,11 @@ export default function Header() {
               Home
             </Link>
           </nav>
+          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6 pr">
+            <Link href="/pictures" className={`hover:${ACCENT_TEXT_CLASS}`}>
+              Pictures
+            </Link>
+          </nav>
           <span className="max-lg:mr-4 lg:mr-6 mr-6 text-sm font-medium">
             <AboutDropdown name="About">
               <Link

@@ -1,5 +1,6 @@
 import { Post } from '@/.contentlayer/generated'
 import { MarkerWithDay } from './types'
+import { GalleryImageSource } from './contentlayer-helpers'
 
 export function getAllMarkers(posts: Post[]) {
   const markers: Record<string, MarkerWithDay> = {}
@@ -19,4 +20,17 @@ export function getAllMarkers(posts: Post[]) {
   return Object.values(markers)
 }
 
+export function getWallImages(posts: Post[]): GalleryImageSource[] {
+  const pics = []
+  for (const post of posts.sort((a, b) => a.day - b.day)) {
+    if (post.day > 2 && post.day < 31) {
+      pics.push(...post.galleryImages)
+    }
+  }
+  return pics
+}
+
+/**
+ * @returns `n` mod `m`
+ */
 export const mod = (n: number, m: number) => ((n % m) + m) % m

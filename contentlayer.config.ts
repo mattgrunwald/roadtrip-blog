@@ -31,6 +31,7 @@ export const Post = defineDocumentType(() => ({
     day: { type: 'number', required: true },
     date: { type: 'date', required: true },
     markers: { type: 'list', of: Marker, required: false },
+    highlight: { type: 'boolean', default: false },
   },
   computedFields: {
     galleryImages: {
