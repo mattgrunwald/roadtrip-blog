@@ -1,12 +1,14 @@
 import fs from 'fs'
 import path from 'path'
-import sharp from 'sharp'
+import sharp, { Metadata } from 'sharp'
 import GithubSlugger from 'github-slugger'
 import { AboutPage } from '@/.contentlayer/generated'
 
 export type GalleryImageSource = {
   src: string
   preview: string
+  day: string
+  ratio: number
 }
 
 export async function convertImages(
@@ -17,8 +19,13 @@ export async function convertImages(
   const res = []
   for (const name of fileNames) {
     const src = `/images/day/${day}/${name}`
-    const preview = await generatePreview(`public/${src}`)
-    res.push({ src, preview })
+    const { preview, ratio } = await generatePreview(`public/${src}`)
+    res.push({
+      src,
+      preview,
+      ratio,
+      day: String(day),
+    })
   }
   return res
 }
@@ -30,10 +37,23 @@ async function generatePreview(imgPath: string) {
     const buffer = await sharp(raw).resize(10, 10).toBuffer()
     const base64Image = buffer.toString('base64')
 
-    return `data:image/${extensionName.split('.').pop()};base64,${base64Image}`
+    const { width, height } = getNormalSize(await sharp(raw).metadata())
+
+    return {
+      preview: `data:image/${extensionName
+        .split('.')
+        .pop()};base64,${base64Image}`,
+      ratio: height! / width!,
+    }
   } catch (err) {
     throw err
   }
+}
+
+function getNormalSize({ width, height, orientation }: Metadata) {
+  return (orientation || 0) >= 5
+    ? { width: height, height: width }
+    : { width, height }
 }
 
 export type Heading = {
