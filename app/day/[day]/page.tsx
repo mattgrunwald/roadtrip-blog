@@ -20,6 +20,7 @@ export default function Page({ params }: { params: { day: string } }) {
       notFoundPost,
     [params.day],
   )
+
   const day = useMemo(() => Number(params.day), [params.day])
 
   const previousDay = useMemo(() => day - 1, [day])
