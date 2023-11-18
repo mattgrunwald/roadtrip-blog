@@ -18,31 +18,31 @@ export const GalleryButton = ({
     <button
       onClick={onClick}
       className={`
-        absolute 
-        top-[calc(50%-1rem)] 
-        group 
-        focus:outline-none 
+        absolute
+        top-[calc(50%-1rem)]
+        group
+        focus:outline-none
         max-sm:hidden
         ${right ? 'right-[1%]' : 'left-[1%]'}`}
     >
       <span
         className={`
         ${right ? 'right-[1%]' : 'left-[1%]'}
-        inline-flex 
-        items-center 
-        justify-center 
-        w-8 
-        h-8 
-        rounded-full 
-        sm:w-10 
-        sm:h-10 
-      bg-gray-400/30
-      dark:bg-gray-800/30 
-      group-hover:bg-gray-400/50 
-      dark:group-hover:bg-gray-800/60 
-      group-focus:ring-white 
-      dark:group-focus:ring-gray-800/70 
-      group-focus:outline-none
+        inline-flex
+        items-center
+        justify-center
+        w-8
+        h-8
+        rounded-full
+        sm:w-10
+        sm:h-10
+        bg-gray-400/30
+        dark:bg-gray-800/30
+        group-hover:bg-gray-400/50
+        dark:group-hover:bg-gray-800/60
+        group-focus:ring-white
+        dark:group-focus:ring-gray-800/70
+        group-focus:outline-none
       `}
       >
         <svg

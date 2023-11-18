@@ -29,9 +29,9 @@ export default function FullscreenButton({
     <button
       onClick={onClick}
       className={`
-        absolute 
-        group 
-        focus:outline-none 
+        absolute
+        group
+        focus:outline-none
         md:right-[1%]
         right-0
         ${modal ? 'top-[-1%]' : 'bottom-[1%]'}
@@ -39,12 +39,12 @@ export default function FullscreenButton({
     >
       <span
         className="
-        inline-flex 
-        items-center 
-        justify-center 
-        w-8 
-        h-8 
-        xs:w-10 
+        inline-flex
+        items-center
+        justify-center
+        w-8
+        h-8
+        xs:w-10
         xs:h-10
         "
       >

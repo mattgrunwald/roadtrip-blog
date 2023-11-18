@@ -20,7 +20,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
       className={`
       sm:col-span-1
       lg:order-first lg:sticky lg:top-16 lg:max-h-[90vh]
-      2xl:w-[600px]
+      2xl:w-[580px]
       lg:flex lg:flex-col lg:justify-between
     `}
     >
