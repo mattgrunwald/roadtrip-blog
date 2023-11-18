@@ -8,9 +8,10 @@ module.exports = {
   ],
   safelist: [
     {
-      pattern: /^(bg-|text-)\w+-400/,
+      pattern: /^(bg-|text-|border-)\w+-400/,
       variants: ['hover', 'active'],
     },
+    'border-solid',
   ],
   darkMode: ['class'],
   theme: {

@@ -2,7 +2,7 @@ import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap/TripMap'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import { getAllMarkers } from '@/util/helpers'
+import { getAllMarkers, getHighlightDays } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
@@ -11,8 +11,8 @@ import Container from 'util/containers'
 import { Image } from '@/util/Image'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
-
 const allMarkers = getAllMarkers(allPosts)
+const highlightDays = getHighlightDays(allPosts)
 
 export default function Page() {
   const post =
@@ -41,7 +41,7 @@ export default function Page() {
         </Container.Text>
       </div>
       <Container.Calendar>
-        <TripCalendar day={0} />
+        <TripCalendar currentDay={0} highlightDays={highlightDays} />
       </Container.Calendar>
     </Container.Post>
   )

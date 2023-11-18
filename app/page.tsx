@@ -2,7 +2,7 @@ import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap/TripMap'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import { getAllMarkers } from '@/util/helpers'
+import { getAllMarkers, getHighlightDays } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
@@ -22,6 +22,7 @@ export default function Page() {
     [post],
   )
   const MDXContent = useMDXComponent(post?.body.code || '')
+  const highlightDays = getHighlightDays(allPosts)
 
   return (
     <Container.Post>
@@ -40,7 +41,7 @@ export default function Page() {
         </Container.Text>
       </div>
       <Container.Calendar>
-        <TripCalendar day={0} />
+        <TripCalendar currentDay={0} highlightDays={highlightDays} />
       </Container.Calendar>
     </Container.Post>
   )

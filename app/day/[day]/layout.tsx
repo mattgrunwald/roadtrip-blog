@@ -1,15 +1,15 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap/TripMap'
-import { getAllMarkers } from '@/util/helpers'
+import { getAllMarkers, getHighlightDays } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import Container from '@/util/containers'
 import { useMemo } from 'react'
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
-
 const allMarkers = getAllMarkers(allPosts)
+const highlightDays = getHighlightDays(allPosts)
 
 export default function Layout({
   children,
@@ -43,7 +43,10 @@ export default function Layout({
         <TripMap markers={markers} allMarkers={allMarkers} />
       </Container.Visual>
       <Container.Calendar>
-        <TripCalendar day={Number(params.day)} />
+        <TripCalendar
+          currentDay={Number(params.day)}
+          highlightDays={highlightDays}
+        />
       </Container.Calendar>
     </Container.Post>
   )
