@@ -155,12 +155,11 @@ export default function Gallery({
               ? ''
               : `
                 relative
-                max-md:h-96
-                3xl:h-96
-                md:h-[max(40vh,350px)]
-                lg:min-h-[45vh]
-                3xl:min-h-[34vh]
+                max-md:h-96 md:h-[max(40vh,350px)]
+                lg:min-h-[42vh]
                 xl:max-2xl:max-h-[45vh]
+                2xl:min-h-[45vh]
+                3xl:min-h-[34vh] 3xl:h-96
                 dark:md:bg-gray-900
                 md:bg-gray-100
                 mt-5
