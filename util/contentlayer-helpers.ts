@@ -11,6 +11,12 @@ export type GalleryImageSource = {
   ratio: number
 }
 
+export type Indexed<T> = T & {
+  index: number
+}
+
+export type IndexedGalleryImageSource = Indexed<GalleryImageSource>
+
 export async function convertImages(
   day: number | string,
 ): Promise<GalleryImageSource[]> {

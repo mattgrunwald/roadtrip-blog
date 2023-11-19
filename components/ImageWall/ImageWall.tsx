@@ -1,18 +1,14 @@
 'use client'
 
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import { mod } from '@/util/helpers'
-import Image from 'next/image'
-import { useCallback, useMemo, useState } from 'react'
+import { columnify } from '@/util/helpers'
+import { useMemo, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
+import ImageWallColumns from './ImageWallColumns'
 
 export type AllImagesProps = {
   images: GalleryImageSource[]
   numCols?: number
-}
-
-type IndexedGalleryImageSource = GalleryImageSource & {
-  index: number
 }
 
 export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
@@ -27,51 +23,24 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
     setIsOpen(false)
     setModalStarter(0)
   }
-  const cols = useMemo(() => {
-    const cols = Array(numCols)
-      .fill([])
-      .map((e) => [] as IndexedGalleryImageSource[])
-    let index = 0
-    for (const [totalIndex, image] of images.entries()) {
-      cols[index].push({ ...image, index: totalIndex })
-      index = mod(index + 1, numCols)
-    }
-    return cols
-  }, [images, numCols])
 
-  const [width, setWidth] = useState<number>(300)
-  const div = useCallback((node: HTMLElement | null) => {
-    if (node !== null) {
-      setWidth(node.getBoundingClientRect().width - 8)
-    }
-  }, [])
+  const [wideCols, narrowCols] = useMemo(() => {
+    return [columnify(images, numCols), columnify(images, 2)]
+  }, [images, numCols])
 
   return (
     <>
       <div className="flex flex-wrap px-1 py-0 w-full h-[90vh]">
-        {cols.map((col, colIndex) => (
-          <div
-            key={colIndex}
-            ref={div}
-            className="flex-50%] max-w-[50%] lg:flex-[25%] lg:max-w-[25%] px-1 py-0"
-          >
-            {col.map((image, imageIndex) => (
-              <Image
-                key={imageIndex}
-                className="mt-2 align-middle w-full hover: cursor-zoom-in"
-                src={image.src}
-                width={width}
-                height={width * image.ratio}
-                placeholder="blur"
-                blurDataURL={image.preview}
-                alt=""
-                quality={65}
-                onClick={() => onOpenDialog(image.index)}
-                sizes="(max-width: 1024px) 50%, 25%"
-              />
-            ))}
-          </div>
-        ))}
+        <ImageWallColumns
+          cols={wideCols}
+          className="hidden lg:block lg:flex-[25%] lg:max-w-[25%] px-1 py-0"
+          onClick={onOpenDialog}
+        />
+        <ImageWallColumns
+          cols={narrowCols}
+          className="flex-[50%] max-w-[50%] lg:hidden px-1 py-0"
+          onClick={onOpenDialog}
+        />
       </div>
       <GalleryDialog
         sources={images}

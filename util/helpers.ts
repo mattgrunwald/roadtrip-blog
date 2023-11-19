@@ -1,6 +1,6 @@
 import { Post } from '@/.contentlayer/generated'
 import { MarkerWithDay } from './types'
-import { GalleryImageSource } from './contentlayer-helpers'
+import { GalleryImageSource, Indexed } from './contentlayer-helpers'
 
 export function getAllMarkers(posts: Post[]) {
   const markers: Record<string, MarkerWithDay> = {}
@@ -34,3 +34,15 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
  * @returns `n` mod `m`
  */
 export const mod = (n: number, m: number) => ((n % m) + m) % m
+
+export function columnify<T>(data: T[], numCols: number): Indexed<T>[][] {
+  const cols = Array(numCols)
+    .fill([])
+    .map((e) => [] as Indexed<T>[])
+  let index = 0
+  for (const [totalIndex, item] of data.entries()) {
+    cols[index].push({ ...item, index: totalIndex })
+    index = mod(index + 1, numCols)
+  }
+  return cols
+}
