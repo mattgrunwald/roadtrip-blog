@@ -35,10 +35,17 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
  */
 export const mod = (n: number, m: number) => ((n % m) + m) % m
 
+/**
+ * Maps a list into `numCols` sublists which when used as a matrix has a
+ * transpose can be read in original order.
+ *
+ * Example:
+ * `columnify([1...10], 3) -> [[1,4,7,10], [2,5,8], [3,6,9]]`
+ */
 export function columnify<T>(data: T[], numCols: number): Indexed<T>[][] {
   const cols = Array(numCols)
     .fill([])
-    .map((e) => [] as Indexed<T>[])
+    .map((_) => [] as Indexed<T>[])
   let index = 0
   for (const [totalIndex, item] of data.entries()) {
     cols[index].push({ ...item, index: totalIndex })
