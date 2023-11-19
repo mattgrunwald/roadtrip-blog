@@ -1,6 +1,6 @@
 import { Post } from '@/.contentlayer/generated'
 import { MarkerWithDay } from './types'
-import { GalleryImageSource } from './contentlayer-helpers'
+import { GalleryImageSource, Indexed } from './contentlayer-helpers'
 
 export function getAllMarkers(posts: Post[]) {
   const markers: Record<string, MarkerWithDay> = {}
@@ -34,3 +34,22 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
  * @returns `n` mod `m`
  */
 export const mod = (n: number, m: number) => ((n % m) + m) % m
+
+/**
+ * Maps a list into `numCols` sublists which when used as a matrix has a
+ * transpose can be read in original order.
+ *
+ * Example:
+ * `columnify([1...10], 3) -> [[1,4,7,10], [2,5,8], [3,6,9]]`
+ */
+export function columnify<T>(data: T[], numCols: number): Indexed<T>[][] {
+  const cols = Array(numCols)
+    .fill([])
+    .map((_) => [] as Indexed<T>[])
+  let index = 0
+  for (const [totalIndex, item] of data.entries()) {
+    cols[index].push({ ...item, index: totalIndex })
+    index = mod(index + 1, numCols)
+  }
+  return cols
+}
