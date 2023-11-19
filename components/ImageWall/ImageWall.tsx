@@ -30,7 +30,7 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
 
   return (
     <>
-      <div className="flex flex-wrap px-1 py-0 w-full h-[90vh]">
+      <div className="flex flex-wrap px-1 py-0 w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
         <ImageWallColumns
           cols={wideCols}
           className="hidden lg:block lg:flex-[25%] lg:max-w-[25%] px-1 py-0"
