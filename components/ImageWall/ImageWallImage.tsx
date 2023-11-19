@@ -22,7 +22,7 @@ export default function ImageWallImage({
       alt=""
       quality={1}
       onClick={onClick}
-      sizes="(max-width: 1024px) 50%, 25%"
+      sizes="(max-width: 1024px) 50vw, 25vw"
     />
   )
 }
