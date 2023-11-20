@@ -26,7 +26,7 @@ export const MapMarker = ({
     <text
       textAnchor="middle"
       y={offset}
-      className={`font-semibold dark:fill-gray-200 fill-gray-700 -z-10`}
+      className="font-semibold dark:fill-gray-200 fill-gray-700 -z-10"
     >
       {name || ''}
     </text>
