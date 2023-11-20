@@ -7,7 +7,7 @@ import { AboutPage } from '@/.contentlayer/generated'
 export type GalleryImageSource = {
   src: string
   preview: string
-  day: string
+  day: number
   ratio: number
 }
 
@@ -30,7 +30,7 @@ export async function convertImages(
       src,
       preview,
       ratio,
-      day: String(day),
+      day: Number(day),
     })
   }
   return res
