@@ -9,7 +9,7 @@ export default function Counter({
 }) {
   return (
     <div
-      className={`
+      className="
         absolute
         bottom-[2%]
         left-[50%]
@@ -19,7 +19,7 @@ export default function Counter({
         text-xs
         dark:opacity-70
         rounded-md
-        `}
+        "
     >
       {count} / {total}
     </div>
