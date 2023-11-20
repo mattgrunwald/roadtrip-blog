@@ -22,7 +22,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <div className=" mx-auto px-4 lg:px-8">
+          <div className="mx-auto px-4 lg:px-8">
             <main>{children}</main>
           </div>
         </ThemeProvider>
