@@ -1,5 +1,6 @@
 import { IndexedGalleryImageSource } from '@/util/contentlayer-helpers'
 import Image from 'next/image'
+import { useMemo } from 'react'
 
 export type ImageWallImageProps = {
   image: IndexedGalleryImageSource
@@ -11,11 +12,22 @@ export default function ImageWallImage({
   width,
   onClick,
 }: ImageWallImageProps) {
+  const [rowSpan, colSpan] = useMemo(() => {
+    if (image.ratio > 1) {
+      return [2, 1]
+    } else if (image.ratio < 0.5) {
+      return [1, 2]
+    } else {
+      return [1, 1]
+    }
+  }, [image])
+
   return (
+    // <div className="max-w-[25%]">
     <Image
-      className="mt-2 align-middle w-full hover: cursor-zoom-in"
+      className={`align-middle hover: cursor-zoom-in object-contain row-span-${rowSpan} col-span-${colSpan}`}
       src={image.src}
-      width={width}
+      width={width * colSpan}
       height={width * image.ratio}
       placeholder="blur"
       blurDataURL={image.preview}
@@ -24,5 +36,6 @@ export default function ImageWallImage({
       onClick={onClick}
       sizes="(max-width: 1024px) 50vw, 25vw"
     />
+    // </div>
   )
 }

@@ -5,6 +5,7 @@ import { columnify } from '@/util/helpers'
 import { useMemo, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallColumns from './ImageWallColumns'
+import ImageWallImage from './ImageWallImage'
 
 export type AllImagesProps = {
   images: GalleryImageSource[]
@@ -30,7 +31,7 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
 
   return (
     <>
-      <div className="flex flex-wrap px-1 py-0 w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
+      {/* <div className="flex flex-wrap px-1 py-0 w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
         <ImageWallColumns
           cols={wideCols}
           className="hidden lg:block lg:flex-[25%] lg:max-w-[25%] px-1 py-0"
@@ -41,6 +42,16 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
           className="flex-[50%] max-w-[50%] lg:hidden px-1 py-0"
           onClick={onOpenDialog}
         />
+      </div> */}
+      <div className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr,1fr,1fr] w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
+        {images.map((image, imageIndex) => (
+          <ImageWallImage
+            key={imageIndex}
+            image={{ ...image, index: imageIndex }}
+            onClick={() => onOpenDialog(imageIndex)}
+            width={360}
+          />
+        ))}
       </div>
       <GalleryDialog
         sources={images}
