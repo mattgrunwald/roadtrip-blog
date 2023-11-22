@@ -1,9 +1,9 @@
-import { IndexedGalleryImageSource } from '@/util/contentlayer-helpers'
+import { SizedImage, sizes } from '@/util/imageSizing'
 import Image from 'next/image'
 import { useMemo } from 'react'
 
 export type ImageWallImageProps = {
-  image: IndexedGalleryImageSource
+  image: SizedImage
   width: number
   onClick: () => void
 }
@@ -12,23 +12,14 @@ export default function ImageWallImage({
   width,
   onClick,
 }: ImageWallImageProps) {
-  const [rowSpan, colSpan] = useMemo(() => {
-    if (image.ratio > 1) {
-      return [2, 1]
-    } else if (image.ratio < 0.5) {
-      return [1, 2]
-    } else {
-      return [1, 1]
-    }
-  }, [image])
+  const [colSpan, rowSpan] = image.size
 
-  const sizes = useMemo(() => {
-    if (image.ratio < 0.5) {
-      // wide
-      return '(max-width: 1024px) 100vw, 50vw'
-    } else {
-      // normal
-      return '(max-width: 1024px) 50vw, 25vw'
+  const srcSizes = useMemo(() => {
+    switch (image.size) {
+      case sizes.WIDE:
+        return '(max-width: 1024px) 100vw, 50vw'
+      default:
+        return '(max-width: 1024px) 50vw, 25vw'
     }
   }, [image])
 
@@ -43,10 +34,10 @@ export default function ImageWallImage({
         height={width * image.ratio}
         placeholder="blur"
         blurDataURL={image.preview}
-        alt=""
+        alt={`${image.ratio}, ${image.size}`}
         quality={25}
         onClick={onClick}
-        sizes={sizes}
+        sizes={srcSizes}
       />
     </div>
   )

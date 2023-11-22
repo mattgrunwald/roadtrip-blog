@@ -1,18 +1,29 @@
 'use client'
 
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
+import { SizedImage } from '@/util/imageSizing'
 
 export type ImageWallProps = {
-  images: GalleryImageSource[]
+  images: SizedImage[]
   className?: string
 }
 
 export default function ImageWall({ images, className = '' }: ImageWallProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
+  // const defaultColWidth = 300
+  // const [colWidth, setColWidth] = useState(defaultColWidth)
+
+  // const colDiv = useCallback((node: HTMLElement | null) => {
+  //   if (node !== null) {
+  //     const newColWidth = node.getBoundingClientRect().width - 8
+  //     setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+  //   }
+  // }, [])
+
+  //TODO set ref as first normal sized image because why not
 
   const onOpenDialog = (current: number) => {
     setModalStarter(current)
@@ -29,7 +40,7 @@ export default function ImageWall({ images, className = '' }: ImageWallProps) {
         {images.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
-            image={{ ...image, index: imageIndex }}
+            image={image}
             onClick={() => onOpenDialog(imageIndex)}
             width={360}
           />
