@@ -22,20 +22,32 @@ export default function ImageWallImage({
     }
   }, [image])
 
+  const sizes = useMemo(() => {
+    if (image.ratio < 0.5) {
+      // wide
+      return '(max-width: 1024px) 100vw, 50vw'
+    } else {
+      // normal
+      return '(max-width: 1024px) 50vw, 25vw'
+    }
+  }, [image])
+
   return (
-    // <div className="max-w-[25%]">
-    <Image
-      className={`align-middle hover: cursor-zoom-in object-contain row-span-${rowSpan} col-span-${colSpan}`}
-      src={image.src}
-      width={width * colSpan}
-      height={width * image.ratio}
-      placeholder="blur"
-      blurDataURL={image.preview}
-      alt=""
-      quality={1}
-      onClick={onClick}
-      sizes="(max-width: 1024px) 50vw, 25vw"
-    />
-    // </div>
+    <div
+      className={`flex justify-center row-span-${rowSpan} col-span-${colSpan}`}
+    >
+      <Image
+        className={`hover:cursor-zoom-in object-cover`}
+        src={image.src}
+        width={width * colSpan}
+        height={width * image.ratio}
+        placeholder="blur"
+        blurDataURL={image.preview}
+        alt=""
+        quality={1}
+        onClick={onClick}
+        sizes={sizes}
+      />
+    </div>
   )
 }
