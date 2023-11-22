@@ -18,7 +18,7 @@ export default function ImageWall({
 }: ImageWallProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
-  const defaultColWidth = useMemo(() => colCount * 100, [colCount])
+  const defaultColWidth = 400
   const [colWidth, setColWidth] = useState(defaultColWidth)
 
   const grid = useCallback((node: HTMLElement | null) => {
