@@ -8,6 +8,9 @@ export type GalleryImageSource = {
   src: string
   preview: string
   day: number
+  /**
+   * height / width
+   */
   ratio: number
 }
 

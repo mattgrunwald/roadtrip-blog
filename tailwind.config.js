@@ -11,6 +11,9 @@ module.exports = {
       pattern: /^(bg-|text-)\w+-400/,
       variants: ['hover', 'active'],
     },
+    {
+      pattern: /^(row|col)-span-(1|2)/,
+    },
   ],
   darkMode: ['class'],
   theme: {
