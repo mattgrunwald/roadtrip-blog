@@ -1,19 +1,33 @@
 'use client'
 
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import { columnify } from '@/util/helpers'
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
-import ImageWallColumns from './ImageWallColumns'
+import ImageWallImage from './ImageWallImage'
+import { SizedImage } from '@/util/imageSizing'
 
-export type AllImagesProps = {
-  images: GalleryImageSource[]
-  numCols?: number
+export type ImageWallProps = {
+  images: SizedImage[]
+  colCount?: number
+  className?: string
 }
 
-export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
+export default function ImageWall({
+  images,
+  colCount = 4,
+  className = '',
+}: ImageWallProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
+  const defaultColWidth = useMemo(() => colCount * 100, [colCount])
+  const [colWidth, setColWidth] = useState(defaultColWidth)
+
+  const grid = useCallback((node: HTMLElement | null) => {
+    if (node !== null) {
+      const newColWidth = node.getBoundingClientRect().width / colCount
+      setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onOpenDialog = (current: number) => {
     setModalStarter(current)
@@ -24,23 +38,20 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
     setModalStarter(0)
   }
 
-  const [wideCols, narrowCols] = useMemo(() => {
-    return [columnify(images, numCols), columnify(images, 2)]
-  }, [images, numCols])
-
   return (
-    <>
-      <div className="flex flex-wrap px-1 py-0 w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
-        <ImageWallColumns
-          cols={wideCols}
-          className="hidden lg:block lg:flex-[25%] lg:max-w-[25%] px-1 py-0"
-          onClick={onOpenDialog}
-        />
-        <ImageWallColumns
-          cols={narrowCols}
-          className="flex-[50%] max-w-[50%] lg:hidden px-1 py-0"
-          onClick={onOpenDialog}
-        />
+    <div className={className}>
+      <div
+        ref={grid}
+        className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr]"
+      >
+        {images.map((image, imageIndex) => (
+          <ImageWallImage
+            key={imageIndex}
+            image={image}
+            onClick={() => onOpenDialog(imageIndex)}
+            baseWidth={colWidth}
+          />
+        ))}
       </div>
       <GalleryDialog
         sources={images}
@@ -48,6 +59,6 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
         onClose={onClose}
         startIndex={modalStarter}
       />
-    </>
+    </div>
   )
 }
