@@ -4,12 +4,13 @@ import { useMemo } from 'react'
 
 export type ImageWallImageProps = {
   image: SizedImage
-  width: number
+  baseWidth: number
   onClick: () => void
 }
+
 export default function ImageWallImage({
   image,
-  width,
+  baseWidth,
   onClick,
 }: ImageWallImageProps) {
   const [colSpan, rowSpan] = image.size
@@ -30,8 +31,8 @@ export default function ImageWallImage({
       <Image
         className={`hover:cursor-zoom-in object-cover`}
         src={image.src}
-        width={width * colSpan}
-        height={width * image.ratio}
+        width={baseWidth * colSpan}
+        height={baseWidth * colSpan * image.ratio}
         placeholder="blur"
         blurDataURL={image.preview}
         alt={`${image.ratio}, ${image.size}`}

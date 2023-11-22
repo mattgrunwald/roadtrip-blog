@@ -1,29 +1,33 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 import { SizedImage } from '@/util/imageSizing'
 
 export type ImageWallProps = {
   images: SizedImage[]
+  colCount?: number
   className?: string
 }
 
-export default function ImageWall({ images, className = '' }: ImageWallProps) {
+export default function ImageWall({
+  images,
+  colCount = 4,
+  className = '',
+}: ImageWallProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
-  // const defaultColWidth = 300
-  // const [colWidth, setColWidth] = useState(defaultColWidth)
+  const defaultColWidth = useMemo(() => colCount * 100, [colCount])
+  const [colWidth, setColWidth] = useState(defaultColWidth)
 
-  // const colDiv = useCallback((node: HTMLElement | null) => {
-  //   if (node !== null) {
-  //     const newColWidth = node.getBoundingClientRect().width - 8
-  //     setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
-  //   }
-  // }, [])
-
-  //TODO set ref as first normal sized image because why not
+  const grid = useCallback((node: HTMLElement | null) => {
+    if (node !== null) {
+      const newColWidth = node.getBoundingClientRect().width / colCount
+      setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const onOpenDialog = (current: number) => {
     setModalStarter(current)
@@ -36,13 +40,16 @@ export default function ImageWall({ images, className = '' }: ImageWallProps) {
 
   return (
     <div className={className}>
-      <div className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr]">
+      <div
+        ref={grid}
+        className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr]"
+      >
         {images.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
             image={image}
             onClick={() => onOpenDialog(imageIndex)}
-            width={360}
+            baseWidth={colWidth}
           />
         ))}
       </div>

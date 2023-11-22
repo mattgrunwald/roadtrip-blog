@@ -16,7 +16,11 @@ export default function Page() {
         images={images}
         className="max-lg:hidden w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]"
       />
-      <ImageWall images={smallImages} className="lg:hidden w-full h-[90vh]" />
+      <ImageWall
+        images={smallImages}
+        colCount={2}
+        className="lg:hidden w-full h-[90vh]"
+      />
     </div>
   )
 }
