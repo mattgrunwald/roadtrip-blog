@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 
-export type AllImagesProps = {
+export type ImageWallProps = {
   images: GalleryImageSource[]
-  numCols?: number
+  className?: string
 }
 
-export default function AllImages({ images }: AllImagesProps) {
+export default function ImageWall({ images, className = '' }: ImageWallProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
 
@@ -24,8 +24,8 @@ export default function AllImages({ images }: AllImagesProps) {
   }
 
   return (
-    <>
-      <div className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr] w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
+    <div className={className}>
+      <div className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr]">
         {images.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
@@ -41,6 +41,6 @@ export default function AllImages({ images }: AllImagesProps) {
         onClose={onClose}
         startIndex={modalStarter}
       />
-    </>
+    </div>
   )
 }
