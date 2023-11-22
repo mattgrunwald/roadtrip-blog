@@ -24,6 +24,11 @@ export default function ImageWallImage({
     }
   }, [image])
 
+  const [width, height] = useMemo(
+    () => [baseWidth * colSpan, baseWidth * colSpan * image.ratio],
+    [baseWidth, colSpan, image.ratio],
+  )
+
   return (
     <div
       className={`flex justify-center row-span-${rowSpan} col-span-${colSpan}`}
@@ -31,12 +36,11 @@ export default function ImageWallImage({
       <Image
         className={`hover:cursor-zoom-in object-cover`}
         src={image.src}
-        width={baseWidth * colSpan}
-        height={baseWidth * colSpan * image.ratio}
+        width={width}
+        height={height}
         placeholder="blur"
         blurDataURL={image.preview}
-        alt={`${baseWidth * colSpan}, ${baseWidth * colSpan * image.ratio}`}
-        quality={25}
+        alt=""
         onClick={onClick}
         sizes={srcSizes}
       />
