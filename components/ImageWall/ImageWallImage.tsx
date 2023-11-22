@@ -35,7 +35,7 @@ export default function ImageWallImage({
         height={baseWidth * colSpan * image.ratio}
         placeholder="blur"
         blurDataURL={image.preview}
-        alt={`${image.ratio}, ${image.size}`}
+        alt={`${baseWidth * colSpan}, ${baseWidth * colSpan * image.ratio}`}
         quality={25}
         onClick={onClick}
         sizes={srcSizes}
