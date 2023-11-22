@@ -50,10 +50,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write --config ./.prettierrc --ignore-path ./.prettierignore",
-    "*.{ts,tsx,js,jsx}": [
-      "eslint",
-      "jest"
-    ]
+    "*.{ts,tsx,js,jsx}": "eslint",
+    "**/*.spec.{ts,tsx,js,jsx}": "jest"
   },
   "overrides": {
     "d3-color": "3.1.0"

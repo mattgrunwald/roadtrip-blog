@@ -54,21 +54,6 @@ export function columnify<T>(data: T[], numCols: number): Indexed<T>[][] {
   return cols
 }
 
-// 4 cols.
-// pics are either 1 row 2 col, 2 row 1 col, or 1 row 1 col
-// represent this as [col, row]
-// goal is array of rows of [1,1,1,1]
-// start with [0,0,0,0]
-// while slots are available, take in the next image
-// if an image is [1,1], add it to the next available row slot (have queue of rows) on deck
-// if an image is [2,1] (wide), add it to current row if possible, else make it start next row
-// if an image is [1,2] (tall), add it to same col in next row
-// for all queued rows, fill them
-
-type NORMAL = [1, 1]
-type WIDE = [2, 1]
-type TALL = [1, 2]
-
 export type Size = [1, 1] | [2, 1] | [1, 2]
 
 export const Sizes = {
@@ -76,11 +61,11 @@ export const Sizes = {
   WIDE: [2, 1],
   TALL: [1, 2],
 }
-type Img = GalleryImageSource & {
+type WallImage = GalleryImageSource & {
   size: Size
 }
 
-type RowContent = Img | 0 | null
+type RowContent = WallImage | 0 | null
 
 /**
  *
@@ -209,8 +194,8 @@ export function findSpot(rowQueue: RowContent[][], size: Size) {
   }
 }
 
-export function organize(imgs: Img[], numRows = 4) {
-  const result: Img[] = []
+export function organize(imgs: WallImage[], numRows = 4) {
+  const result: WallImage[] = []
   const rowQueue: RowContent[][] = [newRow()]
 
   for (const image of imgs) {
@@ -221,14 +206,12 @@ export function organize(imgs: Img[], numRows = 4) {
     ...(rowQueue
       .reverse()
       .flat()
-      .filter((item) => item !== 0 && item !== null) as Img[]),
+      .filter((item) => item !== 0 && item !== null) as WallImage[]),
   )
-
-  console.log(imgs.length, result.length)
   return result
 }
 
-export function sizeImage(image: GalleryImageSource): Img {
+export function sizeImage(image: GalleryImageSource): WallImage {
   let size
   if (image.ratio > 1) {
     size = Sizes.TALL
