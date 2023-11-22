@@ -82,20 +82,57 @@ type Img = GalleryImageSource & {
 
 type RowContent = Img | 0 | null
 
+/**
+ *
+ * @returns [numColumns, startColumn]
+ */
 function mostConsecutiveFreeSpaces(row: RowContent[]) {
   let count = 0
-  let mcfsIndex = -1
+  // let mcfsIndex = -1
+  let max = 0
+  let currentStartingIndex = 0
+  let startingIndex = -1
   row.forEach((item, index) => {
     if (item === 0) {
       count++
       if (count === 1) {
-        mcfsIndex = index
+        // mcfsIndex = index
+        currentStartingIndex = index
+      }
+      if (count > max) {
+        max = count
+        startingIndex = currentStartingIndex
       }
     } else {
-      count = count === 0 ? 0 : count - 1
+      // count = count === 0 ? 0 : count - 1
+      count = 0
     }
   })
-  return [count, mcfsIndex]
+  return [count, startingIndex]
+}
+
+/**
+ *
+ * @returns [numColumns, startColumn]
+ */
+export function findConsecutiveFreeSpaces(row: RowContent[], goal: number) {
+  let count = 0
+  let startingIndex = -1
+  for (const [index, item] of row.entries()) {
+    if (item === 0) {
+      count++
+      if (count === 1) {
+        startingIndex = index
+      }
+      if (count === goal) {
+        return startingIndex
+      } else {
+      }
+    } else {
+      count = 0
+    }
+  }
+  return null
 }
 
 function findTallSpot(top: RowContent[], bottom: RowContent[]) {
@@ -108,25 +145,31 @@ function findTallSpot(top: RowContent[], bottom: RowContent[]) {
   return null
 }
 
+function newRow(): RowContent[] {
+  return [0, 0, 0, 0]
+}
+
 export function organize(imgs: Img[], numRows = 4) {
   // const images = imgs.map((img) => ({ ...img, available: true }))
   const result: Img[] = []
-  const rowQueue: RowContent[][] = []
+  const rowQueue: RowContent[][] = [newRow()]
   // while (images.filter((image) => image.available).length > 0) {
   //   const availableImages = images.filter((image) => image.available).length > 0
   //   const row = rowQueue.length > 0 ? rowQueue[0] : [0, 0, 0, 0]
   // }
-  let currentRow: RowContent[] = [0, 0, 0, 0]
+  // let currentRow: RowContent[] = [0, 0, 0, 0]
 
   function findSpot(size: Size) {
     // returns [row, column of next available spot of that size]
+
+    // check for
     const empty = rowQueue.length === 0
     switch (size) {
       case Sizes.NORMAL:
-        // if (empty) {
-        //   rowQueue.push([0, 0, 0, 0])
-        //   return [0, 0]
-        // }
+        if (empty) {
+          rowQueue.push([0, 0, 0, 0])
+          return [0, 0]
+        }
         for (let i = rowQueue.length - 1; i >= 0; i--) {
           const [_, column] = mostConsecutiveFreeSpaces(rowQueue[i])
           if (column != -1) {
@@ -134,10 +177,10 @@ export function organize(imgs: Img[], numRows = 4) {
           }
         }
       case Sizes.TALL: {
-        // if (empty) {
-        //   rowQueue.push([0, 0, 0, 0], [0, 0, 0, 0])
-        //   return [1, 0]
-        // }
+        if (empty) {
+          rowQueue.push([0, 0, 0, 0], [0, 0, 0, 0])
+          return [1, 0]
+        }
         for (let rowIndex = rowQueue.length - 1; rowIndex >= 1; rowIndex--) {
           const colIndex = findTallSpot(
             rowQueue[rowIndex],
@@ -158,10 +201,10 @@ export function organize(imgs: Img[], numRows = 4) {
         }
       }
       case Sizes.WIDE: {
-        // if (empty) {
-        //   rowQueue.push([0, 0, 0, 0])
-        //   return [0, 0]
-        // }
+        if (empty) {
+          rowQueue.push([0, 0, 0, 0])
+          return [0, 0]
+        }
         for (let rowIndex = rowQueue.length - 1; rowIndex >= 1; rowIndex--) {
           const [spots, colIndex] = mostConsecutiveFreeSpaces(
             rowQueue[rowIndex],
@@ -178,52 +221,111 @@ export function organize(imgs: Img[], numRows = 4) {
     }
   }
 
-  for (const image of imgs) {
-    if (currentRow.filter((item) => item !== 0).length === 0) {
-      // console.log('got here at beginning')
-      result.push(
-        ...(currentRow.filter((item) => item !== 0 && item !== null) as Img[]),
-      )
-      currentRow = (
-        rowQueue.length === 0 ? [0, 0, 0, 0] : rowQueue.pop()
-      ) as RowContent[]
-    }
-    const [numFree, freeIndex] = mostConsecutiveFreeSpaces(currentRow)
-    // image fits on current row
-    if (numFree >= Number(image.size[0])) {
-      currentRow[freeIndex] = image
-      switch (image.size) {
-        case Sizes.WIDE:
-          currentRow[freeIndex + 1] = null
-          break
-        case Sizes.TALL:
-          // add to next row in queue
-          if (rowQueue.length === 0) {
-            rowQueue.push([0, 0, 0, 0])
+  function findSpot2(size: Size) {
+    // returns [row, column of next available spot of that size]
+    switch (size) {
+      case Sizes.NORMAL:
+        for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
+          const column = findConsecutiveFreeSpaces(rowQueue[rowIndex], 1)
+          if (column !== null) {
+            return [rowIndex, column]
           }
-          // check if this is actually free
-          if (rowQueue[0][freeIndex] !== 0) {
-            console.log('you done goofed')
-          }
-          rowQueue[rowQueue.length - 1][freeIndex] = null
-          break
-      }
-    } else {
-      // add to new row
-      if (rowQueue.length === 0) {
-        rowQueue.push([0, 0, 0, 0])
-        rowQueue[0][freeIndex] = image
-        if (image.size === Sizes.TALL) {
-          rowQueue.push([0, 0, 0, 0])
-          rowQueue[0][freeIndex] = null
-        } else if (image.size === Sizes.WIDE) {
-          rowQueue[0][1] = null
         }
-      } else {
-        const [qRow, qCol] = findSpot(image.size)
-        rowQueue[qRow][qCol] = image
+        // all rows full
+        rowQueue.push(newRow())
+        return [0, 0]
+      case Sizes.TALL: {
+        // try to find space in existing rows
+        for (let rowIndex = rowQueue.length - 1; rowIndex > 0; rowIndex--) {
+          const colIndex = findTallSpot(
+            rowQueue[rowIndex],
+            rowQueue[rowIndex - 1],
+          )
+          if (colIndex !== null) {
+            return [rowIndex, colIndex]
+          }
+        }
+        // need at least one new row
+        const column = findConsecutiveFreeSpaces(rowQueue[0], 1)
+        if (column !== null) {
+          rowQueue.push(newRow())
+          rowQueue[0][column] = null
+          return [1, column]
+        } else {
+          // need two new rows
+          rowQueue.push(newRow(), newRow())
+          rowQueue[0][0] = null
+          return [1, 0]
+        }
       }
+      case Sizes.WIDE: {
+        for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
+          const startingColumn = findConsecutiveFreeSpaces(
+            rowQueue[rowIndex],
+            2,
+          )
+          if (startingColumn !== null) {
+            rowQueue[rowIndex][startingColumn + 1] = null
+            return [rowIndex, startingColumn]
+          }
+        }
+        rowQueue.push(newRow())
+        rowQueue[0][1] = null
+        return [0, 0]
+      }
+      default:
+        throw new Error('Not a size')
     }
+  }
+
+  for (const image of imgs) {
+    // if (currentRow.filter((item) => item !== 0).length === 0) {
+    //   // console.log('got here at beginning')
+    //   result.push(
+    //     ...(currentRow.filter((item) => item !== 0 && item !== null) as Img[]),
+    //   )
+    //   currentRow = (
+    //     rowQueue.length === 0 ? [0, 0, 0, 0] : rowQueue.pop()
+    //   ) as RowContent[]
+    // }
+
+    // const [numFree, freeIndex] = mostConsecutiveFreeSpaces(currentRow)
+    // // image fits on current row
+    // if (numFree >= Number(image.size[0])) {
+    //   currentRow[freeIndex] = image
+    //   switch (image.size) {
+    //     case Sizes.WIDE:
+    //       currentRow[freeIndex + 1] = null
+    //       break
+    //     case Sizes.TALL:
+    //       // add to next row in queue
+    //       if (rowQueue.length === 0) {
+    //         rowQueue.push([0, 0, 0, 0])
+    //       }
+    //       // check if this is actually free
+    //       if (rowQueue[0][freeIndex] !== 0) {
+    //         console.log('you done goofed')
+    //       }
+    //       rowQueue[rowQueue.length - 1][freeIndex] = null
+    //       break
+    //   }
+    // } else {
+    // add to new row
+    // if (rowQueue.length === 0) {
+    //   rowQueue.push([0, 0, 0, 0])
+    //   rowQueue[0][freeIndex] = image
+    //   if (image.size === Sizes.TALL) {
+    //     rowQueue.push([0, 0, 0, 0])
+    //     rowQueue[0][freeIndex] = null
+    //   } else if (image.size === Sizes.WIDE) {
+    //     rowQueue[0][1] = null
+    //   }
+    // } else {
+    const [qRow, qCol] = findSpot2(image.size)
+    rowQueue[qRow][qCol] = image
+    // }
+    // }
+
     // result.push(
     //   ...(currentRow.filter((item) => item !== 0 && item !== null) as Img[]),
     // )
@@ -231,9 +333,6 @@ export function organize(imgs: Img[], numRows = 4) {
     //   rowQueue.length === 0 ? [0, 0, 0, 0] : rowQueue.pop()
     // ) as RowContent[]
   }
-
-  console.log(rowQueue.length)
-
   result.push(
     ...(rowQueue.flat().filter((item) => item !== 0 && item !== null) as Img[]),
   )
