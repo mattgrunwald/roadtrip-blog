@@ -44,7 +44,7 @@ export default function ImageWallImage({
         placeholder="blur"
         blurDataURL={image.preview}
         alt=""
-        quality={1}
+        quality={25}
         onClick={onClick}
         sizes={sizes}
       />
