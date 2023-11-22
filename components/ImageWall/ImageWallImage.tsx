@@ -1,6 +1,7 @@
 import { SizedImage, sizes } from '@/util/imageSizing'
 import Image from 'next/image'
-import { useMemo } from 'react'
+import { DayLink } from './DayLink'
+import { useMemo, useState } from 'react'
 
 export type ImageWallImageProps = {
   image: SizedImage
@@ -13,6 +14,7 @@ export default function ImageWallImage({
   baseWidth,
   onClick,
 }: ImageWallImageProps) {
+  const [loaded, setLoaded] = useState(false)
   const [colSpan, rowSpan] = image.size
 
   const srcSizes = useMemo(() => {
@@ -31,8 +33,9 @@ export default function ImageWallImage({
 
   return (
     <div
-      className={`flex justify-center row-span-${rowSpan} col-span-${colSpan}`}
+      className={`flex justify-center relative row-span-${rowSpan} col-span-${colSpan}`}
     >
+      {loaded && <DayLink day={image.day} />}
       <Image
         className={`hover:cursor-zoom-in object-cover`}
         src={image.src}
@@ -43,6 +46,7 @@ export default function ImageWallImage({
         alt=""
         onClick={onClick}
         sizes={srcSizes}
+        onLoadingComplete={() => setLoaded(true)}
       />
     </div>
   )
