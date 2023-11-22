@@ -4,7 +4,8 @@ import ImageWall from '@/components/ImageWall/ImageWall'
 
 const allImages = getWallImages(allPosts)
 
-const images = organize(allImages.map((image) => sizeImage(image)))
+const sizedImages = allImages.map((image) => sizeImage(image))
+const images = organize(sizedImages)
 
 export default function Page() {
   return (

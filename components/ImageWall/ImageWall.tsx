@@ -1,10 +1,8 @@
 'use client'
 
 import { GalleryImageSource } from '@/util/contentlayer-helpers'
-import { columnify } from '@/util/helpers'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
-import ImageWallColumns from './ImageWallColumns'
 import ImageWallImage from './ImageWallImage'
 
 export type AllImagesProps = {
@@ -12,7 +10,7 @@ export type AllImagesProps = {
   numCols?: number
 }
 
-export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
+export default function AllImages({ images }: AllImagesProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
 
@@ -25,25 +23,9 @@ export default function AllImages({ images, numCols = 4 }: AllImagesProps) {
     setModalStarter(0)
   }
 
-  const [wideCols, narrowCols] = useMemo(() => {
-    return [columnify(images, numCols), columnify(images, 2)]
-  }, [images, numCols])
-
   return (
     <>
-      {/* <div className="flex flex-wrap px-1 py-0 w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
-        <ImageWallColumns
-          cols={wideCols}
-          className="hidden lg:block lg:flex-[25%] lg:max-w-[25%] px-1 py-0"
-          onClick={onOpenDialog}
-        />
-        <ImageWallColumns
-          cols={narrowCols}
-          className="flex-[50%] max-w-[50%] lg:hidden px-1 py-0"
-          onClick={onOpenDialog}
-        />
-      </div> */}
-      <div className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr,1fr,1fr] w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
+      <div className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr] w-full 3xl:w-[calc(600px+650px+320px+12rem)] h-[90vh]">
         {images.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}

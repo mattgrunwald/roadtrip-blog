@@ -35,25 +35,6 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
  */
 export const mod = (n: number, m: number) => ((n % m) + m) % m
 
-/**
- * Maps a list into `numCols` sublists which when used as a matrix has a
- * transpose can be read in original order.
- *
- * Example:
- * `columnify([1...10], 3) -> [[1,4,7,10], [2,5,8], [3,6,9]]`
- */
-export function columnify<T>(data: T[], numCols: number): Indexed<T>[][] {
-  const cols = Array(numCols)
-    .fill([])
-    .map((_) => [] as Indexed<T>[])
-  let index = 0
-  for (const [totalIndex, item] of data.entries()) {
-    cols[index].push({ ...item, index: totalIndex })
-    index = mod(index + 1, numCols)
-  }
-  return cols
-}
-
 export type Size = [1, 1] | [2, 1] | [1, 2]
 
 export const Sizes = {
@@ -61,40 +42,12 @@ export const Sizes = {
   WIDE: [2, 1],
   TALL: [1, 2],
 }
+
 type WallImage = GalleryImageSource & {
   size: Size
 }
 
 type RowContent = WallImage | 0 | null
-
-/**
- *
- * @returns [numColumns, startColumn]
- */
-function mostConsecutiveFreeSpaces(row: RowContent[]) {
-  let count = 0
-  // let mcfsIndex = -1
-  let max = 0
-  let currentStartingIndex = 0
-  let startingIndex = -1
-  row.forEach((item, index) => {
-    if (item === 0) {
-      count++
-      if (count === 1) {
-        // mcfsIndex = index
-        currentStartingIndex = index
-      }
-      if (count > max) {
-        max = count
-        startingIndex = currentStartingIndex
-      }
-    } else {
-      // count = count === 0 ? 0 : count - 1
-      count = 0
-    }
-  })
-  return [count, startingIndex]
-}
 
 /**
  *
@@ -130,14 +83,18 @@ export function findTallSpot(top: RowContent[], bottom: RowContent[]) {
   return null
 }
 
-function newRow(): RowContent[] {
-  return [0, 0, 0, 0]
+function newRow(cols: number): RowContent[] {
+  return Array(cols).fill(0)
 }
 
 /**
  * @returns `[row, column]` of next available spot of that size
  */
-export function findSpot(rowQueue: RowContent[][], size: Size) {
+export function findSpot(
+  rowQueue: RowContent[][],
+  size: Size,
+  numRows: number,
+) {
   switch (size) {
     case Sizes.NORMAL:
       // find a spot in one existing row
@@ -148,7 +105,7 @@ export function findSpot(rowQueue: RowContent[][], size: Size) {
         }
       }
       // all rows full, add to start of new row
-      rowQueue.unshift(newRow())
+      rowQueue.unshift(newRow(numRows))
       return [0, 0]
     case Sizes.TALL: {
       // try to find space in two existing rows
@@ -165,12 +122,12 @@ export function findSpot(rowQueue: RowContent[][], size: Size) {
       // need at least one new row
       const column = findConsecutiveFreeSpaces(rowQueue[0], 1)
       if (column !== null) {
-        rowQueue.unshift(newRow())
+        rowQueue.unshift(newRow(numRows))
         rowQueue[0][column] = null
         return [1, column]
       } else {
         // need two new rows
-        rowQueue.unshift(newRow(), newRow())
+        rowQueue.unshift(newRow(numRows), newRow(numRows))
         rowQueue[0][0] = null
         return [1, 0]
       }
@@ -185,7 +142,7 @@ export function findSpot(rowQueue: RowContent[][], size: Size) {
         }
       }
       // add to new row
-      rowQueue.unshift(newRow())
+      rowQueue.unshift(newRow(numRows))
       rowQueue[0][1] = null
       return [0, 0]
     }
@@ -196,10 +153,10 @@ export function findSpot(rowQueue: RowContent[][], size: Size) {
 
 export function organize(imgs: WallImage[], numRows = 4) {
   const result: WallImage[] = []
-  const rowQueue: RowContent[][] = [newRow()]
+  const rowQueue: RowContent[][] = [newRow(numRows)]
 
   for (const image of imgs) {
-    const [qRow, qCol] = findSpot(rowQueue, image.size)
+    const [qRow, qCol] = findSpot(rowQueue, image.size, numRows)
     rowQueue[qRow][qCol] = image
   }
   result.push(

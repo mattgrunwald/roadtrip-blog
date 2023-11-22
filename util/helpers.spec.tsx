@@ -32,19 +32,19 @@ describe('findTallSpot method', () => {
 
 describe('findSpot method', () => {
   it('should work for normal images', () => {
-    expect(findSpot([[0, 0, 0, 0]], Sizes.NORMAL as Size)).toEqual([0, 0])
-    expect(findSpot([[null, 0, 0, 0]], Sizes.NORMAL as Size)).toEqual([0, 1])
-    expect(findSpot([[null, null, null, null]], Sizes.NORMAL as Size)).toEqual([
-      0, 0,
-    ])
+    expect(findSpot([[0, 0, 0, 0]], Sizes.NORMAL as Size, 4)).toEqual([0, 0])
+    expect(findSpot([[null, 0, 0, 0]], Sizes.NORMAL as Size, 4)).toEqual([0, 1])
+    expect(
+      findSpot([[null, null, null, null]], Sizes.NORMAL as Size, 4),
+    ).toEqual([0, 0])
   })
 
   it('should work for tall images', () => {
-    expect(findSpot([[0, 0, 0, 0]], Sizes.TALL as Size)).toEqual([1, 0])
-    expect(findSpot([[null, 0, 0, 0]], Sizes.TALL as Size)).toEqual([1, 1])
-    expect(findSpot([[null, null, null, null]], Sizes.TALL as Size)).toEqual([
-      1, 0,
-    ])
+    expect(findSpot([[0, 0, 0, 0]], Sizes.TALL as Size, 4)).toEqual([1, 0])
+    expect(findSpot([[null, 0, 0, 0]], Sizes.TALL as Size, 4)).toEqual([1, 1])
+    expect(findSpot([[null, null, null, null]], Sizes.TALL as Size, 4)).toEqual(
+      [1, 0],
+    )
     expect(
       findSpot(
         [
@@ -52,6 +52,7 @@ describe('findSpot method', () => {
           [0, 0, 0, 0],
         ],
         Sizes.TALL as Size,
+        4,
       ),
     ).toEqual([1, 0])
     expect(
@@ -61,15 +62,16 @@ describe('findSpot method', () => {
           [null, null, null, null],
         ],
         Sizes.TALL as Size,
+        4,
       ),
     ).toEqual([1, 1])
   })
 })
 
 it('should work for wide images', () => {
-  expect(findSpot([[0, 0, 0, 0]], Sizes.WIDE as Size)).toEqual([0, 0])
-  expect(findSpot([[null, 0, 0, 0]], Sizes.WIDE as Size)).toEqual([0, 1])
-  expect(findSpot([[null, null, null, null]], Sizes.WIDE as Size)).toEqual([
+  expect(findSpot([[0, 0, 0, 0]], Sizes.WIDE as Size, 4)).toEqual([0, 0])
+  expect(findSpot([[null, 0, 0, 0]], Sizes.WIDE as Size, 4)).toEqual([0, 1])
+  expect(findSpot([[null, null, null, null]], Sizes.WIDE as Size, 4)).toEqual([
     0, 0,
   ])
 })
