@@ -52,8 +52,8 @@ export function findSpot(
   size: Size,
   numRows: number,
 ) {
-  switch (size) {
-    case sizes.NORMAL: {
+  switch (String(size)) {
+    case String(sizes.NORMAL): {
       // find a spot in one existing row
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const column = findConsecutiveFreeSpaces(rowQueue[rowIndex], 1)
@@ -65,7 +65,7 @@ export function findSpot(
       rowQueue.unshift(newRow(numRows))
       return [0, 0]
     }
-    case sizes.TALL: {
+    case String(sizes.TALL): {
       // try to find space in two existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex > 0; rowIndex--) {
         const colIndex = findTallSpot(
@@ -89,7 +89,7 @@ export function findSpot(
       rowQueue[0][0] = Spot.TAKEN
       return [1, 0]
     }
-    case sizes.WIDE: {
+    case String(sizes.WIDE): {
       // try to find two spaces in existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const startingColumn = findConsecutiveFreeSpaces(rowQueue[rowIndex], 2)
@@ -104,7 +104,7 @@ export function findSpot(
       return [0, 0]
     }
     default:
-      throw new Error(`Invalid size: "${size}, ${sizes.NORMAL}"`)
+      throw new Error(`${size} is not a valid size`)
   }
 }
 
