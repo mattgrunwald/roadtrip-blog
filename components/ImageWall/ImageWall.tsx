@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 import { SizedImage } from '@/util/imageSizing'
@@ -21,10 +21,26 @@ export default function ImageWall({
   const defaultColWidth = 400
   const [colWidth, setColWidth] = useState(defaultColWidth)
 
+  const container = useRef<HTMLDivElement>(null)
   const grid = useCallback((node: HTMLElement | null) => {
     if (node !== null) {
       const newColWidth = node.getBoundingClientRect().width / colCount
       setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    const resize = () => {
+      if (container && container.current) {
+        const newColWidth =
+          container.current.getBoundingClientRect().width / colCount
+        setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+      }
+    }
+    window.addEventListener('resize', resize)
+    return () => {
+      window.removeEventListener('resize', resize)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -39,7 +55,7 @@ export default function ImageWall({
   }
 
   return (
-    <div className={className}>
+    <div ref={container} className={className}>
       <div
         ref={grid}
         className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] lg:grid-cols-[1fr,1fr,1fr,1fr]"
