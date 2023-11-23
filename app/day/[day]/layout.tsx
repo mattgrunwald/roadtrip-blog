@@ -5,7 +5,7 @@ import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import Container from '@/util/containers'
 import { useMemo } from 'react'
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import { GalleryImageSource } from '@/util/types'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 

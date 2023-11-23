@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
-import { SizedImage } from '@/util/imageSizing'
+import { GalleryImageSource } from '@/util/types'
 
 export type ImageWallProps = {
-  images: SizedImage[]
+  images: GalleryImageSource[]
   colCount?: number
   className?: string
 }

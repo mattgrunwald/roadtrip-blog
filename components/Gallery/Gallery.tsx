@@ -16,7 +16,7 @@ import {
   UP,
   DOWN,
 } from 'react-swipeable'
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import { GalleryImageSource } from '@/util/types'
 import FullscreenButton from './FullscreenButton'
 import Counter from './Counter'
 
@@ -178,6 +178,7 @@ export default function Gallery({
                 isCloseToCurrent={imageOnDeck(index)}
                 first={index === 0}
                 modal={modal}
+                size={source.size}
               />
             ))}
         </div>

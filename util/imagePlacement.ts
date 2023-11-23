@@ -1,22 +1,11 @@
-import { GalleryImageSource } from './contentlayer-helpers'
-
-export type Size = [1, 1] | [2, 1] | [1, 2]
-export const sizes: { [k: string]: Size } = {
-  NORMAL: [1, 1],
-  WIDE: [2, 1],
-  TALL: [1, 2],
-}
-
-export type SizedImage = GalleryImageSource & {
-  size: Size
-}
+import { GalleryImageSource, Size, sizes } from './types'
 
 enum Spot {
   AVAILABLE = 0,
   TAKEN,
 }
 
-type RowContent = SizedImage | Spot
+type RowContent = GalleryImageSource | Spot
 
 /**
  * @returns [numColumns, startColumn]
@@ -63,8 +52,8 @@ export function findSpot(
   size: Size,
   numRows: number,
 ) {
-  switch (size) {
-    case sizes.NORMAL:
+  switch (String(size)) {
+    case String(sizes.NORMAL): {
       // find a spot in one existing row
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const column = findConsecutiveFreeSpaces(rowQueue[rowIndex], 1)
@@ -75,7 +64,8 @@ export function findSpot(
       // all rows full, add to start of new row
       rowQueue.unshift(newRow(numRows))
       return [0, 0]
-    case sizes.TALL: {
+    }
+    case String(sizes.TALL): {
       // try to find space in two existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex > 0; rowIndex--) {
         const colIndex = findTallSpot(
@@ -93,14 +83,13 @@ export function findSpot(
         rowQueue.unshift(newRow(numRows))
         rowQueue[0][column] = Spot.TAKEN
         return [1, column]
-      } else {
-        // need two new rows
-        rowQueue.unshift(newRow(numRows), newRow(numRows))
-        rowQueue[0][0] = Spot.TAKEN
-        return [1, 0]
       }
+      // need two new rows
+      rowQueue.unshift(newRow(numRows), newRow(numRows))
+      rowQueue[0][0] = Spot.TAKEN
+      return [1, 0]
     }
-    case sizes.WIDE: {
+    case String(sizes.WIDE): {
       // try to find two spaces in existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const startingColumn = findConsecutiveFreeSpaces(rowQueue[rowIndex], 2)
@@ -115,11 +104,11 @@ export function findSpot(
       return [0, 0]
     }
     default:
-      throw new Error('Not a size')
+      throw new Error(`${size} is not a valid size`)
   }
 }
 
-export function fitToGrid(imgs: SizedImage[], numRows = 4) {
+export function fitToGrid(imgs: GalleryImageSource[], numRows = 4) {
   const rowQueue: RowContent[][] = [newRow(numRows)]
 
   for (const image of imgs) {
@@ -132,17 +121,5 @@ export function fitToGrid(imgs: SizedImage[], numRows = 4) {
     .flat()
     .filter(
       (item) => item !== Spot.AVAILABLE && item !== Spot.TAKEN,
-    ) as SizedImage[]
-}
-
-export function sizeImage(image: GalleryImageSource): SizedImage {
-  let size
-  if (image.ratio > 1) {
-    size = sizes.TALL
-  } else if (image.ratio < 0.5) {
-    size = sizes.WIDE
-  } else {
-    size = sizes.NORMAL
-  }
-  return { ...image, size: size as Size }
+    ) as GalleryImageSource[]
 }
