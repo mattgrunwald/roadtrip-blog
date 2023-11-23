@@ -3,7 +3,7 @@ import {
   findSpot,
   findTallSpot,
 } from './imagePlacement'
-import { Size, sizes } from './contentlayer-helpers'
+import { Size, sizes } from './types'
 
 describe('findConsecutiveFreespaces method', () => {
   it('should work for normal images', () => {

@@ -3,24 +3,7 @@ import path from 'path'
 import sharp, { Metadata } from 'sharp'
 import GithubSlugger from 'github-slugger'
 import { AboutPage } from '@/.contentlayer/generated'
-
-export type GalleryImageSource = {
-  src: string
-  preview: string
-  day: number
-  /**
-   * height / width
-   */
-  ratio: number
-  size: Size
-}
-
-export type Size = [1, 1] | [2, 1] | [1, 2]
-export const sizes: { [k: string]: Size } = {
-  NORMAL: [1, 1],
-  WIDE: [2, 1],
-  TALL: [1, 2],
-}
+import { GalleryImageSource, Size, sizes } from './types'
 
 export async function convertImages(
   day: number | string,
@@ -78,12 +61,6 @@ function getNormalSize({ width, height, orientation }: Metadata) {
   return (orientation || 0) >= 5
     ? { width: height, height: width }
     : { width, height }
-}
-
-export type Heading = {
-  level?: number
-  text?: string
-  slug?: string
 }
 
 export async function generateHeadings(doc: AboutPage) {

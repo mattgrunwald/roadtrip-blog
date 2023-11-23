@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react'
 import PageGallery from './Gallery'
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import { GalleryImageSource } from '@/util/types'
 
 export type DialogProps = {
   sources: GalleryImageSource[]

@@ -1,4 +1,4 @@
-import { Size, GalleryImageSource, sizes } from './contentlayer-helpers'
+import { GalleryImageSource, Size, sizes } from './types'
 
 enum Spot {
   AVAILABLE = 0,
@@ -53,7 +53,7 @@ export function findSpot(
   numRows: number,
 ) {
   switch (size) {
-    case sizes.NORMAL:
+    case sizes.NORMAL: {
       // find a spot in one existing row
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const column = findConsecutiveFreeSpaces(rowQueue[rowIndex], 1)
@@ -64,6 +64,7 @@ export function findSpot(
       // all rows full, add to start of new row
       rowQueue.unshift(newRow(numRows))
       return [0, 0]
+    }
     case sizes.TALL: {
       // try to find space in two existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex > 0; rowIndex--) {
@@ -82,12 +83,11 @@ export function findSpot(
         rowQueue.unshift(newRow(numRows))
         rowQueue[0][column] = Spot.TAKEN
         return [1, column]
-      } else {
-        // need two new rows
-        rowQueue.unshift(newRow(numRows), newRow(numRows))
-        rowQueue[0][0] = Spot.TAKEN
-        return [1, 0]
       }
+      // need two new rows
+      rowQueue.unshift(newRow(numRows), newRow(numRows))
+      rowQueue[0][0] = Spot.TAKEN
+      return [1, 0]
     }
     case sizes.WIDE: {
       // try to find two spaces in existing rows
@@ -104,7 +104,7 @@ export function findSpot(
       return [0, 0]
     }
     default:
-      throw new Error('Not a size')
+      throw new Error(`Invalid size: "${size}, ${sizes.NORMAL}"`)
   }
 }
 

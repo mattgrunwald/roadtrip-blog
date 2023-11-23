@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import { GalleryImageSource } from '@/util/types'
 
 export type ImageWallProps = {
   images: GalleryImageSource[]

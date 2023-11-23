@@ -1,4 +1,4 @@
-import { Size, sizes } from '@/util/contentlayer-helpers'
+import { Size, sizes } from '@/util/types'
 import Image from 'next/image'
 import { MouseEventHandler, useMemo } from 'react'
 

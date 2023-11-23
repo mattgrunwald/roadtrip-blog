@@ -1,4 +1,4 @@
-import { GalleryImageSource, sizes } from '@/util/contentlayer-helpers'
+import { GalleryImageSource, sizes } from '@/util/types'
 import Image from 'next/image'
 import { DayLink } from './DayLink'
 import { useMemo, useState } from 'react'

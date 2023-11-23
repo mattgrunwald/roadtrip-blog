@@ -3,7 +3,7 @@
 import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import Icons from './Icons'
-import { Heading } from '@/util/contentlayer-helpers'
+import { Heading } from '@/util/types'
 import { ACCENT_TEXT_CLASS } from '@/util/consts'
 
 export default function TableOfContents({
