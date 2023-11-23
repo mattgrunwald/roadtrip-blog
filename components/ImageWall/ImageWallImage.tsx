@@ -1,10 +1,10 @@
-import { SizedImage, sizes } from '@/util/imageSizing'
+import { GalleryImageSource, sizes } from '@/util/types'
 import Image from 'next/image'
 import { DayLink } from './DayLink'
 import { useMemo, useState } from 'react'
 
 export type ImageWallImageProps = {
-  image: SizedImage
+  image: GalleryImageSource
   baseWidth: number
   onClick: () => void
 }

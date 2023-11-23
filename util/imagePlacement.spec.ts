@@ -1,10 +1,9 @@
 import {
-  Size,
-  sizes,
   findConsecutiveFreeSpaces,
   findSpot,
   findTallSpot,
-} from './imageSizing'
+} from './imagePlacement'
+import { Size, sizes } from './types'
 
 describe('findConsecutiveFreespaces method', () => {
   it('should work for normal images', () => {

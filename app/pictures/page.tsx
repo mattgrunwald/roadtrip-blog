@@ -1,13 +1,12 @@
 import { getWallImages } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import ImageWall from '@/components/ImageWall/ImageWall'
-import { fitToGrid, sizeImage } from '@/util/imageSizing'
+import { fitToGrid } from '@/util/imagePlacement'
 
 const allImages = getWallImages(allPosts)
 
-const sizedImages = allImages.map((image) => sizeImage(image))
-const images = fitToGrid(sizedImages)
-const smallImages = fitToGrid(sizedImages, 2)
+const images = fitToGrid(allImages)
+const smallImages = fitToGrid(allImages, 2)
 
 export default function Page() {
   return (

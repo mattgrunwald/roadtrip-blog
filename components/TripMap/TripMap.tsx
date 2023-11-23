@@ -10,7 +10,7 @@ import { Placeholder } from 'geo/placeholder'
 import usGeo from 'geo/us-albers.json'
 import { useRouter } from 'next/navigation'
 
-export type TripMapParams = {
+export type TripMapProps = {
   allMarkers: MarkerWithDay[]
   showAllMarkersAlways?: boolean
   markers?: GeneratedMarker[]
@@ -20,7 +20,7 @@ export default function TripMap({
   allMarkers,
   showAllMarkersAlways = false,
   markers,
-}: TripMapParams) {
+}: TripMapProps) {
   const router = useRouter()
 
   const routeToDay = useCallback(

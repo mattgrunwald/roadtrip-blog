@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { GalleryDialog } from './GalleryDialog'
 import PageGallery from './Gallery'
-import { GalleryImageSource } from '@/util/contentlayer-helpers'
+import { GalleryImageSource } from '@/util/types'
 
 type GalleryProps = {
   sources: GalleryImageSource[]
