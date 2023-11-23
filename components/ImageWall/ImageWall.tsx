@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 import { SizedImage } from '@/util/imageSizing'
@@ -42,7 +42,7 @@ export default function ImageWall({
     <div className={className}>
       <div
         ref={grid}
-        className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] md:grid-cols-[1fr,1fr,1fr,1fr]"
+        className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] lg:grid-cols-[1fr,1fr,1fr,1fr]"
       >
         {images.map((image, imageIndex) => (
           <ImageWallImage
