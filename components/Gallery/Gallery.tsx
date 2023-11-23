@@ -178,6 +178,7 @@ export default function Gallery({
                 isCloseToCurrent={imageOnDeck(index)}
                 first={index === 0}
                 modal={modal}
+                size={source.size}
               />
             ))}
         </div>
