@@ -1,22 +1,11 @@
-import { GalleryImageSource } from './contentlayer-helpers'
-
-export type Size = [1, 1] | [2, 1] | [1, 2]
-export const sizes: { [k: string]: Size } = {
-  NORMAL: [1, 1],
-  WIDE: [2, 1],
-  TALL: [1, 2],
-}
-
-export type SizedImage = GalleryImageSource & {
-  size: Size
-}
+import { Size, GalleryImageSource, sizes } from './contentlayer-helpers'
 
 enum Spot {
   AVAILABLE = 0,
   TAKEN,
 }
 
-type RowContent = SizedImage | Spot
+type RowContent = GalleryImageSource | Spot
 
 /**
  * @returns [numColumns, startColumn]
@@ -119,7 +108,7 @@ export function findSpot(
   }
 }
 
-export function fitToGrid(imgs: SizedImage[], numRows = 4) {
+export function fitToGrid(imgs: GalleryImageSource[], numRows = 4) {
   const rowQueue: RowContent[][] = [newRow(numRows)]
 
   for (const image of imgs) {
@@ -132,17 +121,5 @@ export function fitToGrid(imgs: SizedImage[], numRows = 4) {
     .flat()
     .filter(
       (item) => item !== Spot.AVAILABLE && item !== Spot.TAKEN,
-    ) as SizedImage[]
-}
-
-export function sizeImage(image: GalleryImageSource): SizedImage {
-  let size
-  if (image.ratio > 1) {
-    size = sizes.TALL
-  } else if (image.ratio < 0.5) {
-    size = sizes.WIDE
-  } else {
-    size = sizes.NORMAL
-  }
-  return { ...image, size: size as Size }
+    ) as GalleryImageSource[]
 }

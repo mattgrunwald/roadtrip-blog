@@ -20,6 +20,9 @@ const GalleryImageSource = defineNestedType(() => ({
   fields: {
     src: { type: 'string', required: true },
     preview: { type: 'string', required: true },
+    day: { type: 'number', required: true },
+    ratio: { type: 'number', description: 'height / width', required: true },
+    size: { type: 'list', of: { type: 'number' }, required: true },
   },
 }))
 
