@@ -1,4 +1,4 @@
-import { GalleryImageSource, Size, sizes } from './types'
+import { GalleryImageSource, Size } from './types'
 
 enum Spot {
   AVAILABLE = 0,
@@ -52,8 +52,8 @@ export function findSpot(
   size: Size,
   numRows: number,
 ) {
-  switch (String(size)) {
-    case String(sizes.NORMAL): {
+  switch (size) {
+    case Size.Normal: {
       // find a spot in one existing row
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const column = findConsecutiveFreeSpaces(rowQueue[rowIndex], 1)
@@ -65,7 +65,7 @@ export function findSpot(
       rowQueue.unshift(newRow(numRows))
       return [0, 0]
     }
-    case String(sizes.TALL): {
+    case Size.Tall: {
       // try to find space in two existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex > 0; rowIndex--) {
         const colIndex = findTallSpot(
@@ -89,7 +89,7 @@ export function findSpot(
       rowQueue[0][0] = Spot.TAKEN
       return [1, 0]
     }
-    case String(sizes.WIDE): {
+    case Size.Wide: {
       // try to find two spaces in existing rows
       for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
         const startingColumn = findConsecutiveFreeSpaces(rowQueue[rowIndex], 2)
