@@ -14,25 +14,29 @@ export async function convertImages(
   for (const name of fileNames) {
     const src = `/images/day/${day}/${name}`
     const { preview, ratio } = await generatePreview(`public/${src}`)
+    const size = sizeImage(ratio)
+    const [colSpan, rowSpan] = sizes[size]
     res.push({
       src,
       preview,
       ratio,
       day: Number(day),
-      size: sizeImage(ratio),
+      size,
+      rowSpan,
+      colSpan,
     })
   }
   return res
 }
 
-export function sizeImage(ratio: number): Size {
+function sizeImage(ratio: number): Size {
   let size: Size
   if (ratio > 1) {
-    size = sizes.TALL
+    size = Size.Tall
   } else if (ratio < 0.5) {
-    size = sizes.WIDE
+    size = Size.Wide
   } else {
-    size = sizes.NORMAL
+    size = Size.Normal
   }
   return size
 }

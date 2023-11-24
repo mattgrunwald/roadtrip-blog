@@ -1,31 +1,45 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 import { GalleryImageSource } from '@/util/types'
+import { fitToGrid } from '@/util/imagePlacement'
 
 export type ImageWallProps = {
   images: GalleryImageSource[]
-  colCount?: number
-  className?: string
+  wideColCount?: number
+  narrowColCount?: number
 }
 
 export default function ImageWall({
   images,
-  colCount = 4,
-  className = '',
+  wideColCount = 4,
+  narrowColCount = 2,
 }: ImageWallProps) {
+  const defaultColWidth = 400
+  const wideBreakpoint = 1024
+
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
-  const defaultColWidth = 400
   const [colWidth, setColWidth] = useState(defaultColWidth)
+  const [colCount, setColCount] = useState(wideColCount)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const container = useRef<HTMLDivElement>(null)
+
+  const updateWidth = (node: HTMLElement) => {
+    const width = node.getBoundingClientRect().width
+    const newColCount = width >= wideBreakpoint ? wideColCount : narrowColCount
+    setColCount(newColCount)
+    const newColWidth = width / newColCount
+    setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+  }
+
   const grid = useCallback((node: HTMLElement | null) => {
     if (node !== null) {
-      const newColWidth = node.getBoundingClientRect().width / colCount
-      setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+      updateWidth(node)
+      setIsLoaded(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -33,9 +47,7 @@ export default function ImageWall({
   useEffect(() => {
     const resize = () => {
       if (container && container.current) {
-        const newColWidth =
-          container.current.getBoundingClientRect().width / colCount
-        setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
+        updateWidth(container.current)
       }
     }
     window.addEventListener('resize', resize)
@@ -54,13 +66,18 @@ export default function ImageWall({
     setModalStarter(0)
   }
 
+  const gridImages = useMemo(
+    () => fitToGrid(images, colCount),
+    [colCount, images],
+  )
+
   return (
-    <div ref={container} className={className}>
+    <>
       <div
-        ref={grid}
-        className="grid gap-x-2 gap-y-2 grid-cols-[1fr,1fr] lg:grid-cols-[1fr,1fr,1fr,1fr]"
+        ref={isLoaded ? container : grid}
+        className={`grid gap-x-2 gap-y-2 grid-cols-${colCount}`}
       >
-        {images.map((image, imageIndex) => (
+        {gridImages.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
             image={image}
@@ -75,6 +92,6 @@ export default function ImageWall({
         onClose={onClose}
         startIndex={modalStarter}
       />
-    </div>
+    </>
   )
 }

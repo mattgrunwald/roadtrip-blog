@@ -4,11 +4,18 @@ export type MarkerWithDay = Marker & {
   day: number
 }
 
-export type Size = [1, 1] | [2, 1] | [1, 2]
-export const sizes: { [k: string]: Size } = {
-  NORMAL: [1, 1],
-  WIDE: [2, 1],
-  TALL: [1, 2],
+export enum Size {
+  Normal,
+  Wide,
+  Tall,
+}
+
+type WallPosition = [1, 1] | [1, 2] | [2, 1]
+
+export const sizes: { [k in Size]: WallPosition } = {
+  [Size.Normal]: [1, 1],
+  [Size.Tall]: [1, 2],
+  [Size.Wide]: [2, 1],
 }
 
 export type GalleryImageSource = {
@@ -20,6 +27,8 @@ export type GalleryImageSource = {
    */
   ratio: number
   size: Size
+  rowSpan: number
+  colSpan: number
 }
 
 export type Heading = {

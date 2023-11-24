@@ -14,6 +14,9 @@ module.exports = {
     {
       pattern: /^(row|col)-span-(1|2)/,
     },
+    {
+      pattern: /^grid-cols-(\d){1,2}/,
+    },
   ],
   darkMode: ['class'],
   theme: {

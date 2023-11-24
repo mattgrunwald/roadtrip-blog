@@ -24,10 +24,10 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
   const pics = []
   for (const post of posts.sort((a, b) => a.day - b.day)) {
     if (post.day > 2 && post.day < 31) {
-      pics.push(...post.galleryImages)
+      pics.push(post.galleryImages)
     }
   }
-  return pics
+  return pics.flat()
 }
 
 /**

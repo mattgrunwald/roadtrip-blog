@@ -1,4 +1,4 @@
-import { GalleryImageSource, sizes } from '@/util/types'
+import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
 import { DayLink } from './DayLink'
 import { useMemo, useState } from 'react'
@@ -15,11 +15,10 @@ export default function ImageWallImage({
   onClick,
 }: ImageWallImageProps) {
   const [loaded, setLoaded] = useState(false)
-  const [colSpan, rowSpan] = image.size
 
   const srcSizes = useMemo(() => {
     switch (image.size) {
-      case sizes.WIDE:
+      case Size.Wide:
         return '(max-width: 1024px) 100vw, 50vw'
       default:
         return '(max-width: 1024px) 50vw, 25vw'
@@ -27,13 +26,13 @@ export default function ImageWallImage({
   }, [image])
 
   const [width, height] = useMemo(
-    () => [baseWidth * colSpan, baseWidth * colSpan * image.ratio],
-    [baseWidth, colSpan, image.ratio],
+    () => [baseWidth * image.colSpan, baseWidth * image.colSpan * image.ratio],
+    [baseWidth, image.colSpan, image.ratio],
   )
 
   return (
     <div
-      className={`flex justify-center relative row-span-${rowSpan} col-span-${colSpan}`}
+      className={`flex justify-center relative row-span-${image.rowSpan} col-span-${image.colSpan}`}
     >
       {loaded && <DayLink day={image.day} />}
       <Image
