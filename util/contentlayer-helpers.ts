@@ -3,7 +3,7 @@ import path from 'path'
 import sharp, { Metadata } from 'sharp'
 import GithubSlugger from 'github-slugger'
 import { AboutPage } from '@/.contentlayer/generated'
-import { GalleryImageSource, Size } from './types'
+import { GalleryImageSource, Size, sizes } from './types'
 
 export async function convertImages(
   day: number | string,
@@ -14,18 +14,22 @@ export async function convertImages(
   for (const name of fileNames) {
     const src = `/images/day/${day}/${name}`
     const { preview, ratio } = await generatePreview(`public/${src}`)
+    const size = sizeImage(ratio)
+    const [colSpan, rowSpan] = sizes[size]
     res.push({
       src,
       preview,
       ratio,
       day: Number(day),
-      size: sizeImage(ratio),
+      size,
+      rowSpan,
+      colSpan,
     })
   }
   return res
 }
 
-export function sizeImage(ratio: number): Size {
+function sizeImage(ratio: number): Size {
   let size: Size
   if (ratio > 1) {
     size = Size.Tall

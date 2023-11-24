@@ -10,6 +10,14 @@ export enum Size {
   Tall,
 }
 
+type WallPosition = [1, 1] | [1, 2] | [2, 1]
+
+export const sizes: { [k in Size]: WallPosition } = {
+  [Size.Normal]: [1, 1],
+  [Size.Tall]: [1, 2],
+  [Size.Wide]: [2, 1],
+}
+
 export type GalleryImageSource = {
   src: string
   preview: string
@@ -19,6 +27,8 @@ export type GalleryImageSource = {
    */
   ratio: number
   size: Size
+  rowSpan: number
+  colSpan: number
 }
 
 export type Heading = {

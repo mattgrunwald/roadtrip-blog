@@ -15,16 +15,6 @@ export default function ImageWallImage({
   onClick,
 }: ImageWallImageProps) {
   const [loaded, setLoaded] = useState(false)
-  const [colSpan, rowSpan] = useMemo(() => {
-    switch (image.size) {
-      case Size.Normal:
-        return [1, 1]
-      case Size.Tall:
-        return [1, 2]
-      case Size.Wide:
-        return [2, 1]
-    }
-  }, [image])
 
   const srcSizes = useMemo(() => {
     switch (image.size) {
@@ -36,13 +26,13 @@ export default function ImageWallImage({
   }, [image])
 
   const [width, height] = useMemo(
-    () => [baseWidth * colSpan, baseWidth * colSpan * image.ratio],
-    [baseWidth, colSpan, image.ratio],
+    () => [baseWidth * image.colSpan, baseWidth * image.colSpan * image.ratio],
+    [baseWidth, image.colSpan, image.ratio],
   )
 
   return (
     <div
-      className={`flex justify-center relative row-span-${rowSpan} col-span-${colSpan}`}
+      className={`flex justify-center relative row-span-${image.rowSpan} col-span-${image.colSpan}`}
     >
       {loaded && <DayLink day={image.day} />}
       <Image
