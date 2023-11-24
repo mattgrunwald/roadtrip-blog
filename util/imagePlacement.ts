@@ -108,7 +108,7 @@ export function findSpot(
   }
 }
 
-export function fitToGrid(imgs: GalleryImageSource[], numRows = 4) {
+export function fitToGrid(imgs: GalleryImageSource[], numRows: number) {
   const rowQueue: RowContent[][] = [newRow(numRows)]
 
   for (const image of imgs) {

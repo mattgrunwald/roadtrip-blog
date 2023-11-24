@@ -15,16 +15,6 @@ export default function ImageWallImage({
   onClick,
 }: ImageWallImageProps) {
   const [loaded, setLoaded] = useState(false)
-  const [colSpan, rowSpan] = useMemo(() => {
-    switch (image.size) {
-      case Size.Normal:
-        return [1, 1]
-      case Size.Tall:
-        return [1, 2]
-      case Size.Wide:
-        return [2, 1]
-    }
-  }, [image])
 
   const srcSizes = useMemo(() => {
     switch (image.size) {
