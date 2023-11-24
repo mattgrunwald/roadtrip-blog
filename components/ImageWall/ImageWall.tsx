@@ -1,20 +1,19 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { fitToGrid } from '@/util/imagePlacement'
+import { GalleryImageSource } from '@/util/types'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
-import { GalleryImageSource } from '@/util/types'
 
 export type ImageWallProps = {
-  wideImages: GalleryImageSource[]
-  narrowImages: GalleryImageSource[]
+  images: GalleryImageSource[]
   wideColCount?: number
   narrowColCount?: number
 }
 
 export default function ImageWall({
-  wideImages,
-  narrowImages,
+  images,
   wideColCount = 4,
   narrowColCount = 2,
 }: ImageWallProps) {
@@ -26,7 +25,6 @@ export default function ImageWall({
   const [colWidth, setColWidth] = useState(defaultColWidth)
   const [colCount, setColCount] = useState(wideColCount)
   const [isLoaded, setIsLoaded] = useState(false)
-  const [images, setImages] = useState(wideImages)
 
   const container = useRef<HTMLDivElement>(null)
 
@@ -36,10 +34,9 @@ export default function ImageWall({
     setColCount(newColCount)
     const newColWidth = width / newColCount
     setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
-    const newImages = width >= wideBreakpoint ? wideImages : narrowImages
-    setImages(newImages)
     console.log(newColCount, newColWidth, width >= wideBreakpoint)
   }
+
   const grid = useCallback((node: HTMLElement | null) => {
     if (node !== null) {
       updateWidth(node)
@@ -70,13 +67,18 @@ export default function ImageWall({
     setModalStarter(0)
   }
 
+  const gridImages = useMemo(
+    () => fitToGrid(images, colCount),
+    [colCount, images],
+  )
+
   return (
     <>
       <div
         ref={isLoaded ? container : grid}
         className={`grid gap-x-2 gap-y-2 grid-cols-${colCount}`}
       >
-        {images.map((image, imageIndex) => (
+        {gridImages.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
             image={image}
@@ -86,7 +88,7 @@ export default function ImageWall({
         ))}
       </div>
       <GalleryDialog
-        sources={images}
+        sources={gridImages}
         isOpen={isOpen}
         onClose={onClose}
         startIndex={modalStarter}
