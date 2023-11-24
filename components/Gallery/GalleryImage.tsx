@@ -1,4 +1,4 @@
-import { Size, sizes } from '@/util/types'
+import { Size } from '@/util/types'
 import Image from 'next/image'
 import { MouseEventHandler, useMemo } from 'react'
 
@@ -27,7 +27,7 @@ export const GalleryImage = ({
     () =>
       modal
         ? `(max-width: 400px) 400px, (max-width:640px) 500px, ${
-            size === sizes.WIDE ? '100vw' : '100vh'
+            size === Size.Wide ? '100vw' : '100vh'
           }`
         : '(max-width: 400px) 350px, (max-width:640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 580px',
     [modal, size],

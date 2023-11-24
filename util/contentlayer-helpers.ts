@@ -3,7 +3,7 @@ import path from 'path'
 import sharp, { Metadata } from 'sharp'
 import GithubSlugger from 'github-slugger'
 import { AboutPage } from '@/.contentlayer/generated'
-import { GalleryImageSource, Size, sizes } from './types'
+import { GalleryImageSource, Size } from './types'
 
 export async function convertImages(
   day: number | string,
@@ -28,11 +28,11 @@ export async function convertImages(
 export function sizeImage(ratio: number): Size {
   let size: Size
   if (ratio > 1) {
-    size = sizes.TALL
+    size = Size.Tall
   } else if (ratio < 0.5) {
-    size = sizes.WIDE
+    size = Size.Wide
   } else {
-    size = sizes.NORMAL
+    size = Size.Normal
   }
   return size
 }

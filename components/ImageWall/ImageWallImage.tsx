@@ -1,4 +1,4 @@
-import { GalleryImageSource, sizes } from '@/util/types'
+import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
 import { DayLink } from './DayLink'
 import { useMemo, useState } from 'react'
@@ -15,11 +15,20 @@ export default function ImageWallImage({
   onClick,
 }: ImageWallImageProps) {
   const [loaded, setLoaded] = useState(false)
-  const [colSpan, rowSpan] = image.size
+  const [colSpan, rowSpan] = useMemo(() => {
+    switch (image.size) {
+      case Size.Normal:
+        return [1, 1]
+      case Size.Tall:
+        return [1, 2]
+      case Size.Wide:
+        return [2, 1]
+    }
+  }, [image])
 
   const srcSizes = useMemo(() => {
     switch (image.size) {
-      case sizes.WIDE:
+      case Size.Wide:
         return '(max-width: 1024px) 100vw, 50vw'
       default:
         return '(max-width: 1024px) 50vw, 25vw'
