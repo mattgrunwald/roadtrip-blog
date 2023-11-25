@@ -4,7 +4,7 @@ Simple travel blog built with [Next.js](https://nextjs.org/) 13 app dir, [Conten
 
 Text styling, theme and structure based on [this repo](https://github.com/shadcn/next-contentlayer).
 
-<https://roadtrip-blog.vercel.app>
+<https://roadtrip.gdog>
 
 ## Contentlayer
 
