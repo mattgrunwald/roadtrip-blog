@@ -23,7 +23,7 @@ export default function ImageWall({
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
   const [colWidth, setColWidth] = useState(defaultColWidth)
-  const [colCount, setColCount] = useState(wideColCount)
+  const [colCount, setColCount] = useState<number | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
   const container = useRef<HTMLDivElement>(null)
@@ -67,7 +67,7 @@ export default function ImageWall({
   }
 
   const gridImages = useMemo(
-    () => fitToGrid(images, colCount),
+    () => (colCount === null ? [] : fitToGrid(images, colCount)),
     [colCount, images],
   )
 
