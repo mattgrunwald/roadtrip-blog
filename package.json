@@ -23,7 +23,7 @@
     "eslint": "8.52.0",
     "eslint-config-next": "^13.5.2",
     "github-slugger": "^2.0.0",
-    "next": "^13.5.2",
+    "next": "^14.0.3",
     "next-contentlayer": "^0.3.3",
     "next-themes": "^0.2.1",
     "postcss": "8.4.31",
@@ -54,6 +54,9 @@
     "*.{ts,js}": "jest"
   },
   "overrides": {
-    "d3-color": "3.1.0"
+    "d3-color": "3.1.0",
+    "next-contentlayer": {
+      "next": "$next"
+    }
   }
 }
