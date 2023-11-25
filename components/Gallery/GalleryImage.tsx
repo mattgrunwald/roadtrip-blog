@@ -32,11 +32,17 @@ export const GalleryImage = ({
         : '(max-width: 400px) 350px, (max-width:640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 580px',
     [modal, size],
   )
+
+  const objectFit = useMemo(
+    () => (modal || size === Size.Normal ? 'object-cover' : 'object-contain'),
+    [modal, size],
+  )
+
   return (
     <Image
       src={src}
       className={`
-      object-contain
+      ${objectFit}
       ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
       ${isCurrent ? 'visible' : 'invisible'}
       `}
