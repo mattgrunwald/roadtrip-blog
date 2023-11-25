@@ -50,7 +50,7 @@ function newRow(cols: number): RowContent[] {
 export function findSpot(
   rowQueue: RowContent[][],
   size: Size,
-  numRows: number,
+  numCols: number,
 ) {
   switch (size) {
     case Size.Normal: {
@@ -62,7 +62,7 @@ export function findSpot(
         }
       }
       // all rows full, add to start of new row
-      rowQueue.unshift(newRow(numRows))
+      rowQueue.unshift(newRow(numCols))
       return [0, 0]
     }
     case Size.Tall: {
@@ -80,12 +80,12 @@ export function findSpot(
       // need at least one new row
       const column = findConsecutiveFreeSpaces(rowQueue[0], 1)
       if (column !== null) {
-        rowQueue.unshift(newRow(numRows))
+        rowQueue.unshift(newRow(numCols))
         rowQueue[0][column] = Spot.TAKEN
         return [1, column]
       }
       // need two new rows
-      rowQueue.unshift(newRow(numRows), newRow(numRows))
+      rowQueue.unshift(newRow(numCols), newRow(numCols))
       rowQueue[0][0] = Spot.TAKEN
       return [1, 0]
     }
@@ -99,7 +99,7 @@ export function findSpot(
         }
       }
       // add to new row
-      rowQueue.unshift(newRow(numRows))
+      rowQueue.unshift(newRow(numCols))
       rowQueue[0][1] = Spot.TAKEN
       return [0, 0]
     }
@@ -108,11 +108,11 @@ export function findSpot(
   }
 }
 
-export function fitToGrid(imgs: GalleryImageSource[], numRows: number) {
-  const rowQueue: RowContent[][] = [newRow(numRows)]
+export function fitToGrid(imgs: GalleryImageSource[], numCols: number) {
+  const rowQueue: RowContent[][] = [newRow(numCols)]
 
   for (const image of imgs) {
-    const [qRow, qCol] = findSpot(rowQueue, image.size, numRows)
+    const [qRow, qCol] = findSpot(rowQueue, image.size, numCols)
     rowQueue[qRow][qCol] = image
   }
 
