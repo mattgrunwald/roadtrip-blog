@@ -75,7 +75,7 @@ export default function ImageWall({
     <>
       <div
         ref={isLoaded ? container : grid}
-        className={`grid gap-x-2 gap-y-2 grid-cols-${colCount}`}
+        className={`grid gap-x-1 gap-y-1 grid-cols-${colCount}`}
       >
         {gridImages.map((image, imageIndex) => (
           <ImageWallImage
