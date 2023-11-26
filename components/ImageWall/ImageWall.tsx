@@ -87,7 +87,7 @@ export default function ImageWall({
         ))}
       </div>
       <GalleryDialog
-        sources={images}
+        sources={gridImages}
         isOpen={isOpen}
         onClose={onClose}
         startIndex={modalStarter}

@@ -34,7 +34,7 @@ export const GalleryImage = ({
   )
 
   const objectFit = useMemo(
-    () => (modal || size === Size.Normal ? 'object-cover' : 'object-contain'),
+    () => (!modal && size === Size.Normal ? 'object-cover' : 'object-contain'),
     [modal, size],
   )
 
