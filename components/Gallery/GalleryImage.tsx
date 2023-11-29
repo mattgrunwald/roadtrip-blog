@@ -36,7 +36,7 @@ export const GalleryImage = ({
   const objectFit = useMemo(
     () =>
       !modal && size === Size.Normal
-        ? 'lg:object-cover object-contain'
+        ? 'xl:object-cover object-contain'
         : 'object-contain',
     [modal, size],
   )
