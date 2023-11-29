@@ -17,6 +17,7 @@ module.exports = {
     {
       pattern: /^grid-cols-(\d){1,2}/,
     },
+    'lg:object-cover',
   ],
   darkMode: ['class'],
   theme: {
