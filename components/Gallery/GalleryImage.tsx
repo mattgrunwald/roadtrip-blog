@@ -1,6 +1,6 @@
 import { Size } from '@/util/types'
 import Image from 'next/image'
-import { MouseEventHandler, useMemo, useRef } from 'react'
+import { MouseEventHandler, useMemo } from 'react'
 
 export type GalleryImageProps = {
   src: string
@@ -10,7 +10,6 @@ export type GalleryImageProps = {
   isCloseToCurrent: boolean
   size: Size
   modal?: boolean
-  blur?: boolean
   onClick: MouseEventHandler
 }
 
@@ -23,7 +22,6 @@ export const GalleryImage = ({
   first,
   size,
   modal = false,
-  blur = false,
 }: GalleryImageProps) => {
   const sizeSet = useMemo(
     () =>
@@ -43,52 +41,47 @@ export const GalleryImage = ({
     [modal, size],
   )
 
-  // const ref = useRef<HTMLElement>(null)
+  const showBlur = useMemo(() => !modal && size !== Size.Normal, [modal, size])
 
-  // const height = ref.current
-  //   ? ref.current.getBoundingClientRect().height + 4
-  //   : undefined
-  // const width = ref.current
-  //   ? ref.current.getBoundingClientRect().width + 4
-  //   : undefined
-
-  // const fill = height === undefined && width === undefined
+  const sharedProps = useMemo(
+    () => ({
+      fill: true,
+      sizes: sizeSet,
+      quality: 65,
+      priority: first,
+    }),
+    [first, sizeSet],
+  )
 
   return (
     <>
       <Image
         src={src}
         className={`
-      object-contain
-      ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
-      ${isCurrent ? 'visible' : 'invisible'}
-      z-10
-      `}
-        fill
-        sizes={sizeSet}
-        onClick={onClick}
+          ${objectFit}
+          ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
+          ${isCurrent ? 'visible' : 'invisible'}
+          z-10
+        `}
+        {...sharedProps}
         alt=""
-        quality={65}
-        priority={first}
+        onClick={onClick}
         placeholder="blur"
         blurDataURL={blurSrc}
       />
 
-      {!modal && (
+      {showBlur && (
         <Image
           src={src}
           className={`
-        object-cover
-        z-0
-        blur-lg
-        opacity-50
-      ${isCurrent ? 'block' : 'hidden'}
-      `}
-          fill
-          sizes={sizeSet}
+            object-cover
+            blur-lg
+            opacity-75
+            max-sm:hidden
+          ${isCurrent ? 'block' : 'hidden'}
+        `}
           alt=""
-          quality={65}
-          priority={first}
+          {...sharedProps}
         />
       )}
     </>
