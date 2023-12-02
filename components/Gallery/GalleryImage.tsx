@@ -41,22 +41,49 @@ export const GalleryImage = ({
     [modal, size],
   )
 
+  const showBlur = useMemo(() => !modal && size !== Size.Normal, [modal, size])
+
+  const sharedProps = useMemo(
+    () => ({
+      fill: true,
+      sizes: sizeSet,
+      quality: 65,
+      priority: first,
+    }),
+    [first, sizeSet],
+  )
+
   return (
-    <Image
-      src={src}
-      className={`
-      ${objectFit}
-      ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
-      ${isCurrent ? 'visible' : 'invisible'}
-      `}
-      fill
-      sizes={sizeSet}
-      onClick={onClick}
-      alt=""
-      quality={65}
-      priority={first}
-      placeholder="blur"
-      blurDataURL={blurSrc}
-    />
+    <>
+      <Image
+        src={src}
+        className={`
+          ${objectFit}
+          ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
+          ${isCurrent ? 'visible' : 'invisible'}
+          z-10
+        `}
+        {...sharedProps}
+        alt=""
+        onClick={onClick}
+        placeholder="blur"
+        blurDataURL={blurSrc}
+      />
+
+      {showBlur && (
+        <Image
+          src={src}
+          className={`
+            object-cover
+            blur-lg
+            opacity-75
+            max-sm:hidden
+          ${isCurrent ? 'block' : 'hidden'}
+        `}
+          alt=""
+          {...sharedProps}
+        />
+      )}
+    </>
   )
 }

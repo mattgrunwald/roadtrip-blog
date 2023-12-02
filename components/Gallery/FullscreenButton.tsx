@@ -34,6 +34,7 @@ export default function FullscreenButton({
         focus:outline-none
         md:right-[1%]
         right-0
+        z-20
         ${modal ? 'top-[-1%]' : 'bottom-[1%]'}
         `}
     >
@@ -52,7 +53,9 @@ export default function FullscreenButton({
           viewBox="0 0 24 24"
           fill={fill}
           xmlns="http://www.w3.org/2000/svg"
-          className={`text-gray-400/50 dark:text-white/50 ${
+          className={`${
+            modal ? 'text-gray-400/50' : 'text-white '
+          } dark:text-white/50 ${
             modal ? 'sm:w-10 sm:h-10' : 'max-md:hidden md:w-6 md:h-6'
           }`}
         >
