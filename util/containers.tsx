@@ -60,7 +60,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
       className={`
       prose dark:prose-invert
       text-lg max-w-[56ch] [&>h1]:mb-0 
-      prose-a:decoration-0 prose-a:font-bold
+      prose-a:underline-offset-2 prose-a:decoration-0 prose-a:font-bold
       ${quattro.className}
       lg:max-xl:mb-8
       `}
@@ -76,7 +76,7 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
       className={`
       prose dark:prose-invert 
       text-lg max-w-[56ch] [&>h1]:mb-0 [&>h2]:mt-6 
-      prose-a:decoration-0 prose-a:font-bold
+      prose-a:underline-offset-2 prose-a:decoration-0 prose-a:font-bold
       ${quattro.className} 
       [&>*]:scroll-m-20 
       mb-8
