@@ -19,7 +19,7 @@ export default function Counter({
         text-xs
         dark:opacity-70
         rounded-md
-        z-20
+        z-10
         "
     >
       {count} / {total}

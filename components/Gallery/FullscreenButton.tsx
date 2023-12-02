@@ -34,7 +34,7 @@ export default function FullscreenButton({
         focus:outline-none
         md:right-[1%]
         right-0
-        z-20
+        z-10
         ${modal ? 'top-[-1%]' : 'bottom-[1%]'}
         `}
     >

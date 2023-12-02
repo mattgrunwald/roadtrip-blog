@@ -61,7 +61,6 @@ export const GalleryImage = ({
           ${objectFit}
           ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
           ${isCurrent ? 'visible' : 'invisible'}
-          z-10
         `}
         {...sharedProps}
         alt=""
@@ -77,6 +76,7 @@ export const GalleryImage = ({
             object-cover
             blur-lg
             opacity-75
+            -z-10
             max-sm:hidden
           ${isCurrent ? 'block' : 'hidden'}
         `}
