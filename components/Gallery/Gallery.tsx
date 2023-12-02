@@ -155,6 +155,7 @@ export default function Gallery({
               ? ''
               : `
                 relative
+                overflow-hidden
                 max-md:h-96 md:h-[max(40vh,350px)]
                 lg:min-h-[42vh]
                 xl:max-2xl:max-h-[45vh]
@@ -169,17 +170,19 @@ export default function Gallery({
         >
           {hasImages &&
             sources.map((source, index) => (
-              <GalleryImage
-                key={source.src}
-                src={source.src}
-                blurSrc={source.preview}
-                onClick={onImageClick}
-                isCurrent={current === index}
-                isCloseToCurrent={imageOnDeck(index)}
-                first={index === 0}
-                modal={modal}
-                size={source.size}
-              />
+              <>
+                <GalleryImage
+                  key={source.src}
+                  src={source.src}
+                  blurSrc={source.preview}
+                  onClick={onImageClick}
+                  isCurrent={current === index}
+                  isCloseToCurrent={imageOnDeck(index)}
+                  first={index === 0}
+                  modal={modal}
+                  size={source.size}
+                />
+              </>
             ))}
         </div>
         {hasImages && sources.length > 1 && (
