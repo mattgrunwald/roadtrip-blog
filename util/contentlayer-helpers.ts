@@ -68,7 +68,7 @@ function getNormalSize({ width, height, orientation }: Metadata) {
     : { width, height }
 }
 
-const fileNameRegex = /^(\d|[a-z])+_(.+)(\.[a-zA-Z])?/
+const fileNameRegex = /^(\d|[a-z])+_(.+)\.([a-zA-Z0-9])?/
 const separatorRegex = /_/g
 export function parseAltText(fileName: string) {
   const rawText = fileNameRegex.exec(fileName)
