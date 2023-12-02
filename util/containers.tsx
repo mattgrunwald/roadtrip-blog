@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
-import { Quattrocento } from 'next/font/google'
+import { Averia_Serif_Libre } from 'next/font/google'
 
-const quattro = Quattrocento({ weight: '400', subsets: ['latin'] })
+const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
@@ -59,9 +59,9 @@ const Text = ({ children }: { children: React.ReactNode }) => {
     <div
       className={`
       prose dark:prose-invert
-      text-lg max-w-[56ch] [&>h1]:mb-0 
-      prose-a:underline-offset-2 prose-a:decoration-0 prose-a:font-bold
-      ${quattro.className}
+      text-lg max-w-[61ch] [&>h1]:mb-0 
+      prose-a:underline-offset-2 prose-a:font-bold
+      ${averia.className}
       lg:mb-8
       `}
     >
@@ -74,11 +74,11 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={`
-      prose dark:prose-invert 
-      text-lg max-w-[56ch] [&>h1]:mb-0 [&>h2]:mt-6 
+      prose dark:prose-invert
+      text-lg max-w-[56ch] [&>h1]:mb-0 [&>h2]:mt-6
       prose-a:underline-offset-2 prose-a:decoration-0 prose-a:font-bold
-      ${quattro.className} 
-      [&>*]:scroll-m-20 
+      ${averia.className}
+      [&>*]:scroll-m-20
       mb-8
       max-lg:w-full
       xl:w-[650px]
