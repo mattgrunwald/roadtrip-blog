@@ -8,7 +8,6 @@ import { MapMarker } from './MapMarker'
 import { MarkerWithDay } from '@/util/types'
 import { Placeholder } from 'geo/placeholder'
 import usGeo from 'geo/us-albers.json'
-import { useRouter } from 'next/navigation'
 
 export type TripMapProps = {
   allMarkers: MarkerWithDay[]
@@ -21,13 +20,6 @@ export default function TripMap({
   showAllMarkersAlways = false,
   markers,
 }: TripMapProps) {
-  const router = useRouter()
-
-  const routeToDay = useCallback(
-    (day: number) => router.push(`/day/${day}`),
-    [router],
-  )
-
   const { resolvedTheme } = useTheme()
 
   const fill = useMemo(() => {
@@ -70,7 +62,7 @@ export default function TripMap({
         key={coordinates[0]}
         coordinates={coordinates as [number, number]}
         opacity={allMarkerOpacity}
-        onClick={() => routeToDay(day)}
+        day={day}
       />
     ))
 
