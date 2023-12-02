@@ -11,22 +11,19 @@ export default function Header() {
           <b>Roadtrek Trip 2023</b>
         </Link>
         <div className="flex items-center justify-around">
-          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6 pr">
+          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
             <Link href="/" className={`hover:${ACCENT_TEXT_CLASS}`}>
               Home
             </Link>
           </nav>
-          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6 pr">
+          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
             <Link href="/pictures" className={`hover:${ACCENT_TEXT_CLASS}`}>
               Pictures
             </Link>
           </nav>
           <span className="max-lg:mr-4 lg:mr-6 mr-6 text-sm font-medium">
             <AboutDropdown name="About">
-              <Link
-                href="/about/van#the-van"
-                className={`hover:${ACCENT_TEXT_CLASS}`}
-              >
+              <Link href="/about/van" className={`hover:${ACCENT_TEXT_CLASS}`}>
                 The Van
               </Link>
               <Link href="/about/site" className={`hover:${ACCENT_TEXT_CLASS}`}>
