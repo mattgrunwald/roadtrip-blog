@@ -62,7 +62,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
       text-lg max-w-[56ch] [&>h1]:mb-0 
       prose-a:decoration-0 prose-a:font-bold
       ${quattro.className}
-      lg:mb-8
+      lg:max-xl:mb-8
       `}
     >
       {children}
