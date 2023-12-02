@@ -22,6 +22,7 @@ export const GalleryButton = ({
         top-[calc(50%-1rem)]
         group
         focus:outline-none
+        z-20
         max-sm:hidden
         ${right ? 'right-[1%]' : 'left-[1%]'}`}
     >
