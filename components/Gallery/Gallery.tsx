@@ -179,6 +179,7 @@ export default function Gallery({
                 first={index === 0}
                 modal={modal}
                 size={source.size}
+                alt={source.alt}
               />
             ))}
         </div>

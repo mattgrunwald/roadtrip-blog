@@ -24,6 +24,7 @@ export async function convertImages(
       size,
       rowSpan,
       colSpan,
+      alt: parseAltText(name),
     })
   }
   return res
@@ -65,6 +66,13 @@ function getNormalSize({ width, height, orientation }: Metadata) {
   return (orientation || 0) >= 5
     ? { width: height, height: width }
     : { width, height }
+}
+
+const fileNameRegex = /^(\d|[a-z])+_(.+)(\.[a-zA-Z])?/
+const separatorRegex = /_/g
+export function parseAltText(fileName: string) {
+  const rawText = fileNameRegex.exec(fileName)
+  return (rawText ? rawText[2] : '').replace(separatorRegex, ' ')
 }
 
 export async function generateHeadings(doc: AboutPage) {

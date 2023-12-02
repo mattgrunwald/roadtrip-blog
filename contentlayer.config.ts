@@ -25,6 +25,7 @@ const GalleryImageSource = defineNestedType(() => ({
     size: { type: 'number', required: true },
     rowSpan: { type: 'number', required: true },
     colSpan: { type: 'number', required: true },
+    alt: { type: 'string', required: true },
   },
 }))
 

@@ -9,6 +9,7 @@ export type GalleryImageProps = {
   first: boolean
   isCloseToCurrent: boolean
   size: Size
+  alt: string
   modal?: boolean
   onClick: MouseEventHandler
 }
@@ -21,6 +22,7 @@ export const GalleryImage = ({
   isCloseToCurrent,
   first,
   size,
+  alt,
   modal = false,
 }: GalleryImageProps) => {
   const sizeSet = useMemo(
@@ -52,7 +54,7 @@ export const GalleryImage = ({
       fill
       sizes={sizeSet}
       onClick={onClick}
-      alt=""
+      alt={alt}
       quality={65}
       priority={first}
       placeholder="blur"
