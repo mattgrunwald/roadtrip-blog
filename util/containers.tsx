@@ -59,7 +59,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
     <div
       className={`
       prose dark:prose-invert
-      text-lg max-w-[62ch] [&>h1]:mb-0 
+      text-lg max-w-[62ch] [&>h1]:mb-0 [&>*>h1]:mb-0
       prose-a:underline-offset-2 prose-a:font-bold
       ${averia.className}
       lg:mb-8
