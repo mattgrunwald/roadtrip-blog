@@ -1,4 +1,7 @@
 import { PropsWithChildren } from 'react'
+import { Averia_Serif_Libre } from 'next/font/google'
+
+const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
@@ -52,12 +55,35 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
 }
 
 const Text = ({ children }: { children: React.ReactNode }) => {
-  return <div className="prose dark:prose-invert lg:mb-8">{children}</div>
+  return (
+    <div
+      className={`
+      prose dark:prose-invert
+      text-lg max-w-[61ch] [&>h1]:mb-0 
+      prose-a:underline-offset-2 prose-a:font-bold
+      ${averia.className}
+      lg:mb-8
+      `}
+    >
+      {children}
+    </div>
+  )
 }
 
 const AboutText = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="prose dark:prose-invert mb-8 [&>*]:scroll-m-20 xl:w-[650px] max-lg:w-full">
+    <div
+      className={`
+      prose dark:prose-invert
+      text-lg max-w-[56ch] [&>h1]:mb-0 [&>h2]:mt-6
+      prose-a:underline-offset-2 prose-a:decoration-0 prose-a:font-bold
+      ${averia.className}
+      [&>*]:scroll-m-20
+      mb-8
+      max-lg:w-full
+      xl:w-[650px]
+      `}
+    >
       {children}
     </div>
   )
@@ -65,7 +91,16 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
 
 const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="max-lg:hidden sticky col-start-1 top-20 h-max space-y-2 2xl:flex 2xl:justify-end">
+    <div
+      className="
+      sticky 
+      col-start-1 
+      top-20 
+      h-max 
+      space-y-2
+      max-lg:hidden  
+      2xl:flex 2xl:justify-end"
+    >
       {children}
     </div>
   )
