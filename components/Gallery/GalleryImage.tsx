@@ -60,6 +60,7 @@ export const GalleryImage = ({
       <Image
         src={src}
         className={`
+          z-10
           ${objectFit}
           ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
           ${isCurrent ? 'visible' : 'invisible'}
@@ -78,7 +79,6 @@ export const GalleryImage = ({
             object-cover
             blur-lg
             opacity-75
-            -z-10
             max-sm:hidden
           ${isCurrent ? 'block' : 'hidden'}
         `}
