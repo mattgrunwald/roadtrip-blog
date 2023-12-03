@@ -3,8 +3,9 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
-import { convertImages, generateHeadings } from './util/contentlayer-helpers'
+import { convertImages } from './util/contentlayer-helpers'
 import rehypeSlug from 'rehype-slug'
+import { generateHeadings } from './util/headings'
 
 const Marker = defineNestedType(() => ({
   name: 'Marker',
