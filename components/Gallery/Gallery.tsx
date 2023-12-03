@@ -170,19 +170,18 @@ export default function Gallery({
         >
           {hasImages &&
             sources.map((source, index) => (
-              <>
-                <GalleryImage
-                  key={source.src}
-                  src={source.src}
-                  blurSrc={source.preview}
-                  onClick={onImageClick}
-                  isCurrent={current === index}
-                  isCloseToCurrent={imageOnDeck(index)}
-                  first={index === 0}
-                  modal={modal}
-                  size={source.size}
-                />
-              </>
+              <GalleryImage
+                key={source.src}
+                src={source.src}
+                blurSrc={source.preview}
+                onClick={onImageClick}
+                isCurrent={current === index}
+                isCloseToCurrent={imageOnDeck(index)}
+                first={index === 0}
+                modal={modal}
+                size={source.size}
+                alt={source.alt}
+              />
             ))}
         </div>
         {hasImages && sources.length > 1 && (

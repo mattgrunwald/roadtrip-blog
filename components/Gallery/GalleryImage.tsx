@@ -9,6 +9,7 @@ export type GalleryImageProps = {
   first: boolean
   isCloseToCurrent: boolean
   size: Size
+  alt: string
   modal?: boolean
   onClick: MouseEventHandler
 }
@@ -21,6 +22,7 @@ export const GalleryImage = ({
   isCloseToCurrent,
   first,
   size,
+  alt,
   modal = false,
 }: GalleryImageProps) => {
   const sizeSet = useMemo(
@@ -63,7 +65,7 @@ export const GalleryImage = ({
           ${isCurrent ? 'visible' : 'invisible'}
         `}
         {...sharedProps}
-        alt=""
+        alt={alt}
         onClick={onClick}
         placeholder="blur"
         blurDataURL={blurSrc}
@@ -80,7 +82,7 @@ export const GalleryImage = ({
             max-sm:hidden
           ${isCurrent ? 'block' : 'hidden'}
         `}
-          alt=""
+          alt="blurred image background"
           {...sharedProps}
         />
       )}

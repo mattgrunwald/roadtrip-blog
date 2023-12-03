@@ -29,6 +29,7 @@ export type GalleryImageSource = {
   size: Size
   rowSpan: number
   colSpan: number
+  alt: string
 }
 
 export type Heading = {

@@ -1,8 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import sharp, { Metadata } from 'sharp'
-import GithubSlugger from 'github-slugger'
-import { AboutPage } from '@/.contentlayer/generated'
 import { GalleryImageSource, Size, sizes } from './types'
 
 export async function convertImages(
@@ -24,6 +22,7 @@ export async function convertImages(
       size,
       rowSpan,
       colSpan,
+      alt: parseAltText(name),
     })
   }
   return res
@@ -67,20 +66,9 @@ function getNormalSize({ width, height, orientation }: Metadata) {
     : { width, height }
 }
 
-export async function generateHeadings(doc: AboutPage) {
-  const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g
-  // rehypeSlug plugin for contentlayer uses GithubSlugger under the hood, so the generated slugs here will match the contentlayer generated slugs
-  const slugger = new GithubSlugger()
-  const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
-    ({ groups }) => {
-      const flag = groups?.flag
-      const content = groups?.content
-      return {
-        level: flag?.length,
-        text: content,
-        slug: content ? slugger.slug(content) : undefined,
-      }
-    },
-  )
-  return headings
+const fileNameRegex = /^(\d|[a-z])+_(.+)\.([a-zA-Z0-9])?/
+const separatorRegex = /_/g
+export function parseAltText(fileName: string) {
+  const rawText = fileNameRegex.exec(fileName)
+  return (rawText ? rawText[2] : '').replace(separatorRegex, ' ')
 }

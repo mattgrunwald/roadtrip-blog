@@ -3,8 +3,9 @@ import {
   defineNestedType,
   makeSource,
 } from 'contentlayer/source-files'
-import { convertImages, generateHeadings } from './util/contentlayer-helpers'
+import { convertImages } from './util/contentlayer-helpers'
 import rehypeSlug from 'rehype-slug'
+import { generateHeadings } from './util/headings'
 
 const Marker = defineNestedType(() => ({
   name: 'Marker',
@@ -25,6 +26,7 @@ const GalleryImageSource = defineNestedType(() => ({
     size: { type: 'number', required: true },
     rowSpan: { type: 'number', required: true },
     colSpan: { type: 'number', required: true },
+    alt: { type: 'string', required: true },
   },
 }))
 
