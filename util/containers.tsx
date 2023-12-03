@@ -54,6 +54,12 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+const Entry = ({ children }: { children: React.ReactNode }) => (
+  <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">
+    <Text>{children}</Text>
+  </div>
+)
+
 const Text = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
@@ -121,6 +127,7 @@ const exports = {
   Post,
   Visual,
   Calendar,
+  Entry,
   Text,
   AboutText,
   TableOfContents,

@@ -2,8 +2,9 @@ import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { useMemo } from 'react'
-import Container from 'util/containers'
 import { Image } from '@/util/Image'
+import PostContent from '@/components/PostContent'
+import { getAllMarkers } from '@/util/helpers'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -12,6 +13,7 @@ export async function generateStaticParams() {
 }
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
+const allMarkers = getAllMarkers(allPosts)
 
 export default function Page({ params }: { params: { day: string } }) {
   const post = useMemo(
@@ -22,13 +24,12 @@ export default function Page({ params }: { params: { day: string } }) {
   )
 
   const day = useMemo(() => Number(params.day), [params.day])
-
   const previousDay = useMemo(() => day - 1, [day])
   const nextDay = useMemo(() => day + 1, [day])
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <Container.Text>
+    <PostContent post={post!} allMarkers={allMarkers} markers={post?.markers}>
       <div className="flex flex-row justify-between pb-2">
         <div>
           {previousDay >= 1 && (
@@ -41,6 +42,6 @@ export default function Page({ params }: { params: { day: string } }) {
         </div>
       </div>
       <MDXContent components={{ Image }} />
-    </Container.Text>
+    </PostContent>
   )
 }
