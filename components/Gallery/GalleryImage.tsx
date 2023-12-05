@@ -43,8 +43,6 @@ export const GalleryImage = ({
     [modal, size],
   )
 
-  const showBlur = useMemo(() => !modal && size !== Size.Normal, [modal, size])
-
   const sharedProps = useMemo(
     () => ({
       fill: true,
@@ -72,7 +70,7 @@ export const GalleryImage = ({
         blurDataURL={blurSrc}
       />
 
-      {showBlur && (
+      {!modal && (
         <Image
           src={src}
           className={`
