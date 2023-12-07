@@ -7,7 +7,7 @@ const Post = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
-      grid gap-x-8 gap-y-4
+      grid gap-x-8 gap-y-0
       max-lg:grid-cols-1 max-lg:mb-8
       max-2xl:grid-cols-[3fr,4fr,2fr] 2xl:flex 2xl:justify-between
       3xl:justify-center 3xl:gap-x-24
@@ -18,12 +18,27 @@ const Post = ({ children }: PropsWithChildren) => {
   )
 }
 
-const Visual = ({ children }: { children: React.ReactNode }) => {
+const VisImages = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        sm:col-span-1
-        lg:order-first lg:sticky lg:top-16 lg:max-h-[90vh]
+        order-first lg:sticky lg:top-16 lg:max-h-[45vh]
+        2xl:w-[580px]
+        lg:flex lg:flex-col lg:justify-between
+        "
+    >
+      {children}
+    </div>
+  )
+}
+
+const VisMap = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div
+      className="
+        order-3 lg:order-4
+        row-span-1
+        lg:sticky lg:top-[55vh] lg:max-h-[45vh]
         2xl:w-[580px]
         lg:flex lg:flex-col lg:justify-between
         "
@@ -37,7 +52,7 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        md:w-full
+        md:w-full lg:row-span-3 order-4 lg:order-3
         lg:ml-0 lg:sticky lg:top-16 lg:h-[90vh] lg:max-w-[320px]
       "
     >
@@ -55,7 +70,7 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
 }
 
 const Entry = ({ children }: { children: React.ReactNode }) => (
-  <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">
+  <div className="sm:col-span-1 order-2 lg:row-span-3 sm:max-lg:flex sm:max-lg:justify-center">
     <Text>{children}</Text>
   </div>
 )
@@ -123,7 +138,9 @@ const TableOfContentsPopover = ({
 
 const exports = {
   Post,
-  Visual,
+  // Visual,
+  VisImages,
+  VisMap,
   Calendar,
   Entry,
   Text,

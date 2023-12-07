@@ -26,22 +26,17 @@ export default function PostContent({
 
   return (
     <Container.Post>
-      <div className="flex justify-center lg:hidden">
-        <div className=" block w-[700px] h-full">
-          <Gallery sources={sources} />
-        </div>
-      </div>
+      <Container.VisImages>
+        <Gallery sources={sources} />
+      </Container.VisImages>
       <Container.Entry>{children}</Container.Entry>
-      <Container.Visual>
-        <div className="max-lg:hidden">
-          <Gallery sources={sources} />
-        </div>
+      <Container.VisMap>
         <TripMap
           showAllMarkersAlways={showAllMarkersAlways}
           allMarkers={allMarkers}
           markers={markers}
         />
-      </Container.Visual>
+      </Container.VisMap>
       <Container.Calendar>
         <TripCalendar day={post.day} />
       </Container.Calendar>
