@@ -159,7 +159,8 @@ export default function Gallery({
                 max-sm:h-[33vh]s 
                 w-full
                 max-md:h-[70vw]
-                md:h-[max(40vh,350px)]
+                md:h-[65vw]
+                lg:h-[40vh]
                 lg:min-h-[42vh]
                 xl:max-2xl:max-h-[45vh]
                 2xl:min-h-[45vh]
