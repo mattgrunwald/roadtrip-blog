@@ -54,6 +54,12 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
+const Entry = ({ children }: { children: React.ReactNode }) => (
+  <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">
+    <Text>{children}</Text>
+  </div>
+)
+
 const Text = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
@@ -62,7 +68,6 @@ const Text = ({ children }: { children: React.ReactNode }) => {
       text-lg max-w-[62ch] [&>h1]:mb-0 [&>*>h1]:mb-0
       prose-a:underline-offset-2 prose-a:font-bold
       ${averia.className}
-      max-md:text-xl
       max-md:mx-2
       lg:mb-8
       `}
@@ -82,7 +87,6 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
       ${averia.className}
       [&>*]:scroll-m-20
       mb-8
-      max-sm:text-xl
       max-lg:w-full
       xl:w-[650px]
       `}
@@ -121,6 +125,7 @@ const exports = {
   Post,
   Visual,
   Calendar,
+  Entry,
   Text,
   AboutText,
   TableOfContents,

@@ -1,13 +1,8 @@
-import Gallery from '@/components/Gallery'
-import TripCalendar from '@/components/TripCalendar'
-import TripMap from '@/components/TripMap/TripMap'
-import { GalleryImageSource } from '@/util/types'
 import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
-import { useMemo } from 'react'
-import Container from 'util/containers'
+import PostContent from '@/components/PostContent'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
@@ -17,31 +12,16 @@ export default function Page() {
   const post =
     allPosts.find((post) => post.path === 'posts/home') || notFoundPost
 
-  const sources: GalleryImageSource[] = useMemo(
-    () => post?.galleryImages || [],
-    [post],
-  )
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <Container.Post>
-      <Container.Visual>
-        <Gallery sources={sources} />
-        <TripMap showAllMarkersAlways allMarkers={allMarkers} />
-      </Container.Visual>
-      <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">
-        <Container.Text>
-          <div className="pb-2 mt-9">
-            <MDXContent />
-          </div>
-          <Link href={'/day/1'}>
-            <b>Jump In</b>
-          </Link>
-        </Container.Text>
+    <PostContent post={post!} allMarkers={allMarkers} showAllMarkersAlways>
+      <div className="pb-2 mt-9">
+        <MDXContent />
       </div>
-      <Container.Calendar>
-        <TripCalendar day={0} />
-      </Container.Calendar>
-    </Container.Post>
+      <Link href={'/day/1'}>
+        <b>Jump In</b>
+      </Link>
+    </PostContent>
   )
 }
