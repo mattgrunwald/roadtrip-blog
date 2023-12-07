@@ -31,20 +31,32 @@ describe('findTallSpot method', () => {
 
 describe('findSpot method', () => {
   it('should work for normal images', () => {
-    expect(findSpot([[0, 0, 0, 0]], Size.Normal, 4)).toEqual([0, 0])
-    expect(findSpot([[1, 0, 0, 0]], Size.Normal, 4)).toEqual([0, 1])
-    expect(findSpot([[1, 1, 1, 1]], Size.Normal, 4)).toEqual([0, 0])
+    expect(
+      findSpot([{ cols: [0, 0, 0, 0], full: false }], Size.Normal, 4),
+    ).toEqual([0, 0])
+    expect(
+      findSpot([{ cols: [1, 0, 0, 0], full: false }], Size.Normal, 4),
+    ).toEqual([0, 1])
+    expect(
+      findSpot([{ cols: [1, 1, 1, 1], full: true }], Size.Normal, 4),
+    ).toEqual([0, 0])
   })
 
   it('should work for tall images', () => {
-    expect(findSpot([[0, 0, 0, 0]], Size.Tall, 4)).toEqual([1, 0])
-    expect(findSpot([[1, 0, 0, 0]], Size.Tall, 4)).toEqual([1, 1])
-    expect(findSpot([[1, 1, 1, 1]], Size.Tall, 4)).toEqual([1, 0])
+    expect(
+      findSpot([{ cols: [0, 0, 0, 0], full: false }], Size.Tall, 4),
+    ).toEqual([1, 0])
+    expect(
+      findSpot([{ cols: [1, 0, 0, 0], full: false }], Size.Tall, 4),
+    ).toEqual([1, 1])
+    expect(
+      findSpot([{ cols: [1, 1, 1, 1], full: true }], Size.Tall, 4),
+    ).toEqual([1, 0])
     expect(
       findSpot(
         [
-          [0, 0, 0, 0],
-          [0, 0, 0, 0],
+          { cols: [0, 0, 0, 0], full: false },
+          { cols: [0, 0, 0, 0], full: false },
         ],
         Size.Tall,
         4,
@@ -53,8 +65,8 @@ describe('findSpot method', () => {
     expect(
       findSpot(
         [
-          [1, 0, 0, 0],
-          [1, 1, 1, 1],
+          { cols: [1, 0, 0, 0], full: false },
+          { cols: [1, 1, 1, 1], full: true },
         ],
         Size.Tall,
         4,
@@ -64,7 +76,13 @@ describe('findSpot method', () => {
 })
 
 it('should work for wide images', () => {
-  expect(findSpot([[0, 0, 0, 0]], Size.Wide, 4)).toEqual([0, 0])
-  expect(findSpot([[1, 0, 0, 0]], Size.Wide, 4)).toEqual([0, 1])
-  expect(findSpot([[1, 1, 1, 1]], Size.Wide, 4)).toEqual([0, 0])
+  expect(findSpot([{ cols: [0, 0, 0, 0], full: false }], Size.Wide, 4)).toEqual(
+    [0, 0],
+  )
+  expect(findSpot([{ cols: [1, 0, 0, 0], full: false }], Size.Wide, 4)).toEqual(
+    [0, 1],
+  )
+  expect(findSpot([{ cols: [1, 1, 1, 1], full: true }], Size.Wide, 4)).toEqual([
+    0, 0,
+  ])
 })
