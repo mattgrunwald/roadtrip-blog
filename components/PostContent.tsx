@@ -43,7 +43,7 @@ export default function PostContent({
         />
       </Container.Visual>
       <Container.Calendar>
-        <TripCalendar day={0} />
+        <TripCalendar day={post.day} />
       </Container.Calendar>
     </Container.Post>
   )
