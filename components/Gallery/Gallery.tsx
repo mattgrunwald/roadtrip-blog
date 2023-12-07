@@ -156,7 +156,6 @@ export default function Gallery({
               : `
                 relative
                 overflow-hidden
-                max-sm:h-[33vh]s 
                 w-full
                 max-md:h-[70vw]
                 md:h-[65vw]
