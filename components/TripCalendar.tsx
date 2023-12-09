@@ -45,6 +45,7 @@ export default function TripCalendar({ day }: TripCalendarProps) {
     let className = 'my-[0.0625rem]'
     if (
       day !== 0 &&
+      day !== 31 &&
       date.getDate() === currentDayDate.getDate() &&
       date.getMonth() === currentDayDate.getMonth()
     ) {
