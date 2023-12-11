@@ -77,7 +77,6 @@ export const GalleryImage = ({
             object-cover
             blur-lg
             opacity-75
-            max-sm:hidden
           ${isCurrent ? 'block' : 'hidden'}
         `}
           alt="blurred image background"
