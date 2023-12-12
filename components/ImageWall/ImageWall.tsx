@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 import { GalleryImageSource } from '@/util/types'
-import { fitToGrid } from '@/util/imagePlacement'
+import { fitToGrid } from '@/util/imagePlacement/imagePlacement'
 
 export type ImageWallProps = {
   images: GalleryImageSource[]

@@ -1,0 +1,1 @@
+export { findSpot } from './imagePlacement'
