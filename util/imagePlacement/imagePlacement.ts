@@ -119,6 +119,9 @@ export function findSpot(
 }
 
 export function fitToGrid(imgs: GalleryImageSource[], numCols: number) {
+  if (numCols === 1) {
+    return imgs
+  }
   const rowQueue: Row[] = [newRow(numCols)]
   const result: Row[] = []
 
