@@ -1,1 +1,1 @@
-export { findSpot } from './imagePlacement'
+export { fitToGrid } from './imagePlacement'

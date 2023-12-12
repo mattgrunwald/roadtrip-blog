@@ -16,34 +16,22 @@ describe('findConsecutiveFreespaces method', () => {
 
 describe('findNormalSpot method', () => {
   it('should work for normal images', () => {
-    expect(findNormalSpot([{ cols: [0, 0, 0, 0], full: false }], 4)).toEqual([
-      0, 0,
-    ])
-    expect(findNormalSpot([{ cols: [1, 0, 0, 0], full: false }], 4)).toEqual([
-      0, 1,
-    ])
-    expect(findNormalSpot([{ cols: [1, 1, 1, 1], full: true }], 4)).toEqual([
-      0, 0,
-    ])
+    expect(findNormalSpot([[0, 0, 0, 0]], 4)).toEqual([0, 0])
+    expect(findNormalSpot([[1, 0, 0, 0]], 4)).toEqual([0, 1])
+    expect(findNormalSpot([[1, 1, 1, 1]], 4)).toEqual([0, 0])
   })
 })
 
 describe('findTallSpot method', () => {
   it('should work for tall images', () => {
-    expect(findTallSpot([{ cols: [0, 0, 0, 0], full: false }], 4)).toEqual([
-      1, 0,
-    ])
-    expect(findTallSpot([{ cols: [1, 0, 0, 0], full: false }], 4)).toEqual([
-      1, 1,
-    ])
-    expect(findTallSpot([{ cols: [1, 1, 1, 1], full: true }], 4)).toEqual([
-      1, 0,
-    ])
+    expect(findTallSpot([[0, 0, 0, 0]], 4)).toEqual([1, 0])
+    expect(findTallSpot([[1, 0, 0, 0]], 4)).toEqual([1, 1])
+    expect(findTallSpot([[1, 1, 1, 1]], 4)).toEqual([1, 0])
     expect(
       findTallSpot(
         [
-          { cols: [0, 0, 0, 0], full: false },
-          { cols: [0, 0, 0, 0], full: false },
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
         ],
         4,
       ),
@@ -51,8 +39,8 @@ describe('findTallSpot method', () => {
     expect(
       findTallSpot(
         [
-          { cols: [1, 0, 0, 0], full: false },
-          { cols: [1, 1, 1, 1], full: true },
+          [1, 0, 0, 0],
+          [1, 1, 1, 1],
         ],
         4,
       ),
@@ -62,14 +50,8 @@ describe('findTallSpot method', () => {
 
 describe('findWideSpot method', () => {
   it('should work for wide images', () => {
-    expect(findWideSpot([{ cols: [0, 0, 0, 0], full: false }], 4)).toEqual([
-      0, 0,
-    ])
-    expect(findWideSpot([{ cols: [1, 0, 0, 0], full: false }], 4)).toEqual([
-      0, 1,
-    ])
-    expect(findWideSpot([{ cols: [1, 1, 1, 1], full: true }], 4)).toEqual([
-      0, 0,
-    ])
+    expect(findWideSpot([[0, 0, 0, 0]], 4)).toEqual([0, 0])
+    expect(findWideSpot([[1, 0, 0, 0]], 4)).toEqual([0, 1])
+    expect(findWideSpot([[1, 1, 1, 1]], 4)).toEqual([0, 0])
   })
 })

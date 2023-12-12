@@ -6,15 +6,15 @@ enum Spot {
 }
 
 type RowContent = GalleryImageSource | Spot
-type Row = {
-  cols: RowContent[]
-  full: boolean
-}
+type Row = RowContent[]
 
 /**
  * @returns [numColumns, startColumn]
  */
-export function findConsecutiveFreeSpaces(row: RowContent[], goal: number) {
+export function findConsecutiveFreeSpaces(row: Row | undefined, goal: number) {
+  if (row === undefined) {
+    return null
+  }
   let count = 0
   let startingIndex = -1
   for (const [index, item] of row.entries()) {
@@ -34,22 +34,14 @@ export function findConsecutiveFreeSpaces(row: RowContent[], goal: number) {
   return null
 }
 
-function newRow(cols: number): Row {
-  return {
-    cols: Array(cols).fill(Spot.AVAILABLE),
-    full: false,
-  }
-}
-
-function checkFull(row: Row) {
-  row.full = row.cols.filter((col) => col === Spot.AVAILABLE).length === 0
+function newRow(cols: number): RowContent[] {
+  return Array(cols).fill(Spot.AVAILABLE)
 }
 
 export function findNormalSpot(rowQueue: Row[], numCols: number) {
   // find a spot in one existing row
   for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
-    if (rowQueue[rowIndex].full) continue
-    const column = findConsecutiveFreeSpaces(rowQueue[rowIndex].cols, 1)
+    const column = findConsecutiveFreeSpaces(rowQueue[rowIndex], 1)
     if (column !== null) {
       return [rowIndex, column]
     }
@@ -62,53 +54,55 @@ export function findNormalSpot(rowQueue: Row[], numCols: number) {
 export function findTallSpot(rowQueue: Row[], numCols: number) {
   // try to find space in two existing rows
   for (let rowIndex = rowQueue.length - 1; rowIndex > 0; rowIndex--) {
-    if (rowQueue[rowIndex].full) continue
-    const top = rowQueue[rowIndex].cols
-    const bottom = rowQueue[rowIndex - 1].cols
+    const top = rowQueue[rowIndex]
+    const bottom = rowQueue[rowIndex - 1]
     for (const i in top) {
       const colIndex = Number(i)
       if (
         top[colIndex] === Spot.AVAILABLE &&
         bottom[colIndex] === Spot.AVAILABLE
       ) {
-        rowQueue[rowIndex - 1].cols[colIndex] = Spot.TAKEN
+        rowQueue[rowIndex - 1][colIndex] = Spot.TAKEN
         return [rowIndex, colIndex]
       }
     }
   }
   // need at least one new row
-  const column = findConsecutiveFreeSpaces(rowQueue[0].cols, 1)
+  const column = findConsecutiveFreeSpaces(rowQueue[0], 1)
   if (column !== null) {
     rowQueue.unshift(newRow(numCols))
-    rowQueue[0].cols[column] = Spot.TAKEN
+    rowQueue[0][column] = Spot.TAKEN
     return [1, column]
   }
   // need two new rows
   rowQueue.unshift(newRow(numCols), newRow(numCols))
-  rowQueue[0].cols[0] = Spot.TAKEN
+  rowQueue[0][0] = Spot.TAKEN
   return [1, 0]
 }
 
 export function findWideSpot(rowQueue: Row[], numCols: number) {
   // try to find two spaces in existing rows
   for (let rowIndex = rowQueue.length - 1; rowIndex >= 0; rowIndex--) {
-    if (rowQueue[rowIndex].full) continue
-    const startingColumn = findConsecutiveFreeSpaces(rowQueue[rowIndex].cols, 2)
+    const startingColumn = findConsecutiveFreeSpaces(rowQueue[rowIndex], 2)
     if (startingColumn !== null) {
-      rowQueue[rowIndex].cols[startingColumn + 1] = Spot.TAKEN
+      rowQueue[rowIndex][startingColumn + 1] = Spot.TAKEN
       return [rowIndex, startingColumn]
     }
   }
   // add to new row
   rowQueue.unshift(newRow(numCols))
-  rowQueue[0].cols[1] = Spot.TAKEN
+  rowQueue[0][1] = Spot.TAKEN
   return [0, 0]
 }
 
 /**
  * @returns `[row, column]` of next available spot of that size
  */
-export function findSpot(rowQueue: Row[], size: Size, numCols: number) {
+export function findSpot(
+  rowQueue: RowContent[][],
+  size: Size,
+  numCols: number,
+) {
   switch (size) {
     case Size.Normal: {
       return findNormalSpot(rowQueue, numCols)
@@ -126,16 +120,21 @@ export function findSpot(rowQueue: Row[], size: Size, numCols: number) {
 
 export function fitToGrid(imgs: GalleryImageSource[], numCols: number) {
   const rowQueue: Row[] = [newRow(numCols)]
+  const result: Row[] = []
 
   for (const image of imgs) {
     const [qRow, qCol] = findSpot(rowQueue, image.size, numCols)
-    rowQueue[qRow].cols[qCol] = image
-    checkFull(rowQueue[qRow])
+    rowQueue[qRow][qCol] = image
+    if (
+      rowQueue.length > 0 &&
+      rowQueue[rowQueue.length - 1].filter((col) => col === Spot.AVAILABLE)
+        .length === 0
+    )
+      result.push(rowQueue.pop() as Row)
   }
+  result.push(...rowQueue.reverse())
 
-  return rowQueue
-    .map((row) => row.cols)
-    .reverse()
+  return result
     .flat()
     .filter(
       (item) => item !== Spot.AVAILABLE && item !== Spot.TAKEN,
