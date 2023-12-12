@@ -45,7 +45,7 @@ export default function TripMap({
   )
 
   const allMarkerOpacity = useMemo(
-    () => (showAllMarkersAlways ? '100%' : '50%'),
+    () => (showAllMarkersAlways ? '100' : '50'),
     [showAllMarkersAlways],
   )
 

@@ -17,7 +17,12 @@ export const MapMarker = ({
   offset = 0,
 }: MapMarkerProps) => {
   const Dot = () => (
-    <circle r={5} fill={ACCENT_COLOR} strokeWidth={2} opacity={opacity} />
+    <circle
+      className={`opacity-${opacity} hover:opacity-100`}
+      r={5}
+      fill={ACCENT_COLOR}
+      strokeWidth={2}
+    />
   )
 
   return (
