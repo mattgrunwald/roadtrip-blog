@@ -1,4 +1,4 @@
-import { parseAltText } from './contentlayer-helpers'
+import { parseAltText } from '.'
 
 describe(' method', () => {
   it('should work for properly named files', () => {
