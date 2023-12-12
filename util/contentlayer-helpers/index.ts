@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import sharp, { Metadata } from 'sharp'
-import { GalleryImageSource, Size, sizes } from './types'
+import { GalleryImageSource, Size, sizes } from '../types'
 
 export async function convertImages(
   day: number | string,
@@ -68,6 +68,7 @@ function getNormalSize({ width, height, orientation }: Metadata) {
 
 const fileNameRegex = /^(\d|[a-z])+_(.+)\.([a-zA-Z0-9])?/
 const separatorRegex = /_/g
+
 export function parseAltText(fileName: string) {
   const rawText = fileNameRegex.exec(fileName)
   return (rawText ? rawText[2] : '').replace(separatorRegex, ' ')
