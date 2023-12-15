@@ -62,6 +62,9 @@ export const GalleryImage = ({
           ${objectFit}
           ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
           ${isCurrent ? 'visible' : 'invisible'}
+          translate-x-0
+          translate-y-0
+          transform-gpu
         `}
         {...sharedProps}
         alt={alt}
