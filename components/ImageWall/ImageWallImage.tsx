@@ -6,12 +6,14 @@ import { useMemo, useState } from 'react'
 export type ImageWallImageProps = {
   image: GalleryImageSource
   baseWidth: number
+  priority: boolean
   onClick: () => void
 }
 
 export default function ImageWallImage({
   image,
   baseWidth,
+  priority,
   onClick,
 }: ImageWallImageProps) {
   const [loaded, setLoaded] = useState(false)
@@ -42,9 +44,10 @@ export default function ImageWallImage({
         height={height}
         placeholder="blur"
         blurDataURL={image.preview}
-        alt=""
+        alt={image.alt}
         onClick={onClick}
         sizes={srcSizes}
+        priority={priority}
         onLoadingComplete={() => setLoaded(true)}
       />
     </div>

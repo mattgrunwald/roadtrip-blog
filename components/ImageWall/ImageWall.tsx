@@ -81,6 +81,7 @@ export default function ImageWall({
           <ImageWallImage
             key={imageIndex}
             image={image}
+            priority={imageIndex < 2}
             onClick={() => onOpenDialog(imageIndex)}
             baseWidth={colWidth}
           />
