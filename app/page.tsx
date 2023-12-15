@@ -19,7 +19,7 @@ export default function Page() {
       <div className="pb-2 mt-9">
         <MDXContent />
       </div>
-      <Link href={'/day/1'}>
+      <Link href={'/day/1'} aria-label="Go to first day">
         <b>Jump In</b>
       </Link>
     </PostContent>

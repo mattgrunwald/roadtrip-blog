@@ -33,12 +33,22 @@ export default function Page({ params }: { params: { day: string } }) {
       <div className="flex flex-row justify-between pb-2">
         <div>
           {previousDay >= 1 && (
-            <Link href={`/day/${previousDay}`}>Day {previousDay}</Link>
+            <Link href={`/day/${previousDay}`} aria-label="Go to previous day">
+              Day {previousDay}
+            </Link>
           )}
         </div>
         <div>
-          {nextDay <= 30 && <Link href={`/day/${nextDay}`}>Day {nextDay}</Link>}
-          {day === 30 && <Link href={'/epilogue'}>Epilogue</Link>}
+          {nextDay <= 30 && (
+            <Link href={`/day/${nextDay}`} aria-label="Go to next day">
+              Day {nextDay}
+            </Link>
+          )}
+          {day === 30 && (
+            <Link href={'/epilogue'} aria-label="Go to epilogue">
+              Epilogue
+            </Link>
+          )}
         </div>
       </div>
       <MDXContent components={{ Image }} />
