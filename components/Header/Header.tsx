@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 pt-4 z-30 bg-slate-50 dark:bg-slate-950">
       <div className="flex items-center justify-between mx-auto px-4 lg:px-8">
-        <Link href="/" aria-label="Go to homepage">
+        <Link href="/" aria-label="Roadtrek Trip 2023">
           <b>Roadtrek Trip 2023</b>
         </Link>
         <div className="flex items-center justify-around">
@@ -24,7 +24,7 @@ export default function Header() {
             <Link
               href="/pictures"
               className={`hover:${ACCENT_TEXT_CLASS}`}
-              aria-label="See all images from the trip"
+              aria-label="See all pictures from the trip"
             >
               Pictures
             </Link>
