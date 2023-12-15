@@ -5,7 +5,7 @@ import Link from 'next/link'
 type MapMarkerProps = {
   coordinates: [number, number]
   day?: number
-  opacity: string
+  opacity?: string
   name?: string
   offset?: number
 }
