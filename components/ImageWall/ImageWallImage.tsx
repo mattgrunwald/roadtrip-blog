@@ -36,7 +36,7 @@ export default function ImageWallImage({
     >
       {loaded && <DayLink day={image.day} />}
       <Image
-        className={`hover:cursor-zoom-in object-cover`}
+        className={`hover:cursor-zoom-in object-cover h-full`}
         src={image.src}
         width={width}
         height={height}
