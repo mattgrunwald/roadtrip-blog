@@ -33,6 +33,7 @@ export default function ImageWall({ images, colCount = 4 }: ImageWallProps) {
           <ImageWallImage
             key={imageIndex}
             image={image}
+            priority={imageIndex < 8}
             onClick={() => onOpenDialog(imageIndex)}
           />
         ))}

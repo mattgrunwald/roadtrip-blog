@@ -19,7 +19,9 @@ export default function Page() {
     <PostContent post={post!} allMarkers={allMarkers} showAllMarkersAlways>
       <div className="flex flex-row justify-between pb-2">
         <div className="w-18">
-          <Link href={'/day/30'}>Day 30</Link>
+          <Link href={'/day/30'} aria-label="Go to previous day">
+            Day 30
+          </Link>
         </div>
       </div>
       <MDXContent components={{ Image }} />

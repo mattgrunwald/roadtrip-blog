@@ -1,5 +1,5 @@
 import { Dialog } from '@headlessui/react'
-import PageGallery from './Gallery'
+import Gallery from './Gallery'
 import { GalleryImageSource } from '@/util/types'
 
 export type DialogProps = {
@@ -18,8 +18,8 @@ export function GalleryDialog({
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <div className="fixed inset-0 flex items-center justify-center p-4 lg:h-fill lg:w-fill backdrop-blur z-30">
-        <Dialog.Panel className="w-full lg:h-full h-[max(70vh,350px)] rounded ">
-          <PageGallery
+        <Dialog.Panel className="w-full lg:h-full h-5/6">
+          <Gallery
             sources={sources}
             startIndex={startIndex}
             onClose={onClose}

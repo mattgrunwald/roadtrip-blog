@@ -16,23 +16,16 @@ export const MapMarker = ({
   name = '',
   offset = 0,
 }: MapMarkerProps) => {
-  const Dot = () => (
-    <circle
-      className={`opacity-${opacity} hover:opacity-100`}
-      r={5}
-      fill={ACCENT_COLOR}
-      strokeWidth={2}
-    />
-  )
-
+  const [href, label] =
+    day !== undefined ? [`/day/${day}`, `Go to day ${day}`] : ['', '']
   return (
     <Marker coordinates={coordinates}>
       {day ? (
-        <Link href={day !== undefined ? `/day/${day}` : ''}>
-          <Dot />
+        <Link href={href} aria-label={label}>
+          <Dot opacity={opacity} />
         </Link>
       ) : (
-        <Dot />
+        <Dot opacity={opacity} />
       )}
       <text
         textAnchor="middle"
@@ -44,3 +37,16 @@ export const MapMarker = ({
     </Marker>
   )
 }
+
+type DotProps = {
+  opacity: string
+}
+
+const Dot = ({ opacity }: DotProps) => (
+  <circle
+    className={`opacity-${opacity} hover:opacity-100`}
+    r={5}
+    fill={ACCENT_COLOR}
+    strokeWidth={2}
+  />
+)

@@ -44,7 +44,6 @@ export default function Gallery({
   )
 
   const nextIndex = useMemo(() => calcIndex(current + 1), [current, calcIndex])
-
   const prevIndex = useMemo(() => calcIndex(current - 1), [current, calcIndex])
 
   const nextImage = useCallback(
@@ -94,7 +93,6 @@ export default function Gallery({
     if (modal) {
       document.body.addEventListener('keydown', handleKeyDown)
     }
-
     return () => {
       if (modal) {
         document.body.removeEventListener('keydown', handleKeyDown)
@@ -110,12 +108,6 @@ export default function Gallery({
           break
         case RIGHT:
           prevImage()
-          break
-        case UP:
-          onClose()
-          break
-        case DOWN:
-          onClose()
           break
       }
     },
