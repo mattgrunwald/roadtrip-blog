@@ -8,7 +8,7 @@ export type DayLinkProps = {
 
 export function DayLink({
   day,
-  className = 'absolute top-[1%] right-[1%]',
+  className = 'absolute top-[1%] right-[1%] z-10',
 }: DayLinkProps) {
   return (
     <Link

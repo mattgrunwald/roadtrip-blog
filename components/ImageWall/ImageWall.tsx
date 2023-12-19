@@ -1,61 +1,19 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
+import { useState } from 'react'
 import ImageWallImage from './ImageWallImage'
 import { GalleryImageSource } from '@/util/types'
 import { fitToGrid } from '@/util/imagePlacement'
 
 export type ImageWallProps = {
   images: GalleryImageSource[]
-  wideColCount?: number
-  narrowColCount?: number
+  colCount?: number
 }
 
-export default function ImageWall({
-  images,
-  wideColCount = 4,
-  narrowColCount = 2,
-}: ImageWallProps) {
-  const defaultColWidth = 400
-  const wideBreakpoint = 1024
-
+export default function ImageWall({ images, colCount = 4 }: ImageWallProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalStarter, setModalStarter] = useState(0)
-  const [colWidth, setColWidth] = useState(defaultColWidth)
-  const [colCount, setColCount] = useState<number | null>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  const container = useRef<HTMLDivElement>(null)
-
-  const updateWidth = (node: HTMLElement) => {
-    const width = node.getBoundingClientRect().width
-    const newColCount = width >= wideBreakpoint ? wideColCount : narrowColCount
-    setColCount(newColCount)
-    const newColWidth = width / newColCount
-    setColWidth(newColWidth > 0 ? newColWidth : defaultColWidth)
-  }
-
-  const grid = useCallback((node: HTMLElement | null) => {
-    if (node !== null) {
-      updateWidth(node)
-      setIsLoaded(true)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
-    const resize = () => {
-      if (container && container.current) {
-        updateWidth(container.current)
-      }
-    }
-    window.addEventListener('resize', resize)
-    return () => {
-      window.removeEventListener('resize', resize)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const onOpenDialog = (current: number) => {
     setModalStarter(current)
@@ -66,24 +24,17 @@ export default function ImageWall({
     setModalStarter(0)
   }
 
-  const gridImages = useMemo(
-    () => (colCount === null ? [] : fitToGrid(images, colCount)),
-    [colCount, images],
-  )
+  const gridImages = fitToGrid(images, colCount)
 
   return (
     <>
-      <div
-        ref={isLoaded ? container : grid}
-        className={`grid gap-x-1 gap-y-1 grid-cols-${colCount}`}
-      >
+      <div className={`grid gap-x-1 gap-y-1 grid-cols-${colCount}`}>
         {gridImages.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
             image={image}
             priority={imageIndex < 8}
             onClick={() => onOpenDialog(imageIndex)}
-            baseWidth={colWidth}
           />
         ))}
       </div>

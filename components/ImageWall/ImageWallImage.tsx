@@ -1,54 +1,51 @@
 import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
 import { DayLink } from './DayLink'
-import { useMemo, useState } from 'react'
+import { useState, useMemo } from 'react'
 
 export type ImageWallImageProps = {
   image: GalleryImageSource
-  baseWidth: number
   priority: boolean
   onClick: () => void
 }
 
 export default function ImageWallImage({
   image,
-  baseWidth,
   priority,
   onClick,
 }: ImageWallImageProps) {
-  const [loaded, setLoaded] = useState(false)
-
-  const srcSizes = useMemo(() => {
-    switch (image.size) {
-      case Size.Wide:
-        return '(max-width: 1024px) 100vw, 50vw'
-      default:
-        return '(max-width: 1024px) 50vw, 25vw'
-    }
-  }, [image])
-
-  const [width, height] = useMemo(
-    () => [baseWidth * image.colSpan, baseWidth * image.colSpan * image.ratio],
-    [baseWidth, image.colSpan, image.ratio],
+  const [isLoaded, setIsLoaded] = useState(true)
+  const srcSizes = useMemo(
+    () =>
+      image.size === Size.Wide
+        ? '(max-width: 1024px) 100vw, 50vw'
+        : '(max-width: 1024px) 50vw, 25vw',
+    [image],
   )
-
   return (
     <div
-      className={`flex justify-center relative row-span-${image.rowSpan} col-span-${image.colSpan}`}
+      className={`
+        flex justify-center 
+        relative 
+        row-span-${image.rowSpan} col-span-${image.colSpan} h-full w-full
+        ${
+          image.size === Size.Tall
+            ? 'min-h-[72vw] lg:min-h-[36vw]'
+            : 'min-h-[36vw] lg:min-h-[18vw]'
+        }`}
     >
-      {loaded && <DayLink day={image.day} />}
+      {isLoaded && <DayLink day={image.day} />}
       <Image
-        className={`hover:cursor-zoom-in object-cover h-full`}
+        className={`hover:cursor-zoom-in object-cover`}
         src={image.src}
-        width={width}
-        height={height}
+        fill
         placeholder="blur"
         blurDataURL={image.preview}
         alt={image.alt}
         onClick={onClick}
         sizes={srcSizes}
         priority={priority}
-        onLoadingComplete={() => setLoaded(true)}
+        onLoad={() => setIsLoaded(true)}
       />
     </div>
   )
