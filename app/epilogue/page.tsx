@@ -2,7 +2,7 @@ import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
-import { Image } from '@/util/Image'
+import { Image, NewTabLink } from '@/util/mdx'
 import PostContent from '@/components/PostContent'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
@@ -24,7 +24,7 @@ export default function Page() {
           </Link>
         </div>
       </div>
-      <MDXContent components={{ Image }} />
+      <MDXContent components={{ Image, a: NewTabLink }} />
     </PostContent>
   )
 }
