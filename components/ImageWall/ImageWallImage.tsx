@@ -25,13 +25,13 @@ export default function ImageWallImage({
   return (
     <div
       className={`
-        flex justify-center 
-        relative 
+        flex justify-center
+        relative
         row-span-${image.rowSpan} col-span-${image.colSpan} h-full w-full
         ${
           image.size === Size.Tall
-            ? 'min-h-[72vw] lg:min-h-[36vw]'
-            : 'min-h-[36vw] lg:min-h-[18vw]'
+            ? 'min-h-[72vw] lg:min-h-[36vw] 3xl:min-h-[620px]'
+            : 'min-h-[36vw] lg:min-h-[18vw] 3xl:min-h-[310px]'
         }`}
     >
       {isLoaded && <DayLink day={image.day} />}
