@@ -14,7 +14,7 @@ export default function ImageWallImage({
   priority,
   onClick,
 }: ImageWallImageProps) {
-  const [isLoaded, setIsLoaded] = useState(true)
+  const [isLoaded, setIsLoaded] = useState(false)
   const srcSizes = useMemo(
     () =>
       image.size === Size.Wide
