@@ -2,7 +2,7 @@ import { AboutPage, allAboutPages } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Container from 'util/containers'
 import Icons from '@/components/Icons'
-import { Image } from '@/util/Image'
+import { Image, NewTabLink } from '@/util/mdx'
 import TableOfContents from '@/components/TableOfContents'
 
 export async function generateStaticParams() {
@@ -34,7 +34,7 @@ export default function Page({ params }: { params: { name: string } }) {
       )}
       <div className="lg:col-start-2 mt-4 flex justify-center">
         <Container.AboutText>
-          <MDXContent components={{ Icons, Image }} />
+          <MDXContent components={{ Icons, Image, a: NewTabLink }} />
         </Container.AboutText>
       </div>
     </>

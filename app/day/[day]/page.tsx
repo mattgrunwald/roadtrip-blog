@@ -2,7 +2,7 @@ import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { useMemo } from 'react'
-import { Image } from '@/util/Image'
+import { Image, NewTabLink } from '@/util/mdx'
 import PostContent from '@/components/PostContent'
 import { getAllMarkers } from '@/util/helpers'
 
@@ -51,7 +51,7 @@ export default function Page({ params }: { params: { day: string } }) {
           )}
         </div>
       </div>
-      <MDXContent components={{ Image }} />
+      <MDXContent components={{ Image, a: NewTabLink }} />
     </PostContent>
   )
 }
