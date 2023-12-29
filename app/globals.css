@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-button:disabled > abbr {
-  color: gray;
+.react-calendar__tile abbr {
+  display: none;
+}
+
+.react-calendar__tile {
+  cursor: default;
 }

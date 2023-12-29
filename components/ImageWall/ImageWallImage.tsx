@@ -1,7 +1,8 @@
 import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
-import { DayLink } from './DayLink'
 import { useState, useMemo } from 'react'
+import Icons from '../Icons'
+import { DayLink } from '../DayLink'
 
 export type ImageWallImageProps = {
   image: GalleryImageSource
@@ -34,7 +35,11 @@ export default function ImageWallImage({
             : 'min-h-[36vw] lg:min-h-[18vw] 3xl:min-h-[310px]'
         }`}
     >
-      {isLoaded && <DayLink day={image.day} />}
+      {isLoaded && (
+        <DayLink day={image.day} className="absolute top-[1%] right-[1%] z-10">
+          <Icons.Link stroke="currentColor" opacity={0.5} />
+        </DayLink>
+      )}
       <Image
         className={`hover:cursor-zoom-in object-cover`}
         src={image.src}
