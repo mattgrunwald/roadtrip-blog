@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { Averia_Serif_Libre } from 'next/font/google'
+import { ACCENT_LINK_HOVER_CLASS } from './consts'
 
 const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 
@@ -67,6 +68,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
       prose dark:prose-invert
       text-lg max-w-[62ch] [&>h1]:mb-0 [&>*>h1]:mb-0
       prose-a:underline-offset-2 prose-a:font-bold
+      ${ACCENT_LINK_HOVER_CLASS}
       ${averia.className}
       max-md:mx-2
       lg:mb-8
