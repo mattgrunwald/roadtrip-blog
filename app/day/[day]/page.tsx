@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import { Image, NewTabLink } from '@/util/mdx'
 import PostContent from '@/components/PostContent'
 import { getAllMarkers } from '@/util/helpers'
+import { DayLink } from '@/components/DayLink'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -33,17 +34,11 @@ export default function Page({ params }: { params: { day: string } }) {
       <div className="flex flex-row justify-between pb-2">
         <div>
           {previousDay >= 1 && (
-            <Link href={`/day/${previousDay}`} aria-label="Go to previous day">
-              Day {previousDay}
-            </Link>
+            <DayLink day={previousDay}>Day {previousDay}</DayLink>
           )}
         </div>
         <div>
-          {nextDay <= 30 && (
-            <Link href={`/day/${nextDay}`} aria-label="Go to next day">
-              Day {nextDay}
-            </Link>
-          )}
+          {nextDay <= 30 && <DayLink day={nextDay}>Day {nextDay}</DayLink>}
           {day === 30 && (
             <Link href={'/epilogue'} aria-label="Go to epilogue">
               Epilogue

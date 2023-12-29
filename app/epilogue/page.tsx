@@ -4,6 +4,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { Image, NewTabLink } from '@/util/mdx'
 import PostContent from '@/components/PostContent'
+import { DayLink } from '@/components/DayLink'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
@@ -19,9 +20,7 @@ export default function Page() {
     <PostContent post={post!} allMarkers={allMarkers} showAllMarkersAlways>
       <div className="flex flex-row justify-between pb-2">
         <div className="w-18">
-          <Link href={'/day/30'} aria-label="Go to previous day">
-            Day 30
-          </Link>
+          <DayLink day={30}>Day {30}</DayLink>
         </div>
       </div>
       <MDXContent components={{ Image, a: NewTabLink }} />

@@ -3,6 +3,7 @@ import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import PostContent from '@/components/PostContent'
+import { DayLink } from '@/components/DayLink'
 
 const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 
@@ -19,9 +20,9 @@ export default function Page() {
       <div className="pb-2 mt-9">
         <MDXContent />
       </div>
-      <Link href={'/day/1'} aria-label="Go to first day">
+      <DayLink day={1}>
         <b>Jump In</b>
-      </Link>
+      </DayLink>
     </PostContent>
   )
 }
