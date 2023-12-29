@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { AboutDropdown } from './AboutDropdown'
 import { ModeToggle } from '../ModeToggle'
-import { ACCENT_TEXT_CLASS } from '@/util/consts'
+import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 
 export default function Header() {
   return (
@@ -14,7 +14,7 @@ export default function Header() {
           <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
             <Link
               href="/"
-              className={`hover:${ACCENT_TEXT_CLASS}`}
+              className={ACCENT_TEXT_CLASS_HOVER}
               aria-label="Go to homepage"
             >
               Home
@@ -23,7 +23,7 @@ export default function Header() {
           <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
             <Link
               href="/pictures"
-              className={`hover:${ACCENT_TEXT_CLASS}`}
+              className={ACCENT_TEXT_CLASS_HOVER}
               aria-label="See all pictures from the trip"
             >
               Pictures
@@ -33,14 +33,14 @@ export default function Header() {
             <AboutDropdown name="About">
               <Link
                 href="/about/van"
-                className={`hover:${ACCENT_TEXT_CLASS}`}
+                className={ACCENT_TEXT_CLASS_HOVER}
                 aria-label="Read more about the van"
               >
                 The Van
               </Link>
               <Link
                 href="/about/site"
-                className={`hover:${ACCENT_TEXT_CLASS}`}
+                className={ACCENT_TEXT_CLASS_HOVER}
                 aria-label="Read more about this site"
               >
                 This Site
