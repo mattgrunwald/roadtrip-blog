@@ -1,9 +1,10 @@
 import { Marker } from 'react-simple-maps'
-import { ACCENT_COLOR } from '@/util/consts'
+import { ACCENT_COLOR_DARK, ACCENT_COLOR_LIGHT } from '@/util/consts'
 import { DayLink } from '../DayLink'
 
 type MapMarkerProps = {
   coordinates: [number, number]
+  color: string
   day?: number
   opacity?: string
   name?: string
@@ -12,6 +13,7 @@ type MapMarkerProps = {
 export const MapMarker = ({
   coordinates,
   day,
+  color,
   opacity = '100%',
   name = '',
   offset = 0,
@@ -20,10 +22,10 @@ export const MapMarker = ({
     <Marker coordinates={coordinates}>
       {day ? (
         <DayLink day={day}>
-          <Dot opacity={opacity} />
+          <Dot opacity={opacity} color={color} />
         </DayLink>
       ) : (
-        <Dot opacity={opacity} />
+        <Dot opacity={opacity} color={color} />
       )}
       <text
         textAnchor="middle"
@@ -38,13 +40,14 @@ export const MapMarker = ({
 
 type DotProps = {
   opacity: string
+  color: string
 }
 
-const Dot = ({ opacity }: DotProps) => (
+const Dot = ({ opacity, color }: DotProps) => (
   <circle
     className={`opacity-${opacity} hover:opacity-100`}
     r={5}
-    fill={ACCENT_COLOR}
+    fill={color}
     strokeWidth={2}
   />
 )

@@ -4,7 +4,7 @@ import React, { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import Icons from './Icons'
 import { Heading } from '@/util/types'
-import { ACCENT_TEXT_CLASS } from '@/util/consts'
+import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 
 export default function TableOfContents({
   headings,
@@ -19,18 +19,18 @@ export default function TableOfContents({
       <div key={`#${heading.slug}`} className="mb-1 last-of-type:mb-0">
         <a href={`#${heading.slug}`}>
           <span
-            className={`block hover:underline hover:${ACCENT_TEXT_CLASS} ${
+            className={`block hover:underline ${ACCENT_TEXT_CLASS_HOVER} ${
               heading.level === 1
                 ? '!text-2xl font-bold'
                 : heading.level === 2
-                ? 'pl-4 !text-xl font-bold'
-                : heading.level === 3
-                ? 'pl-8 !text-lg font-semibold'
-                : heading.level === 4
-                ? 'pl-12 !text-base'
-                : heading.level === 5
-                ? 'pl-16 !text-sm'
-                : ''
+                  ? 'pl-4 !text-xl font-bold'
+                  : heading.level === 3
+                    ? 'pl-8 !text-lg font-semibold'
+                    : heading.level === 4
+                      ? 'pl-12 !text-base'
+                      : heading.level === 5
+                        ? 'pl-16 !text-sm'
+                        : ''
             }`}
           >
             {heading.text}
