@@ -23,14 +23,14 @@ export default function TripMap({
 }: TripMapProps) {
   const { resolvedTheme } = useTheme()
 
-  const [fill, accentColor] = useMemo(() => {
+  const [fill, stroke, accentColor] = useMemo(() => {
     switch (resolvedTheme) {
       case 'light':
-        return ['#e5e7eb', ACCENT_COLOR_LIGHT]
+        return ['#e5e7eb', '#999', ACCENT_COLOR_LIGHT]
       case 'dark':
-        return ['#374151', ACCENT_COLOR_DARK]
+        return ['#374151', '#bbb', ACCENT_COLOR_DARK]
       default:
-        return ['', ACCENT_COLOR_DARK]
+        return ['', '#bbb', ACCENT_COLOR_DARK]
     }
   }, [resolvedTheme])
 
@@ -97,7 +97,7 @@ export default function TripMap({
                   key={geo.rsmKey}
                   geography={geo}
                   className="dark:fill-gray-700 fill-gray-200 focus:outline-none"
-                  stroke="#bbb"
+                  stroke={stroke}
                 />
               ))
             }
