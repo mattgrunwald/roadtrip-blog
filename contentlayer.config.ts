@@ -58,7 +58,7 @@ const Heading = defineNestedType(() => ({
   fields: {
     level: { type: 'number', required: false },
     text: { type: 'string', required: false },
-    slugf: { type: 'string', required: false },
+    slug: { type: 'string', required: false },
   },
 }))
 
