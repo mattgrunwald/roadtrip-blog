@@ -8,7 +8,7 @@ import {
 import { useTheme } from 'next-themes'
 import { useCallback, useEffect, useState, useMemo } from 'react'
 
-export function ModeToggle() {
+export function ModeToggle({ xl = false }) {
   const [mounted, setMounted] = useState(false)
   const [hover, setHover] = useState(false)
   const { setTheme, resolvedTheme } = useTheme()
@@ -32,8 +32,12 @@ export function ModeToggle() {
     setMounted(true)
   }, [])
 
+  const [borderStyles, iconStyles] = xl
+    ? ['w-12 h-12', 'w-10 h-10']
+    : ['w-6 h-6', 'w-4 h-4']
+
   if (!mounted) {
-    return <div className="border rounded-md w-6 h-6" />
+    return <div className={`border rounded-md ${borderStyles}`} />
   }
 
   return (
@@ -51,7 +55,7 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke={stroke}
-          className="w-4 h-4"
+          className={iconStyles}
         >
           <path
             strokeLinecap="round"
@@ -66,7 +70,7 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke={stroke}
-          className="w-4 h-4"
+          className={iconStyles}
         >
           <path
             strokeLinecap="round"
