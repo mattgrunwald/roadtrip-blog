@@ -1,5 +1,6 @@
 'use client'
 
+import { ACCENT_BORDER_CLASS_HOVER } from '@/util/consts'
 import { useTheme } from 'next-themes'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -23,7 +24,7 @@ export function ModeToggle() {
   return (
     <button
       onClick={changeTheme}
-      className="border rounded-md w-6 h-6 flex items-center justify-center border-current"
+      className={`border rounded-md w-6 h-6 flex items-center justify-center border-current ${ACCENT_BORDER_CLASS_HOVER}`}
     >
       <span className="sr-only">Toggle mode</span>
       {resolvedTheme === 'light' ? (

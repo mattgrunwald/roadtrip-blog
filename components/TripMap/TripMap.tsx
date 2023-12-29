@@ -8,6 +8,7 @@ import { MapMarker } from './MapMarker'
 import { MarkerWithDay } from '@/util/types'
 import { Placeholder } from 'geo/placeholder'
 import usGeo from 'geo/us-albers.json'
+import { ACCENT_COLOR_DARK, ACCENT_COLOR_LIGHT } from '@/util/consts'
 
 export type TripMapProps = {
   allMarkers: MarkerWithDay[]
@@ -22,14 +23,14 @@ export default function TripMap({
 }: TripMapProps) {
   const { resolvedTheme } = useTheme()
 
-  const fill = useMemo(() => {
+  const [fill, accentColor] = useMemo(() => {
     switch (resolvedTheme) {
       case 'light':
-        return '#e5e7eb'
+        return ['#e5e7eb', ACCENT_COLOR_LIGHT]
       case 'dark':
-        return '#374151'
+        return ['#374151', ACCENT_COLOR_DARK]
       default:
-        return ''
+        return ['', ACCENT_COLOR_DARK]
     }
   }, [resolvedTheme])
 
@@ -62,6 +63,7 @@ export default function TripMap({
         key={coordinates[0]}
         coordinates={coordinates as [number, number]}
         opacity={allMarkerOpacity}
+        color={accentColor}
         day={day}
       />
     ))
@@ -72,6 +74,7 @@ export default function TripMap({
         key={name || coordinates[0]}
         coordinates={coordinates as [number, number]}
         name={name}
+        color={accentColor}
         offset={markerOffset}
       />
     ))

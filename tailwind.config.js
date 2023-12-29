@@ -8,7 +8,7 @@ module.exports = {
   ],
   safelist: [
     {
-      pattern: /^(bg-|text-)\w+-400/,
+      pattern: /^(bg-|text-)\w+-[45]{1}00/,
       variants: ['hover', 'active'],
     },
     {

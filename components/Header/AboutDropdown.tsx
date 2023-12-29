@@ -1,7 +1,7 @@
 'use client'
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import { ACCENT_TEXT_CLASS } from '@/util/consts'
+import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 
 export function AboutDropdown({
   name,
@@ -12,7 +12,7 @@ export function AboutDropdown({
 }) {
   return (
     <Menu>
-      <Menu.Button className={`hover:${ACCENT_TEXT_CLASS}`}>{name}</Menu.Button>
+      <Menu.Button className={`${ACCENT_TEXT_CLASS_HOVER}`}>{name}</Menu.Button>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
@@ -24,7 +24,7 @@ export function AboutDropdown({
       >
         <Menu.Items className="absolute mt-2 rounded-md dark:bg-gray-700 bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           {React.Children.map(children, (child) => (
-            <div className={`m-2 hover:underline hover:${ACCENT_TEXT_CLASS}`}>
+            <div className={`m-2 hover:underline ${ACCENT_TEXT_CLASS_HOVER}`}>
               <Menu.Item>{child}</Menu.Item>
             </div>
           ))}
