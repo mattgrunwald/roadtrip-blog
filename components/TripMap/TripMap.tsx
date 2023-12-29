@@ -57,12 +57,13 @@ export default function TripMap({
 
   const UnnamedMarkers = () =>
     showAllMarkers &&
-    allMarkers.map(({ coordinates, day }) => (
+    allMarkers.map(({ coordinates, day, name }) => (
       <MapMarker
         key={coordinates[0]}
         coordinates={coordinates as [number, number]}
         opacity={allMarkerOpacity}
         day={day}
+        name={name}
       />
     ))
 
@@ -73,6 +74,7 @@ export default function TripMap({
         coordinates={coordinates as [number, number]}
         name={name}
         offset={markerOffset}
+        forCurrentDay
       />
     ))
   return (
