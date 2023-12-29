@@ -1,6 +1,6 @@
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
-import TripMap from '@/components/TripMap/TripMap'
+import TripMap from '@/components/TripMap'
 import { Marker, Post } from 'contentlayer/generated'
 import Container from '@/util/containers'
 import { useMemo } from 'react'
