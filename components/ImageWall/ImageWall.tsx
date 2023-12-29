@@ -5,6 +5,7 @@ import { useState } from 'react'
 import ImageWallImage from './ImageWallImage'
 import { GalleryImageSource } from '@/util/types'
 import { fitToGrid } from '@/util/imagePlacement'
+import ScrollToTopButton from './ScrollToTopButton'
 
 export type ImageWallProps = {
   images: GalleryImageSource[]
@@ -38,6 +39,7 @@ export default function ImageWall({ images, colCount = 4 }: ImageWallProps) {
           />
         ))}
       </div>
+      <ScrollToTopButton />
       <GalleryDialog
         sources={gridImages}
         isOpen={isOpen}
