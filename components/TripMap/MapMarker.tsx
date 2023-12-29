@@ -1,6 +1,6 @@
 import { Marker } from 'react-simple-maps'
 import { ACCENT_COLOR } from '@/util/consts'
-import Link from 'next/link'
+import { DayLink } from '../DayLink'
 
 type MapMarkerProps = {
   coordinates: [number, number]
@@ -16,14 +16,12 @@ export const MapMarker = ({
   name = '',
   offset = 0,
 }: MapMarkerProps) => {
-  const [href, label] =
-    day !== undefined ? [`/day/${day}`, `Go to day ${day}`] : ['', '']
   return (
     <Marker coordinates={coordinates}>
       {day ? (
-        <Link href={href} aria-label={label}>
+        <DayLink day={day}>
           <Dot opacity={opacity} />
-        </Link>
+        </DayLink>
       ) : (
         <Dot opacity={opacity} />
       )}
