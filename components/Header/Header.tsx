@@ -5,13 +5,13 @@ import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 
 export default function Header() {
   return (
-    <header className="sticky top-0 pt-4 z-30 bg-slate-50 dark:bg-slate-950">
-      <div className="flex items-center justify-between mx-auto px-4 lg:px-8">
+    <header className="sticky top-0 z-30 bg-slate-50 pt-4 dark:bg-slate-950">
+      <div className="mx-auto flex items-center justify-between px-4 lg:px-8">
         <Link href="/" aria-label="Roadtrek Trip 2023">
           <b>Roadtrek Trip 2023</b>
         </Link>
         <div className="flex items-center justify-around">
-          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
+          <nav className="ml-auto space-x-6 text-sm font-medium max-lg:mr-4 lg:mr-6">
             <Link
               href="/"
               className={ACCENT_TEXT_CLASS_HOVER}
@@ -20,7 +20,7 @@ export default function Header() {
               Home
             </Link>
           </nav>
-          <nav className="ml-auto max-lg:mr-4 lg:mr-6 text-sm font-medium space-x-6">
+          <nav className="ml-auto space-x-6 text-sm font-medium max-lg:mr-4 lg:mr-6">
             <Link
               href="/pictures"
               className={ACCENT_TEXT_CLASS_HOVER}
@@ -29,7 +29,7 @@ export default function Header() {
               Pictures
             </Link>
           </nav>
-          <span className="max-lg:mr-4 lg:mr-6 mr-6 text-sm font-medium">
+          <span className="mr-6 text-sm font-medium max-lg:mr-4 lg:mr-6">
             <AboutDropdown name="About">
               <Link
                 href="/about/van"

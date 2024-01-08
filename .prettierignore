@@ -4,3 +4,4 @@
 .next
 .contentlayer
 geo/*.json
+public/images

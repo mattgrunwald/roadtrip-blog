@@ -33,7 +33,7 @@ export function ModeToggle() {
   }, [])
 
   if (!mounted) {
-    return <div className="border rounded-md w-6 h-6" />
+    return <div className="h-6 w-6 rounded-md border" />
   }
 
   return (
@@ -41,7 +41,7 @@ export function ModeToggle() {
       onClick={changeTheme}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`border rounded-md w-6 h-6 flex items-center justify-center border-current ${ACCENT_BORDER_CLASS_HOVER}`}
+      className={`flex h-6 w-6 items-center justify-center rounded-md border border-current ${ACCENT_BORDER_CLASS_HOVER}`}
     >
       <span className="sr-only">Toggle mode</span>
       {resolvedTheme === 'light' ? (
@@ -51,7 +51,7 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke={stroke}
-          className="w-4 h-4"
+          className="h-4 w-4"
         >
           <path
             strokeLinecap="round"
@@ -66,7 +66,7 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke={stroke}
-          className="w-4 h-4"
+          className="h-4 w-4"
         >
           <path
             strokeLinecap="round"

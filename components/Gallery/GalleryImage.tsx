@@ -78,8 +78,8 @@ export const GalleryImage = ({
           src={src}
           className={`
             object-cover
-            blur-lg
             opacity-75
+            blur-lg
           ${isCurrent ? 'block' : 'hidden'}
         `}
           alt="blurred image background"

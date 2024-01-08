@@ -5,7 +5,7 @@ export const Month = ({
   children,
 }: React.PropsWithChildren & { name: string }) => (
   <div className="max-w-xs">
-    <div className="prose dark:prose-invert text-center mb-2">
+    <div className="prose mb-2 text-center dark:prose-invert">
       <b>{name}</b>
     </div>
     {children}

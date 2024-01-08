@@ -27,7 +27,7 @@ export default function PostContent({
   return (
     <Container.Post>
       <div className="flex justify-center lg:hidden">
-        <div className=" block w-[700px] h-full">
+        <div className=" block h-full w-[700px]">
           <Gallery sources={sources} />
         </div>
       </div>

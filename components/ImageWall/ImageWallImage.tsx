@@ -26,8 +26,8 @@ export default function ImageWallImage({
   return (
     <div
       className={`
-        flex justify-center
-        relative
+        relative flex
+        justify-center
         row-span-${image.rowSpan} col-span-${image.colSpan} h-full w-full
         ${
           image.size === Size.Tall
@@ -36,12 +36,12 @@ export default function ImageWallImage({
         }`}
     >
       {isLoaded && (
-        <DayLink day={image.day} className="absolute top-[1%] right-[1%] z-10">
+        <DayLink day={image.day} className="absolute right-[1%] top-[1%] z-10">
           <Icons.Link stroke="currentColor" opacity={0.5} />
         </DayLink>
       )}
       <Image
-        className={`hover:cursor-zoom-in object-cover`}
+        className={`object-cover hover:cursor-zoom-in`}
         src={image.src}
         fill
         placeholder="blur"

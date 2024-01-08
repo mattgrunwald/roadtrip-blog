@@ -13,13 +13,13 @@ export default function Counter({
         absolute
         bottom-[2%]
         left-[50%]
-        translate-x-[-50%]
-        bg-slate-50/70 dark:bg-gray-800
+        z-10
+        translate-x-[-50%] rounded-md
+        bg-slate-50/70
         p-1
         text-xs
+        dark:bg-gray-800
         dark:opacity-70
-        rounded-md
-        z-10
         "
     >
       {count} / {total}
