@@ -1,6 +1,5 @@
 import { Post } from '@/.contentlayer/generated'
-import { MarkerWithDay } from './types'
-import { GalleryImageSource } from './types'
+import { GalleryImageSource, MarkerWithDay } from './types'
 
 export function getAllMarkers(posts: Post[]) {
   const markers: Record<string, MarkerWithDay> = {}

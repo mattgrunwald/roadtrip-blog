@@ -1,8 +1,8 @@
 import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
-import { useState, useMemo } from 'react'
-import Icons from '../Icons'
+import { useMemo, useState } from 'react'
 import { DayLink } from '../DayLink'
+import Icons from '../Icons'
 
 export type ImageWallImageProps = {
   image: GalleryImageSource

@@ -1,5 +1,3 @@
-import { MouseEventHandler, useMemo } from 'react'
-
 export default function Counter({
   count,
   total,

@@ -2,11 +2,11 @@
 
 import {
   ACCENT_BORDER_CLASS_HOVER,
-  ACCENT_COLOR_LIGHT,
   ACCENT_COLOR_DARK,
+  ACCENT_COLOR_LIGHT,
 } from '@/util/consts'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useState, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 export function ModeToggle() {
   const [mounted, setMounted] = useState(false)
