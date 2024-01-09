@@ -23,6 +23,15 @@ export default function TripMap({
 }: TripMapProps) {
   const { resolvedTheme } = useTheme()
 
+  const [hideMap, setHideMap] = useState(true)
+  const [showAllMarkers, setShowAllMarkers] = useState(showAllMarkersAlways)
+
+  const showAll = () => setShowAllMarkers(true)
+  const hideAll = useCallback(
+    () => showAllMarkersAlways || setShowAllMarkers(false),
+    [showAllMarkersAlways],
+  )
+
   const [fill, stroke, accentColor] = useMemo(() => {
     switch (resolvedTheme) {
       case 'light':
@@ -35,15 +44,6 @@ export default function TripMap({
   }, [resolvedTheme])
 
   const opacity = useMemo(() => (resolvedTheme ? 1 : 0), [resolvedTheme])
-
-  const [hideMap, setHideMap] = useState(true)
-  const [showAllMarkers, setShowAllMarkers] = useState(showAllMarkersAlways)
-
-  const showAll = () => setShowAllMarkers(true)
-  const hideAll = useCallback(
-    () => showAllMarkersAlways || setShowAllMarkers(false),
-    [showAllMarkersAlways],
-  )
 
   const allMarkerOpacity = useMemo(
     () => (showAllMarkersAlways ? '100' : '50'),
@@ -78,6 +78,7 @@ export default function TripMap({
         offset={markerOffset}
       />
     ))
+
   return (
     <div className="md:flex md:items-center md:justify-center lg:h-full">
       <div className="w-full md:max-h-[450px] md:max-w-[580px]">
