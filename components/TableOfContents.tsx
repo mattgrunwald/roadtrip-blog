@@ -51,7 +51,7 @@ function Toc({
 }) {
   return (
     <div className=" w-64">
-      <div className="text-xs uppercase mb-2 opacity-50">{title}</div>
+      <div className="mb-2 text-xs uppercase opacity-50">{title}</div>
       <div className="text-sm opacity-75">{children}</div>
     </div>
   )
@@ -68,7 +68,7 @@ export function TocPopover({
     <Menu>
       {({ open }) => (
         <>
-          <Menu.Button className="fixed right-4 text-xs uppercase dark:bg-gray-700 bg-gray-200 p-2 rounded-lg">
+          <Menu.Button className="fixed right-4 rounded-lg bg-gray-200 p-2 text-xs uppercase dark:bg-gray-700">
             {title}
             {open ? <Icons.ChevronUp /> : <Icons.ChevronDown />}
           </Menu.Button>
@@ -81,7 +81,7 @@ export function TocPopover({
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="mt-10 max-w-64 rounded-md dark:bg-gray-700 bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="max-w-64 mt-10 rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
               <div className="p-3">
                 {React.Children.map(children, (child) => (
                   <Menu.Item>{child}</Menu.Item>

@@ -14,7 +14,7 @@ export default function Page() {
 
   return (
     <PostContent post={post!} allMarkers={allMarkers} showAllMarkersAlways>
-      <div className="pb-2 mt-9">
+      <div className="mt-9 pb-2">
         <MDXContent />
       </div>
       <DayLink day={1}>

@@ -79,8 +79,8 @@ export default function TripMap({
       />
     ))
   return (
-    <div className="md:flex md:justify-center md:items-center lg:h-full">
-      <div className="w-full md:max-w-[580px] md:max-h-[450px]">
+    <div className="md:flex md:items-center md:justify-center lg:h-full">
+      <div className="w-full md:max-h-[450px] md:max-w-[580px]">
         {hideMap && (
           <Placeholder stroke={'#bbb'} fill={fill} opacity={opacity} />
         )}
@@ -96,7 +96,7 @@ export default function TripMap({
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  className="dark:fill-gray-700 fill-gray-200 focus:outline-none"
+                  className="fill-gray-200 focus:outline-none dark:fill-gray-700"
                   stroke={stroke}
                 />
               ))

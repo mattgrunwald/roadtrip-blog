@@ -18,11 +18,11 @@ export const GalleryButton = ({
     <button
       onClick={onClick}
       className={`
+        group
         absolute
         top-[calc(50%-1rem)]
-        group
-        focus:outline-none
         z-10
+        focus:outline-none
         max-sm:hidden
         ${right ? 'right-[1%]' : 'left-[1%]'}`}
     >
@@ -30,25 +30,25 @@ export const GalleryButton = ({
         className={`
         ${right ? 'right-[1%]' : 'left-[1%]'}
         inline-flex
+        h-8
+        w-8
         items-center
         justify-center
-        w-8
-        h-8
         rounded-full
-        sm:w-10
-        sm:h-10
         bg-gray-400/30
-        dark:bg-gray-800/30
         group-hover:bg-gray-400/50
-        dark:group-hover:bg-gray-800/60
-        group-focus:ring-white
-        dark:group-focus:ring-gray-800/70
         group-focus:outline-none
+        group-focus:ring-white
+        dark:bg-gray-800/30
+        dark:group-hover:bg-gray-800/60
+        dark:group-focus:ring-gray-800/70
+        sm:h-10
+        sm:w-10
       `}
       >
         <svg
           aria-hidden="true"
-          className="w-5 h-5 text-white dark:opacity-50 sm:w-6 sm:h-6"
+          className="h-5 w-5 text-white dark:opacity-50 sm:h-6 sm:w-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

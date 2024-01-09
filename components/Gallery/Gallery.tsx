@@ -132,7 +132,7 @@ export default function Gallery({
     <>
       <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
         {modal && (
-          <div className="opacity-50 text-xs mb-2">{`${count} of ${sources.length}`}</div>
+          <div className="mb-2 text-xs opacity-50">{`${count} of ${sources.length}`}</div>
         )}
         <div
           className={
@@ -140,17 +140,17 @@ export default function Gallery({
               ? ''
               : `
                 relative
-                overflow-hidden
                 w-full
+                overflow-hidden
                 max-md:h-[70vw]
                 md:h-[65vw]
+                md:bg-gray-100
+                dark:md:bg-gray-900
                 lg:h-[40vh]
                 lg:min-h-[42vh]
-                xl:max-2xl:max-h-[45vh]
-                2xl:min-h-[45vh]
-                3xl:min-h-[34vh] 3xl:h-96
-                dark:md:bg-gray-900
-                md:bg-gray-100
+                xl:max-2xl:max-h-[45vh] 2xl:min-h-[45vh]
+                3xl:h-96
+                3xl:min-h-[34vh]
                 `
           }
           {...handlers}

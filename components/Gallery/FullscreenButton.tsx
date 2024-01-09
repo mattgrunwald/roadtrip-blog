@@ -29,24 +29,24 @@ export default function FullscreenButton({
     <button
       onClick={onClick}
       className={`
-        absolute
         group
-        focus:outline-none
-        md:right-[1%]
+        absolute
         right-0
         z-10
+        focus:outline-none
+        md:right-[1%]
         ${modal ? 'top-[-1%]' : 'bottom-[1%]'}
         `}
     >
       <span
         className="
         inline-flex
+        h-8
+        w-8
         items-center
         justify-center
-        w-8
-        h-8
-        xs:w-10
         xs:h-10
+        xs:w-10
         "
       >
         <svg
@@ -56,7 +56,7 @@ export default function FullscreenButton({
           className={`${
             modal ? 'text-gray-400/50' : 'text-white '
           } dark:text-white/50 ${
-            modal ? 'sm:w-10 sm:h-10' : 'max-md:hidden md:w-6 md:h-6'
+            modal ? 'sm:h-10 sm:w-10' : 'max-md:hidden md:h-6 md:w-6'
           }`}
         >
           <path
