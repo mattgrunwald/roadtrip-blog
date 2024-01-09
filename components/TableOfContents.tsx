@@ -1,10 +1,10 @@
 'use client'
 
-import React, { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import Icons from './Icons'
-import { Heading } from '@/util/types'
 import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
+import { Heading } from '@/util/types'
+import { Menu, Transition } from '@headlessui/react'
+import React, { Fragment } from 'react'
+import Icons from './Icons'
 
 export default function TableOfContents({
   headings,

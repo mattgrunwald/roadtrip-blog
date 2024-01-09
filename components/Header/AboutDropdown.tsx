@@ -1,7 +1,7 @@
 'use client'
+import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 
 export function AboutDropdown({
   name,

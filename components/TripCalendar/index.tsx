@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import Calendar, { CalendarProps } from 'react-calendar'
 import { CalendarDay } from './CalendarDay'
 import { Month } from './Month'

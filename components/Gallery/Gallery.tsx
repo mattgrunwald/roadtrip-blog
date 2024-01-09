@@ -1,24 +1,17 @@
 import { mod } from '@/util/helpers'
+import { GalleryImageSource } from '@/util/types'
 import {
-  useState,
-  useCallback,
-  useMemo,
-  useEffect,
   MouseEventHandler,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react'
+import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
+import Counter from './Counter'
+import FullscreenButton from './FullscreenButton'
 import { GalleryButton } from './GalleryButton'
 import { GalleryImage } from './GalleryImage'
-import {
-  useSwipeable,
-  SwipeEventData,
-  LEFT,
-  RIGHT,
-  UP,
-  DOWN,
-} from 'react-swipeable'
-import { GalleryImageSource } from '@/util/types'
-import FullscreenButton from './FullscreenButton'
-import Counter from './Counter'
 
 export type GalleryProps = {
   sources: GalleryImageSource[]

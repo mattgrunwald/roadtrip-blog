@@ -1,11 +1,12 @@
+import { DayLink } from '@/components/DayLink'
+import PostContent from '@/components/PostContent'
+import { getAllMarkers } from '@/util/helpers'
+import { Image, NewTabLink } from '@/util/mdx'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { useMemo } from 'react'
-import { Image, NewTabLink } from '@/util/mdx'
-import PostContent from '@/components/PostContent'
-import { getAllMarkers } from '@/util/helpers'
-import { DayLink } from '@/components/DayLink'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -13,16 +14,15 @@ export async function generateStaticParams() {
   }))
 }
 
-const notFoundPost = allPosts.find((post) => post.path === 'posts/notfound')
 const allMarkers = getAllMarkers(allPosts)
 
 export default function Page({ params }: { params: { day: string } }) {
   const post = useMemo(
-    () =>
-      allPosts.find((post) => post.path === `posts/${params.day}`) ||
-      notFoundPost,
+    () => allPosts.find((post) => post.path === `posts/${params.day}`),
     [params.day],
   )
+
+  if (!post) notFound()
 
   const day = useMemo(() => Number(params.day), [params.day])
   const previousDay = useMemo(() => day - 1, [day])
