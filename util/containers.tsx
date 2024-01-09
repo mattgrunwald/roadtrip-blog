@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react'
 import { Averia_Serif_Libre } from 'next/font/google'
+import { PropsWithChildren } from 'react'
 
 const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 

@@ -1,10 +1,10 @@
 'use client'
 
-import { GalleryDialog } from '../Gallery/GalleryDialog'
-import { useState } from 'react'
-import ImageWallImage from './ImageWallImage'
-import { GalleryImageSource } from '@/util/types'
 import { fitToGrid } from '@/util/imagePlacement'
+import { GalleryImageSource } from '@/util/types'
+import { useState } from 'react'
+import { GalleryDialog } from '../Gallery/GalleryDialog'
+import ImageWallImage from './ImageWallImage'
 
 export type ImageWallProps = {
   images: GalleryImageSource[]

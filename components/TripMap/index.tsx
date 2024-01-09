@@ -5,10 +5,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { MapMarker } from './MapMarker'
 
+import { ACCENT_COLOR_DARK, ACCENT_COLOR_LIGHT } from '@/util/consts'
 import { MarkerWithDay } from '@/util/types'
 import { Placeholder } from 'geo/placeholder'
 import usGeo from 'geo/us-albers.json'
-import { ACCENT_COLOR_DARK, ACCENT_COLOR_LIGHT } from '@/util/consts'
 
 export type TripMapProps = {
   allMarkers: MarkerWithDay[]

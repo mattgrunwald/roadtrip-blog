@@ -1,5 +1,5 @@
-import GithubSlugger from 'github-slugger'
 import { AboutPage } from '@/.contentlayer/generated'
+import GithubSlugger from 'github-slugger'
 
 export async function generateHeadings(doc: AboutPage) {
   const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g

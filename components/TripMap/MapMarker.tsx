@@ -1,5 +1,4 @@
 import { Marker } from 'react-simple-maps'
-import { ACCENT_COLOR_DARK, ACCENT_COLOR_LIGHT } from '@/util/consts'
 import { DayLink } from '../DayLink'
 
 type MapMarkerProps = {

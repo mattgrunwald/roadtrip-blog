@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import { AboutDropdown } from './AboutDropdown'
-import { ModeToggle } from '../ModeToggle'
 import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
+import Link from 'next/link'
+import { ModeToggle } from '../ModeToggle'
+import { AboutDropdown } from './AboutDropdown'
 
 export default function Header() {
   return (
