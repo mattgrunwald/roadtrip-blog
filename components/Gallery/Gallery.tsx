@@ -145,12 +145,12 @@ export default function Gallery({
                 max-md:h-[70vw]
                 md:h-[65vw]
                 md:bg-gray-100
-                dark:md:bg-gray-900
                 lg:h-[40vh]
                 lg:min-h-[42vh]
-                xl:max-2xl:max-h-[45vh] 2xl:min-h-[45vh]
-                3xl:h-96
+                xl:max-2xl:max-h-[45vh]
+                2xl:min-h-[45vh] 3xl:h-96
                 3xl:min-h-[34vh]
+                dark:md:bg-gray-900
                 `
           }
           {...handlers}
@@ -171,10 +171,14 @@ export default function Gallery({
               />
             ))}
         </div>
-        {hasImages && sources.length > 1 && (
+        {hasImages && (
           <>
-            <GalleryButton left onClick={prevImage} />
-            <GalleryButton right onClick={nextImage} />
+            {sources.length > 1 && (
+              <>
+                <GalleryButton left onClick={prevImage} />
+                <GalleryButton right onClick={nextImage} />
+              </>
+            )}
             {!modal && <Counter count={count} total={sources.length} />}
           </>
         )}
