@@ -26,6 +26,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
         lg:sticky lg:top-16 lg:order-first lg:flex
         lg:max-h-[90vh]
         lg:flex-col lg:justify-between 2xl:w-[580px]
+        3xl:pt-8
         "
     >
       {children}
@@ -100,12 +101,12 @@ const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-      sticky 
-      top-20 
-      col-start-1 
-      h-max 
+      sticky
+      top-20
+      col-start-1
+      h-max
       space-y-2
-      max-lg:hidden  
+      max-lg:hidden
       2xl:flex 2xl:justify-end"
     >
       {children}
