@@ -13,7 +13,7 @@ export default function Counter({
         left-[50%]
         z-10
         translate-x-[-50%] rounded-md
-        bg-slate-50/70
+        bg-gray-50/70
         p-1
         text-xs
         dark:bg-gray-800

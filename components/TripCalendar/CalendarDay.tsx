@@ -18,7 +18,7 @@ export const CalendarDay = ({ date, currentDay }: CalendarDayProps) => {
   return (
     <div className="flex justify-center">
       {disabled ? (
-        <span className="border-2 border-transparent text-slate-400 dark:text-slate-600">
+        <span className="border-2 border-transparent text-gray-400 dark:text-gray-600">
           {date.getDate()}
         </span>
       ) : (

@@ -5,7 +5,7 @@ import { AboutDropdown } from './AboutDropdown'
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-30 bg-slate-50 pt-4 dark:bg-slate-950">
+    <header className="sticky top-0 z-30 bg-gray-50 pt-4 dark:bg-gray-950">
       <div className="mx-auto flex items-center justify-between px-4 lg:px-8">
         <Link href="/" aria-label="Roadtrek Trip 2023">
           <b>Roadtrek Trip 2023</b>
@@ -50,7 +50,7 @@ export default function Header() {
           <ModeToggle />
         </div>
       </div>
-      <hr className="my-4 dark:border-slate-50/20 " />
+      <hr className="my-4 dark:border-gray-50/20 " />
     </header>
   )
 }

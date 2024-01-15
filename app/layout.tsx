@@ -19,7 +19,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${inter.className}`}
+        className={`bg-gray-50 text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-50 ${inter.className}`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
