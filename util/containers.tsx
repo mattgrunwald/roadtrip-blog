@@ -25,8 +25,8 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
         sm:col-span-1
         lg:sticky lg:top-16 lg:order-first lg:flex
         lg:max-h-[90vh]
-        lg:flex-col lg:justify-between 2xl:w-[580px]
-        3xl:pt-8
+        lg:flex-col lg:justify-between 4xl:pt-8
+        2xl:w-[580px]
         "
     >
       {children}
