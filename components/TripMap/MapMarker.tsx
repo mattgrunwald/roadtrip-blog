@@ -20,7 +20,7 @@ export const MapMarker = ({
   return (
     <Marker coordinates={coordinates}>
       {day ? (
-        <DayLink day={day}>
+        <DayLink day={day} prefetch={false}>
           <Dot opacity={opacity} color={color} />
         </DayLink>
       ) : (
