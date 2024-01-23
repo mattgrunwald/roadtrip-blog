@@ -22,7 +22,7 @@ export const CalendarDay = ({ date, currentDay }: CalendarDayProps) => {
           {date.getDate()}
         </span>
       ) : (
-        <DayLink day={day} className={className}>
+        <DayLink day={day} prefetch={false} className={className}>
           {date.getDate()}
         </DayLink>
       )}

@@ -36,7 +36,11 @@ export default function ImageWallImage({
         }`}
     >
       {isLoaded && (
-        <DayLink day={image.day} className="absolute right-[1%] top-[1%] z-10">
+        <DayLink
+          day={image.day}
+          prefetch={false}
+          className="absolute right-[1%] top-[1%] z-10"
+        >
           <Icons.Link stroke="currentColor" opacity={0.5} />
         </DayLink>
       )}

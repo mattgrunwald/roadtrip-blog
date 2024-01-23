@@ -24,6 +24,7 @@ export default function Header() {
             <Link
               href="/pictures"
               className={ACCENT_TEXT_CLASS_HOVER}
+              prefetch={false}
               aria-label="See all pictures from the trip"
             >
               Pictures
@@ -34,6 +35,7 @@ export default function Header() {
               <Link
                 href="/about/van"
                 className={ACCENT_TEXT_CLASS_HOVER}
+                prefetch={false}
                 aria-label="Read more about the van"
               >
                 The Van
@@ -41,6 +43,7 @@ export default function Header() {
               <Link
                 href="/about/site"
                 className={ACCENT_TEXT_CLASS_HOVER}
+                prefetch={false}
                 aria-label="Read more about this site"
               >
                 This Site
