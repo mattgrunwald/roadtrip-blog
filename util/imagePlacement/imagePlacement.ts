@@ -25,7 +25,6 @@ export function findConsecutiveFreeSpaces(row: Row | undefined, goal: number) {
       }
       if (count === goal) {
         return startingIndex
-      } else {
       }
     } else {
       count = 0
