@@ -31,6 +31,9 @@ module.exports = {
       '3xl': '1792px',
       '4xl': '2120px',
     },
+    aspectRatio: {
+      '4/3': '4 / 3',
+    },
   },
   plugins: [require('@tailwindcss/typography')],
 }
