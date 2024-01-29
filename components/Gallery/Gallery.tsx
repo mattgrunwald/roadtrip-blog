@@ -139,17 +139,17 @@ export default function Gallery({
             modal
               ? ''
               : `
+                //md:h-[65vw]
+                //lg:h-[40vh]
+                //lg:min-h-[42vh]
+                //2xl:min-h-[45vh]
+                //3xl:h-96
+                //3xl:min-h-[34vh]
+                //xl:max-2xl:max-h-[45vh]
                 relative
-                w-full
+                aspect-4/3 w-full
                 overflow-hidden
-                max-md:h-[70vw]
-                md:h-[65vw]
-                md:bg-gray-100
-                lg:h-[40vh]
-                lg:min-h-[42vh]
-                xl:max-2xl:max-h-[45vh]
-                2xl:min-h-[45vh] 3xl:h-96
-                3xl:min-h-[34vh]
+                max-md:h-[70vw] md:bg-gray-100
                 dark:md:bg-gray-900
                 `
           }
