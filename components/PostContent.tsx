@@ -25,7 +25,7 @@ export default function PostContent({
   )
 
   return (
-    <Container.Post>
+    <>
       <div className="flex justify-center lg:hidden">
         <div className=" block h-full w-[700px]">
           <Gallery sources={sources} />
@@ -45,6 +45,6 @@ export default function PostContent({
       <Container.Calendar>
         <TripCalendar day={post.day} />
       </Container.Calendar>
-    </Container.Post>
+    </>
   )
 }

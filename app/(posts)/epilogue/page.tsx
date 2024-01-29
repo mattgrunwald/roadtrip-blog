@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 const allMarkers = getAllMarkers(allPosts)
 
 export default function Page() {
+  console.log('where does this run')
   const post = allPosts.find((post) => post.path === 'posts/epilogue')
 
   if (!post) notFound()

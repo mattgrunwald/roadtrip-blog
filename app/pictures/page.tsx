@@ -6,15 +6,13 @@ const allImages = getWallImages(allPosts)
 
 export default function Page() {
   return (
-    <div className="flex justify-center">
-      <div className="h-[90vh] w-full 3xl:w-[calc(600px+650px+320px+12rem)]">
-        <div className="max-lg:hidden">
-          <ImageWall images={allImages} />
-        </div>
-        <div className="lg:hidden">
-          <ImageWall images={allImages} colCount={2} />
-        </div>
+    <>
+      <div className="max-lg:hidden">
+        <ImageWall images={allImages} />
       </div>
-    </div>
+      <div className="lg:hidden">
+        <ImageWall images={allImages} colCount={2} />
+      </div>
+    </>
   )
 }
