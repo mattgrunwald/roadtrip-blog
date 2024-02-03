@@ -13,13 +13,12 @@ export default function Header() {
             px-4
             lg:px-8
             3xl:max-w-[calc(580px+656px+320px+16rem)]
-            3xl:pr-10
           "
       >
         <Link href="/" aria-label="Roadtrek Trip 2023">
           <b>Roadtrek Trip 2023</b>
         </Link>
-        <div className="flex items-center justify-around">
+        <div className="4xsl:justify-between flex items-center justify-around">
           <nav className="ml-auto space-x-6 text-sm font-medium max-lg:mr-4 lg:mr-6">
             <Link
               href="/"
