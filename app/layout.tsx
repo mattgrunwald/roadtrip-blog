@@ -19,11 +19,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${inter.className}`}
+        className={`bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${inter.className} `}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <div className="mx-auto px-4 lg:px-8">
+          <div className="mx-auto max-w-[calc(580px+62ch+320px+16rem)] px-4 lg:px-8">
             <main>{children}</main>
           </div>
         </ThemeProvider>

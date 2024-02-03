@@ -33,6 +33,8 @@ module.exports = {
     },
     aspectRatio: {
       '4/3': '4 / 3',
+      '8/3': '8 / 3',
+      '4/6': '4 / 6',
     },
   },
   plugins: [require('@tailwindcss/typography')],
