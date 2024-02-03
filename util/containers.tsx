@@ -103,13 +103,13 @@ const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-      sticky
-      top-20
-      col-start-1
-      h-max
-      space-y-2
-      max-lg:hidden
-      2xl:flex 2xl:justify-end"
+        sticky
+        top-20
+        col-start-1
+        h-max
+        space-y-2
+        max-lg:hidden
+      "
     >
       {children}
     </div>
