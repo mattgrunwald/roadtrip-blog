@@ -9,3 +9,10 @@
 .react-calendar__tile {
   cursor: default;
 }
+
+@layer components {
+  .content-width {
+    /* visual + text + calendar + grid spacing*/
+    max-width: calc(580px + 62ch + 320px + 16rem);
+  }
+}

@@ -23,7 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <div className="mx-auto max-w-[calc(580px+62ch+320px+16rem)] px-4 lg:px-8">
+          <div className="content-width mx-auto px-4 lg:px-8">
             <main>{children}</main>
           </div>
         </ThemeProvider>
