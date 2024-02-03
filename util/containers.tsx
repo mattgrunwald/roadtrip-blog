@@ -7,10 +7,11 @@ const Post = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
-      grid gap-x-8 gap-y-4
-      max-2xl:grid-cols-[3fr,4fr,2fr] max-lg:mb-8
-      max-lg:grid-cols-1 2xl:flex 2xl:justify-between
-      3xl:justify-center 3xl:gap-x-24
+      max-4xl:grid max-4xl:grid-cols-[3fr,4fr,2fr] max-4xl:gap-x-8
+      max-xl:gap-y-4 max-lg:mb-8
+      max-lg:grid-cols-1 2xl:justify-between 4xl:flex
+      4xl:justify-center
+      4xl:gap-x-24
       "
     >
       {children}
@@ -22,11 +23,12 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        sm:col-span-1
-        lg:sticky lg:top-16 lg:order-first lg:flex
-        lg:max-h-[90vh]
-        lg:flex-col lg:justify-between 4xl:pt-8
-        2xl:w-[580px]
+        max-lg:px-4
+        sm:col-span-1 lg:sticky lg:top-16 lg:order-first
+        lg:flex
+        lg:max-h-[90vh] lg:flex-col lg:justify-between 2xl:w-[580px]
+        3xl:max-4xl:pr-8
+        4xl:pt-8
         "
     >
       {children}
@@ -56,7 +58,7 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
 }
 
 const Entry = ({ children }: { children: React.ReactNode }) => (
-  <div className="sm:col-span-1 sm:max-lg:flex sm:max-lg:justify-center">
+  <div className="flex sm:col-span-1 sm:justify-center sm:max-lg:flex">
     <Text>{children}</Text>
   </div>
 )

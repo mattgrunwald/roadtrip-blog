@@ -8,11 +8,11 @@ export default function Header() {
     <header className="sticky top-0 z-30 bg-slate-50 pt-4 dark:bg-slate-950">
       <div
         className="
-            mx-auto
-            flex items-center justify-between
+            mx-auto flex max-w-[calc(580px+62ch+320px+16rem)]
+            items-center
+            justify-between
             px-4
             lg:px-8
-            3xl:max-w-[calc(580px+656px+320px+16rem)]
           "
       >
         <Link href="/" aria-label="Roadtrek Trip 2023">

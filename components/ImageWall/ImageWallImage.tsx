@@ -23,17 +23,25 @@ export default function ImageWallImage({
         : '(max-width: 1024px) 50vw, 25vw',
     [image],
   )
+  const aspectRatio = useMemo(() => {
+    switch (image.size) {
+      case Size.Tall:
+        return 'aspect-4/6'
+      case Size.Wide:
+        return 'aspect-8/3'
+      default:
+        return 'aspect-4/3'
+    }
+  }, [image.size])
+
   return (
     <div
       className={`
         relative flex
         justify-center
         row-span-${image.rowSpan} col-span-${image.colSpan} h-full w-full
-        ${
-          image.size === Size.Tall
-            ? 'min-h-[72vw] lg:min-h-[36vw] 3xl:min-h-[620px]'
-            : 'min-h-[36vw] lg:min-h-[18vw] 3xl:min-h-[310px]'
-        }`}
+        ${aspectRatio}
+       `}
     >
       {isLoaded && (
         <DayLink
