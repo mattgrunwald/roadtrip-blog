@@ -8,7 +8,9 @@ export const Image = (props: any) => {
     <figure>
       <NextImage height={800} width={800} sizes={sizes} {...imageProps} />
       {ack && (
-        <figcaption className="text-right">{`Source: ${ack}`}</figcaption>
+        <figcaption className="text-right">
+          <i>{ack}</i>
+        </figcaption>
       )}
     </figure>
   )
