@@ -1,6 +1,6 @@
 import Icons from '@/components/Icons'
 import TableOfContents from '@/components/TableOfContents'
-import { Image, NewTabLink } from '@/util/mdx'
+import { ContentLink, Image } from '@/components/mdx'
 import { AboutPage, allAboutPages } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { notFound } from 'next/navigation'
@@ -37,7 +37,7 @@ export default function Page({ params }: { params: { name: string } }) {
       )}
       <div className="mt-4 flex justify-center lg:col-start-2">
         <Container.AboutText>
-          <MDXContent components={{ Icons, Image, a: NewTabLink }} />
+          <MDXContent components={{ Icons, Image, a: ContentLink }} />
         </Container.AboutText>
       </div>
     </>

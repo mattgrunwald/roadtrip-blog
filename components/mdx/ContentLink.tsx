@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 
-export const NewTabLink = (props: any) => {
+export const ContentLink = (props: any) => {
   const href = props.href
   const isInternalLink = href && href.startsWith('/')
 

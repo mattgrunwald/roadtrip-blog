@@ -1,7 +1,7 @@
 import { DayLink } from '@/components/DayLink'
 import PostContent from '@/components/PostContent'
+import { ContentLink, Image } from '@/components/mdx'
 import { getAllMarkers } from '@/util/helpers'
-import { Image, NewTabLink } from '@/util/mdx'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
@@ -46,7 +46,7 @@ export default function Page({ params }: { params: { day: string } }) {
           )}
         </div>
       </div>
-      <MDXContent components={{ Image, a: NewTabLink }} />
+      <MDXContent components={{ Image, a: ContentLink }} />
     </PostContent>
   )
 }
