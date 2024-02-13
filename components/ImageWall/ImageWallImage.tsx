@@ -53,7 +53,13 @@ export default function ImageWallImage({
         </DayLink>
       )}
       <Image
-        className={`object-cover hover:cursor-zoom-in`}
+        className="
+          translate-x-0 
+          translate-y-0 
+          transform-gpu
+          object-cover
+          hover:cursor-zoom-in
+        "
         src={image.src}
         fill
         placeholder="blur"
