@@ -23,12 +23,19 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        max-lg:px-4
-        sm:col-span-1 lg:sticky lg:top-16 lg:order-first
-        lg:flex
-        lg:max-h-[90vh] lg:flex-col lg:justify-between 2xl:w-[580px]
-        3xl:max-4xl:pr-8
-        4xl:pt-8
+          max-lg:px-4 
+          sm:col-span-1 
+          lg:sticky 
+          lg:top-16 
+          lg:order-first 
+          lg:flex 
+          lg:max-h-[90vh]  
+          lg:min-w-[400px]  
+          lg:flex-col
+          lg:justify-between
+          xl:w-[min(580px,60vh)]
+          4xl:w-[580px] 
+          4xl:pt-8 
         "
     >
       {children}
@@ -40,15 +47,24 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        md:w-full
-        lg:sticky lg:top-16 lg:ml-0 lg:h-[90vh] lg:max-w-[320px]
+        flex
+        w-[320px]
+        max-xl:w-full
+        lg:sticky
+        lg:top-16
+        lg:h-[90vh]
+        xl:justify-end
       "
     >
       <div
         className="
-          flex flex-col items-center justify-evenly
+          sm:max-lg:space-around
+          flex
+          flex-col
+          items-center
+          max-lg:w-full
           sm:max-lg:flex-row
-          lg:max-w-xs
+          sm:max-lg:justify-around
         "
       >
         {children}
