@@ -34,7 +34,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
           lg:flex-col
           lg:justify-between
           xl:w-[min(580px,60vh)]
-          3xl:w-[580px] 
+          4xl:w-[580px] 
           4xl:pt-8 
         "
     >
