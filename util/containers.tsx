@@ -23,22 +23,30 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        min-h-[400px] 
-        max-lg:px-4
+        justify-start
+        max-lg:px-4 
         sm:col-span-1 
         lg:sticky 
         lg:top-16 
-        lg:order-first  
-        lg:flex
-        lg:max-h-[90vh]
-        lg:flex-col
-        lg:justify-between
-        xl:w-[min(580px,56vh)]
-        2xl:w-[580px] 
-        4xl:pt-8 
+        lg:order-first 
+        lg:flex 
+        lg:max-h-[90vh]  
+        2xl:w-[580px]  
+        4xl:pt-8
       "
     >
-      {children}
+      <div
+        className="
+          h-full
+          w-full
+          lg:flex
+          lg:min-w-[400px]
+          lg:flex-col
+          lg:justify-between xl:w-[min(580px,56vh)] 
+        "
+      >
+        {children}
+      </div>
     </div>
   )
 }
