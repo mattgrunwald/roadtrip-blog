@@ -47,11 +47,9 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        align-start
-        xl:w-xs
-        flex 
-        w-full 
-        md:max-xl:w-full
+        flex
+        w-[320px]
+        max-xl:w-full
         lg:sticky
         lg:top-16
         lg:h-[90vh]
@@ -60,11 +58,13 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
     >
       <div
         className="
+          sm:max-lg:space-around
           flex
           flex-col
           items-center
           max-lg:w-full
           sm:max-lg:flex-row
+          sm:max-lg:justify-around
         "
       >
         {children}
