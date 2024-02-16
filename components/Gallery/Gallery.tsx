@@ -140,7 +140,8 @@ export default function Gallery({
               ? ''
               : `
                 relative
-                aspect-4/3 w-full
+                aspect-4/3 max-h-[44vh]
+                w-full
                 overflow-hidden
                 max-md:h-[70vw] md:bg-gray-100
                 dark:md:bg-gray-900
