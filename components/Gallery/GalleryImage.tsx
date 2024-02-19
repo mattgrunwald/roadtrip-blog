@@ -1,3 +1,4 @@
+import { IMAGE_QUALITY } from '@/util/consts'
 import { Size } from '@/util/types'
 import Image from 'next/image'
 import { MouseEventHandler, useMemo } from 'react'
@@ -47,7 +48,7 @@ export const GalleryImage = ({
     () => ({
       fill: true,
       sizes: sizeSet,
-      quality: 65,
+      quality: IMAGE_QUALITY,
       priority: first,
     }),
     [first, sizeSet],
