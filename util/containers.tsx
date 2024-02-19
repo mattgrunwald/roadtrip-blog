@@ -11,7 +11,7 @@ const Post = ({ children }: PropsWithChildren) => {
       max-xl:gap-y-4 max-lg:mb-8
       max-lg:grid-cols-1 2xl:justify-between 4xl:flex
       4xl:justify-center
-      4xl:gap-x-24
+      4xl:gap-x-20
       "
     >
       {children}

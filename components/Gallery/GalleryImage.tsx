@@ -48,10 +48,10 @@ export const GalleryImage = ({
     () => ({
       fill: true,
       sizes: sizeSet,
-      quality: IMAGE_QUALITY,
+      quality: modal ? 100 : IMAGE_QUALITY,
       priority: first,
     }),
-    [first, sizeSet],
+    [first, sizeSet, modal],
   )
 
   return (
