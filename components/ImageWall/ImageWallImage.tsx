@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import { DayLink } from '../DayLink'
 import Icons from '../Icons'
+import { IMAGE_QUALITY } from '@/util/consts'
 
 export type ImageWallImageProps = {
   image: GalleryImageSource
@@ -54,8 +55,8 @@ export default function ImageWallImage({
       )}
       <Image
         className="
-          translate-x-0 
-          translate-y-0 
+          translate-x-0
+          translate-y-0
           transform-gpu
           object-cover
           hover:cursor-zoom-in
@@ -69,6 +70,7 @@ export default function ImageWallImage({
         sizes={srcSizes}
         priority={priority}
         onLoad={() => setIsLoaded(true)}
+        quality={IMAGE_QUALITY}
       />
     </div>
   )
