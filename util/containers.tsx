@@ -7,7 +7,7 @@ const Post = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
-      max-4xl:grid max-4xl:grid-cols-[3fr,4fr,2fr] max-4xl:gap-x-8
+      max-4xl:grid max-4xl:grid-cols-[min(3fr,580px),auto,320px] max-4xl:gap-x-8
       max-xl:gap-y-4 max-lg:mb-8
       max-lg:grid-cols-1 2xl:justify-between 4xl:flex
       4xl:justify-center
