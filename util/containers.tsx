@@ -7,9 +7,15 @@ const Post = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
-      max-4xl:grid max-4xl:grid-cols-[min(3fr,580px),auto,320px] max-4xl:gap-x-8
-      max-xl:gap-y-4 max-lg:mb-8
-      max-lg:grid-cols-1 2xl:justify-between 4xl:flex
+      max-4xl:grid 
+      max-4xl:gap-x-8
+      max-xl:grid-cols-[min(400px,60vh),auto,320px] 
+      max-xl:gap-y-4
+      max-lg:mb-8 
+      max-lg:grid-cols-1
+      xl:max-4xl:grid-cols-[min(580px,60vh),auto,320px] 
+      2xl:justify-between 
+      4xl:flex
       4xl:justify-center
       4xl:gap-x-20
       "
@@ -33,7 +39,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
         lg:min-w-[400px]
         lg:flex-col
         lg:justify-between
-        xl:w-[min(580px,60vh)]
+        2xl:w-[min(580px,60vh)]
         3xl:mt-2
         4xl:w-[580px]
       "
