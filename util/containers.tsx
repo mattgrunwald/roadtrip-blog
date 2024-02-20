@@ -48,12 +48,12 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
     <div
       className="
         flex
-        w-[320px]
-        max-xl:w-full
+        w-full
         lg:sticky
         lg:top-16
         lg:h-[90vh]
         xl:justify-end
+        4xl:w-[320px]
       "
     >
       <div
