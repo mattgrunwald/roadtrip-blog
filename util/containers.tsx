@@ -29,6 +29,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
+        w-full
         max-lg:px-4
         sm:col-span-1
         lg:sticky
@@ -53,9 +54,9 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
-        flex
-        w-full
+        flex w-full
         flex-col
+        items-center
         sm:max-lg:flex-row
         sm:max-lg:justify-around
         lg:sticky
