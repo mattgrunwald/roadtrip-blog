@@ -7,14 +7,14 @@ const Post = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
-      max-4xl:grid 
+      max-4xl:grid
       max-4xl:gap-x-8
-      max-xl:grid-cols-[min(400px,60vh),auto,320px] 
+      max-xl:grid-cols-[min(400px,60vh),auto,320px]
       max-xl:gap-y-4
-      max-lg:mb-8 
+      max-lg:mb-8
       max-lg:grid-cols-1
-      xl:max-4xl:grid-cols-[min(580px,60vh),auto,320px] 
-      2xl:justify-between 
+      xl:max-4xl:grid-cols-[min(580px,60vh),auto,320px]
+      2xl:justify-between
       4xl:flex
       4xl:justify-center
       4xl:gap-x-20
@@ -80,11 +80,14 @@ const Text = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={`
-      prose max-w-[62ch]
-      text-lg dark:prose-invert prose-a:font-bold prose-a:underline-offset-2
+      prose
+      max-w-[62ch]
+      text-lg
+      dark:prose-invert
+      prose-a:font-bold
+      prose-a:underline-offset-2
       [&>*>h1]:mb-0 [&>h1]:mb-0
       ${averia.className}
-      max-md:mx-2
       lg:mb-8
       `}
     >
