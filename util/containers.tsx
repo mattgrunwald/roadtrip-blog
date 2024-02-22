@@ -37,7 +37,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
         lg:order-first
         lg:flex
         lg:max-h-[90vh]
-        lg:min-w-[400px]
+        lg:min-w-[min(400px,60vh)]
         lg:flex-col
         lg:justify-between
         2xl:w-[min(580px,60vh)]
