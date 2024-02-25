@@ -23,9 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <div className="content-width mx-auto px-4 lg:px-8">
-            <main>{children}</main>
-          </div>
+          <main className="content-width mx-auto px-4 lg:px-8">{children}</main>
         </ThemeProvider>
         <SpeedInsights />
       </body>

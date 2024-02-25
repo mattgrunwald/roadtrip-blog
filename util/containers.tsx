@@ -9,11 +9,11 @@ const Post = ({ children }: PropsWithChildren) => {
       className="
       max-4xl:grid
       max-4xl:gap-x-8
-      max-xl:grid-cols-[min(400px,60vh),auto,320px]
+      max-xl:grid-cols-[max(min(400px,60vh),400px),auto,320px]
       max-xl:gap-y-4
       max-lg:mb-8
       max-lg:grid-cols-1
-      xl:max-4xl:grid-cols-[min(580px,60vh),auto,320px]
+      xl:max-4xl:grid-cols-[minmax(min(500px,60vh),580px),auto,320px]
       2xl:justify-between
       4xl:flex
       4xl:justify-center
@@ -37,10 +37,10 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
         lg:order-first
         lg:flex
         lg:max-h-[90vh]
-        lg:min-w-[min(400px,60vh)]
         lg:flex-col
         lg:justify-between
-        2xl:w-[min(580px,60vh)]
+        xl:min-w-[max(min(400px,60vh),400px)]
+        2xl:w-[minmax(min(500px,60vh),580px)]
         3xl:mt-2
         4xl:w-[580px]
       "
