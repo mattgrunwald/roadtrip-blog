@@ -91,7 +91,7 @@ export default function Gallery({
         document.body.removeEventListener('keydown', handleKeyDown)
       }
     }
-  })
+  }, [handleKeyDown, modal])
 
   const handlers = useSwipeable({
     onSwiped: (eventData: SwipeEventData) => {
