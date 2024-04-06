@@ -1,7 +1,7 @@
-import { Post } from '@/.contentlayer/generated'
+import { Post, allPosts } from '@/.contentlayer/generated'
 import { GalleryImageSource, MarkerWithDay } from './types'
 
-export function getAllMarkers(posts: Post[]) {
+function getAllMarkers(posts: Post[]) {
   const markers: Record<string, MarkerWithDay> = {}
   for (const post of posts) {
     if (!post.markers || post.day === 0) {
@@ -18,6 +18,8 @@ export function getAllMarkers(posts: Post[]) {
   }
   return Object.values(markers)
 }
+
+export const allMarkers = getAllMarkers(allPosts)
 
 export function getWallImages(posts: Post[]): GalleryImageSource[] {
   const pics = []

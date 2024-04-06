@@ -1,7 +1,6 @@
 import { DayLink } from '@/components/DayLink'
 import PostContent from '@/components/PostContent'
 import { ContentLink, Image } from '@/components/mdx'
-import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
@@ -13,8 +12,6 @@ export async function generateStaticParams() {
     day: post.path.replaceAll('posts/', ''),
   }))
 }
-
-const allMarkers = getAllMarkers(allPosts)
 
 export default function Page({ params }: { params: { day: string } }) {
   const post = useMemo(
@@ -30,7 +27,7 @@ export default function Page({ params }: { params: { day: string } }) {
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <PostContent post={post!} allMarkers={allMarkers} markers={post?.markers}>
+    <PostContent post={post!} markers={post?.markers}>
       <div className="flex flex-row justify-between pb-2">
         <div>
           {previousDay >= 1 && (

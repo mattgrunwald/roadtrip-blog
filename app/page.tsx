@@ -1,11 +1,8 @@
 import { DayLink } from '@/components/DayLink'
 import PostContent from '@/components/PostContent'
-import { getAllMarkers } from '@/util/helpers'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { notFound } from 'next/navigation'
-
-const allMarkers = getAllMarkers(allPosts)
 
 export default function Page() {
   const post = allPosts.find((post) => post.path === 'posts/home')
@@ -13,7 +10,7 @@ export default function Page() {
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (
-    <PostContent post={post!} allMarkers={allMarkers} showAllMarkersAlways>
+    <PostContent post={post!} showAllMarkersAlways>
       <div className="mt-9 pb-2">
         <MDXContent />
       </div>

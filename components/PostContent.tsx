@@ -2,19 +2,18 @@ import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import Container from '@/util/containers'
-import { GalleryImageSource, MarkerWithDay } from '@/util/types'
+import { allMarkers } from '@/util/helpers'
+import { GalleryImageSource } from '@/util/types'
 import { Marker, Post } from 'contentlayer/generated'
 import { useMemo } from 'react'
 
 export type PostContentProps = React.PropsWithChildren & {
   post: Post
-  allMarkers: MarkerWithDay[]
   markers?: Marker[]
   showAllMarkersAlways?: boolean
 }
 export default function PostContent({
   post,
-  allMarkers,
   markers,
   showAllMarkersAlways = false,
   children,
