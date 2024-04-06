@@ -39,16 +39,16 @@ export const GalleryButton = ({
         group-hover:bg-gray-400/50
         group-focus:outline-none
         group-focus:ring-white
+        sm:h-10
+        sm:w-10
         dark:bg-gray-800/30
         dark:group-hover:bg-gray-800/60
         dark:group-focus:ring-gray-800/70
-        sm:h-10
-        sm:w-10
       `}
       >
         <svg
           aria-hidden="true"
-          className="h-5 w-5 text-white dark:opacity-50 sm:h-6 sm:w-6"
+          className="h-5 w-5 text-white sm:h-6 sm:w-6 dark:opacity-50"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

@@ -81,7 +81,7 @@ export function TocPopover({
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="max-w-64 mt-10 rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
+            <Menu.Items className="mt-10 max-w-64 rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
               <div className="p-3">
                 {React.Children.map(children, (child) => (
                   <Menu.Item>{child}</Menu.Item>
