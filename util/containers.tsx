@@ -29,9 +29,9 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className="
+        col-span-1
         w-full
-        max-lg:px-4
-        sm:col-span-1
+        md:max-lg:px-4
         lg:sticky
         lg:top-16
         lg:order-first
