@@ -12,7 +12,7 @@ const Post = ({ children }: PropsWithChildren) => {
       max-xl:grid-cols-[minmax(200px,min(400px,60vh)),auto,320px]
       max-xl:gap-y-4
       max-lg:mb-8
-      max-lg:grid-cols-1 
+      max-lg:grid-cols-1
       xl:max-4xl:grid-cols-[minmax(300px,min(580px,60vh)),auto,320px]
       2xl:justify-between
       4xl:flex
@@ -37,7 +37,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
         lg:order-first
         lg:flex
         lg:max-h-[90vh]
-        lg:flex-col 
+        lg:flex-col
         lg:justify-between
         3xl:mt-2
         4xl:w-[580px]
@@ -69,7 +69,7 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
 }
 
 const Entry = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex sm:col-span-1 sm:justify-center sm:max-lg:flex">
+  <div className="row-span-2 flex sm:col-span-1 sm:justify-center sm:max-lg:flex">
     <Text>{children}</Text>
   </div>
 )

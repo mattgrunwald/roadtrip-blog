@@ -82,7 +82,12 @@ export default function TripMap({
   return (
     <div
       className="
-    items-center max-xl:items-start md:flex md:justify-center lg:h-full"
+        items-center
+        max-xl:items-start
+        md:flex
+        md:justify-center
+        lg:h-full
+      "
     >
       <div className="w-full md:max-h-[450px] md:max-w-[580px]">
         {hideMap && (
