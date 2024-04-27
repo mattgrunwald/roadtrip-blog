@@ -7,7 +7,7 @@ type GalleryButtonProps = {
 const rightData = 'M9 5l7 7-7 7'
 const leftData = 'M15 19l-7-7 7-7'
 
-export const GalleryButton = ({
+export const GalleryNavButton = ({
   left = false,
   right = false,
   onClick,

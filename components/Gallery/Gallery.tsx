@@ -10,8 +10,8 @@ import {
 import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
 import Counter from './Counter'
 import FullscreenButton from './FullscreenButton'
-import { GalleryButton } from './GalleryButton'
 import { GalleryImage } from './GalleryImage'
+import { GalleryNavButton } from './GalleryNavButton'
 
 export type GalleryProps = {
   sources: GalleryImageSource[]
@@ -168,8 +168,8 @@ export default function Gallery({
           <>
             {sources.length > 1 && (
               <>
-                <GalleryButton left onClick={prevImage} />
-                <GalleryButton right onClick={nextImage} />
+                <GalleryNavButton left onClick={prevImage} />
+                <GalleryNavButton right onClick={nextImage} />
               </>
             )}
             {!modal && <Counter count={count} total={sources.length} />}
