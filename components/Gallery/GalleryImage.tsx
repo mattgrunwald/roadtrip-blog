@@ -26,14 +26,23 @@ export const GalleryImage = ({
   alt,
   modal = false,
 }: GalleryImageProps) => {
+  const uniqueModalSize = useMemo(() => {
+    switch (size) {
+      case Size.Tall:
+        return '(max-width: 2600px) 40vw, (max-width: 4100px) 33vw, 25vw'
+      case Size.Wide:
+        return '100vw'
+      default:
+        return '(max-width: 2600px) 80vw, (max-width: 4100px) 66vw, 50vw'
+    }
+  }, [size])
+
   const sizeSet = useMemo(
     () =>
       modal
-        ? `(max-width: 400px) 400px, (max-width:640px) 500px, ${
-            size === Size.Wide ? '100vw' : '100vh'
-          }`
-        : '(max-width: 400px) 350px, (max-width:640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 580px',
-    [modal, size],
+        ? `(max-width: 400px) 400px, (max-width: 640px) 500px, ${uniqueModalSize}`
+        : '(max-width: 400px) 350px, (max-width: 640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 580px',
+    [modal, uniqueModalSize],
   )
 
   const objectFit = useMemo(
