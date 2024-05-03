@@ -29,11 +29,11 @@ export const GalleryImage = ({
   const uniqueModalSize = useMemo(() => {
     switch (size) {
       case Size.Tall:
-        return '(max-width: 2600px) 40vw, (max-width: 4100px) 33vw, 25vw'
+        return '(max-width: 2600px) 33vw, 25vw'
       case Size.Wide:
         return '100vw'
       default:
-        return '(max-width: 2600px) 80vw, (max-width: 4100px) 66vw, 50vw'
+        return '(max-width: 2600px) 66vw, (max-width: 4100px) 50vw, 33vw'
     }
   }, [size])
 
