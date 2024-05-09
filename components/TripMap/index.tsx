@@ -80,41 +80,29 @@ export default function TripMap({
     ))
 
   return (
-    <div
-      className="
-        items-center
-        max-xl:items-start
-        md:flex
-        md:justify-center
-        lg:h-full
-      "
-    >
-      <div className="w-full md:max-h-[450px] md:max-w-[580px]">
-        {hideMap && (
-          <Placeholder stroke={'#bbb'} fill={fill} opacity={opacity} />
-        )}
-        <ComposableMap
-          projection="geoAlbers"
-          onMouseEnter={showAll}
-          onMouseLeave={hideAll}
-          className={hideMap ? 'hidden' : ''}
-        >
-          <Geographies geography={usGeo}>
-            {({ geographies }) =>
-              geographies.map((geo) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  className="fill-gray-200 focus:outline-none dark:fill-gray-700"
-                  stroke={stroke}
-                />
-              ))
-            }
-          </Geographies>
-          <UnnamedMarkers />
-          <NamedMarkers />
-        </ComposableMap>
-      </div>
-    </div>
+    <>
+      {hideMap && <Placeholder stroke={'#bbb'} fill={fill} opacity={opacity} />}
+      <ComposableMap
+        projection="geoAlbers"
+        onMouseEnter={showAll}
+        onMouseLeave={hideAll}
+        className={hideMap ? 'hidden' : ''}
+      >
+        <Geographies geography={usGeo}>
+          {({ geographies }) =>
+            geographies.map((geo) => (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                className="fill-gray-200 focus:outline-none dark:fill-gray-700"
+                stroke={stroke}
+              />
+            ))
+          }
+        </Geographies>
+        <UnnamedMarkers />
+        <NamedMarkers />
+      </ComposableMap>
+    </>
   )
 }
