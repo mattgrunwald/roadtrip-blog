@@ -35,11 +35,13 @@ export default function PostContent({
         <div className="max-lg:hidden">
           <Gallery sources={sources} />
         </div>
-        <TripMap
-          showAllMarkersAlways={showAllMarkersAlways}
-          allMarkers={allMarkers}
-          markers={markers}
-        />
+        <Container.Map>
+          <TripMap
+            showAllMarkersAlways={showAllMarkersAlways}
+            allMarkers={allMarkers}
+            markers={markers}
+          />
+        </Container.Map>
       </Container.Visual>
       <Container.Calendar>
         <TripCalendar day={post.day} />

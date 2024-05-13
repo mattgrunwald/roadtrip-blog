@@ -1,5 +1,5 @@
 import { Averia_Serif_Libre } from 'next/font/google'
-import { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 
 const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 
@@ -9,7 +9,7 @@ const Post = ({ children }: PropsWithChildren) => {
       className="
       max-4xl:grid
       max-4xl:gap-x-8
-      max-xl:grid-cols-[minmax(200px,min(400px,60vh)),auto,320px]
+      max-xl:grid-cols-[minmax(200px,min(400px,60vh)),auto,280px]
       max-xl:gap-y-4
       max-lg:mb-8
       max-lg:grid-cols-1
@@ -25,20 +25,21 @@ const Post = ({ children }: PropsWithChildren) => {
   )
 }
 
-const Visual = ({ children }: { children: React.ReactNode }) => {
+const Visual = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
         col-span-1
         w-full
+        max-xl:max-h-[800px]
         md:max-lg:px-4
         lg:sticky
         lg:top-16
         lg:order-first
         lg:flex
-        lg:max-h-[90vh]
         lg:flex-col
         lg:justify-between
+        xl:max-h-[90vh]
         3xl:mt-2
         4xl:w-[580px]
       "
@@ -48,7 +49,20 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const Calendar = ({ children }: { children: React.ReactNode }) => {
+const Map = ({ children }: PropsWithChildren) => (
+  <div
+    className="
+        items-center
+        md:flex
+        md:justify-center
+        lg:h-full
+      "
+  >
+    <div className="w-full md:max-h-[450px] md:max-w-[580px]">{children}</div>
+  </div>
+)
+
+const Calendar = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
@@ -68,13 +82,13 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const Entry = ({ children }: { children: React.ReactNode }) => (
+const Entry = ({ children }: PropsWithChildren) => (
   <div className="row-span-2 flex sm:col-span-1 sm:justify-center sm:max-lg:flex">
     <Text>{children}</Text>
   </div>
 )
 
-const Text = ({ children }: { children: React.ReactNode }) => {
+const Text = ({ children }: PropsWithChildren) => {
   return (
     <div
       className={`
@@ -94,7 +108,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const AboutText = ({ children }: { children: React.ReactNode }) => {
+const AboutText = ({ children }: PropsWithChildren) => {
   return (
     <div
       className={`
@@ -113,7 +127,7 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const TableOfContents = ({ children }: { children: React.ReactNode }) => {
+const TableOfContents = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
@@ -130,17 +144,14 @@ const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const TableOfContentsPopover = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+const TableOfContentsPopover = ({ children }: PropsWithChildren) => {
   return <div className="fixed right-4 lg:hidden">{children}</div>
 }
 
 const exports = {
   Post,
   Visual,
+  Map,
   Calendar,
   Entry,
   Text,
