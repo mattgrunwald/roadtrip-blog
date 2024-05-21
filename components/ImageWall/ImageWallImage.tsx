@@ -1,9 +1,9 @@
+import { IMAGE_QUALITY } from '@/util/consts'
 import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { DayLink } from '../DayLink'
 import Icons from '../Icons'
-import { IMAGE_QUALITY } from '@/util/consts'
 
 export type ImageWallImageProps = {
   image: GalleryImageSource
@@ -17,14 +17,11 @@ export default function ImageWallImage({
   onClick,
 }: ImageWallImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
-  const srcSizes = useMemo(
-    () =>
-      image.size === Size.Wide
-        ? '(max-width: 1024px) 100vw, 50vw'
-        : '(max-width: 1024px) 50vw, 25vw',
-    [image],
-  )
-  const aspectRatio = useMemo(() => {
+  const srcSizes =
+    image.size === Size.Wide
+      ? '(max-width: 1024px) 100vw, 50vw'
+      : '(max-width: 1024px) 50vw, 25vw'
+  const aspectRatio = (() => {
     switch (image.size) {
       case Size.Tall:
         return 'aspect-4/6'
@@ -33,7 +30,7 @@ export default function ImageWallImage({
       default:
         return 'aspect-4/3'
     }
-  }, [image.size])
+  })()
 
   return (
     <div

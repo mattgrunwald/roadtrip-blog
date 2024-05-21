@@ -5,7 +5,6 @@ import Container from '@/util/containers'
 import { allMarkers } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
 import { Marker, Post } from 'contentlayer/generated'
-import { useMemo } from 'react'
 
 export type PostContentProps = React.PropsWithChildren & {
   post: Post
@@ -18,10 +17,7 @@ export default function PostContent({
   showAllMarkersAlways = false,
   children,
 }: PostContentProps) {
-  const sources: GalleryImageSource[] = useMemo(
-    () => post?.galleryImages || [],
-    [post],
-  )
+  const sources: GalleryImageSource[] = post?.galleryImages || []
 
   return (
     <Container.Post>

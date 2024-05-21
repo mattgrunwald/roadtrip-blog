@@ -1,12 +1,6 @@
 import { mod } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
-import {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { MouseEventHandler, useEffect, useState } from 'react'
 import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
 import Counter from './Counter'
 import FullscreenButton from './FullscreenButton'
@@ -31,56 +25,37 @@ export default function Gallery({
   const [current, setCurrent] = useState(startIndex)
   const hasImages = sources.length !== 0
 
-  const calcIndex = useCallback(
-    (index: number) => mod(index, sources.length),
-    [sources],
-  )
+  const calcIndex = (index: number) => mod(index, sources.length)
+  const nextIndex = calcIndex(current + 1)
+  const prevIndex = calcIndex(current - 1)
 
-  const nextIndex = useMemo(() => calcIndex(current + 1), [current, calcIndex])
-  const prevIndex = useMemo(() => calcIndex(current - 1), [current, calcIndex])
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation()
+    setCurrent(nextIndex)
+  }
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation()
+    setCurrent(prevIndex)
+  }
 
-  const nextImage = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation()
-      setCurrent(nextIndex)
-    },
-    [nextIndex],
-  )
-  const prevImage = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation()
-      setCurrent(prevIndex)
-    },
-    [prevIndex],
-  )
+  const count = sources.length === 0 ? 0 : current + 1
 
-  const count = useMemo(
-    () => (sources.length === 0 ? 0 : current + 1),
-    [sources, current],
-  )
+  const handleKeyDown = (e: any): void => {
+    switch (e.key) {
+      case 'ArrowLeft':
+        prevImage()
+        break
+      case 'ArrowRight':
+        nextImage()
+        break
+    }
+  }
 
-  const handleKeyDown = useCallback(
-    (e: any): void => {
-      switch (e.key) {
-        case 'ArrowLeft':
-          prevImage()
-          break
-        case 'ArrowRight':
-          nextImage()
-          break
-      }
-    },
-    [prevImage, nextImage],
-  )
-
-  const imageOnDeck = useCallback(
-    (index: number) =>
-      index === nextIndex ||
-      index === prevIndex ||
-      index === calcIndex(nextIndex + 1) ||
-      index === calcIndex(prevIndex - 1),
-    [nextIndex, prevIndex, calcIndex],
-  )
+  const imageOnDeck = (index: number) =>
+    index === nextIndex ||
+    index === prevIndex ||
+    index === calcIndex(nextIndex + 1) ||
+    index === calcIndex(prevIndex - 1)
 
   useEffect(() => {
     if (modal) {
@@ -106,27 +81,21 @@ export default function Gallery({
     },
   })
 
-  const onImageClick: MouseEventHandler = useCallback(
-    (e) => {
-      e.stopPropagation()
-      if (!modal) {
-        onDialogOpen(current)
-      }
-    },
-    [current, modal, onDialogOpen],
-  )
+  const onImageClick: MouseEventHandler = (e) => {
+    e.stopPropagation()
+    if (!modal) {
+      onDialogOpen(current)
+    }
+  }
 
-  const onClick: MouseEventHandler = useCallback(
-    (e) => {
-      e.stopPropagation()
-      if (!modal) {
-        onDialogOpen(current)
-      } else {
-        onClose()
-      }
-    },
-    [current, modal, onClose, onDialogOpen],
-  )
+  const onClick: MouseEventHandler = (e) => {
+    e.stopPropagation()
+    if (!modal) {
+      onDialogOpen(current)
+    } else {
+      onClose()
+    }
+  }
 
   return (
     <>

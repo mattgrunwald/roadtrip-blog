@@ -1,4 +1,4 @@
-import { MouseEventHandler, useMemo } from 'react'
+import { MouseEventHandler } from 'react'
 
 export default function FullscreenButton({
   onClick,
@@ -7,23 +7,19 @@ export default function FullscreenButton({
   onClick: MouseEventHandler
   modal?: boolean
 }) {
-  const [path, fill, stroke, strokeWidth] = useMemo(
-    () =>
-      modal
-        ? [
-            'M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16',
-            'none',
-            'currentColor',
-            '1',
-          ]
-        : [
-            'M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z',
-            'currentColor',
-            'none',
-            '2',
-          ],
-    [modal],
-  )
+  const [path, fill, stroke, strokeWidth] = modal
+    ? [
+        'M16 16L12 12M12 12L8 8M12 12L16 8M12 12L8 16',
+        'none',
+        'currentColor',
+        '1',
+      ]
+    : [
+        'M5 5h5V3H3v7h2zm5 14H5v-5H3v7h7zm11-5h-2v5h-5v2h7zm-2-4h2V3h-7v2h5z',
+        'currentColor',
+        'none',
+        '2',
+      ]
 
   return (
     <button

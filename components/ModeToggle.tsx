@@ -6,27 +6,20 @@ import {
   ACCENT_COLOR_LIGHT,
 } from '@/util/consts'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function ModeToggle() {
   const [mounted, setMounted] = useState(false)
   const [hover, setHover] = useState(false)
   const { setTheme, resolvedTheme } = useTheme()
 
-  const changeTheme = useCallback(
-    () => setTheme(resolvedTheme === 'light' ? 'dark' : 'light'),
-    [setTheme, resolvedTheme],
-  )
-
-  const stroke = useMemo(
-    () =>
-      hover
-        ? resolvedTheme === 'light'
-          ? ACCENT_COLOR_LIGHT
-          : ACCENT_COLOR_DARK
-        : 'currentColor',
-    [hover, resolvedTheme],
-  )
+  const changeTheme = () =>
+    setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
+  const stroke = hover
+    ? resolvedTheme === 'light'
+      ? ACCENT_COLOR_LIGHT
+      : ACCENT_COLOR_DARK
+    : 'currentColor'
 
   useEffect(() => {
     setMounted(true)

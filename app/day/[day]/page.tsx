@@ -5,7 +5,6 @@ import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { useMemo } from 'react'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -14,16 +13,13 @@ export async function generateStaticParams() {
 }
 
 export default function Page({ params }: { params: { day: string } }) {
-  const post = useMemo(
-    () => allPosts.find((post) => post.path === `posts/${params.day}`),
-    [params.day],
-  )
+  const post = allPosts.find((post) => post.path === `posts/${params.day}`)
 
   if (!post) notFound()
 
-  const day = useMemo(() => Number(params.day), [params.day])
-  const previousDay = useMemo(() => day - 1, [day])
-  const nextDay = useMemo(() => day + 1, [day])
+  const day = Number(params.day)
+  const previousDay = day - 1
+  const nextDay = day + 1
   const MDXContent = useMDXComponent(post?.body.code || '')
 
   return (

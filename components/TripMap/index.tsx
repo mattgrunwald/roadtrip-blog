@@ -1,7 +1,7 @@
 'use client'
 import { Marker as GeneratedMarker } from '@/.contentlayer/generated'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { MapMarker } from './MapMarker'
 
@@ -27,12 +27,9 @@ export default function TripMap({
   const [showAllMarkers, setShowAllMarkers] = useState(showAllMarkersAlways)
 
   const showAll = () => setShowAllMarkers(true)
-  const hideAll = useCallback(
-    () => showAllMarkersAlways || setShowAllMarkers(false),
-    [showAllMarkersAlways],
-  )
+  const hideAll = () => showAllMarkersAlways || setShowAllMarkers(false)
 
-  const [fill, stroke, accentColor] = useMemo(() => {
+  const [fill, stroke, accentColor] = (() => {
     switch (resolvedTheme) {
       case 'light':
         return ['#e5e7eb', '#999', ACCENT_COLOR_LIGHT]
@@ -41,14 +38,11 @@ export default function TripMap({
       default:
         return ['', '#bbb', ACCENT_COLOR_DARK]
     }
-  }, [resolvedTheme])
+  })()
 
-  const opacity = useMemo(() => (resolvedTheme ? 1 : 0), [resolvedTheme])
+  const opacity = resolvedTheme ? 1 : 0
 
-  const allMarkerOpacity = useMemo(
-    () => (showAllMarkersAlways ? '100' : '50'),
-    [showAllMarkersAlways],
-  )
+  const allMarkerOpacity = showAllMarkersAlways ? '100' : '50'
 
   // Showing a placeholder map then immediately re-rendering without prevents
   // the whole map from 'blinking' when navigating to a new page
