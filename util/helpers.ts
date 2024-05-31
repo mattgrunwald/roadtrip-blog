@@ -35,3 +35,11 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
  * @returns `n` mod `m`
  */
 export const mod = (n: number, m: number) => ((n % m) + m) % m
+
+export const allHighlights = allPosts
+  .filter((p) => p.highlight !== '')
+  .map((p) => ({
+    text: p.highlight,
+    day: p.day,
+  }))
+  .sort((a, b) => (a.day > b.day ? 1 : -1))
