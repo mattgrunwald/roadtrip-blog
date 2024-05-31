@@ -20,6 +20,7 @@ function getAllMarkers(posts: Post[]) {
 }
 
 export const allMarkers = getAllMarkers(allPosts)
+export const allPostsSorted = allPosts.sort((a, b) => a.day - b.day)
 
 export function getWallImages(posts: Post[]): GalleryImageSource[] {
   const pics = []
@@ -35,3 +36,12 @@ export function getWallImages(posts: Post[]): GalleryImageSource[] {
  * @returns `n` mod `m`
  */
 export const mod = (n: number, m: number) => ((n % m) + m) % m
+
+export const junieImages = allPostsSorted
+  .filter((p) => p.day > 1 && p.day < 31)
+  .map((p) =>
+    (p.galleryImages as GalleryImageSource[]).filter((img) =>
+      /junie/.test(img.alt),
+    ),
+  )
+  .flat()
