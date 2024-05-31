@@ -25,7 +25,7 @@ const Post = ({ children }: PropsWithChildren) => {
   )
 }
 
-const Visual = ({ children }: { children: React.ReactNode }) => {
+const Visual = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
@@ -48,7 +48,7 @@ const Visual = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const Calendar = ({ children }: { children: React.ReactNode }) => {
+const Calendar = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
@@ -68,13 +68,17 @@ const Calendar = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const Entry = ({ children }: { children: React.ReactNode }) => (
+const Highlights = ({ children }: PropsWithChildren) => (
+  <div className="mb-2 w-full">{children}</div>
+)
+
+const Entry = ({ children }: PropsWithChildren) => (
   <div className="row-span-2 flex sm:col-span-1 sm:justify-center sm:max-lg:flex">
     <Text>{children}</Text>
   </div>
 )
 
-const Text = ({ children }: { children: React.ReactNode }) => {
+const Text = ({ children }: PropsWithChildren) => {
   return (
     <div
       className={`
@@ -94,7 +98,7 @@ const Text = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const AboutText = ({ children }: { children: React.ReactNode }) => {
+const AboutText = ({ children }: PropsWithChildren) => {
   return (
     <div
       className={`
@@ -113,7 +117,7 @@ const AboutText = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const TableOfContents = ({ children }: { children: React.ReactNode }) => {
+const TableOfContents = ({ children }: PropsWithChildren) => {
   return (
     <div
       className="
@@ -130,11 +134,7 @@ const TableOfContents = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const TableOfContentsPopover = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+const TableOfContentsPopover = ({ children }: PropsWithChildren) => {
   return <div className="fixed right-4 lg:hidden">{children}</div>
 }
 
@@ -142,6 +142,7 @@ const exports = {
   Post,
   Visual,
   Calendar,
+  Highlights,
   Entry,
   Text,
   AboutText,
