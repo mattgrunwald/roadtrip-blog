@@ -2,9 +2,10 @@ import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import Container from '@/util/containers'
-import { allMarkers } from '@/util/helpers'
+import { allHighlights, allMarkers } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
 import { Marker, Post } from 'contentlayer/generated'
+import { Highlights } from './Highlights'
 
 export type PostContentProps = React.PropsWithChildren & {
   post: Post
@@ -18,7 +19,6 @@ export default function PostContent({
   children,
 }: PostContentProps) {
   const sources: GalleryImageSource[] = post?.galleryImages || []
-
   return (
     <Container.Post>
       <div className="flex justify-center lg:hidden">
@@ -39,6 +39,9 @@ export default function PostContent({
       </Container.Visual>
       <Container.Calendar>
         <TripCalendar day={post.day} />
+        <Container.Highlights>
+          <Highlights highlights={allHighlights} />
+        </Container.Highlights>
       </Container.Calendar>
     </Container.Post>
   )
