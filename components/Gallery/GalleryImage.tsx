@@ -69,6 +69,7 @@ export const GalleryImage = ({
         src={src}
         className={`
           z-10
+          my-0
           ${objectFit}
           ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'}
           ${isCurrent ? 'visible' : 'invisible'}

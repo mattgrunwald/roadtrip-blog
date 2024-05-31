@@ -1,4 +1,5 @@
 import Icons from '@/components/Icons'
+import { JunieGallery } from '@/components/JunieGallery'
 import TableOfContents from '@/components/TableOfContents'
 import { ContentLink, Image } from '@/components/mdx'
 import { AboutPage, allAboutPages } from 'contentlayer/generated'
@@ -37,7 +38,9 @@ export default function Page({ params }: { params: { name: string } }) {
       )}
       <div className="mt-4 flex justify-center lg:col-start-2">
         <Container.AboutText>
-          <MDXContent components={{ Icons, Image, a: ContentLink }} />
+          <MDXContent
+            components={{ Icons, Image, a: ContentLink, JunieGallery }}
+          />
         </Container.AboutText>
       </div>
     </>
