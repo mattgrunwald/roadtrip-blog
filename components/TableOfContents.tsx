@@ -2,7 +2,13 @@
 
 import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 import { Heading } from '@/util/types'
-import { Menu, Transition } from '@headlessui/react'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Transition,
+} from '@headlessui/react'
 import React, { Fragment } from 'react'
 import Icons from './Icons'
 
@@ -50,7 +56,7 @@ function Toc({
   children: React.ReactNode
 }) {
   return (
-    <div className=" w-64">
+    <div className="w-64">
       <div className="mb-2 text-xs uppercase opacity-50">{title}</div>
       <div className="text-sm opacity-75">{children}</div>
     </div>
@@ -68,10 +74,10 @@ export function TocPopover({
     <Menu>
       {({ open }) => (
         <>
-          <Menu.Button className="fixed right-4 rounded-lg bg-gray-200 p-2 text-xs uppercase dark:bg-gray-700">
+          <MenuButton className="fixed right-4 rounded-lg bg-gray-200 p-2 text-xs uppercase dark:bg-gray-700">
             {title}
             {open ? <Icons.ChevronUp /> : <Icons.ChevronDown />}
-          </Menu.Button>
+          </MenuButton>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-100"
@@ -81,13 +87,13 @@ export function TocPopover({
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="mt-10 max-w-64 rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
+            <MenuItems className="mt-10 max-w-64 rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
               <div className="p-3">
                 {React.Children.map(children, (child) => (
-                  <Menu.Item>{child}</Menu.Item>
+                  <MenuItem>{child}</MenuItem>
                 ))}
               </div>
-            </Menu.Items>
+            </MenuItems>
           </Transition>
         </>
       )}
