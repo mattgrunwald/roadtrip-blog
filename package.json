@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@headlessui/react": "^2.0.4",
+    "@headlessui/react": "^2.1.1",
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/speed-insights": "^1.0.1",
     "autoprefixer": "10.4.14",
