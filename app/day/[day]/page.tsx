@@ -2,10 +2,10 @@ import { DayLink } from '@/components/DayLink'
 import PostContent from '@/components/PostContent'
 import { ContentLink, Image } from '@/components/mdx'
 import { allPosts } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useMDXComponent } from 'next-contentlayer2/hooks'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { useMemo } from 'react'
+import { use, useMemo } from 'react'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -13,7 +13,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function Page({ params }: { params: { day: string } }) {
+export default function Page(props: { params: Promise<{ day: string }> }) {
+  const params = use(props.params)
   const post = useMemo(
     () => allPosts.find((post) => post.path === `posts/${params.day}`),
     [params.day],

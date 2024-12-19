@@ -1,9 +1,9 @@
+import { IMAGE_QUALITY } from '@/util/consts'
 import { GalleryImageSource, Size } from '@/util/types'
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
 import { DayLink } from '../DayLink'
-import Icons from '../Icons'
-import { IMAGE_QUALITY } from '@/util/consts'
+import { LinkIcon } from '../Icons'
 
 export type ImageWallImageProps = {
   image: GalleryImageSource
@@ -37,12 +37,7 @@ export default function ImageWallImage({
 
   return (
     <div
-      className={`
-        relative flex
-        justify-center
-        row-span-${image.rowSpan} col-span-${image.colSpan} h-full w-full
-        ${aspectRatio}
-       `}
+      className={`relative flex justify-center row-span-${image.rowSpan} col-span-${image.colSpan} h-full w-full ${aspectRatio} `}
     >
       {isLoaded && (
         <DayLink
@@ -50,17 +45,11 @@ export default function ImageWallImage({
           prefetch={false}
           className="absolute right-[1%] top-[1%] z-10"
         >
-          <Icons.Link stroke="currentColor" opacity={0.5} />
+          <LinkIcon stroke="currentColor" opacity={0.5} />
         </DayLink>
       )}
       <Image
-        className="
-          translate-x-0
-          translate-y-0
-          transform-gpu
-          object-cover
-          hover:cursor-zoom-in
-        "
+        className="translate-x-0 translate-y-0 transform-gpu object-cover hover:cursor-zoom-in"
         src={image.src}
         fill
         placeholder="blur"

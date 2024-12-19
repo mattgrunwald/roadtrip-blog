@@ -10,7 +10,7 @@ import {
   Transition,
 } from '@headlessui/react'
 import React, { Fragment } from 'react'
-import Icons from './Icons'
+import { ChevronDownIcon, ChevronUpIcon } from './Icons'
 
 export default function TableOfContents({
   headings,
@@ -76,7 +76,7 @@ export function TocPopover({
         <>
           <MenuButton className="fixed right-4 rounded-lg bg-gray-200 p-2 text-xs uppercase dark:bg-gray-700">
             {title}
-            {open ? <Icons.ChevronUp /> : <Icons.ChevronDown />}
+            {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </MenuButton>
           <Transition
             as={Fragment}
