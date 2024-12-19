@@ -2,7 +2,7 @@ import {
   defineDocumentType,
   defineNestedType,
   makeSource,
-} from 'contentlayer/source-files'
+} from 'contentlayer2/source-files'
 import rehypeSlug from 'rehype-slug'
 import { convertImages } from './util/contentlayer-helpers'
 import { generateHeadings } from './util/headings'
