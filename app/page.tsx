@@ -1,7 +1,7 @@
 import { DayLink } from '@/components/DayLink'
 import PostContent from '@/components/PostContent'
 import { allPosts } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { notFound } from 'next/navigation'
 
 export default function Page() {

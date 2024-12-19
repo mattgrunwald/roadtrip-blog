@@ -1,9 +1,17 @@
-import Icons from '@/components/Icons'
+import {
+  ContentlayerIcon,
+  GithubIcon,
+  LinkIcon,
+  NextJsIcon,
+  TailwindIcon,
+  VercelIcon,
+} from '@/components/Icons'
 import TableOfContents from '@/components/TableOfContents'
 import { ContentLink, Image } from '@/components/mdx'
 import { AboutPage, allAboutPages } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer/hooks'
+import { useMDXComponent } from 'next-contentlayer2/hooks'
 import { notFound } from 'next/navigation'
+import { use } from 'react'
 import Container from 'util/containers'
 
 export async function generateStaticParams() {
@@ -12,7 +20,8 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function Page({ params }: { params: { name: string } }) {
+export default function Page(props: { params: Promise<{ name: string }> }) {
+  const params = use(props.params)
   const post = allAboutPages.find(
     (page: AboutPage) => page.name === params.name,
   )
@@ -37,7 +46,18 @@ export default function Page({ params }: { params: { name: string } }) {
       )}
       <div className="mt-4 flex justify-center lg:col-start-2">
         <Container.AboutText>
-          <MDXContent components={{ Icons, Image, a: ContentLink }} />
+          <MDXContent
+            components={{
+              GithubIcon,
+              TailwindIcon,
+              NextJsIcon,
+              ContentlayerIcon,
+              VercelIcon,
+              LinkIcon,
+              Image,
+              a: ContentLink,
+            }}
+          />
         </Container.AboutText>
       </div>
     </>
