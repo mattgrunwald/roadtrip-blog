@@ -1,10 +1,7 @@
-'use client'
+import { ClientModeToggle } from './ClientModeToggle'
 
-import dynamic from 'next/dynamic'
-
-export const ModeToggle = dynamic(
-  () => import('./ModeToggle').then((mod) => mod.ModeToggle),
-  {
-    ssr: false,
-  },
+export const ModeToggle = () => (
+  <div className="h-6 w-6">
+    <ClientModeToggle />
+  </div>
 )

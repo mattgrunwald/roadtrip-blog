@@ -17,13 +17,13 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-      },
+        "name": "next"
+      }
     ],
     "paths": {
       "@/*": ["./*"],
-      "contentlayer/generated": ["./.contentlayer/generated"],
-    },
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -31,6 +31,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated",
+    "components/ModeToggle/ClientModeToggle"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules"]
 }

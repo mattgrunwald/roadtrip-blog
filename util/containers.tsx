@@ -21,7 +21,9 @@ const Visual = ({ children }: PropsWithChildren) => {
 
 const Map = ({ children }: PropsWithChildren) => (
   <div className="items-center md:flex md:justify-center lg:h-full">
-    <div className="w-full md:max-h-[450px] md:max-w-[580px]">{children}</div>
+    <div className="aspect-4/3 w-full md:max-h-[450px] md:max-w-[580px]">
+      {children}
+    </div>
   </div>
 )
 
