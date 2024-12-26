@@ -6,10 +6,9 @@ import {
   ACCENT_COLOR_LIGHT,
 } from '@/util/consts'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
-export function ModeToggle() {
-  const [mounted, setMounted] = useState(false)
+export function ClientModeToggle() {
   const [hover, setHover] = useState(false)
   const { setTheme, resolvedTheme } = useTheme()
 
@@ -28,20 +27,12 @@ export function ModeToggle() {
     [hover, resolvedTheme],
   )
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return <div className="h-6 w-6 rounded-md border" />
-  }
-
   return (
     <button
       onClick={changeTheme}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`flex h-6 w-6 items-center justify-center rounded-md border border-current ${ACCENT_BORDER_CLASS_HOVER}`}
+      className={`flex h-full w-full items-center justify-center rounded-md border border-current ${ACCENT_BORDER_CLASS_HOVER}`}
     >
       <span className="sr-only">Toggle mode</span>
       {resolvedTheme === 'light' ? (
