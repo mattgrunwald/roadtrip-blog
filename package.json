@@ -37,7 +37,7 @@
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
     "@types/jest": "^29.5.10",
-    "@types/node": "^22.8.6",
+    "@types/node": "^22.13.0",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
     "@types/react-simple-maps": "^3.0.0",
