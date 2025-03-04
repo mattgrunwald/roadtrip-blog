@@ -42,7 +42,7 @@
     "@types/react-dom": "19.0.2",
     "@types/react-simple-maps": "^3.0.0",
     "eslint": "^9.21.0",
-    "eslint-config-next": "15.1.2",
+    "eslint-config-next": "15.2.1",
     "eslint-config-prettier": "^10.0.2",
     "husky": "^9.1.4",
     "jest": "^29.7.0",
