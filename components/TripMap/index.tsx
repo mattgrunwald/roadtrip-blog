@@ -56,28 +56,34 @@ export default function TripMap({
     setHideMap(false)
   }, [hideMap])
 
-  const UnnamedMarkers = () =>
-    showAllMarkers &&
-    allMarkers.map(({ coordinates, day }) => (
-      <MapMarker
-        key={coordinates[0]}
-        coordinates={coordinates as [number, number]}
-        opacity={allMarkerOpacity}
-        color={accentColor}
-        day={day}
-      />
-    ))
+  const UnnamedMarkers = useCallback(
+    () =>
+      showAllMarkers &&
+      allMarkers.map(({ coordinates, day }) => (
+        <MapMarker
+          key={coordinates[0]}
+          coordinates={coordinates as [number, number]}
+          opacity={allMarkerOpacity}
+          color={accentColor}
+          day={day}
+        />
+      )),
+    [accentColor, allMarkerOpacity, allMarkers, showAllMarkers],
+  )
 
-  const NamedMarkers = () =>
-    markers?.map(({ name, coordinates, markerOffset }) => (
-      <MapMarker
-        key={name || coordinates[0]}
-        coordinates={coordinates as [number, number]}
-        name={name}
-        color={accentColor}
-        offset={markerOffset}
-      />
-    ))
+  const NamedMarkers = useCallback(
+    () =>
+      markers?.map(({ name, coordinates, markerOffset }) => (
+        <MapMarker
+          key={name || coordinates[0]}
+          coordinates={coordinates as [number, number]}
+          name={name}
+          color={accentColor}
+          offset={markerOffset}
+        />
+      )),
+    [accentColor, markers],
+  )
 
   return (
     <>
