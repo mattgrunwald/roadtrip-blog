@@ -15,7 +15,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@tailwindcss/typography": "^0.5.9",
-    "@vercel/speed-insights": "^1.1.0",
+    "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "10.4.14",
     "contentlayer2": "^0.5.3",
     "github-slugger": "^2.0.0",
