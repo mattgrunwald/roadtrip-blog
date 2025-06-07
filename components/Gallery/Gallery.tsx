@@ -1,12 +1,6 @@
 import { mod } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
-import {
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
 import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
 import Counter from './Counter'
 import FullscreenButton from './FullscreenButton'
@@ -36,8 +30,8 @@ export default function Gallery({
     [sources],
   )
 
-  const nextIndex = useMemo(() => calcIndex(current + 1), [current, calcIndex])
-  const prevIndex = useMemo(() => calcIndex(current - 1), [current, calcIndex])
+  const nextIndex = calcIndex(current + 1)
+  const prevIndex = calcIndex(current - 1)
 
   const nextImage = useCallback(
     (e?: React.MouseEvent) => {
@@ -54,10 +48,7 @@ export default function Gallery({
     [prevIndex],
   )
 
-  const count = useMemo(
-    () => (sources.length === 0 ? 0 : current + 1),
-    [sources, current],
-  )
+  const count = sources.length === 0 ? 0 : current + 1
 
   const handleKeyDown = useCallback(
     (e: any): void => {
@@ -73,14 +64,11 @@ export default function Gallery({
     [prevImage, nextImage],
   )
 
-  const imageOnDeck = useCallback(
-    (index: number) =>
-      index === nextIndex ||
-      index === prevIndex ||
-      index === calcIndex(nextIndex + 1) ||
-      index === calcIndex(prevIndex - 1),
-    [nextIndex, prevIndex, calcIndex],
-  )
+  const imageOnDeck = (index: number) =>
+    index === nextIndex ||
+    index === prevIndex ||
+    index === calcIndex(nextIndex + 1) ||
+    index === calcIndex(prevIndex - 1)
 
   useEffect(() => {
     if (modal) {
@@ -106,27 +94,21 @@ export default function Gallery({
     },
   })
 
-  const onImageClick: MouseEventHandler = useCallback(
-    (e) => {
-      e.stopPropagation()
-      if (!modal) {
-        onDialogOpen(current)
-      }
-    },
-    [current, modal, onDialogOpen],
-  )
+  const onImageClick: MouseEventHandler = (e) => {
+    e.stopPropagation()
+    if (!modal) {
+      onDialogOpen(current)
+    }
+  }
 
-  const onClick: MouseEventHandler = useCallback(
-    (e) => {
-      e.stopPropagation()
-      if (!modal) {
-        onDialogOpen(current)
-      } else {
-        onClose()
-      }
-    },
-    [current, modal, onClose, onDialogOpen],
-  )
+  const onClick: MouseEventHandler = (e) => {
+    e.stopPropagation()
+    if (!modal) {
+      onDialogOpen(current)
+    } else {
+      onClose()
+    }
+  }
 
   return (
     <>
@@ -138,13 +120,7 @@ export default function Gallery({
           className={
             modal
               ? ''
-              : `
-                relative
-                aspect-4/3 w-full
-                overflow-hidden
-                max-md:h-[70vw] md:bg-gray-100
-                dark:md:bg-gray-900
-                `
+              : `relative aspect-4/3 w-full overflow-hidden max-md:h-[70vw] md:bg-gray-100 dark:md:bg-gray-900`
           }
           {...handlers}
         >

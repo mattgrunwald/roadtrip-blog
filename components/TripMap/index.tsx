@@ -1,7 +1,7 @@
 'use client'
 import { Marker as GeneratedMarker } from '@/.contentlayer/generated'
 import { useTheme } from 'next-themes'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 import { MapMarker } from './MapMarker'
 
@@ -27,10 +27,7 @@ export default function TripMap({
   const [showAllMarkers, setShowAllMarkers] = useState(showAllMarkersAlways)
 
   const showAll = () => setShowAllMarkers(true)
-  const hideAll = useCallback(
-    () => showAllMarkersAlways || setShowAllMarkers(false),
-    [showAllMarkersAlways],
-  )
+  const hideAll = () => showAllMarkersAlways || setShowAllMarkers(false)
 
   const [fill, stroke, accentColor] = useMemo(() => {
     switch (resolvedTheme) {
@@ -43,12 +40,9 @@ export default function TripMap({
     }
   }, [resolvedTheme])
 
-  const opacity = useMemo(() => (resolvedTheme ? 1 : 0), [resolvedTheme])
+  const opacity = resolvedTheme ? 1 : 0
 
-  const allMarkerOpacity = useMemo(
-    () => (showAllMarkersAlways ? '100' : '50'),
-    [showAllMarkersAlways],
-  )
+  const allMarkerOpacity = showAllMarkersAlways ? '100' : '50'
 
   // Showing a placeholder map then immediately re-rendering without prevents
   // the whole map from 'blinking' when navigating to a new page
@@ -56,34 +50,28 @@ export default function TripMap({
     setHideMap(false)
   }, [hideMap])
 
-  const UnnamedMarkers = useCallback(
-    () =>
-      showAllMarkers &&
-      allMarkers.map(({ coordinates, day }) => (
-        <MapMarker
-          key={coordinates[0]}
-          coordinates={coordinates as [number, number]}
-          opacity={allMarkerOpacity}
-          color={accentColor}
-          day={day}
-        />
-      )),
-    [accentColor, allMarkerOpacity, allMarkers, showAllMarkers],
-  )
+  const UnnamedMarkers = () =>
+    showAllMarkers &&
+    allMarkers.map(({ coordinates, day }) => (
+      <MapMarker
+        key={coordinates[0]}
+        coordinates={coordinates as [number, number]}
+        opacity={allMarkerOpacity}
+        color={accentColor}
+        day={day}
+      />
+    ))
 
-  const NamedMarkers = useCallback(
-    () =>
-      markers?.map(({ name, coordinates, markerOffset }) => (
-        <MapMarker
-          key={name || coordinates[0]}
-          coordinates={coordinates as [number, number]}
-          name={name}
-          color={accentColor}
-          offset={markerOffset}
-        />
-      )),
-    [accentColor, markers],
-  )
+  const NamedMarkers = () =>
+    markers?.map(({ name, coordinates, markerOffset }) => (
+      <MapMarker
+        key={name || coordinates[0]}
+        coordinates={coordinates as [number, number]}
+        name={name}
+        color={accentColor}
+        offset={markerOffset}
+      />
+    ))
 
   return (
     <>
