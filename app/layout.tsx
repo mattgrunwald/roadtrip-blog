@@ -1,5 +1,6 @@
 import Header from '@/components/Header/Header'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import clsx from 'clsx'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '../components/ThemeProvider'
 import './globals.css'
@@ -19,7 +20,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${inter.className} `}
+        className={clsx(
+          'antialiased',
+          'bg-slate-50 text-slate-900',
+          'dark:bg-slate-950 dark:text-slate-50',
+          inter.className,
+        )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />

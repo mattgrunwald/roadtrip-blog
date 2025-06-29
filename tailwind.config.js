@@ -6,18 +6,18 @@ module.exports = {
     './content/**/*.{md,mdx}',
     './util/**/*.{ts,tsx}',
   ],
-  safelist: [
-    {
-      pattern: /^(bg-|text-)(slate-|gray0)\w+-[45]{1}00\/(30|50)?/,
-      variants: ['hover', 'active'],
-    },
-    {
-      pattern: /^(row|col)-span-(1|2)/,
-    },
-    {
-      pattern: /^grid-cols-(\d){1,2}/,
-    },
-  ],
+  // safelist: [
+  //   {
+  //     pattern: /^(bg-|text-)(slate-|gray0)\w+-[45]{1}00\/(30|50)?/,
+  //     variants: ['hover', 'active'],
+  //   },
+  //   {
+  //     pattern: /^(row|col)-span-(1|2)/,
+  //   },
+  //   {
+  //     pattern: /^grid-cols-(\d){1,2}/,
+  //   },
+  // ],
   darkMode: ['class'],
   theme: {
     extend: {},

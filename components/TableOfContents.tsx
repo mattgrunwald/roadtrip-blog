@@ -9,6 +9,7 @@ import {
   MenuItems,
   Transition,
 } from '@headlessui/react'
+import clsx from 'clsx'
 import React, { Fragment } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from './Icons'
 
@@ -25,19 +26,15 @@ export default function TableOfContents({
       <div key={`#${heading.slug}`} className="mb-1 last-of-type:mb-0">
         <a href={`#${heading.slug}`}>
           <span
-            className={`block hover:underline ${ACCENT_TEXT_CLASS_HOVER} ${
-              heading.level === 1
-                ? '!text-2xl font-bold'
-                : heading.level === 2
-                  ? 'pl-4 !text-xl font-bold'
-                  : heading.level === 3
-                    ? 'pl-8 !text-lg font-semibold'
-                    : heading.level === 4
-                      ? 'pl-12 !text-base'
-                      : heading.level === 5
-                        ? 'pl-16 !text-sm'
-                        : ''
-            }`}
+            className={clsx(
+              'block hover:underline',
+              ACCENT_TEXT_CLASS_HOVER,
+              heading.level === 1 && 'text-2xl! font-bold',
+              heading.level === 2 && 'pl-4 text-xl! font-bold',
+              heading.level === 3 && 'pl-8 text-lg! font-semibold',
+              heading.level === 4 && 'pl-12 text-base!',
+              heading.level === 5 && 'pl-16 text-sm!',
+            )}
           >
             {heading.text}
           </span>
@@ -74,7 +71,12 @@ export function TocPopover({
     <Menu>
       {({ open }) => (
         <>
-          <MenuButton className="fixed right-4 rounded-lg bg-gray-200 p-2 text-xs uppercase dark:bg-gray-700">
+          <MenuButton
+            className={clsx(
+              'fixed right-4 rounded-lg p-2 text-xs uppercase',
+              'bg-gray-200 dark:bg-gray-700',
+            )}
+          >
             {title}
             {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </MenuButton>
@@ -87,7 +89,13 @@ export function TocPopover({
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <MenuItems className="mt-10 max-w-64 rounded-md bg-gray-200 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
+            <MenuItems
+              className={clsx(
+                'mt-10 max-w-64 rounded-md shadow-lg focus:outline-hidden',
+                'ring-opacity-5 ring-1 ring-black',
+                'bg-gray-200 dark:bg-gray-700',
+              )}
+            >
               <div className="p-3">
                 {React.Children.map(children, (child) => (
                   <MenuItem>{child}</MenuItem>

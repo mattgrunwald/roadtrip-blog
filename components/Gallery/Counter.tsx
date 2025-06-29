@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 export default function Counter({
   count,
   total,
@@ -7,18 +9,12 @@ export default function Counter({
 }) {
   return (
     <div
-      className="
-        absolute
-        bottom-[2%]
-        left-[50%]
-        z-10
-        translate-x-[-50%] rounded-md
-        bg-slate-50/70
-        p-1
-        text-xs
-        dark:bg-gray-800
-        dark:opacity-70
-        "
+      className={clsx(
+        'absolute bottom-[2%] left-[50%] translate-x-[-50%]',
+        'z-10 rounded-md p-1 text-xs',
+        'bg-slate-50/70',
+        'dark:bg-gray-800 dark:opacity-70',
+      )}
     >
       {count} / {total}
     </div>

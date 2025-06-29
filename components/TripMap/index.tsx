@@ -26,14 +26,12 @@ export default function TripMap({
       ? ['#999', ACCENT_COLOR_LIGHT]
       : ['#bbb', ACCENT_COLOR_DARK]
 
-  const allMarkerOpacity = showAllMarkersAlways ? '100' : '50'
-
   const UnnamedMarkers = () =>
     allMarkers.map(({ coordinates, day }) => (
       <MapMarker
         key={coordinates[0]}
         coordinates={coordinates as [number, number]}
-        opacity={allMarkerOpacity}
+        translucent={!showAllMarkersAlways}
         color={accentColor}
         day={day}
         className={clsx(showAllMarkersAlways || 'hidden group-hover:block')}
@@ -60,7 +58,7 @@ export default function TripMap({
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              className="fill-gray-200 focus:outline-none dark:fill-gray-700"
+              className="fill-gray-200 focus:outline-hidden dark:fill-gray-700"
               stroke={stroke}
             />
           ))

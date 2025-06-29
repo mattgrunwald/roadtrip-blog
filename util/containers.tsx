@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Averia_Serif_Libre } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 
@@ -5,7 +6,16 @@ const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="max-4xl:grid max-4xl:gap-x-8 max-xl:grid-cols-[minmax(200px,min(400px,60vh)),auto,280px] max-xl:gap-y-4 max-lg:mb-8 max-lg:grid-cols-1 xl:max-4xl:grid-cols-[minmax(300px,min(580px,60vh)),auto,320px] 2xl:justify-between 4xl:flex 4xl:justify-center 4xl:gap-x-20">
+    <div
+      className={clsx(
+        'max-4xl:grid max-4xl:gap-x-8',
+        'xl:max-4xl:grid-cols-[minmax(300px,min(580px,60vh))_auto_320px]',
+        '4xl:flex 4xl:justify-center 4xl:gap-x-20',
+        'max-xl:grid-cols-[minmax(200px,min(400px,60vh))_auto_280px] max-xl:gap-y-4',
+        'max-lg:mb-8 max-lg:grid-cols-1',
+        '2xl:justify-between',
+      )}
+    >
       {children}
     </div>
   )
@@ -13,7 +23,15 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: PropsWithChildren) => {
   return (
-    <div className="col-span-1 w-full max-xl:max-h-[800px] md:max-lg:px-4 lg:sticky lg:top-16 lg:order-first lg:flex lg:flex-col lg:justify-between xl:max-h-[90vh] 3xl:mt-2 4xl:w-[580px]">
+    <div
+      className={clsx(
+        'col-span-1 w-full',
+        'md:max-lg:px-4',
+        'lg:sticky lg:top-16 lg:order-first lg:flex lg:flex-col lg:justify-between',
+        'max-xl:max-h-[800px] xl:max-h-[90vh]',
+        '3xl:mt-2 4xl:w-[580px]',
+      )}
+    >
       {children}
     </div>
   )
@@ -29,7 +47,14 @@ const Map = ({ children }: PropsWithChildren) => (
 
 const Calendar = ({ children }: PropsWithChildren) => {
   return (
-    <div className="flex w-full flex-col items-center sm:max-lg:flex-row sm:max-lg:justify-around lg:sticky lg:top-16 lg:h-[90vh] 4xl:w-[320px]">
+    <div
+      className={clsx(
+        'flex w-full flex-col items-center',
+        'sm:max-lg:flex-row sm:max-lg:justify-around',
+        'lg:sticky lg:top-16 lg:h-[90vh]',
+        '4xl:w-[320px]',
+      )}
+    >
       {children}
     </div>
   )
@@ -44,7 +69,12 @@ const Entry = ({ children }: PropsWithChildren) => (
 const Text = ({ children }: PropsWithChildren) => {
   return (
     <div
-      className={`prose max-w-[62ch] text-lg dark:prose-invert prose-a:font-bold prose-a:underline-offset-2 [&>*>h1]:mb-0 [&>h1]:mb-0 ${averia.className} lg:mb-8`}
+      className={clsx(
+        'prose dark:prose-invert',
+        'prose-a:font-bold prose-a:underline-offset-2',
+        'max-w-[62ch] text-lg lg:mb-8 [&>*>h1]:mb-0 [&>h1]:mb-0',
+        averia.className,
+      )}
     >
       {children}
     </div>
@@ -54,7 +84,13 @@ const Text = ({ children }: PropsWithChildren) => {
 const AboutText = ({ children }: PropsWithChildren) => {
   return (
     <div
-      className={`prose max-w-[62ch] text-lg dark:prose-invert prose-a:font-bold prose-a:decoration-0 prose-a:underline-offset-2 [&>h1]:mb-0 [&>h2]:mt-6 ${averia.className} mb-8 max-lg:w-full xl:w-[650px] [&>*]:scroll-m-20`}
+      className={clsx(
+        'prose dark:prose-invert',
+        'prose-a:font-bold prose-a:decoration-0 prose-a:underline-offset-2',
+        'mb-8 max-w-[62ch] text-lg *:scroll-m-20 max-lg:w-full xl:w-[650px]',
+        '[&>h1]:mb-0 [&>h2]:mt-6',
+        averia.className,
+      )}
     >
       {children}
     </div>

@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { MouseEventHandler } from 'react'
 
 export default function FullscreenButton({
@@ -23,19 +24,32 @@ export default function FullscreenButton({
 
   return (
     <button
+      type="button"
       onClick={onClick}
-      className={`group absolute right-0 z-10 focus:outline-none md:right-[1%] ${modal ? 'top-[-1%]' : 'bottom-[1%]'} `}
+      className={clsx(
+        'group absolute right-0 z-20 focus:outline-hidden',
+        'md:right-[1%]',
+        'hover:cursor-pointer',
+        modal ? 'top-[-1%]' : 'bottom-[1%]',
+      )}
     >
-      <span className="inline-flex h-8 w-8 items-center justify-center xs:h-10 xs:w-10">
+      <span
+        className={clsx(
+          'inline-flex items-center justify-center',
+          'h-8 w-8',
+          'xs:h-10 xs:w-10',
+        )}
+      >
         <svg
           viewBox="0 0 24 24"
           fill={fill}
           xmlns="http://www.w3.org/2000/svg"
-          className={`${
-            modal ? 'text-gray-400/50' : 'text-white'
-          } dark:text-white/50 ${
-            modal ? 'sm:h-10 sm:w-10' : 'max-md:hidden md:h-6 md:w-6'
-          }`}
+          className={clsx(
+            'dark:text-white/50',
+            modal
+              ? 'text-gray-400/50 sm:h-10 sm:w-10'
+              : 'text-white max-md:hidden md:h-6 md:w-6',
+          )}
         >
           <path
             stroke={stroke}

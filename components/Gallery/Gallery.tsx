@@ -1,6 +1,7 @@
 import { mod } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
-import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
+import clsx from 'clsx'
+import { useCallback, useEffect, useState } from 'react'
 import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
 import Counter from './Counter'
 import FullscreenButton from './FullscreenButton'
@@ -33,20 +34,12 @@ export default function Gallery({
   const nextIndex = calcIndex(current + 1)
   const prevIndex = calcIndex(current - 1)
 
-  const nextImage = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation()
-      setCurrent(nextIndex)
-    },
-    [nextIndex],
-  )
-  const prevImage = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation()
-      setCurrent(prevIndex)
-    },
-    [prevIndex],
-  )
+  const nextImage = useCallback(() => {
+    setCurrent(nextIndex)
+  }, [nextIndex])
+  const prevImage = useCallback(() => {
+    setCurrent(prevIndex)
+  }, [prevIndex])
 
   const count = sources.length === 0 ? 0 : current + 1
 
@@ -94,15 +87,13 @@ export default function Gallery({
     },
   })
 
-  const onImageClick: MouseEventHandler = (e) => {
-    e.stopPropagation()
+  const onImageClick = () => {
     if (!modal) {
       onDialogOpen(current)
     }
   }
 
-  const onClick: MouseEventHandler = (e) => {
-    e.stopPropagation()
+  const onClick = () => {
     if (!modal) {
       onDialogOpen(current)
     } else {
@@ -112,16 +103,18 @@ export default function Gallery({
 
   return (
     <>
-      <div className={`relative w-full ${modal ? 'h-full' : ''}`}>
+      <div className={clsx('relative w-full', modal && 'h-full')}>
         {modal && (
           <div className="mb-2 text-xs opacity-50">{`${count} of ${sources.length}`}</div>
         )}
         <div
-          className={
-            modal
-              ? ''
-              : `relative aspect-4/3 w-full overflow-hidden max-md:h-[70vw] md:bg-gray-100 dark:md:bg-gray-900`
-          }
+          className={clsx(
+            modal ||
+              clsx(
+                'relative aspect-4/3 w-full overflow-hidden max-md:h-[70vw]',
+                'md:bg-gray-100 dark:md:bg-gray-900',
+              ),
+          )}
           {...handlers}
         >
           {hasImages &&

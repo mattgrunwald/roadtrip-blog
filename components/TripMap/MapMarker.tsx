@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Marker } from 'react-simple-maps'
 import { DayLink } from '../DayLink'
 
@@ -5,7 +6,7 @@ type MapMarkerProps = {
   coordinates: [number, number]
   color: string
   day?: number
-  opacity?: string
+  translucent?: boolean
   name?: string
   offset?: number
   className?: string
@@ -14,7 +15,7 @@ export const MapMarker = ({
   coordinates,
   day,
   color,
-  opacity = '100%',
+  translucent = false,
   name = '',
   offset = 0,
   className = '',
@@ -23,10 +24,10 @@ export const MapMarker = ({
     <Marker coordinates={coordinates} className={className}>
       {day ? (
         <DayLink day={day} prefetch={false}>
-          <Dot opacity={opacity} color={color} />
+          <Dot translucent={translucent} color={color} />
         </DayLink>
       ) : (
-        <Dot opacity={opacity} color={color} />
+        <Dot translucent={translucent} color={color} />
       )}
       <text
         textAnchor="middle"
@@ -40,13 +41,13 @@ export const MapMarker = ({
 }
 
 type DotProps = {
-  opacity: string
+  translucent: boolean
   color: string
 }
 
-const Dot = ({ opacity, color }: DotProps) => (
+const Dot = ({ translucent, color }: DotProps) => (
   <circle
-    className={`opacity-${opacity} hover:opacity-100`}
+    className={clsx('hover:opacity-100', translucent && 'opacity-50')}
     r={5}
     fill={color}
     strokeWidth={2}
