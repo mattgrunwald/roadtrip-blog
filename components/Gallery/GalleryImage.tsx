@@ -68,7 +68,10 @@ export const GalleryImage = ({
       {!modal && (
         <Image
           src={src}
-          className={`object-cover opacity-75 blur-lg ${isCurrent ? 'block' : 'hidden'} `}
+          className={clsx(
+            'object-cover opacity-75 blur-lg',
+            isCurrent ? 'block' : 'hidden',
+          )}
           alt="blurred image background"
           {...sharedProps}
         />

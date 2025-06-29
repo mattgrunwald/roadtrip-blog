@@ -71,7 +71,12 @@ export function TocPopover({
     <Menu>
       {({ open }) => (
         <>
-          <MenuButton className="fixed right-4 rounded-lg bg-gray-200 p-2 text-xs uppercase dark:bg-gray-700">
+          <MenuButton
+            className={clsx(
+              'fixed right-4 rounded-lg p-2 text-xs uppercase',
+              'bg-gray-200 dark:bg-gray-700',
+            )}
+          >
             {title}
             {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </MenuButton>
@@ -84,7 +89,13 @@ export function TocPopover({
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <MenuItems className="ring-opacity-5 mt-10 max-w-64 rounded-md bg-gray-200 shadow-lg ring-1 ring-black focus:outline-hidden dark:bg-gray-700">
+            <MenuItems
+              className={clsx(
+                'mt-10 max-w-64 rounded-md shadow-lg focus:outline-hidden',
+                'ring-opacity-5 ring-1 ring-black',
+                'bg-gray-200 dark:bg-gray-700',
+              )}
+            >
               <div className="p-3">
                 {React.Children.map(children, (child) => (
                   <MenuItem>{child}</MenuItem>

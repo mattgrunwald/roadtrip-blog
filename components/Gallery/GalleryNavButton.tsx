@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 type GalleryButtonProps = {
   left?: boolean
   right?: boolean
@@ -17,10 +19,22 @@ export const GalleryNavButton = ({
   return (
     <button
       onClick={onClick}
-      className={`group absolute top-[calc(50%-1rem)] z-10 focus:outline-hidden max-sm:hidden ${right ? 'right-[1%]' : 'left-[1%]'}`}
+      className={clsx(
+        'group absolute top-[calc(50%-1rem)] z-10 focus:outline-hidden',
+        'max-sm:hidden',
+        right ? 'right-[1%]' : 'left-[1%]',
+      )}
     >
       <span
-        className={` ${right ? 'right-[1%]' : 'left-[1%]'} inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-400/30 group-hover:bg-gray-400/50 group-focus:ring-white group-focus:outline-hidden sm:h-10 sm:w-10 dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70`}
+        className={clsx(
+          'inline-flex items-center justify-center',
+          'h-8 w-8 rounded-full group-focus:outline-hidden sm:h-10 sm:w-10',
+          'bg-gray-400/30 group-hover:bg-gray-400/50',
+          'group-focus:ring-white',
+          'dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60',
+          'dark:group-focus:ring-gray-800/70',
+          right ? 'right-[1%]' : 'left-[1%]',
+        )}
       >
         <svg
           aria-hidden="true"

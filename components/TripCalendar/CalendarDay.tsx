@@ -1,4 +1,5 @@
 import { ACCENT_BORDER_CLASS, ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
+import clsx from 'clsx'
 import { DayLink } from '../DayLink'
 
 type CalendarDayProps = {
@@ -9,11 +10,6 @@ type CalendarDayProps = {
 export const CalendarDay = ({ date, currentDay }: CalendarDayProps) => {
   const day = date.getMonth() === 4 ? date.getDate() - 26 : date.getDate() + 5
   const disabled = day < 1 || day > 30
-  const className = `border-2 w-8 rounded ${
-    day === currentDay
-      ? ACCENT_BORDER_CLASS
-      : `border-transparent ${ACCENT_TEXT_CLASS_HOVER}`
-  }`
 
   return (
     <div className="flex justify-center">
@@ -22,7 +18,16 @@ export const CalendarDay = ({ date, currentDay }: CalendarDayProps) => {
           {date.getDate()}
         </span>
       ) : (
-        <DayLink day={day} prefetch={false} className={className}>
+        <DayLink
+          day={day}
+          prefetch={false}
+          className={clsx(
+            'w-8 rounded border-2',
+            day === currentDay && ACCENT_BORDER_CLASS,
+            day !== currentDay &&
+              clsx('border-transparent', ACCENT_TEXT_CLASS_HOVER),
+          )}
+        >
           {date.getDate()}
         </DayLink>
       )}

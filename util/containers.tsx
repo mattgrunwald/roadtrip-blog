@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { Averia_Serif_Libre } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 
@@ -44,7 +45,12 @@ const Entry = ({ children }: PropsWithChildren) => (
 const Text = ({ children }: PropsWithChildren) => {
   return (
     <div
-      className={`prose dark:prose-invert prose-a:font-bold prose-a:underline-offset-2 max-w-[62ch] text-lg [&>*>h1]:mb-0 [&>h1]:mb-0 ${averia.className} lg:mb-8`}
+      className={clsx(
+        'prose dark:prose-invert',
+        'prose-a:font-bold prose-a:underline-offset-2',
+        'max-w-[62ch] text-lg lg:mb-8 [&>*>h1]:mb-0 [&>h1]:mb-0',
+        averia.className,
+      )}
     >
       {children}
     </div>
@@ -54,7 +60,13 @@ const Text = ({ children }: PropsWithChildren) => {
 const AboutText = ({ children }: PropsWithChildren) => {
   return (
     <div
-      className={`prose dark:prose-invert prose-a:font-bold prose-a:decoration-0 prose-a:underline-offset-2 max-w-[62ch] text-lg [&>h1]:mb-0 [&>h2]:mt-6 ${averia.className} mb-8 *:scroll-m-20 max-lg:w-full xl:w-[650px]`}
+      className={clsx(
+        'prose dark:prose-invert',
+        'prose-a:font-bold prose-a:decoration-0 prose-a:underline-offset-2',
+        'mb-8 max-w-[62ch] text-lg *:scroll-m-20 max-lg:w-full xl:w-[650px]',
+        '[&>h1]:mb-0 [&>h2]:mt-6',
+        averia.className,
+      )}
     >
       {children}
     </div>

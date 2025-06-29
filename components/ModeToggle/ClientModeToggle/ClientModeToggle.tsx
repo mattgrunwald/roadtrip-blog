@@ -5,6 +5,7 @@ import {
   ACCENT_COLOR_DARK,
   ACCENT_COLOR_LIGHT,
 } from '@/util/consts'
+import clsx from 'clsx'
 import { useTheme } from 'next-themes'
 import { useState } from 'react'
 
@@ -26,7 +27,11 @@ export function ClientModeToggle() {
       onClick={changeTheme}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className={`flex h-full w-full items-center justify-center rounded-md border border-current ${ACCENT_BORDER_CLASS_HOVER}`}
+      className={clsx(
+        'flex h-full w-full items-center justify-center',
+        'rounded-md border border-current',
+        ACCENT_BORDER_CLASS_HOVER,
+      )}
     >
       <span className="sr-only">Toggle mode</span>
       {resolvedTheme === 'light' ? (

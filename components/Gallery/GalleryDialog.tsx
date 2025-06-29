@@ -1,5 +1,6 @@
 import { GalleryImageSource } from '@/util/types'
 import { Dialog } from '@headlessui/react'
+import clsx from 'clsx'
 import Gallery from './Gallery'
 
 export type DialogProps = {
@@ -17,7 +18,13 @@ export function GalleryDialog({
 }: DialogProps) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <div className="lg:h-fill lg:w-fill fixed inset-0 z-30 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div
+        className={clsx(
+          'flex items-center justify-center',
+          'fixed inset-0 z-30 p-4 backdrop-blur-sm',
+          'lg:h-fill lg:w-fill',
+        )}
+      >
         <Dialog.Panel className="h-5/6 w-full lg:h-full">
           <Gallery
             sources={sources}
