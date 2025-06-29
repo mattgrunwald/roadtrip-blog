@@ -8,6 +8,7 @@ type MapMarkerProps = {
   opacity?: string
   name?: string
   offset?: number
+  className?: string
 }
 export const MapMarker = ({
   coordinates,
@@ -16,9 +17,10 @@ export const MapMarker = ({
   opacity = '100%',
   name = '',
   offset = 0,
+  className = '',
 }: MapMarkerProps) => {
   return (
-    <Marker coordinates={coordinates}>
+    <Marker coordinates={coordinates} className={className}>
       {day ? (
         <DayLink day={day} prefetch={false}>
           <Dot opacity={opacity} color={color} />
