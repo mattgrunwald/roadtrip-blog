@@ -15,7 +15,7 @@ export const MapMarker = ({
   coordinates,
   day,
   color,
-  translucent = true,
+  translucent = false,
   name = '',
   offset = 0,
   className = '',

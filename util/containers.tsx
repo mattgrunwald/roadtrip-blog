@@ -6,7 +6,16 @@ const averia = Averia_Serif_Libre({ weight: '400', subsets: ['latin'] })
 
 const Post = ({ children }: PropsWithChildren) => {
   return (
-    <div className="max-4xl:grid max-4xl:gap-x-8 xl:max-4xl:grid-cols-[minmax(300px,min(580px,60vh))_auto_320px] 4xl:flex 4xl:justify-center 4xl:gap-x-20 max-xl:grid-cols-[minmax(200px,min(400px,60vh))_auto_280px] max-xl:gap-y-4 max-lg:mb-8 max-lg:grid-cols-1 2xl:justify-between">
+    <div
+      className={clsx(
+        'max-4xl:grid max-4xl:gap-x-8',
+        'xl:max-4xl:grid-cols-[minmax(300px,min(580px,60vh))_auto_320px]',
+        '4xl:flex 4xl:justify-center 4xl:gap-x-20',
+        'max-xl:grid-cols-[minmax(200px,min(400px,60vh))_auto_280px] max-xl:gap-y-4',
+        'max-lg:mb-8 max-lg:grid-cols-1',
+        '2xl:justify-between',
+      )}
+    >
       {children}
     </div>
   )
@@ -14,7 +23,15 @@ const Post = ({ children }: PropsWithChildren) => {
 
 const Visual = ({ children }: PropsWithChildren) => {
   return (
-    <div className="3xl:mt-2 4xl:w-[580px] col-span-1 w-full max-xl:max-h-[800px] md:max-lg:px-4 lg:sticky lg:top-16 lg:order-first lg:flex lg:flex-col lg:justify-between xl:max-h-[90vh]">
+    <div
+      className={clsx(
+        'col-span-1 w-full',
+        'md:max-lg:px-4',
+        'lg:sticky lg:top-16 lg:order-first lg:flex lg:flex-col lg:justify-between',
+        'max-xl:max-h-[800px] xl:max-h-[90vh]',
+        '3xl:mt-2 4xl:w-[580px]',
+      )}
+    >
       {children}
     </div>
   )
@@ -30,7 +47,14 @@ const Map = ({ children }: PropsWithChildren) => (
 
 const Calendar = ({ children }: PropsWithChildren) => {
   return (
-    <div className="4xl:w-[320px] flex w-full flex-col items-center sm:max-lg:flex-row sm:max-lg:justify-around lg:sticky lg:top-16 lg:h-[90vh]">
+    <div
+      className={clsx(
+        'flex w-full flex-col items-center',
+        'sm:max-lg:flex-row sm:max-lg:justify-around',
+        'lg:sticky lg:top-16 lg:h-[90vh]',
+        '4xl:w-[320px]',
+      )}
+    >
       {children}
     </div>
   )
