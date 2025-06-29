@@ -17,7 +17,7 @@ export function GalleryDialog({
 }: DialogProps) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
-      <div className="lg:h-fill lg:w-fill fixed inset-0 z-30 flex items-center justify-center p-4 backdrop-blur">
+      <div className="lg:h-fill lg:w-fill fixed inset-0 z-30 flex items-center justify-center p-4 backdrop-blur-sm">
         <Dialog.Panel className="h-5/6 w-full lg:h-full">
           <Gallery
             sources={sources}

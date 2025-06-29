@@ -60,7 +60,7 @@ export default function TripMap({
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              className="fill-gray-200 focus:outline-none dark:fill-gray-700"
+              className="fill-gray-200 focus:outline-hidden dark:fill-gray-700"
               stroke={stroke}
             />
           ))

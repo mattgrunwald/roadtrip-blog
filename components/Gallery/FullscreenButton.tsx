@@ -24,9 +24,9 @@ export default function FullscreenButton({
   return (
     <button
       onClick={onClick}
-      className={`group absolute right-0 z-10 focus:outline-none md:right-[1%] ${modal ? 'top-[-1%]' : 'bottom-[1%]'} `}
+      className={`group absolute right-0 z-10 focus:outline-hidden md:right-[1%] ${modal ? 'top-[-1%]' : 'bottom-[1%]'} `}
     >
-      <span className="inline-flex h-8 w-8 items-center justify-center xs:h-10 xs:w-10">
+      <span className="xs:h-10 xs:w-10 inline-flex h-8 w-8 items-center justify-center">
         <svg
           viewBox="0 0 24 24"
           fill={fill}

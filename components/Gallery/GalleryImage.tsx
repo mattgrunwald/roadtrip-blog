@@ -1,5 +1,6 @@
 import { IMAGE_QUALITY } from '@/util/consts'
 import { Size } from '@/util/types'
+import clsx from 'clsx'
 import Image from 'next/image'
 import { MouseEventHandler } from 'react'
 
@@ -38,11 +39,6 @@ export const GalleryImage = ({
     ? `(max-width: 400px) 400px, (max-width: 640px) 500px, ${uniqueModalSize}`
     : '(max-width: 400px) 350px, (max-width: 640px) 400px, (max-width: 1024px) 50%, (max-width: 1535px) 500px, 580px'
 
-  const objectFit =
-    !modal && size === Size.Normal
-      ? 'object-contain max-md:object-cover xl:object-cover'
-      : 'object-contain'
-
   const sharedProps = {
     fill: true,
     sizes: sizeSet,
@@ -54,7 +50,14 @@ export const GalleryImage = ({
     <>
       <Image
         src={src}
-        className={`z-10 ${objectFit} ${isCurrent || isCloseToCurrent ? 'block' : 'hidden'} ${isCurrent ? 'visible' : 'invisible'} translate-x-0 translate-y-0 transform-gpu`}
+        className={clsx(
+          'z-10 translate-x-0 translate-y-0 transform-gpu',
+          !modal && size === Size.Normal
+            ? 'object-contain max-md:object-cover xl:object-cover'
+            : 'object-contain',
+          isCurrent || isCloseToCurrent ? 'block' : 'hidden',
+          isCurrent ? 'visible' : 'invisible',
+        )}
         {...sharedProps}
         alt={alt}
         onClick={onClick}

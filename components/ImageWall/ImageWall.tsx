@@ -2,6 +2,7 @@
 
 import { fitToGrid } from '@/util/imagePlacement'
 import { GalleryImageSource } from '@/util/types'
+import clsx from 'clsx'
 import { useState } from 'react'
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
@@ -28,7 +29,15 @@ export default function ImageWall({ images, colCount = 4 }: ImageWallProps) {
 
   return (
     <>
-      <div className={`grid gap-x-1 gap-y-1 grid-cols-${colCount}`}>
+      <div
+        className={clsx(
+          'grid gap-x-1 gap-y-1',
+          colCount === 1 && 'grid-cols-1',
+          colCount === 2 && 'grid-cols-2',
+          colCount === 3 && 'grid-cols-3',
+          colCount === 4 && 'grid-cols-4',
+        )}
+      >
         {gridImages.map((image, imageIndex) => (
           <ImageWallImage
             key={imageIndex}
