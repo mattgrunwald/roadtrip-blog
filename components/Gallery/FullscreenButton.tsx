@@ -24,10 +24,12 @@ export default function FullscreenButton({
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={clsx(
-        'group absolute right-0 z-10 focus:outline-hidden',
+        'group absolute right-0 z-20 focus:outline-hidden',
         'md:right-[1%]',
+        'hover:cursor-pointer',
         modal ? 'top-[-1%]' : 'bottom-[1%]',
       )}
     >

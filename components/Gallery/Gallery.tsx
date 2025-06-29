@@ -1,7 +1,7 @@
 import { mod } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
 import clsx from 'clsx'
-import { MouseEventHandler, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
 import Counter from './Counter'
 import FullscreenButton from './FullscreenButton'
@@ -34,20 +34,12 @@ export default function Gallery({
   const nextIndex = calcIndex(current + 1)
   const prevIndex = calcIndex(current - 1)
 
-  const nextImage = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation()
-      setCurrent(nextIndex)
-    },
-    [nextIndex],
-  )
-  const prevImage = useCallback(
-    (e?: React.MouseEvent) => {
-      e?.stopPropagation()
-      setCurrent(prevIndex)
-    },
-    [prevIndex],
-  )
+  const nextImage = useCallback(() => {
+    setCurrent(nextIndex)
+  }, [nextIndex])
+  const prevImage = useCallback(() => {
+    setCurrent(prevIndex)
+  }, [prevIndex])
 
   const count = sources.length === 0 ? 0 : current + 1
 
@@ -95,15 +87,13 @@ export default function Gallery({
     },
   })
 
-  const onImageClick: MouseEventHandler = (e) => {
-    e.stopPropagation()
+  const onImageClick = () => {
     if (!modal) {
       onDialogOpen(current)
     }
   }
 
-  const onClick: MouseEventHandler = (e) => {
-    e.stopPropagation()
+  const onClick = () => {
     if (!modal) {
       onDialogOpen(current)
     } else {

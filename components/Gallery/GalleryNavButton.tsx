@@ -19,8 +19,10 @@ export const GalleryNavButton = ({
   return (
     <button
       onClick={onClick}
+      type="button"
       className={clsx(
         'group absolute top-[calc(50%-1rem)] z-10 focus:outline-hidden',
+        'hover:cursor-pointer',
         'max-sm:hidden',
         right ? 'right-[1%]' : 'left-[1%]',
       )}
