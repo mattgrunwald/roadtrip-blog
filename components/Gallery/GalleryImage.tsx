@@ -42,7 +42,7 @@ export const GalleryImage = ({
   const sharedProps = {
     fill: true,
     sizes: sizeSet,
-    quality: modal ? 100 : IMAGE_QUALITY,
+    quality: modal ? 50 : IMAGE_QUALITY,
     priority: first,
   }
 

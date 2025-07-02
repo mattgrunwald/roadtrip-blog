@@ -6,4 +6,4 @@ export const ACCENT_TEXT_CLASS_HOVER =
 export const ACCENT_BORDER_CLASS = 'border-red-600 dark:border-red-400'
 export const ACCENT_BORDER_CLASS_HOVER =
   'hover:border-red-600 dark:hover:border-red-400'
-export const IMAGE_QUALITY = 65
+export const IMAGE_QUALITY = 25
