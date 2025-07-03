@@ -11,7 +11,7 @@ export const Image = (props: any) => {
       <NextImage
         height={800}
         width={800}
-        quality={IMAGE_QUALITY}
+        quality={100}
         sizes={sizes}
         className={clsx('translate-x-0 translate-y-0 transform-gpu', className)}
         {...imageProps}
