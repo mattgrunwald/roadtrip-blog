@@ -1,6 +1,6 @@
 # roadtrip-blog
 
-Simple travel blog built with [Next.js](https://nextjs.org/) 14 app dir, [Contentlayer](https://www.contentlayer.dev/), and [Tailwind CSS](https://tailwindcss.com/).
+Simple travel blog built with [Next.js](https://nextjs.org/) 15 app dir, [Contentlayer](https://www.contentlayer.dev/), and [Tailwind CSS](https://tailwindcss.com/).
 
 [roadtrip.dog](https://roadtrip.dog)
 
