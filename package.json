@@ -2,6 +2,7 @@
   "name": "roadtrip-blog",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
@@ -56,19 +57,15 @@
     "*.{ts,tsx,js,jsx}": "eslint",
     "*.{ts,js}": "vitest related --run --passWithNoTests"
   },
-  "overrides": {
-    "d3-color": "3.1.0",
-    "next-contentlayer": {
-      "next": "$next"
-    },
-    "react-simple-maps": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "react-swipeable": {
-      "react": "$react"
-    },
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3"
+  "pnpm": {
+    "overrides": {
+      "d3-color": "3.1.0",
+      "next-contentlayer>next": "$next",
+      "react-simple-maps>react": "$react",
+      "react-simple-maps>react-dom": "$react-dom",
+      "react-swipeable>react": "$react",
+      "@types/react": "19.2.14",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
