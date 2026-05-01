@@ -28,7 +28,7 @@ export default function Page(props: { params: Promise<{ name: string }> }) {
 
   if (!post) notFound()
 
-  const MDXContent = useMDXComponent(post?.body.code || '')
+  const renderMdx = useMDXComponent(post?.body.code || '')
 
   const headings = post?.headings || []
 
@@ -46,8 +46,8 @@ export default function Page(props: { params: Promise<{ name: string }> }) {
       )}
       <div className="mt-4 flex justify-center lg:col-start-2">
         <Container.AboutText>
-          <MDXContent
-            components={{
+          {renderMdx({
+            components: {
               GithubIcon,
               TailwindIcon,
               NextJsIcon,
@@ -56,8 +56,8 @@ export default function Page(props: { params: Promise<{ name: string }> }) {
               LinkIcon,
               Image,
               a: ContentLink,
-            }}
-          />
+            },
+          })}
         </Container.AboutText>
       </div>
     </>

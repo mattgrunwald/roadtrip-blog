@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "format": "prettier --write . --config ./.prettierrc --ignore-path ./.prettierignore",
     "format:check": "prettier --check . --config ./.prettierrc --ignore-path ./.prettierignore",
     "prepare": "husky",
-    "test": "jest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
@@ -37,27 +37,24 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^9.39.1",
-    "@types/jest": "^29.5.14",
     "@types/node": "^25.6.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@types/react-simple-maps": "^3.0.6",
     "baseline-browser-mapping": "^2.10.24",
-    "eslint": "^10.2.1",
+    "eslint": "^9.39.2",
     "eslint-config-next": "^16.2.4",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
-    "jest": "^29.7.0",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "ts-jest": "^29.4.9",
-    "ts-node": "^10.9.2"
+    "vitest": "^4.0.17"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write --config ./.prettierrc --ignore-path ./.prettierignore",
     "*.{ts,tsx,js,jsx}": "eslint",
-    "*.{ts,js}": "jest --findRelatedTests --passWithNoTests"
+    "*.{ts,js}": "vitest related --run --passWithNoTests"
   },
   "overrides": {
     "d3-color": "3.1.0",

@@ -10,7 +10,7 @@ export default function Page() {
 
   if (!post) notFound()
 
-  const MDXContent = useMDXComponent(post?.body.code || '')
+  const renderMdx = useMDXComponent(post?.body.code || '')
 
   return (
     <PostContent post={post!} showAllMarkersAlways>
@@ -19,7 +19,7 @@ export default function Page() {
           <DayLink day={30}>Day {30}</DayLink>
         </div>
       </div>
-      <MDXContent components={{ Image, a: ContentLink }} />
+      {renderMdx({ components: { Image, a: ContentLink } })}
     </PostContent>
   )
 }

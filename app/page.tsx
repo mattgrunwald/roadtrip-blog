@@ -7,13 +7,11 @@ import { notFound } from 'next/navigation'
 export default function Page() {
   const post = allPosts.find((post) => post.path === 'posts/home')
   if (!post) notFound()
-  const MDXContent = useMDXComponent(post?.body.code || '')
+  const renderMdx = useMDXComponent(post?.body.code || '')
 
   return (
     <PostContent post={post!} showAllMarkersAlways>
-      <div className="mt-9 pb-2">
-        <MDXContent />
-      </div>
+      <div className="mt-9 pb-2">{renderMdx({})}</div>
       <DayLink day={1}>
         <b>Jump In</b>
       </DayLink>

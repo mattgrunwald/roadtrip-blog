@@ -15,6 +15,46 @@ export type TripMapProps = {
   markers?: GeneratedMarker[]
 }
 
+function UnnamedMarkers({
+  allMarkers,
+  showAllMarkersAlways,
+  accentColor,
+}: {
+  allMarkers: MarkerWithDay[]
+  showAllMarkersAlways: boolean
+  accentColor: string
+}) {
+  return allMarkers.map(({ coordinates, day }) => (
+    <MapMarker
+      key={coordinates[0]}
+      coordinates={coordinates as [number, number]}
+      translucent={!showAllMarkersAlways}
+      color={accentColor}
+      day={day}
+      className={clsx(showAllMarkersAlways || 'hidden group-hover:block')}
+    />
+  ))
+}
+
+function NamedMarkers({
+  markers,
+  accentColor,
+}: {
+  markers?: GeneratedMarker[]
+  accentColor: string
+}) {
+  return markers?.map(({ name, coordinates, markerOffset }) => (
+    <MapMarker
+      key={name || coordinates[0]}
+      coordinates={coordinates as [number, number]}
+      name={name}
+      color={accentColor}
+      offset={markerOffset}
+      className="block"
+    />
+  ))
+}
+
 export default function TripMap({
   allMarkers,
   showAllMarkersAlways = false,
@@ -25,30 +65,6 @@ export default function TripMap({
     resolvedTheme === 'light'
       ? ['#999', ACCENT_COLOR_LIGHT]
       : ['#bbb', ACCENT_COLOR_DARK]
-
-  const UnnamedMarkers = () =>
-    allMarkers.map(({ coordinates, day }) => (
-      <MapMarker
-        key={coordinates[0]}
-        coordinates={coordinates as [number, number]}
-        translucent={!showAllMarkersAlways}
-        color={accentColor}
-        day={day}
-        className={clsx(showAllMarkersAlways || 'hidden group-hover:block')}
-      />
-    ))
-
-  const NamedMarkers = () =>
-    markers?.map(({ name, coordinates, markerOffset }) => (
-      <MapMarker
-        key={name || coordinates[0]}
-        coordinates={coordinates as [number, number]}
-        name={name}
-        color={accentColor}
-        offset={markerOffset}
-        className="block"
-      />
-    ))
 
   return (
     <ComposableMap projection="geoAlbers" className="group">
@@ -64,8 +80,12 @@ export default function TripMap({
           ))
         }
       </Geographies>
-      <UnnamedMarkers />
-      <NamedMarkers />
+      <UnnamedMarkers
+        allMarkers={allMarkers}
+        showAllMarkersAlways={showAllMarkersAlways}
+        accentColor={accentColor}
+      />
+      <NamedMarkers markers={markers} accentColor={accentColor} />
     </ComposableMap>
   )
 }
