@@ -2,6 +2,15 @@
 
 Simple travel blog built with [Next.js](https://nextjs.org/) 15 app dir, [Contentlayer](https://www.contentlayer.dev/), and [Tailwind CSS](https://tailwindcss.com/).
 
+## Development
+
+Install dependencies with [pnpm](https://pnpm.io/) (`corepack enable` if you manage package managers via Corepack):
+
+```bash
+pnpm install
+pnpm dev
+```
+
 [roadtrip.dog](https://roadtrip.dog)
 
 ## Contentlayer

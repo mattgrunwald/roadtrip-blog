@@ -22,7 +22,7 @@ export default function Page(props: { params: Promise<{ day: string }> }) {
   const day = Number(params.day)
   const previousDay = day - 1
   const nextDay = day + 1
-  const MDXContent = useMDXComponent(post?.body.code || '')
+  const renderMdx = useMDXComponent(post?.body.code || '')
 
   return (
     <PostContent post={post!} markers={post?.markers}>
@@ -41,7 +41,7 @@ export default function Page(props: { params: Promise<{ day: string }> }) {
           )}
         </div>
       </div>
-      <MDXContent components={{ Image, a: ContentLink }} />
+      {renderMdx({ components: { Image, a: ContentLink } })}
     </PostContent>
   )
 }
