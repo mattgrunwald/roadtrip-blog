@@ -2,7 +2,7 @@
   "name": "roadtrip-blog",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
@@ -73,5 +73,13 @@
     },
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "contentlayer2",
+      "esbuild",
+      "protobufjs",
+      "unrs-resolver"
+    ]
   }
 }
