@@ -1,13 +1,22 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import prettier from "eslint-config-prettier";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
-export default [...compat.extends("next/core-web-vitals", "prettier")];
+export default [
+  ...nextCoreWebVitals,
+  prettier,
+  {
+    // contentlayer2's useMDXComponent() returns a component derived from
+    // post content; rendering it as <MDXContent /> in the same function is
+    // the documented pattern, not the render-time-component-creation bug
+    // this rule targets.
+    files: [
+      "app/page.tsx",
+      "app/epilogue/page.tsx",
+      "app/day/\\[day\\]/page.tsx",
+      "app/about/\\[name\\]/page.tsx",
+    ],
+    rules: {
+      "react-hooks/static-components": "off",
+    },
+  },
+];
