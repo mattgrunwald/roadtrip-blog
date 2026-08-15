@@ -5,6 +5,9 @@ on:
 
 jobs:
   build:
+    # Vercel builds every non-dependabot PR itself; only run here for
+    # dependabot/* branches, where vercel.json's ignoreCommand skips Vercel.
+    if: startsWith(github.head_ref, 'dependabot/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
