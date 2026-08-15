@@ -26,30 +26,6 @@ export default function TripMap({
       ? ['#999', ACCENT_COLOR_LIGHT]
       : ['#bbb', ACCENT_COLOR_DARK]
 
-  const UnnamedMarkers = () =>
-    allMarkers.map(({ coordinates, day }) => (
-      <MapMarker
-        key={coordinates[0]}
-        coordinates={coordinates as [number, number]}
-        translucent={!showAllMarkersAlways}
-        color={accentColor}
-        day={day}
-        className={clsx(showAllMarkersAlways || 'hidden group-hover:block')}
-      />
-    ))
-
-  const NamedMarkers = () =>
-    markers?.map(({ name, coordinates, markerOffset }) => (
-      <MapMarker
-        key={name || coordinates[0]}
-        coordinates={coordinates as [number, number]}
-        name={name}
-        color={accentColor}
-        offset={markerOffset}
-        className="block"
-      />
-    ))
-
   return (
     <ComposableMap projection="geoAlbers" className="group">
       <Geographies geography={usGeo}>
@@ -64,8 +40,26 @@ export default function TripMap({
           ))
         }
       </Geographies>
-      <UnnamedMarkers />
-      <NamedMarkers />
+      {allMarkers.map(({ coordinates, day }) => (
+        <MapMarker
+          key={coordinates[0]}
+          coordinates={coordinates as [number, number]}
+          translucent={!showAllMarkersAlways}
+          color={accentColor}
+          day={day}
+          className={clsx(showAllMarkersAlways || 'hidden group-hover:block')}
+        />
+      ))}
+      {markers?.map(({ name, coordinates, markerOffset }) => (
+        <MapMarker
+          key={name || coordinates[0]}
+          coordinates={coordinates as [number, number]}
+          name={name}
+          color={accentColor}
+          offset={markerOffset}
+          className="block"
+        />
+      ))}
     </ComposableMap>
   )
 }
