@@ -1,7 +1,5 @@
 'use client'
 
-import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
-import { Heading } from '@/util/types'
 import {
   Menu,
   MenuButton,
@@ -11,6 +9,10 @@ import {
 } from '@headlessui/react'
 import clsx from 'clsx'
 import React, { Fragment } from 'react'
+
+import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
+import { Heading } from '@/util/types'
+
 import { ChevronDownIcon, ChevronUpIcon } from './Icons'
 
 export default function TableOfContents({

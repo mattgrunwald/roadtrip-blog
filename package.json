@@ -2,14 +2,13 @@
   "name": "roadtrip-blog",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint .",
-    "format": "prettier --write . --config ./.prettierrc --ignore-path ./.prettierignore",
-    "format:check": "prettier --check . --config ./.prettierrc --ignore-path ./.prettierignore",
+    "lint": "oxlint .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
     "prepare": "husky",
     "test": "vitest run"
   },
@@ -36,39 +35,25 @@
     "typescript": "6.0.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.6",
-    "@eslint/js": "^9.39.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.9.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@types/react-simple-maps": "^3.0.6",
     "baseline-browser-mapping": "^2.11.6",
-    "eslint": "^10.8.0",
-    "eslint-config-next": "^16.2.12",
-    "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "jest": "^30.4.2",
     "lint-staged": "^16.4.0",
-    "prettier": "^3.9.6",
-    "prettier-plugin-tailwindcss": "^0.8.1",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
     "ts-jest": "^29.4.12",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "vitest": "^4.1.10"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write --config ./.prettierrc --ignore-path ./.prettierignore",
-    "*.{ts,tsx,js,jsx}": "eslint",
+    "*.{ts,tsx,js,jsx,md,mdx,json}": "oxfmt",
+    "*.{ts,tsx,js,jsx}": "oxlint",
     "*.{ts,js}": "vitest related --run --passWithNoTests"
   },
-  "pnpm": {
-    "overrides": {
-      "d3-color": "3.1.0",
-      "next-contentlayer>next": "$next",
-      "react-simple-maps>react": "$react",
-      "react-simple-maps>react-dom": "$react-dom",
-      "react-swipeable>react": "$react",
-      "@types/react": "19.2.14",
-      "@types/react-dom": "19.2.3"
-    }
-  }
+  "packageManager": "pnpm@9.15.9"
 }

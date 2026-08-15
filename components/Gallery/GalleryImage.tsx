@@ -1,8 +1,9 @@
-import { IMAGE_QUALITY } from '@/util/consts'
-import { Size } from '@/util/types'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { MouseEventHandler } from 'react'
+
+import { IMAGE_QUALITY } from '@/util/consts'
+import { Size } from '@/util/types'
 
 export type GalleryImageProps = {
   src: string

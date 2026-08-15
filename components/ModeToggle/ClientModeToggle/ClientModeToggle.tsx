@@ -1,13 +1,14 @@
 'use client'
 
+import clsx from 'clsx'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+
 import {
   ACCENT_BORDER_CLASS_HOVER,
   ACCENT_COLOR_DARK,
   ACCENT_COLOR_LIGHT,
 } from '@/util/consts'
-import clsx from 'clsx'
-import { useTheme } from 'next-themes'
-import { useState } from 'react'
 
 export function ClientModeToggle() {
   const [hover, setHover] = useState(false)

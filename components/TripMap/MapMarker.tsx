@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import { Marker } from 'react-simple-maps'
+
 import { DayLink } from '../DayLink'
 
 type MapMarkerProps = {

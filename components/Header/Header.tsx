@@ -1,5 +1,7 @@
-import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 import Link from 'next/link'
+
+import { ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
+
 import { ModeToggle } from '../ModeToggle'
 import { AboutDropdown } from './AboutDropdown'
 

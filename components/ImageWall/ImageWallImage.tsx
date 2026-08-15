@@ -1,8 +1,10 @@
-import { IMAGE_QUALITY } from '@/util/consts'
-import { GalleryImageSource, Size } from '@/util/types'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
+
+import { IMAGE_QUALITY } from '@/util/consts'
+import { GalleryImageSource, Size } from '@/util/types'
+
 import { DayLink } from '../DayLink'
 import { LinkIcon } from '../Icons'
 

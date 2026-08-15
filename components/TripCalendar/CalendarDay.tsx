@@ -1,5 +1,7 @@
-import { ACCENT_BORDER_CLASS, ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
 import clsx from 'clsx'
+
+import { ACCENT_BORDER_CLASS, ACCENT_TEXT_CLASS_HOVER } from '@/util/consts'
+
 import { DayLink } from '../DayLink'
 
 type CalendarDayProps = {

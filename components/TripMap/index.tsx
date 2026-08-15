@@ -1,13 +1,14 @@
 'use client'
-import { Marker as GeneratedMarker } from '@/.contentlayer/generated'
+import clsx from 'clsx'
 import { useTheme } from 'next-themes'
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
-import { MapMarker } from './MapMarker'
 
+import { Marker as GeneratedMarker } from '@/.contentlayer/generated'
+import usGeo from '@/geo/us-albers.json'
 import { ACCENT_COLOR_DARK, ACCENT_COLOR_LIGHT } from '@/util/consts'
 import { MarkerWithDay } from '@/util/types'
-import clsx from 'clsx'
-import usGeo from 'geo/us-albers.json'
+
+import { MapMarker } from './MapMarker'
 
 export type TripMapProps = {
   allMarkers: MarkerWithDay[]

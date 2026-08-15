@@ -1,0 +1,11 @@
+packages:
+  - '.'
+
+overrides:
+  d3-color: 3.1.0
+  next-contentlayer>next: $next
+  react-simple-maps>react: $react
+  react-simple-maps>react-dom: $react-dom
+  react-swipeable>react: $react
+  '@types/react': 19.2.14
+  '@types/react-dom': 19.2.3

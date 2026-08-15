@@ -23,6 +23,7 @@ export default function FullscreenButton({
       ]
 
   return (
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label -- labeled by nested sr-only span
     <button
       type="button"
       onClick={onClick}

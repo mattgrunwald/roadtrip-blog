@@ -1,11 +1,12 @@
-import { DayLink } from '@/components/DayLink'
-import PostContent from '@/components/PostContent'
-import { ContentLink, Image } from '@/components/mdx'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer2/hooks'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { use } from 'react'
+
+import { DayLink } from '@/components/DayLink'
+import { ContentLink, Image } from '@/components/mdx'
+import PostContent from '@/components/PostContent'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({

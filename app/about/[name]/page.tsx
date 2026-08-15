@@ -1,3 +1,8 @@
+import { AboutPage, allAboutPages } from 'contentlayer/generated'
+import { useMDXComponent } from 'next-contentlayer2/hooks'
+import { notFound } from 'next/navigation'
+import { use } from 'react'
+
 import {
   ContentlayerIcon,
   GithubIcon,
@@ -6,13 +11,9 @@ import {
   TailwindIcon,
   VercelIcon,
 } from '@/components/Icons'
-import TableOfContents from '@/components/TableOfContents'
 import { ContentLink, Image } from '@/components/mdx'
-import { AboutPage, allAboutPages } from 'contentlayer/generated'
-import { useMDXComponent } from 'next-contentlayer2/hooks'
-import { notFound } from 'next/navigation'
-import { use } from 'react'
-import Container from 'util/containers'
+import TableOfContents from '@/components/TableOfContents'
+import Container from '@/util/containers'
 
 export async function generateStaticParams() {
   return allAboutPages.map((page) => ({

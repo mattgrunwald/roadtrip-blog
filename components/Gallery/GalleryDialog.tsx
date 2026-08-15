@@ -1,6 +1,8 @@
-import { GalleryImageSource } from '@/util/types'
 import { Dialog } from '@headlessui/react'
 import clsx from 'clsx'
+
+import { GalleryImageSource } from '@/util/types'
+
 import Gallery from './Gallery'
 
 export type DialogProps = {

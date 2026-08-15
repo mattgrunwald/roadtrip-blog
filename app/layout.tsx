@@ -1,8 +1,11 @@
-import Header from '@/components/Header/Header'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import clsx from 'clsx'
 import { Inter } from 'next/font/google'
+
+import Header from '@/components/Header/Header'
+
 import { ThemeProvider } from '../components/ThemeProvider'
+
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
