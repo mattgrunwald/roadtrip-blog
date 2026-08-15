@@ -1,9 +1,11 @@
 'use client'
 
-import { fitToGrid } from '@/util/imagePlacement'
-import { GalleryImageSource } from '@/util/types'
 import clsx from 'clsx'
 import { useState } from 'react'
+
+import { fitToGrid } from '@/util/imagePlacement'
+import { GalleryImageSource } from '@/util/types'
+
 import { GalleryDialog } from '../Gallery/GalleryDialog'
 import ImageWallImage from './ImageWallImage'
 

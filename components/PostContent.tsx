@@ -1,10 +1,11 @@
+import { Marker, Post } from 'contentlayer/generated'
+
 import Gallery from '@/components/Gallery'
 import TripCalendar from '@/components/TripCalendar'
 import TripMap from '@/components/TripMap'
 import Container from '@/util/containers'
 import { allMarkers } from '@/util/helpers'
 import { GalleryImageSource } from '@/util/types'
-import { Marker, Post } from 'contentlayer/generated'
 
 export type PostContentProps = React.PropsWithChildren & {
   post: Post

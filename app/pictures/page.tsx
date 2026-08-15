@@ -1,6 +1,7 @@
+import { allPosts } from 'contentlayer/generated'
+
 import ImageWall from '@/components/ImageWall/ImageWall'
 import { getWallImages } from '@/util/helpers'
-import { allPosts } from 'contentlayer/generated'
 
 const allImages = getWallImages(allPosts)
 

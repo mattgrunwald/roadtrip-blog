@@ -1,11 +1,12 @@
-import { DayLink } from '@/components/DayLink'
-import PostContent from '@/components/PostContent'
-import { ContentLink, Image } from '@/components/mdx'
 import { allPosts } from 'contentlayer/generated'
 import { useMDXComponent } from 'next-contentlayer2/hooks'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { use } from 'react'
+
+import { DayLink } from '@/components/DayLink'
+import { ContentLink, Image } from '@/components/mdx'
+import PostContent from '@/components/PostContent'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -22,7 +23,7 @@ export default function Page(props: { params: Promise<{ day: string }> }) {
   const day = Number(params.day)
   const previousDay = day - 1
   const nextDay = day + 1
-  const MDXContent = useMDXComponent(post?.body.code || '')
+  const renderMdx = useMDXComponent(post?.body.code || '')
 
   return (
     <PostContent post={post!} markers={post?.markers}>
@@ -41,7 +42,7 @@ export default function Page(props: { params: Promise<{ day: string }> }) {
           )}
         </div>
       </div>
-      <MDXContent components={{ Image, a: ContentLink }} />
+      {renderMdx({ components: { Image, a: ContentLink } })}
     </PostContent>
   )
 }

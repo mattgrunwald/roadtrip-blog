@@ -1,4 +1,5 @@
 import { Post, allPosts } from '@/.contentlayer/generated'
+
 import { GalleryImageSource, MarkerWithDay } from './types'
 
 function getAllMarkers(posts: Post[]) {

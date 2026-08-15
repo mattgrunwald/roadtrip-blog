@@ -1,6 +1,8 @@
 'use client'
-import { GalleryImageSource } from '@/util/types'
 import { useState } from 'react'
+
+import { GalleryImageSource } from '@/util/types'
+
 import PageGallery from './Gallery'
 import { GalleryDialog } from './GalleryDialog'
 

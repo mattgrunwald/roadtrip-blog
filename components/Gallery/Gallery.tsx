@@ -1,8 +1,10 @@
-import { mod } from '@/util/helpers'
-import { GalleryImageSource } from '@/util/types'
 import clsx from 'clsx'
 import { useCallback, useEffect, useState } from 'react'
 import { LEFT, RIGHT, SwipeEventData, useSwipeable } from 'react-swipeable'
+
+import { mod } from '@/util/helpers'
+import { GalleryImageSource } from '@/util/types'
+
 import Counter from './Counter'
 import FullscreenButton from './FullscreenButton'
 import { GalleryImage } from './GalleryImage'

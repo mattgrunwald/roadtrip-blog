@@ -17,6 +17,7 @@ export const GalleryNavButton = ({
   const paths = left ? leftData : rightData
 
   return (
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label -- labeled by nested sr-only span
     <button
       onClick={onClick}
       type="button"

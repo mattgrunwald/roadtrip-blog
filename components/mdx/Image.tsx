@@ -1,4 +1,3 @@
-import { IMAGE_QUALITY } from '@/util/consts'
 import clsx from 'clsx'
 import NextImage from 'next/image'
 export const Image = (props: any) => {
