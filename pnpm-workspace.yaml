@@ -7,5 +7,5 @@ overrides:
   react-simple-maps>react: $react
   react-simple-maps>react-dom: $react-dom
   react-swipeable>react: $react
-  '@types/react': 19.2.14
-  '@types/react-dom': 19.2.3
+  '@types/react': $@types/react
+  '@types/react-dom': $@types/react-dom
