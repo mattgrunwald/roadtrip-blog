@@ -12,9 +12,9 @@ Travel blog for a 2023 roadtrip (roadtrip.dog), built with Next.js (app router),
 - `pnpm run build` — production build (`next build --webpack`)
 - `pnpm run lint` — oxlint (config in `.oxlintrc.json`)
 - `pnpm run format` / `pnpm run format:check` — oxfmt (config in `.oxfmtrc.json`)
-- `pnpm test` — run Jest (ts-jest, no jsdom setup — for pure util functions only)
-- Run a single test file: `npx jest util/imagePlacement/imagePlacement.spec.ts`
-- Run tests matching a name: `npx jest -t "name pattern"`
+- `pnpm test` — run Vitest (`node` environment, globals on — see `vitest.config.mts`; for pure util functions only, no jsdom)
+- Run a single test file: `npx vitest run util/imagePlacement/imagePlacement.spec.ts`
+- Run tests matching a name: `npx vitest run -t "name pattern"`
 
 Pre-commit (via husky + lint-staged) runs oxfmt, oxlint, and `vitest related --run` on staged `.ts/.tsx/.js/.jsx` files — don't bypass with `--no-verify`.
 
