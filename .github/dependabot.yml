@@ -15,3 +15,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      # Stay on TypeScript 6 for now
+      - dependency-name: "typescript"
+        versions: [">=7.0.0"]
+      # Keep Node types in line with the Node 24 runtime used in CI
+      - dependency-name: "@types/node"
+        versions: [">=25.0.0"]
